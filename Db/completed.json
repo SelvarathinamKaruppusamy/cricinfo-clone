@@ -15,9 +15,9 @@
                 "fullName": "Chennai Super Kings",
                 "shortName": "CSK",
                 "logo": "csk.png",
-                "scores": "178/8",
+                "scores": "178/7",
                 "runs": 178,
-                "wickets": 8,
+                "wickets": 7,
                 "extras": 7,
                 "overs": "19.4",
                 "balls": 118,
@@ -446,8 +446,8 @@
                 "fullName": "Gujarat Titans",
                 "shortName": "GT",
                 "logo": "gt.png",
-                "scores": "184/9",
-                "runs": 184,
+                "scores": "182/9",
+                "runs": 182,
                 "wickets": 9,
                 "extras": 10,
                 "overs": "20.0",
@@ -1518,9 +1518,9 @@
                 "fullName": "Punjab Kings",
                 "shortName": "PBKS",
                 "logo": "pbks.png",
-                "scores": "190/6",
+                "scores": "190/5",
                 "runs": 190,
-                "wickets": 6,
+                "wickets": 5,
                 "extras": 12,
                 "overs": "19.5",
                 "balls": 119,
@@ -2173,9 +2173,9 @@
                 "fullName": "Lucknow Super Giants",
                 "shortName": "LSG",
                 "logo": "lsg.png",
-                "scores": "194/6",
+                "scores": "194/5",
                 "runs": 194,
-                "wickets": 6,
+                "wickets": 5,
                 "extras": 9,
                 "overs": "19.4",
                 "balls": 118,
@@ -2383,8 +2383,8 @@
                 "fullName": "Punjab Kings",
                 "shortName": "PBKS",
                 "logo": "pbks.png",
-                "scores": "193/7",
-                "runs": 193,
+                "scores": "185/7",
+                "runs": 185,
                 "wickets": 7,
                 "extras": 10,
                 "overs": "20.0",
@@ -2915,9 +2915,9 @@
 
       "logo": "srh.png",
 
-      "scores": "186/8",
+      "scores": "186/7",
       "runs": 186,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 11,
 
       "overs": "20.0",
@@ -3233,9 +3233,9 @@
 
       "logo": "mi.png",
 
-      "scores": "201/6",
+      "scores": "201/5",
       "runs": 201,
-      "wickets": 6,
+      "wickets": 5,
       "extras": 10,
 
       "overs": "19.4",
@@ -3532,9 +3532,9 @@
 
       "logo": "pbks.png",
 
-      "scores": "199/8",
+      "scores": "199/7",
       "runs": 199,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 12,
 
       "overs": "20.0",
@@ -3850,9 +3850,9 @@
 
       "logo": "dc.png",
 
-      "scores": "186/8",
+      "scores": "186/7",
       "runs": 186,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 9,
 
       "overs": "19.5",
@@ -4149,9 +4149,9 @@
 
       "logo": "kkr.png",
 
-      "scores": "184/9",
+      "scores": "184/8",
       "runs": 184,
-      "wickets": 9,
+      "wickets": 8,
       "extras": 10,
 
       "overs": "20.0",
@@ -4467,9 +4467,9 @@
 
       "logo": "gt.png",
 
-      "scores": "183/8",
+      "scores": "183/7",
       "runs": 183,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 10,
 
       "overs": "19.5",
@@ -4766,9 +4766,9 @@
 
       "logo": "rr.png",
 
-      "scores": "181/9",
+      "scores": "181/7",
       "runs": 181,
-      "wickets": 9,
+      "wickets": 7,
       "extras": 11,
 
       "overs": "20.0",
@@ -5084,9 +5084,9 @@
 
       "logo": "dc.png",
 
-      "scores": "192/6",
+      "scores": "192/5",
       "runs": 192,
-      "wickets": 6,
+      "wickets": 5,
       "extras": 11,
 
       "overs": "19.3",
@@ -5383,9 +5383,9 @@
 
       "logo": "srh.png",
 
-      "scores": "191/8",
+      "scores": "191/7",
       "runs": 191,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 10,
 
       "overs": "20.0",
@@ -6000,9 +6000,9 @@
 
       "logo": "gt.png",
 
-      "scores": "187/8",
+      "scores": "187/7",
       "runs": 187,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 10,
 
       "overs": "20.0",
@@ -6318,9 +6318,9 @@
 
       "logo": "dc.png",
 
-      "scores": "185/8",
+      "scores": "185/7",
       "runs": 185,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 10,
 
       "overs": "20.0",
@@ -6617,9 +6617,9 @@
 
       "logo": "rr.png",
 
-      "scores": "186/8",
+      "scores": "186/7",
       "runs": 186,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 11,
 
       "overs": "19.4",
@@ -6935,9 +6935,9 @@
 
       "logo": "gt.png",
 
-      "scores": "196/6",
+      "scores": "196/5",
       "runs": 196,
-      "wickets": 6,
+      "wickets": 5,
       "extras": 11,
 
       "overs": "19.4",
@@ -7234,9 +7234,9 @@
 
       "logo": "lsg.png",
 
-      "scores": "195/8",
+      "scores": "195/7",
       "runs": 195,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 10,
 
       "overs": "20.0",
@@ -7552,9 +7552,9 @@
 
       "logo": "mi.png",
 
-      "scores": "198/7",
+      "scores": "198/6",
       "runs": 198,
-      "wickets": 7,
+      "wickets": 6,
       "extras": 11,
 
       "overs": "20.0",
@@ -8468,9 +8468,9 @@
 
       "logo": "rr.png",
 
-      "scores": "190/8",
+      "scores": "190/7",
       "runs": 190,
-      "wickets": 8,
+      "wickets": 7,
       "extras": 11,
 
       "overs": "20.0",
@@ -8786,9 +8786,9 @@
 
       "logo": "kkr.png",
 
-      "scores": "203/6",
+      "scores": "203/5",
       "runs": 203,
-      "wickets": 6,
+      "wickets": 5,
       "extras": 12,
 
       "overs": "19.4",
@@ -10319,9 +10319,9 @@
 
       "logo": "kkr.png",
 
-      "scores": "200/9",
+      "scores": "200/8",
       "runs": 200,
-      "wickets": 9,
+      "wickets": 8,
       "extras": 11,
 
       "overs": "20.0",
@@ -14021,9 +14021,9 @@
 
       "logo": "rcb.png",
 
-      "scores": "185/4",
+      "scores": "185/3",
       "runs": 185,
-      "wickets": 4,
+      "wickets": 3,
       "extras": 8,
 
       "overs": "18.2",

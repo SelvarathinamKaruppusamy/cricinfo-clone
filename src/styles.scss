@@ -1,8 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
 
-@import 'tailwindcss';
 @use '@angular/material' as mat;
+@use 'tailwindcss';
 @import '@angular/material/prebuilt-themes/azure-blue.css';
+
 html {
   @include mat.typography-hierarchy(mat.define-theme());
 }

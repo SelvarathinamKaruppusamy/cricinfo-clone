@@ -1,0 +1,154 @@
+<!-- completed-details.html -->
+<div class="details-container" *ngIf="match">
+  <!-- Match Header -->
+  <div class="match-header">
+    <div class="team-badges">
+      <div class="team-badge">
+        <img [src]="match.teams[0].logo" [alt]="match.teams[0].shortName">
+        <span>{{match.teams[0].shortName}}</span>
+      </div>
+      <div class="vs">VS</div>
+      <div class="team-badge">
+        <img [src]=" match.teams[1].logo" [alt]="match.teams[1].shortName">
+        <span>{{match.teams[1].shortName}}</span>
+      </div>
+    </div>
+    <h1>{{match.teams[0].fullName}} vs {{match.teams[1].fullName}}</h1>
+    <div class="result-badge">{{match.result}}</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button [class.active]="selectedTab === 'summary'" (click)="changeTab('summary')">
+      📋 Summary
+    </button>
+    <button [class.active]="selectedTab === 'scorecard'" (click)="changeTab('scorecard')">
+      📊 Scorecard
+    </button>
+  </div>
+
+  <!-- Summary Tab -->
+  <div class="summary-card" *ngIf="selectedTab === 'summary'">
+    <div class="summary-grid">
+      <div class="summary-item">
+        <span class="summary-label">🏟️ Venue</span>
+        <span class="summary-value">{{match.venue}}, {{match.city}}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">📅 Date</span>
+        <span class="summary-value">{{match.date | date:'fullDate'}}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">🎲 Toss</span>
+        <span class="summary-value">{{match.tossWinner}} chose to {{match.tossDecision}}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">🏆 Player of the Match</span>
+        <span class="summary-value highlight">{{match.playerOfTheMatch}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scorecard Tab -->
+  <div class="scorecard-container" *ngIf="selectedTab === 'scorecard'">
+    <!-- Innings Selector -->
+    <div class="innings-selector">
+      <button 
+        *ngFor="let team of match.teams" 
+        [class.active]="selectedTeamId === team.teamId"
+        (click)="selectInnings(team.teamId)">
+        <img [src]=" team.logo" [alt]="team.shortName">
+        {{team.shortName}} Innings
+      </button>
+    </div>
+
+    <!-- Innings Card -->
+    <div class="innings-card">
+      <!-- Team Header -->
+      <div class="innings-header">
+        <img [src]=" selectedTeam?.logo" [alt]="selectedTeam?.shortName">
+        <div class="innings-title">
+          <h2>{{selectedTeam?.fullName}}</h2>
+          <div class="score-summary">
+            {{selectedTeam?.scores}} ({{selectedTeam?.overs}})
+          </div>
+        </div>
+      </div>
+
+      <!-- Batting Section -->
+      <div class="section">
+        <h3 class="section-title">🏏 Batting</h3>
+        <div class="table-wrapper">
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>Batter</th>
+                <th>R</th>
+                <th>B</th>
+                <th>4s</th>
+                <th>6s</th>
+                <th>SR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let player of selectedTeam?.batting">
+                <td class="player-name">
+                  {{player.name}}
+                  <span class="dismissal" *ngIf="player.status !== 'Not Out' && player.status !== 'Did Not Bat'">
+                    {{player.status}}
+                  </span>
+                  <span class="not-out" *ngIf="player.status === 'Not Out'">*</span>
+                  <span class="dnb" *ngIf="player.status === 'Did Not Bat'">(DNB)</span>
+                </td>
+                <td class="runs">{{player.runs !== null ? player.runs : '-'}}</td>
+                <td>{{player.balls !== null ? player.balls : '-'}}</td>
+                <td>{{player.fours !== null ? player.fours : '-'}}</td>
+                <td>{{player.sixes !== null ? player.sixes : '-'}}</td>
+                <td class="sr">{{player.strikeRate !== null ? player.strikeRate : '-'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Extras & Total -->
+      <div class="extras-card">
+        <div class="extras-row">
+          <span>Extras</span>
+          <strong>{{selectedTeam?.extras}}</strong>
+        </div>
+        <div class="extras-row total">
+          <span>Total</span>
+          <strong>{{selectedTeam?.scores}} ({{selectedTeam?.overs}})</strong>
+        </div>
+      </div>
+
+      <!-- Bowling Section -->
+      <div class="section" *ngIf="bowlingTeam">
+        <h3 class="section-title">🎯 Bowling ({{bowlingTeam?.shortName}})</h3>
+        <div class="table-wrapper">
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>Bowler</th>
+                <th>O</th>
+                <th>R</th>
+                <th>W</th>
+                <th>Eco</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bowler of bowlingTeam?.bowling">
+                <td class="player-name">{{bowler.name}}</td>
+                <td>{{bowler.overs}}</td>
+                <td>{{bowler.runsConceded}}</td>
+                <td class="wickets">{{bowler.wickets}}</td>
+                <td>{{bowler.economy}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

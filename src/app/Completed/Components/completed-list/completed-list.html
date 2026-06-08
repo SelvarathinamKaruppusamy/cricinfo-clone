@@ -2,13 +2,16 @@
 
   @for (match of matches; track match.matchNo) {
 
-    <div class="match-card">
+    <div
+      class="match-card"
+      (click)="openScorecard(match.matchNo)"
+    >
 
       <div class="header">
 
         <div class="match-info">
-          Match {{ match.matchNo }}
-        </div>
+  T20 {{ match.matchNo.toString().padStart(2, '0') }} of 45
+</div>
 
         <div class="date">
           {{ match.date }}
@@ -49,20 +52,15 @@
         {{ match.result }}
       </div>
 
-      <div class="potm">
-        🏆 {{ match.playerOfTheMatch }}
-      </div>
-
       <div class="footer">
 
         <div class="venue">
-          📍 {{ match.venue }}
-        </div>
+          <span class="material-icons location-icon">
+            location_on
+          </span>
 
-        <button
-          (click)="openScorecard(match.matchNo)">
-          Scorecard
-        </button>
+          {{ match.venue }}
+        </div>
 
       </div>
 

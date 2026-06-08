@@ -6,17 +6,22 @@
 }
 
 .match-card {
-    background: #ffffff;
-    border: 1px solid #dbe2ea;
+    background: #fffdfde5;
+    border: 1px solid #dee2e7;
     border-radius: 12px;
     padding: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: 0.3s ease;
+    transition: all 0.25s ease;
+    cursor: pointer;
 }
 
 .match-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.match-card:active {
+    transform: scale(0.98);
 }
 
 .header {
@@ -27,8 +32,8 @@
 }
 
 .match-info {
-    font-weight: 600;
-    color: #2563eb;
+    font-weight: 400;
+    color: #64748b;
 }
 
 .date {
@@ -72,9 +77,14 @@
 }
 
 .result {
-    color: #19b63bf6;
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #f2f6fb;
+    color: #355c7d;
+    font-size: 15px;
     font-weight: 600;
-    margin-top: 10px;
+    text-align: center;
 }
 
 .potm {
@@ -88,28 +98,20 @@
     padding-top: 12px;
     border-top: 1px solid #e2e8f0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .venue {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 13px;
     color: #475569;
-    max-width: 70%;
 }
 
-button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-button:hover {
-    background: #1d4ed8;
+.location-icon {
+    font-size: 18px;
+    color: #64748b;
 }
 
 @media (max-width: 1200px) {

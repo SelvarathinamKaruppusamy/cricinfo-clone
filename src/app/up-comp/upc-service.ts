@@ -10,10 +10,10 @@ export class UpcService {
   }
 
   getMatch() {
-    return this.http.get<any[]>('http://localhost:3000/matches');
+    return this.http.get<any[]>('http://localhost:5000/matches');
   }
 
   getMatchById(id: string) {
-    return this.http.get(`http://localhost:3000/matches/${id}`);
+    return this.http.get(`http://localhost:5000/matches/${id}`);
   }
 }

@@ -7,12 +7,12 @@ import { Nav } from './nav/nav';
 
 @Component({
   selector: 'app-root',
-  imports: [Squads, RouterOutlet, Nav],
+  imports: [RouterOutlet,Nav],
   templateUrl: './app.html',
   styleUrl: './app.css',
   standalone: true,
 
 })
 export class App {
-  protected readonly title = signal('cricinfo-clone');
+  
 }

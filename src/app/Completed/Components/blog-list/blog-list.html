@@ -1,0 +1,60 @@
+<div class="blog-list-container">
+  <h1 class="page-title">Latest Match Reports</h1>
+
+  <div class="blog-grid">
+    @for (blog of blogs$ | async; track blog.id; let first = $first) {
+      <article class="blog-card">
+        
+        <div class="blog-image-wrapper">
+          @if (blog.image) {
+            <img [ngSrc]="blog.image" fill [priority]="first" [alt]="blog.title" class="blog-img">
+          } @else {
+            <div class="placeholder-img">
+              <span class="material-symbols-outlined placeholder-icon">sports_cricket</span>
+            </div>
+          }
+        </div>
+
+        <div>
+            
+        </div>
+
+        <div class="blog-content">
+          <div class="blog-meta-wrapper">
+            <div class="list-meta-chip author-highlight">
+              <span class="material-symbols-outlined list-icon">account_circle</span>
+              <span>{{ blog.author }}</span>
+            </div>
+            
+            <div class="list-meta-chip">
+              <span class="material-symbols-outlined list-icon">calendar_month</span>
+              <span>{{ blog.publishedDate | date:'mediumDate' }}</span>
+            </div>
+          </div>
+          
+          <h2 class="blog-heading">{{ blog.title }}</h2>
+          
+          <p class="blog-description">{{ blog.shortDescription }}</p>
+          
+          <div class="blog-footer">
+            <div class="read-time-wrapper">
+              <span class="material-symbols-outlined list-icon">schedule</span>
+              <span class="read-time">{{ blog.readTime }}</span>
+            </div>
+            
+            <button class="read-btn" [routerLink]="['/blog-detail', blog.id]">
+              <span>Read Full Report</span>
+              <span class="material-symbols-outlined btn-arrow">trending_flat</span>
+            </button>
+          </div>
+        </div>
+
+      </article>
+    } @empty {
+      <div class="loading-container">
+        <span class="material-symbols-outlined spinning-loader">progress_activity</span>
+        <p class="loading-text">Loading matches from server...</p>
+      </div>
+    }
+  </div>
+</div>

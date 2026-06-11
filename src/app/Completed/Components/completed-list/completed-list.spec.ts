@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompletedList } from './completed-list';
+import { CompletedListComponent } from './completed-list';
 
-describe('CompletedList', () => {
-  let component: CompletedList;
-  let fixture: ComponentFixture<CompletedList>;
+describe('CompletedListComponent', () => {
+  let component: CompletedListComponent;
+  let fixture: ComponentFixture<CompletedListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CompletedList],
+      imports: [CompletedListComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CompletedList);
+    fixture = TestBed.createComponent(CompletedListComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

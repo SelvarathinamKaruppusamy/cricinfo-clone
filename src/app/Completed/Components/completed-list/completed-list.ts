@@ -16,7 +16,7 @@ export class CompletedListComponent implements OnInit {
 
   private service = inject(CompletedService);
   private router = inject(Router);
- private cd=inject(ChangeDetectorRef)
+ private cd=inject(ChangeDetectorRef);
   matches: Match[] = [];
 
   ngOnInit(): void {
@@ -32,10 +32,13 @@ export class CompletedListComponent implements OnInit {
     });
 
   }
+
   openScorecard(matchNo: number): void {
     this.router.navigate(['/completed', matchNo]);
   }
+
   isWinner(team: any): boolean {
     return team.matchStatus?.[0] ?? false;
   }
+
 }

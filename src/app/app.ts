@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { PointsTable } from "./points-table/points-table";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, PointsTable],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

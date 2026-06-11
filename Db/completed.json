@@ -7,7 +7,7 @@
         "date": "2026-03-01",
         "tossWinner": "Chennai Super Kings",
         "tossDecision": "Bowling",
-        "result": "Chennai Super Kings won by 2 wickets",
+        "result": "Chennai Super Kings won by 3 wickets",
         "playerOfTheMatch": "Ruturaj Gaikwad",
         "status": "COMPLETED",
         "teams": [
@@ -424,7 +424,7 @@
                         "balls": 10,
                         "maidens": 0,
                         "runsConceded": 22,
-                        "wickets": 1,
+                        "wickets": 0,
                         "economy": 13.2
                     }
                 ]
@@ -438,7 +438,7 @@
         "date": "2026-03-02",
         "tossWinner": "Royal Challengers Bengaluru",
         "tossDecision": "Batting",
-        "result": "Royal Challengers Bengaluru won by 8 runs",
+        "result": "Royal Challengers Bengaluru won by 10 runs",
         "playerOfTheMatch": "Virat Kohli",
         "status": "COMPLETED",
         "teams": [
@@ -464,7 +464,7 @@
                         "id": 701,
                         "name": "Shubman Gill",
                         "role": "Batter",
-                        "runs": 48,
+                        "runs": 38,
                         "balls": 31,
                         "fours": 5,
                         "sixes": 2,
@@ -475,7 +475,7 @@
                         "id": 702,
                         "name": "Jos Buttler",
                         "role": "Wicket Keeper",
-                        "runs": 37,
+                        "runs": 47,
                         "balls": 24,
                         "fours": 4,
                         "sixes": 1,
@@ -557,7 +557,7 @@
                         "fours": 0,
                         "sixes": 0,
                         "strikeRate": 66.67,
-                        "status": "Not Out"
+                        "status": "LBW"
                     },
                     {
                         "id": 710,
@@ -733,7 +733,7 @@
                         "fours": 1,
                         "sixes": 0,
                         "strikeRate": 157.14,
-                        "status": "Not Out"
+                        "status": "Caught"
                     },
                     {
                         "id": 7,
@@ -1301,7 +1301,7 @@
         "date": "2026-03-04",
         "tossWinner": "Punjab Kings",
         "tossDecision": "Bowling",
-        "result": "Punjab Kings won by 4 wickets",
+        "result": "Punjab Kings won by 5 wickets",
         "playerOfTheMatch": "Marcus Stoinis",
         "status": "COMPLETED",
         "teams": [
@@ -1487,7 +1487,7 @@
                         "balls": 24,
                         "maidens": 0,
                         "runsConceded": 29,
-                        "wickets": 2,
+                        "wickets": 1,
                         "economy": 7.25
                     },
                     {
@@ -2165,7 +2165,7 @@
         "date": "2026-03-06",
         "tossWinner": "Lucknow Super Giants",
         "tossDecision": "Bowling",
-        "result": "Lucknow Super Giants won by 4 wickets",
+        "result": "Lucknow Super Giants won by 5 wickets",
         "playerOfTheMatch": "Rishabh Pant",
         "status": "COMPLETED",
         "teams": [
@@ -2551,7 +2551,7 @@
                         "balls": 24,
                         "maidens": 0,
                         "runsConceded": 41,
-                        "wickets": 1,
+                        "wickets": 0,
                         "economy": 10.25
                     },
                     {
@@ -3213,13 +3213,12 @@
 
   "venue": "Wankhede Stadium",
   "city": "Mumbai",
-
   "date": "2026-03-08",
 
   "tossWinner": "Mumbai Indians",
   "tossDecision": "Bowling",
 
-  "result": "Mumbai Indians won by 4 wickets",
+  "result": "Mumbai Indians won by 5 wickets",
 
   "playerOfTheMatch": "Hardik Pandya",
 
@@ -3518,7 +3517,7 @@
           "maidens": 0,
 
           "runsConceded": 31,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 15.5
         }
@@ -3769,7 +3768,7 @@
           "maidens": 0,
 
           "runsConceded": 42,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 10.5
         },
@@ -3836,7 +3835,7 @@
   "tossWinner": "Delhi Titans",
   "tossDecision": "Bowling",
 
-  "result": "Delhi Titans won by 2 wickets",
+  "result": "Delhi Titans won by 3 wickets",
 
   "playerOfTheMatch": "KL Rahul",
 
@@ -4153,7 +4152,7 @@
       "scores": "184/8",
       "runs": 184,
       "wickets": 8,
-      "extras": 10,
+      "extras": 9,
 
       "overs": "20.0",
       "balls": 120,
@@ -4434,7 +4433,7 @@
           "maidens": 0,
 
           "runsConceded": 23,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 12.55
         }
@@ -4453,7 +4452,7 @@
   "tossWinner": "Gujarat Titans",
   "tossDecision": "Batting",
 
-  "result": "Gujarat Titans won by 2 wickets",
+  "result": "Gujarat Titans won by 3 wickets",
 
   "playerOfTheMatch": "Shubman Gill",
 
@@ -4478,9 +4477,9 @@
 
       "winCount": 1,
       "lossCount": 0,
-      "totalMatch": 1,
+      "totalMatch": 2,
 
-      "matchStatus": [true],
+      "matchStatus": [false, true],
 
       "batting": [
         {
@@ -4488,7 +4487,7 @@
           "name": "Shubman Gill",
           "role": "Batter",
 
-          "runs": 73,
+          "runs": 76,
           "balls": 46,
 
           "fours": 8,
@@ -4672,7 +4671,7 @@
           "maidens": 0,
 
           "runsConceded": 32,
-          "wickets": 3,
+          "wickets": 2,
 
           "economy": 8.0
         },
@@ -5051,7 +5050,7 @@
           "maidens": 0,
 
           "runsConceded": 22,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 12.0
         }
@@ -5070,7 +5069,7 @@
   "tossWinner": "Delhi Titans",
   "tossDecision": "Bowling",
 
-  "result": "Delhi Titans won by 4 wickets",
+  "result": "Delhi Titans won by 5 wickets",
 
   "playerOfTheMatch": "KL Rahul",
 
@@ -5321,7 +5320,7 @@
           "maidens": 0,
 
           "runsConceded": 39,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 9.75
         },
@@ -5652,7 +5651,7 @@
           "maidens": 0,
 
           "runsConceded": 18,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 9.0
         },
@@ -5826,7 +5825,7 @@
 
           "strikeRate": 125.0,
 
-          "status": "Not Out"
+          "status": "Stumped"
         },
 
         {
@@ -5986,7 +5985,7 @@
           "maidens": 0,
 
           "runsConceded": 29,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 14.5
         }
@@ -6011,9 +6010,9 @@
 
       "winCount": 1,
       "lossCount": 1,
-      "totalMatch": 2,
+      "totalMatch": 3,
 
-      "matchStatus": [true, false],
+      "matchStatus": [false, true, false],
 
       "batting": [
         {
@@ -6304,7 +6303,7 @@
   "tossWinner": "Rajasthan Royals",
   "tossDecision": "Bowling",
 
-  "result": "Rajasthan Royals won by 2 wickets",
+  "result": "Rajasthan Royals won by 3 wickets",
 
   "playerOfTheMatch": "Yashasvi Jaiswal",
 
@@ -6902,7 +6901,7 @@
           "maidens": 0,
 
           "runsConceded": 26,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 15.6
         }
@@ -6921,7 +6920,7 @@
   "tossWinner": "Gujarat Titans",
   "tossDecision": "Batting",
 
-  "result": "Gujarat Titans won by 4 wickets",
+  "result": "Gujarat Titans won by 5 wickets",
 
   "playerOfTheMatch": "Shubman Gill",
 
@@ -6946,9 +6945,9 @@
 
       "winCount": 2,
       "lossCount": 1,
-      "totalMatch": 3,
+      "totalMatch": 4,
 
-      "matchStatus": [true, false, true],
+      "matchStatus": [false,true, false, true],
 
       "batting": [
         {
@@ -7220,7 +7219,7 @@
           "maidens": 0,
 
           "runsConceded": 31,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 15.5
         }
@@ -7487,7 +7486,7 @@
           "maidens": 0,
 
           "runsConceded": 39,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 9.75
         },
@@ -7862,9 +7861,9 @@
 
       "winCount": 1,
       "lossCount": 0,
-      "totalMatch": 1,
+      "totalMatch": 2,
 
-      "matchStatus": [true],
+      "matchStatus": [true, true],
 
       "batting": [
         {
@@ -8088,7 +8087,7 @@
           "maidens": 0,
 
           "runsConceded": 39,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 9.75
         },
@@ -8454,7 +8453,7 @@
           "maidens": 0,
 
           "runsConceded": 28,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 14.0
         }
@@ -8721,7 +8720,7 @@
           "maidens": 0,
 
           "runsConceded": 41,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 10.25
         },
@@ -8737,7 +8736,7 @@
           "maidens": 0,
 
           "runsConceded": 18,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 9.0
         },
@@ -8772,7 +8771,7 @@
   "tossWinner": "Kolkata Knight Riders",
   "tossDecision": "Batting",
 
-  "result": "Kolkata Knight Riders won by 4 wickets",
+  "result": "Kolkata Knight Riders won by 5 wickets",
 
   "playerOfTheMatch": "Rinku Singh",
 
@@ -9055,7 +9054,7 @@
           "maidens": 0,
 
           "runsConceded": 20,
-          "wickets": 0,
+          "wickets": 1,
 
           "economy": 10.0
         },
@@ -9071,7 +9070,7 @@
           "maidens": 0,
 
           "runsConceded": 28,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 14.0
         }
@@ -9096,9 +9095,9 @@
 
       "winCount": 1,
       "lossCount": 1,
-      "totalMatch": 2,
+      "totalMatch": 3,
 
-      "matchStatus": [true, false],
+      "matchStatus": [true, true, false],
 
       "batting": [
         {
@@ -9226,7 +9225,7 @@
 
           "strikeRate": 133.33,
 
-          "status": "Not Out"
+          "status": "Caught"
         },
 
         {
@@ -9250,15 +9249,15 @@
           "name": "Yash Dayal",
           "role": "Bowler",
 
-          "runs": null,
-          "balls": null,
+          "runs": 0,
+          "balls": 0,
 
-          "fours": null,
-          "sixes": null,
+          "fours": 0,
+          "sixes": 0,
 
-          "strikeRate": null,
+          "strikeRate": 0,
 
-          "status": "Did Not Bat"
+          "status": "Not Out"
         },
 
         {
@@ -9338,7 +9337,7 @@
           "maidens": 0,
 
           "runsConceded": 37,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 9.25
         },
@@ -9354,7 +9353,7 @@
           "maidens": 0,
 
           "runsConceded": 19,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 9.5
         },
@@ -9528,7 +9527,7 @@
 
           "strikeRate": 125.0,
 
-          "status": "Not Out"
+          "status": "Caught"
         },
 
         {
@@ -9552,15 +9551,15 @@
           "name": "Mitchell Starc",
           "role": "Bowler",
 
-          "runs": null,
-          "balls": null,
+          "runs": 0,
+          "balls": 0,
 
-          "fours": null,
-          "sixes": null,
+          "fours": 0,
+          "sixes": 0,
 
-          "strikeRate": null,
+          "strikeRate": 0,
 
-          "status": "Did Not Bat"
+          "status": "Not Out"
         },
 
         {
@@ -10305,7 +10304,7 @@
           "maidens": 0,
 
           "runsConceded": 28,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 14.0
         }
@@ -10937,7 +10936,7 @@
 
       "logo": "rcb.png",
 
-      "scores": "193/8",
+      "scores": "193/7",
       "runs": 193,
       "wickets": 8,
       "extras": 10,
@@ -10947,9 +10946,9 @@
 
       "winCount": 1,
       "lossCount": 2,
-      "totalMatch": 3,
+      "totalMatch": 4,
 
-      "matchStatus": [true, false, false],
+      "matchStatus": [true, true, false, false],
 
       "batting": [
         {
@@ -12156,7 +12155,7 @@
           "maidens": 0,
 
           "runsConceded": 26,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 13.0
         }
@@ -12773,7 +12772,7 @@
           "maidens": 0,
 
           "runsConceded": 27,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 13.5
         }
@@ -13116,9 +13115,9 @@
 
       "winCount": 3,
       "lossCount": 1,
-      "totalMatch": 4,
+      "totalMatch": 5,
 
-      "matchStatus": [true, false, true, true],
+      "matchStatus": [false, true, false, true, true],
 
       "batting": [
         {
@@ -13609,7 +13608,7 @@
           "maidens": 0,
 
           "runsConceded": 34,
-          "wickets": 2,
+          "wickets": 1,
 
           "economy": 8.5
         },
@@ -13708,7 +13707,7 @@
   "tossWinner": "Royal Challengers Bengaluru",
   "tossDecision": "Bowling",
 
-  "result": "Royal Challengers Bengaluru won by 6 wickets",
+  "result": "Royal Challengers Bengaluru won by 7 wickets",
 
   "playerOfTheMatch": "Virat Kohli",
 
@@ -13959,7 +13958,7 @@
           "maidens": 0,
 
           "runsConceded": 40,
-          "wickets": 1,
+          "wickets": 0,
 
           "economy": 10.0
         },
@@ -14032,9 +14031,9 @@
 
       "winCount": 2,
       "lossCount": 2,
-      "totalMatch": 4,
+      "totalMatch": 5,
 
-      "matchStatus": [true, false, false, true],
+      "matchStatus": [true, true, false, false, true],
 
       "batting": [
         {

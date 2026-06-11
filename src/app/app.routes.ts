@@ -11,7 +11,7 @@ export const routes: Routes = [
     path: 'completed',
     loadComponent: () =>
       import('./Completed/Components/completed-list/completed-list')
-        .then(c => c.CompletedListComponent)
+        .then(c => c.CompletedDetailsComponent)
   },
 
   {

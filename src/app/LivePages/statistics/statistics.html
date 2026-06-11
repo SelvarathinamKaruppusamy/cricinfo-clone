@@ -1,0 +1,142 @@
+<div class="bg-sky-950 min-h-screen p-5 text-white space-y-6 rounded-xl">
+  <!-- Match Statistics -->
+  <mat-card class="!bg-slate-700 !text-white p-5 rounded-2xl">
+    <h2 class="text-xl font-bold mb-5">Match Statistics</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div class="p-4 text-center">
+        <p class="text-slate-400">Current RR</p>
+        <h1 class="text-2xl font-bold text-green-400">
+          {{ currentRR }}
+        </h1>
+      </div>
+
+      @if (service.innings() === 2) {
+        <div class="p-4 text-center">
+          <p class="text-slate-400">Target</p>
+          <h1 class="text-2xl font-bold text-orange-400">
+            {{ target }}
+          </h1>
+        </div>
+
+        <div class="p-4 text-center">
+          <p class="text-slate-400">Need</p>
+          @if (requiredRuns > 0) {
+            <h1 class="text-2xl font-bold text-yellow-400">
+              {{ requiredRuns }}
+            </h1>
+          } @else {
+            <h1 class="text-2xl font-bold text-yellow-400">
+              {{ service.live.teams[service.tossloss()].shortName }} Won
+            </h1>
+          }
+        </div>
+
+        <div class="p-4 text-center">
+          <p class="text-slate-400">Required RR</p>
+          <h1 class="text-2xl font-bold text-red-400">
+            {{ requiredRR }}
+          </h1>
+        </div>
+      }
+
+      <div class="p-4 text-center">
+        <p class="text-slate-400">Boundaries</p>
+        <h1 class="text-2xl font-bold text-yellow-400">
+          {{ boundaries }}
+        </h1>
+      </div>
+
+      <div class="p-4 text-center">
+        <p class="text-slate-400">Dot Balls</p>
+        <h1 class="text-2xl font-bold text-blue-400">
+          {{ dotBalls }}
+        </h1>
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- Run Rate Graph -->
+
+  <mat-card class="!bg-slate-700 p-5 rounded-2xl">
+    <h2 class="text-xl font-bold mb-4">Innings Graph</h2>
+
+    <div class="h-80 text-red-900">
+      <canvas #inningsChart></canvas>
+    </div>
+  </mat-card>
+
+  <!-- Fall Of Wickets -->
+
+  <mat-card class="!bg-slate-700 !text-white p-5 rounded-2xl">
+    <h2 class="text-xl font-bold mb-5">Fall Of Wickets</h2>
+
+    @for (w of wickets; track $index) {
+      <div class="flex justify-between items-center py-4 border-b border-slate-700 text-lg">
+        <div>
+          <span class="bg-red-600 px-3 py-1 rounded-full font-bold">
+            {{ w.score }}
+          </span>
+        </div>
+
+        <div class="font-semibold">
+          {{ w.player }}
+        </div>
+
+        <div class="text-slate-400">{{ w.over }} ov</div>
+      </div>
+    }
+  </mat-card>
+
+  <!-- Partnership -->
+
+  <mat-card class="!bg-slate-700 !text-white p-5 rounded-2xl">
+    <h2 class="text-xl font-bold mb-5">Current Partnership</h2>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-slate-900 p-4 rounded-xl text-center">
+        <h3 class="font-bold text-xl mb-2">
+          {{ batter1?.name }}
+        </h3>
+
+        <p>{{ batter1?.runs }} ({{ batter1?.balls }})</p>
+      </div>
+
+      <div class="bg-slate-900 p-4 rounded-xl text-center">
+        <h3 class="font-bold text-xl mb-2">
+          {{ batter2?.name }}
+        </h3>
+
+        <p>{{ batter2?.runs }} ({{ batter2?.balls }})</p>
+      </div>
+    </div>
+
+    <div class="mt-5 bg-green-900 rounded-xl p-4 text-center border border-white-700">
+      <h3 class="text-xl font-bold">Partnership</h3>
+
+      <p class="text-xl mt-2">
+        {{ partnershipRuns }}
+        Runs ({{ partnershipBalls }}
+        Balls)
+      </p>
+    </div>
+  </mat-card>
+
+  <!-- Over Summary -->
+
+  <mat-card class="!bg-slate-700 !text-white p-5 rounded-2xl">
+    <h2 class="text-xl font-bold mb-5">Over Summary</h2>
+
+    <div class="flex flex-wrap gap-3">
+      @for (over of overScores; track $index) {
+        <div class="bg-slate-800 px-5 py-3 rounded-full flex items-center gap-2">
+          <span class="font-bold"> {{ $index + 1 }} - </span>
+
+          <span class="text-green-500 font-bold">
+            {{ over }}
+          </span>
+        </div>
+      }
+    </div>
+  </mat-card>
+</div>

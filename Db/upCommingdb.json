@@ -358,7 +358,7 @@
     {
       "matchNo": 28,
       "venue": "M.Chinnaswamy Stadium",
-      "city": "Bangaluru",
+      "city": "Bengaluru",
       "date": "2026-28-03",
       "tossWinner": null,
       "tossDecision": null,
@@ -3920,7 +3920,7 @@
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
 
       "teams": [
         {
@@ -4278,7 +4278,7 @@
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
       "teams": [
         {
           "teamId": 4,
@@ -4627,7 +4627,7 @@
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
       "teams": [
         {
           "teamId": 9,
@@ -4976,7 +4976,7 @@
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
       "teams": [
         {
           "teamId": 6,
@@ -5320,7 +5320,7 @@
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
       "teams": [
         {
           "teamId": 1,
@@ -5677,7 +5677,7 @@
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
       "teams": [
         {
           "teamId": 8,
@@ -6033,13 +6033,13 @@
     {
       "matchNo": 44,
       "venue": "M.Chinnaswamy Stadium",
-      "city": "Bangaluru",
+      "city": "Bengaluru",
       "date": "2026-13-04",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
       "teams": [
         {
           "teamId": 2,
@@ -6402,7 +6402,7 @@
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcomming",
+      "status": "Upcoming",
       "teams": [
         {
           "teamId": 9,

@@ -6,3 +6,6 @@
 html {
   @include mat.typography-hierarchy(mat.define-theme());
 }
+body{
+    font-family: 'Inter', sans-serif;
+}

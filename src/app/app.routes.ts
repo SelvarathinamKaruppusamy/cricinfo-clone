@@ -1,14 +1,24 @@
 import { Routes } from '@angular/router';
-import { Livepage } from './LivePages/livepage/livepage';
-import { LiveMatchCard } from './LivePages/live-match-card/live-match-card';
+import { Squads } from './squads/squads';
+import { UpComp } from './up-comp/up-comp';
+import { Match } from './match/match';
 
 export const routes: Routes = [
-    {
-        path:"",
-        component:LiveMatchCard
-    },
-    {
-        path:"livepage",
-        component:Livepage
-    }
+  {
+    path: '',
+    redirectTo: 'live',
+    pathMatch: 'full',
+  },
+  {
+    path: 'squads',
+    component: Squads,
+  },
+  {
+    path: 'match/:id',
+    component: Match,
+  },
+  {
+    path:'upcoming',
+    component:UpComp
+  }
 ];

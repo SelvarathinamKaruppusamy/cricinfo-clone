@@ -7,9 +7,6 @@
   margin: 0 auto;
 }
 
-/* ==========================================================================
-   ALTERED STICKY HEADER SYSTEM 
-   ========================================================================== */
 .sticky-header-wrapper {
   position: -webkit-sticky;
   position: sticky;
@@ -153,9 +150,6 @@
   border-radius: 0;
 }
 
-/* ==========================================================================
-   UNALTERED CODE SECTIONS (Maintains perfect structural consistency)
-   ========================================================================== */
 
 /* CONTENT WIDTH MATCH */
 .scrollable-content,

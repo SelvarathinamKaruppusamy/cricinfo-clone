@@ -1,71 +1,72 @@
 <div class="completed-container">
-
+ 
   @for (match of matches; track match.matchNo) {
-
+ 
     <div
       class="match-card"
       (click)="openScorecard(match.matchNo)"
     >
-
+ 
       <div class="header">
-
+ 
         <div class="match-info">
   T20 {{ match.matchNo.toString().padStart(2, '0') }} of 45
 </div>
-
+ 
         <div class="date">
           {{ match.date }}
         </div>
-
+ 
       </div>
-
+ 
       <div class="content">
-
+ 
         @for (team of match.teams; track team.teamId) {
-
+ 
           <div class="team-row">
-
+ 
             <div class="team-info">
-
+ 
               <img
                 [src]="team.logo"
                 [alt]="team.shortName">
-
+ 
               <span>
                 {{ team.shortName }}
               </span>
-
+ 
             </div>
-
+ 
             <strong>
               {{ team.scores }}
               ({{ team.overs }})
             </strong>
-
+ 
           </div>
-
+ 
         }
-
+ 
       </div>
-
+ 
       <div class="result">
         {{ match.result }}
       </div>
-
+ 
       <div class="footer">
-
+ 
         <div class="venue">
           <span class="material-icons location-icon">
             location_on
           </span>
-
+ 
           {{ match.venue }}
         </div>
-
+ 
       </div>
-
+ 
     </div>
-
+ 
   }
-
+ 
 </div>
+ 

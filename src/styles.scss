@@ -1,8 +1,11 @@
 @use '@angular/material' as mat;
 
-@import 'tailwindcss';
+@use 'tailwindcss';
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 
 html {
   @include mat.typography-hierarchy(mat.define-theme());
+}
+body{
+    font-family: 'Inter', sans-serif;
 }

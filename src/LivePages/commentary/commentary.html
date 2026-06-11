@@ -1,0 +1,79 @@
+@for (over of commentaryLog; track $index; let i = $index) {
+  <!-- Over Card Container -->
+  <div
+    class="mx-auto my-8 bg-sky-950 border border-slate-800 rounded-2xl shadow-xl overflow-hidden"
+  >
+    <!-- Card Header: Team & Score -->
+    <div class="flex justify-between items-center px-6 py-4 bg-slate-900 border-b border-slate-700">
+      <div class="flex items-center gap-2">
+        <span class="text-lg uppercase text-slate-400 font-bold">Team</span>
+        <h1 class="text-xl md:text-2xl text-white font-extrabold">
+          {{ battingTeam()?.shortName }}
+        </h1>
+      </div>
+
+      <div
+        class="flex items-center gap-3 bg-slate-950 px-4 py-2 rounded-xl border border-green-500"
+      >
+        <span class="text-xs uppercase text-slate-400 font-semibold">Score</span>
+        <h1 class="text-xl md:text-2xl text-emerald-400 font-black">
+          {{ cumulativeScores[i] }}
+        </h1>
+      </div>
+    </div>
+
+    <!-- Commentary(Body) -->
+    <div class="p-6">
+      @for (o of over; track $index) {
+        <div class="flex items-start gap-4 p-3 rounded-xl">
+          <!-- Ball Number -->
+          <div
+            class="w-11 h-11 rounded-full border-2 flex items-center justify-center shrink-0 shadow-md font-bold text-lg text-white"
+            [ngClass]="service.ballColors[o.ball] || 'bg-slate-800 border-slate-600'"
+          >
+            {{ o.ball }}
+          </div>
+
+          <!-- Commentary Text -->
+          <div class="flex-1 pt-1">
+            <p class="text-slate-300 text-base md:text-lg italic">
+              {{ o.text }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!--  Over & Total Over Score -->
+    <div
+      class="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 bg-slate-950 border-t border-slate-850"
+    >
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 max-w-full">
+        <span class="text-xs uppercase tracking-wider text-slate-400 font-bold mr-1">Over:</span>
+        <div class="flex gap-1.5">
+          @for (b of over; track $index) {
+            <div
+              class="w-8 h-8 rounded-full border flex items-center justify-center shrink-0 text-sm font-bold text-white shadow-sm"
+              [ngClass]="service.ballColors[b.ball] || 'bg-slate-800 border-slate-600'"
+            >
+              {{ b.ball }}
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Over Score Badge -->
+      <div
+        class="flex items-center gap-3 bg-slate-900 px-4 py-2 rounded-xl border border-green-500"
+      >
+        <span class="text-xs uppercase tracking-wider text-slate-400 font-bold">Over Score:</span>
+        <p
+          class="text-2xl font-black tracking-tight"
+          [ngClass]="overscores[i] > 10 ? 'text-red-900' : 'text-emerald-400'"
+        >
+          {{ overscores[i] }}
+        </p>
+      </div>
+    </div>
+  </div>
+}

@@ -12,7 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 @Component({
   selector: 'app-match',
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     MatCardModule,
     MatTabsModule,
     MatGridListModule,
@@ -20,31 +21,28 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatDividerModule,
     MatChipsModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   templateUrl: './match.html',
   styleUrl: './match.css',
-  standalone: true
+  standalone: true,
 })
 export class Match implements OnInit {
   match: any;
-  panel1=true;
-  panel2=true;
+  panel1 = true;
+  panel2 = true;
 
-  constructor(private rout: ActivatedRoute,
+  constructor(
+    private rout: ActivatedRoute,
     private service: UpcService,
-    private cd: ChangeDetectorRef
-  ) { }
+    private cd: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {
-    const id = this.rout.snapshot.paramMap.get('id')!
+    const id = this.rout.snapshot.paramMap.get('id')!;
     this.service.getMatchById(id).subscribe((res) => {
-      this.match = res
+      this.match = res;
       this.cd.detectChanges();
-
-    })
-
-
+    });
   }
-
 }

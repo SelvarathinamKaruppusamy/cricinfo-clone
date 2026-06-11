@@ -5,17 +5,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UpcService {
-  constructor(private http:HttpClient){
-     console.log('UpComp Loaded');
+  constructor(private http: HttpClient) {
+    console.log('UpComp Loaded');
   }
 
-  getMatch(){
- return this.http.get<any[]>('http://localhost:3000/matches')
+  getMatch() {
+    return this.http.get<any[]>('http://localhost:3000/matches');
   }
 
-  getMatchById(id:string){
-    return this.http.get(`http://localhost:3000/matches/${id}`)
+  getMatchById(id: string) {
+    return this.http.get(`http://localhost:3000/matches/${id}`);
   }
-
- 
 }

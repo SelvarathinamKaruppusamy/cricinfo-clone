@@ -3,12 +3,12 @@ import { UpComp } from './up-comp/up-comp';
 import { Match } from './match/match';
 
 export const routes: Routes = [
-    {
-        path:'',
-        component:UpComp
-    },
-    {
-        path:'match/:id',
-        component:Match
-    }
+  {
+    path: '',
+    component: UpComp,
+  },
+  {
+    path: 'match/:id',
+    component: Match,
+  },
 ];

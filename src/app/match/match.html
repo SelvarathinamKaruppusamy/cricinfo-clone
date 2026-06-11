@@ -1,181 +1,171 @@
-@if(match){
-<mat-card>
-  <div class="card">
-    <div class="header">
-      <p>Upcoming</p>
-      <p>{{match.date}}</p>
-    </div>
-    <div class="team-banner">
-          <div class="team">
-            <img [src]="match.teams[0].logo" class="team-img">
-            <h2>{{match.teams[0].shortName}}</h2>
-          </div>
+@if (match) {
+  <mat-card>
+    <div class="card">
+      <div class="header">
+        <p>Upcoming</p>
+        <p>{{ match.date }}</p>
+      </div>
+      <div class="team-banner">
+        <div class="team">
+          <img [src]="match.teams[0].logo" class="team-img" />
+          <h2>{{ match.teams[0].shortName }}</h2>
+        </div>
 
-          <div class="center-info">
-            <h1>VS</h1>
-          </div>
+        <div class="center-info">
+          <h1>VS</h1>
+        </div>
 
-            <!-- <div class="ipl-img">
+        <!-- <div class="ipl-img">
               <img src="ipl-logo.png">
               <p class="ipl">
                 <b>T20</b>
               </p>
             </div> -->
-             <div class="team">
-            <img [src]="match.teams[1].logo" class="team-img">
-         
-          
-            <h2>{{match.teams[1].shortName}}</h2>
+        <div class="team">
+          <img [src]="match.teams[1].logo" class="team-img" />
+
+          <h2>{{ match.teams[1].shortName }}</h2>
+        </div>
+      </div>
+      <mat-tab-group>
+        <mat-tab label="Overview">
+          <mat-card class="!mt-5">
+            <mat-card-header class="!flex !w-full !justify-center">
+              <mat-card-title class="!font-bold"> Team Comparison </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <mat-grid-list cols="3" rowHeight="50px">
+                <mat-grid-tile>
+                  <b>Stats</b>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                  <b>{{ match.teams[0].shortName }}</b>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                  <b>{{ match.teams[1].shortName }}</b>
+                </mat-grid-tile>
+
+                <mat-grid-tile>Wins</mat-grid-tile>
+                <mat-grid-tile>{{ match.teams[0].winCount }}</mat-grid-tile>
+                <mat-grid-tile>{{ match.teams[1].winCount }}</mat-grid-tile>
+
+                <mat-grid-tile>Losses</mat-grid-tile>
+                <mat-grid-tile>{{ match.teams[0].lossCount }}</mat-grid-tile>
+                <mat-grid-tile>{{ match.teams[1].lossCount }}</mat-grid-tile>
+              </mat-grid-list>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon>location_on</mat-icon>
+              <span matListItemTitle>Venue</span>
+              <span matListItemLine>{{ match.venue }}, {{ match.city }}</span>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <mat-icon matListItemIcon>sports_cricket</mat-icon>
+              <span matListItemTitle>Tournament</span>
+              <span matListItemLine>IPL T20 2026</span>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <div class="description">
+              <mat-list-item style="height: auto">
+                <mat-icon matListItemIcon>description</mat-icon>
+                <span matListItemTitle>Match Description</span>
+                <p
+                  matListItemLine
+                  style="white-space: normal; -webkit-line-clamp: unset; line-clamp: unset"
+                >
+                  Both teams showed great intent throughout the tournament, keeping the contest
+                  competitive. Momentum shifted several times as players from both sides delivered
+                  impactful performances. Key moments at crucial stages ultimately shaped the
+                  outcome of the game.
+                </p>
+              </mat-list-item>
+            </div>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Squads">
+          <div class="squad-container">
+            <mat-accordion class="team-accordion">
+              <mat-expansion-panel
+                [expanded]="true"
+                hideToggle
+                (opened)="panel1 = true"
+                (closed)="panel1 = false"
+              >
+                <mat-expansion-panel-header>
+                  <div class="panel-header">
+                    <mat-panel-title class="text-sm gap-1">
+                      <img [src]="match.teams[0].logo" class="ipl-img" />
+
+                      {{ match.teams[0].fullName }}
+                      <mat-icon class="">{{ panel1 ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </mat-panel-title>
+                  </div>
+                </mat-expansion-panel-header>
+
+                <mat-list>
+                  @for (player of match.teams[0].players; track player.id) {
+                    <div class="player">
+                      <mat-list-item>
+                        <span matListItemTitle>
+                          {{ player.name }}
+                        </span>
+                        <span matListItemLine>
+                          {{ player.role }}
+                        </span>
+                      </mat-list-item>
+                    </div>
+                  }
+                </mat-list>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-accordion class="team-accordion">
+              <mat-expansion-panel
+                [expanded]="true"
+                hideToggle
+                (opened)="panel2 = true"
+                (closed)="panel2 = false"
+              >
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-sm gap-1">
+                    <img [src]="match.teams[1].logo" class="ipl-img" />
+
+                    {{ match.teams[1].fullName }}
+
+                    <mat-icon class="">{{ panel2 ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-list>
+                  @for (player of match.teams[1].players; track player.id) {
+                    <div class="player">
+                      <mat-list-item>
+                        <span matListItemTitle>
+                          {{ player.name }}
+                        </span>
+                        <span matListItemLine>
+                          {{ player.role }}
+                        </span>
+                      </mat-list-item>
+                    </div>
+                  }
+                </mat-list>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
+        </mat-tab>
+      </mat-tab-group>
 
-        </div>
- <mat-tab-group>
-
-<mat-tab label="Overview">
-   <mat-card class="!mt-5">
-
-      <mat-card-header class="!flex !w-full !justify-center ">
-        <mat-card-title class="!font-bold">
-          Team Comparison
-        </mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <mat-grid-list cols="3" rowHeight="50px">
-
-          <mat-grid-tile>
-            <b>Stats</b>
-          </mat-grid-tile>
-
-          <mat-grid-tile>
-            <b>{{match.teams[0].shortName}}</b>
-          </mat-grid-tile>
-
-          <mat-grid-tile>
-            <b>{{match.teams[1].shortName}}</b>
-          </mat-grid-tile>
-
-          <mat-grid-tile>Wins</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[0].winCount}}</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[1].winCount}}</mat-grid-tile>
-
-          <mat-grid-tile>Losses</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[0].lossCount}}</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[1].lossCount}}</mat-grid-tile>
-
-        </mat-grid-list>
-
-      </mat-card-content>
-
-    </mat-card>
-
-<mat-list>
-
-   
-  <mat-list-item>
-    <mat-icon matListItemIcon>location_on</mat-icon>
-    <span matListItemTitle>Venue</span>
-    <span matListItemLine>{{match.venue}}, {{match.city}}</span>
-  </mat-list-item>
-
-      <mat-divider></mat-divider>
-  <mat-list-item>
-    <mat-icon matListItemIcon>sports_cricket</mat-icon>
-    <span matListItemTitle>Tournament</span>
-    <span matListItemLine>IPL T20 2026</span>
-  </mat-list-item>
-
-      <mat-divider></mat-divider>
-  <div class="description">
-
-  <mat-list-item style="height: auto;">
-  <mat-icon matListItemIcon>description</mat-icon>
-  <span matListItemTitle>Match Description</span>
-  <p matListItemLine style="white-space: normal; -webkit-line-clamp: unset; line-clamp: unset;">
-    Both teams showed great intent throughout the tournament, keeping the contest competitive.
-    Momentum shifted several times as players from both sides delivered impactful performances.
-    Key moments at crucial stages ultimately shaped the outcome of the game.
-  </p>  
-
-
-  </mat-list-item>
-  </div>
-
-</mat-list>
-</mat-tab>
-      <mat-tab label="Squads">
-        <div class="squad-container">
-
-          <mat-accordion class="team-accordion">
-            <mat-expansion-panel [expanded]="true" hideToggle (opened)="panel1=true" (closed)="panel1=false">
-              <mat-expansion-panel-header >
-                <div class="panel-header">
-                <mat-panel-title class="text-sm  gap-1">
-                 
-
-                  <img [src]="match.teams[0].logo" class="ipl-img">
-
-                  {{match.teams[0].fullName}}
-                   <mat-icon class=>{{panel1 ?'visibility_off':'visibility'}}</mat-icon>
-                </mat-panel-title>
-                </div>
-              </mat-expansion-panel-header>
-
-              <mat-list>
-                @for(player of match.teams[0].players; track player.id){
-                <div class="player">
-                  <mat-list-item>
-                    <span matListItemTitle>
-                      {{player.name}}
-                    </span>
-                    <span matListItemLine>
-                      {{player.role}}
-                    </span>
-                  </mat-list-item>
-                </div>
-                }
-              </mat-list>
-
-            </mat-expansion-panel>
-          </mat-accordion>
-
-          <mat-accordion class="team-accordion">
-            <mat-expansion-panel [expanded]="true" hideToggle (opened)="panel2=true" (closed)="panel2=false">
-              <mat-expansion-panel-header>
-                <mat-panel-title class="text-sm gap-1">
-
-                  <img [src]="match.teams[1].logo" class="ipl-img">
-
-                  {{match.teams[1].fullName}}
-
-                  <mat-icon class="">{{panel2?'visibility_off':'visibility'}}</mat-icon>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-
-              <mat-list>
-                @for(player of match.teams[1].players; track player.id){
-                <div class="player">
-                  <mat-list-item>
-                    <span matListItemTitle>
-                      {{player.name}}
-                    </span>
-                    <span matListItemLine>
-                      {{player.role}}
-                    </span>
-                  </mat-list-item>
-                </div>
-                }
-              </mat-list>
-
-            </mat-expansion-panel>
-          </mat-accordion>
-
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-
-     <!-- <mat-card class="!mb-5">
+      <!-- <mat-card class="!mb-5">
 
       <mat-card-header class="!flex !w-full !justify-center ">
         <mat-card-title class="!font-bold">
@@ -246,6 +236,6 @@
   </div>
 
 </mat-list> -->
-  </div>
+    </div>
   </mat-card>
 }

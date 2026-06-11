@@ -8,6 +8,6 @@ export class NavService {
   private http = inject(HttpClient);
 
   getData() {
-    return this.http.get<any[]>('http://localhost:3000/matches');
+    return this.http.get<any[]>('http://localhost:5000/matches');
   }
 }

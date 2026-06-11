@@ -28,7 +28,7 @@ export interface Team {
   logo: string;
   scores: string;
   runs: number;
-  extras : number,
+  extras: number;
   wickets: number;
   overs: string;
   batting: Batting[];

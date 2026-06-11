@@ -1,844 +1,804 @@
 {
-    "blogs": [
-
-{
-"id": 1,
-"matchId": 1,
-"title": "Gaikwad Guides CSK to Thrilling Two-Wicket Victory Over SRH",
-"slug": "gaikwad-guides-csk-to-thrilling-two-wicket-victory-over-srh",
-"image": "v1781177441/images_rcjs8j.jpg",
-"shortDescription": "Ruturaj Gaikwad starred with a match-winning 68 as Chennai Super Kings edged past Sunrisers Hyderabad by two wickets in a tense IPL 2026 season opener at Chepauk.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"The IPL 2026 season got off to a thrilling start at the MA Chidambaram Stadium in Chennai as Chennai Super Kings secured a dramatic two-wicket victory over Sunrisers Hyderabad. Chasing a competitive target of 177, CSK held their nerve in the closing stages to reach 178 for 8 with just two balls remaining, delighting the home crowd at Chepauk.",
-"After winning the toss and electing to bowl first, Chennai managed to keep Sunrisers Hyderabad to 176 for 7 despite several aggressive batting performances. Travis Head provided an explosive start with a fluent 54 off 32 deliveries, while Heinrich Klaasen added a valuable 42 from just 25 balls. Abhishek Sharma also contributed with a brisk 31, helping SRH maintain momentum through the innings. However, CSK's bowlers delivered at crucial moments, with Noor Ahmad leading the charge by claiming three wickets for 29 runs. Matt Henry supported well with two wickets, ensuring Hyderabad could not push beyond the 180-run mark.",
-
-"In reply, Chennai's chase was anchored brilliantly by captain Ruturaj Gaikwad. The stylish opener played with composure and authority, scoring 68 runs from 45 balls while striking six boundaries and two sixes. His partnership with Sanju Samson, who contributed 34, laid the foundation for the chase and kept the required rate under control through the middle overs.",
-
-"Sunrisers Hyderabad fought back admirably through Pat Cummins and Dilshan Madushanka, both of whom struck at important intervals to keep the contest alive. As wickets continued to fall, the pressure shifted back onto Chennai. Dewald Brevis chipped in with a handy 26, while Shivam Dube added valuable runs before the match entered a tense final phase.",
-
-"With the game hanging in the balance, veteran finisher MS Dhoni once again showcased his calmness under pressure. Remaining unbeaten on 14 from just seven deliveries, Dhoni guided Chennai across the finish line alongside the lower order. His late cameo ensured CSK completed the chase with two wickets in hand and two balls to spare.",
-
-"For his match-defining knock at the top of the order, Ruturaj Gaikwad was named Player of the Match. The victory gives Chennai Super Kings a perfect start to their IPL 2026 campaign, while Sunrisers Hyderabad will take positives from a spirited performance despite falling just short in a closely contested encounter."
-
-],
-"publishedDate": "2026-03-01",
-"readTime": "4 min read",
-"featured": true,
-"tags": [
-"Ruturaj Gaikwad",
-"Chennai Super Kings",
-"Sunrisers Hyderabad",
-"IPL 2026",
-"MS Dhoni",
-"Noor Ahmad",
-"Match Report"
-]
-    
-},
-{
-"id": 2,
-"matchId": 2,
-"title": "Kohli Shines as RCB Hold Nerve to Defeat Gujarat Titans by 8 Runs",
-"slug": "kohli-shines-as-rcb-hold-nerve-to-defeat-gujarat-titans-by-8-runs",
-"image": "v1781202336/gtvsrcb_tfwdtz.jpg",
-"shortDescription": "Virat Kohli's masterful 74 and a disciplined bowling effort helped Royal Challengers Bengaluru secure an eight-run victory over Gujarat Titans in a high-scoring contest at Ahmedabad.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Royal Challengers Bengaluru began their IPL 2026 campaign in impressive fashion, defeating Gujarat Titans by eight runs in an entertaining encounter at the Narendra Modi Stadium in Ahmedabad. After posting a formidable 192 for 6, RCB produced a composed bowling performance to restrict the hosts to 182 for 9 and claim their first win of the season.",
-
-
-"Opting to bat first after winning the toss, Bengaluru's innings was built around another classic performance from Virat Kohli. The former RCB captain showcased his trademark consistency and elegance, scoring 74 runs from 48 deliveries. Kohli combined aggression with control, striking eight boundaries and two sixes while anchoring the innings from start to finish. Phil Salt provided explosive support at the top with a quick-fire 38, giving RCB the perfect platform during the powerplay.",
-
-"Rajat Patidar and Devdutt Padikkal chipped in with useful contributions in the middle overs, ensuring the momentum remained firmly with Bengaluru. Late cameos from Krunal Pandya and Tim David added valuable runs in the closing stages, helping RCB finish on a challenging total of 192 for 6. Gujarat's bowling effort was led by Kagiso Rabada and Prasidh Krishna, who picked up two wickets each, but they struggled to contain Bengaluru's batting lineup.",
-
-"Chasing 193, Gujarat Titans started positively through captain Shubman Gill and Jos Buttler. Gill's fluent 48 and Buttler's attacking 37 kept the required rate under control during the first half of the innings. Sai Sudharsan further strengthened the chase with a brisk 29, while Glenn Phillips added late fireworks with a valuable 21. At several stages, the Titans appeared well positioned to pull off the chase.",
-
-"However, RCB's bowlers responded brilliantly when it mattered most. Josh Hazlewood delivered a match-winning spell, claiming three crucial wickets while conceding only 30 runs. Bhuvneshwar Kumar provided excellent support with two wickets of his own, repeatedly breaking important partnerships. As the pressure mounted in the final overs, Gujarat lost wickets at regular intervals and struggled to find the big hits required to stay ahead of the asking rate.",
-
-"Despite a spirited fight from the middle and lower order, Gujarat Titans eventually finished on 182 for 9, falling eight runs short of the target. Virat Kohli was deservedly named Player of the Match for his commanding knock of 74 that laid the foundation for Bengaluru's victory. The result gives RCB valuable early momentum in the tournament, while Gujarat Titans will look to bounce back quickly after a competitive but disappointing defeat on home soil."
-
-
-],
-"publishedDate": "2026-03-02",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Virat Kohli",
-"Royal Challengers Bengaluru",
-"Gujarat Titans",
-"IPL 2026",
-"Josh Hazlewood",
-"Shubman Gill",
-"Match Report"
-]
-},
-{
-"id": 3,
-"matchId": 3,
-"title": "Pooran Powers LSG to Five-Wicket Win Over Sunrisers Hyderabad",
-"slug": "pooran-powers-lsg-to-five-wicket-win-over-sunrisers-hyderabad",
-"image": "v1781203079/LSGvsSRH_fipqgi.jpg",
-"shortDescription": "Nicholas Pooran's unbeaten 72 guided Lucknow Super Giants to a thrilling five-wicket victory over Sunrisers Hyderabad in a high-scoring contest at the Ekana Stadium.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Lucknow Super Giants continued their strong start to IPL 2026 with an impressive five-wicket victory over Sunrisers Hyderabad at the BRSABV Ekana Cricket Stadium in Lucknow. Chasing a challenging target of 182, the hosts produced a composed batting display and reached 182 for 5 with four balls to spare, thanks largely to a magnificent innings from Nicholas Pooran.",
-
-
-"After being asked to bat first, Sunrisers Hyderabad once again showcased their explosive batting depth. Travis Head provided early momentum with a fluent 49 off just 30 deliveries, while Abhishek Sharma and Ishan Kishan maintained the aggressive approach. Heinrich Klaasen played a crucial role in the middle overs, striking 38 runs and helping SRH post a competitive total of 181 for 7. Despite several useful contributions throughout the lineup, Hyderabad were unable to find the late acceleration needed to push beyond the 190-run mark.",
-
-"Lucknow's bowlers delivered disciplined performances throughout the innings. Mohammad Shami and Avesh Khan shared four wickets between them, repeatedly breaking important partnerships at key moments. Their ability to strike in the middle overs prevented Sunrisers from building the kind of momentum that has made them one of the most dangerous batting sides in the tournament.",
-
-"In response, Lucknow began confidently through Rishabh Pant and Aiden Markram. Pant's entertaining 34 and Markram's quick-fire 28 ensured the chase got off to a solid start. However, regular wickets kept Sunrisers in the contest and prevented the hosts from completely taking control of the run chase.",
-
-"The match ultimately belonged to Nicholas Pooran. The West Indian star produced a breathtaking unbeaten knock of 72 from just 41 deliveries, combining power and precision throughout his innings. Pooran struck six boundaries and four towering sixes while expertly managing the chase under pressure. His partnerships in the middle overs ensured Lucknow never fell behind the required rate, and he remained calm even as wickets fell around him.",
-
-"With the finish line approaching, Pooran found support from Abdul Samad, whose late six helped seal the result. Lucknow crossed the target in 19.2 overs to secure a memorable victory in front of their home fans. For his match-winning unbeaten innings, Nicholas Pooran was deservedly named Player of the Match. The win gives Lucknow valuable momentum early in the season, while Sunrisers Hyderabad were left searching for answers after suffering their second consecutive defeat despite another strong batting effort."
-
-
-],
-"publishedDate": "2026-03-03",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Nicholas Pooran",
-"Lucknow Super Giants",
-"Sunrisers Hyderabad",
-"IPL 2026",
-"Rishabh Pant",
-"Mohammad Shami",
-"Match Report"
-]
-},
-{
-"id": 4,
-"matchId": 4,
-"title": "Stoinis Stars as Punjab Kings Chase Down Delhi in High-Scoring Thriller",
-"slug": "stoinis-stars-as-punjab-kings-chase-down-delhi-in-high-scoring-thriller",
-"image": "v1781203184/DC_vs_PBKS_pyfvy6.jpg",
-"shortDescription": "Marcus Stoinis produced a match-winning unbeaten 61 as Punjab Kings chased down a challenging target to defeat Delhi by four wickets at the Arun Jaitley Stadium.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Punjab Kings kicked off their IPL 2026 campaign with an impressive four-wicket victory over Delhi at the Arun Jaitley Stadium. In a match filled with aggressive batting and momentum swings, Punjab successfully chased down a target of 187, reaching 190 for 5 with one ball to spare and securing a valuable away win.",
-
-
-"Batting first, Delhi posted a competitive total of 186 for 8 thanks to several valuable contributions throughout their lineup. KL Rahul led the charge with a composed 52 off 36 deliveries, anchoring the innings while Prithvi Shaw provided early fireworks with a brisk 31. Pathum Nissanka and David Miller maintained the scoring rate through the middle overs, while late cameos from Axar Patel and Tristan Stubbs ensured Delhi finished strongly.",
-
-"Punjab's bowlers worked hard to keep the hosts under control despite the challenging conditions. Arshdeep Singh and Yuzvendra Chahal were the standout performers, claiming two wickets each and regularly breaking partnerships. Their efforts prevented Delhi from crossing the 200-run mark, a total that looked possible at several stages of the innings.",
-
-"In response, Punjab Kings started positively through Prabhsimran Singh and captain Shreyas Iyer. The pair attacked from the outset, putting pressure on Delhi's bowlers and laying a solid foundation for the chase. Prabhsimran's fluent 39 and Iyer's entertaining 46 ensured Punjab remained ahead of the required rate for much of the innings.",
-
-"The turning point came when Marcus Stoinis took control of the contest. The Australian all-rounder played a magnificent unbeaten knock of 61 from just 33 deliveries, combining intelligent stroke play with raw power. Stoinis struck four boundaries and four sixes, keeping Punjab firmly on course even as wickets fell at the other end. His calm presence in the middle ensured the visitors never lost sight of the target.",
-
-"Delhi fought back through Mitchell Starc and Kuldeep Yadav, who picked up important wickets and briefly raised hopes of a late comeback. However, Stoinis remained unfazed under pressure and guided Punjab across the finish line alongside Marco Jansen. For his outstanding all-round impact and match-winning innings, Marcus Stoinis was deservedly named Player of the Match. The victory gives Punjab Kings an ideal start to their season, while Delhi will be left ruing missed opportunities despite posting a competitive total."
-
-
-],
-"publishedDate": "2026-03-04",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Marcus Stoinis",
-"Punjab Kings",
-"Delhi Capitals",
-"IPL 2026",
-"KL Rahul",
-"Shreyas Iyer",
-"Match Report"
-]
-},
-{
-"id": 5,
-"matchId": 5,
-"title": "Suryakumar's Brilliance Leads Mumbai Indians to Comfortable Win Over SRH",
-"slug": "suryakumar-brilliance-leads-mumbai-indians-to-comfortable-win-over-srh",
-"image": "v1781203301/MI_vs_SRH_b3p1yu.jpg",
-"shortDescription": "Suryakumar Yadav's unbeaten 78 powered Mumbai Indians to a six-wicket victory over Sunrisers Hyderabad in a high-scoring encounter at the Wankhede Stadium.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Mumbai Indians opened their IPL 2026 campaign in style with a commanding six-wicket victory over Sunrisers Hyderabad at the Wankhede Stadium. Chasing a challenging target of 189, the five-time champions produced a clinical batting performance to reach 189 for 4 with seven balls to spare, delighting their home supporters with an impressive all-round display.",
-
-
-"After being put in to bat, Sunrisers Hyderabad once again showcased the batting firepower that has become their trademark. Travis Head led the charge with a fluent 57 off 34 deliveries, attacking from the outset and giving SRH a flying start. Heinrich Klaasen continued the momentum with an aggressive 39, while useful contributions from Abhishek Sharma and Ishan Kishan helped the visitors post a competitive total of 188 for 7.",
-
-"Mumbai's bowlers performed admirably despite the batting-friendly conditions. Jasprit Bumrah was the standout performer, delivering another masterclass in pace bowling. The Indian spearhead picked up three crucial wickets while conceding only 27 runs, repeatedly breaking partnerships and preventing Hyderabad from pushing beyond the 200-run mark. Trent Boult also made valuable contributions with two wickets of his own.",
-
-"Mumbai's chase got off to a strong start thanks to Rohit Sharma and Ryan Rickelton. Rohit played with characteristic authority, scoring 41 from 27 balls, while Rickelton added a quick 29. Their aggressive approach ensured Mumbai stayed ahead of the required run rate and laid a solid foundation for the middle order.",
-
-"The match, however, belonged to Suryakumar Yadav. The stylish right-hander produced one of the finest innings of the season, remaining unbeaten on 78 from just 42 deliveries. Suryakumar combined innovation, timing and fearless stroke play to dismantle the Hyderabad attack. His innings included seven boundaries and four towering sixes, keeping the chase firmly under Mumbai's control despite occasional wickets at the other end.",
-
-"As the pressure mounted on Sunrisers Hyderabad, Suryakumar continued to find gaps with remarkable consistency and guided Mumbai safely across the finish line. His match-winning knock earned him the Player of the Match award and highlighted why he remains one of the most dangerous T20 batters in world cricket. For Sunrisers Hyderabad, the defeat marked a third consecutive loss, while Mumbai Indians gained valuable momentum with a convincing victory on home soil."
-
-
-],
-"publishedDate": "2026-03-05",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Suryakumar Yadav",
-"Mumbai Indians",
-"Sunrisers Hyderabad",
-"IPL 2026",
-"Jasprit Bumrah",
-"Travis Head",
-"Match Report"
-]
-},
-{
-"id": 6,
-"matchId": 6,
-"title": "Pant Leads LSG to Thrilling Four-Wicket Victory Over Punjab Kings",
-"slug": "pant-leads-lsg-to-thrilling-four-wicket-victory-over-punjab-kings",
-"image": "v1781203687/images_agqdkb.jpg",
-"shortDescription": "Rishabh Pant produced a captain's knock of 67 as Lucknow Super Giants chased down 186 to defeat Punjab Kings by four wickets in an entertaining contest at Ekana Stadium.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Lucknow Super Giants continued their unbeaten start to IPL 2026 with a hard-fought four-wicket victory over Punjab Kings at the BRSABV Ekana Cricket Stadium. Chasing a competitive target of 186, the hosts held their nerve in the closing stages to reach 194 for 5 with two balls remaining, registering their second win of the season.",
-
-
-"Punjab Kings posted a challenging total of 185 for 7 after being asked to bat first. Captain Shreyas Iyer once again led from the front with a fluent 44, while Prabhsimran Singh provided an explosive start with 36 off just 22 deliveries. Marcus Stoinis continued his impressive form by smashing 48 from 27 balls, keeping the scoreboard moving through the middle overs. Valuable contributions from Nehal Wadhera and Shashank Singh helped Punjab maintain momentum and finish with a strong total.",
-
-"Lucknow's bowling attack ensured the visitors never completely dominated proceedings. Mohammad Shami and Avesh Khan delivered crucial breakthroughs, claiming two wickets each and preventing Punjab from building match-defining partnerships. Their disciplined spells proved vital in keeping the target within reach on a batting-friendly surface.",
-
-"In response, Lucknow began positively through captain Rishabh Pant and Aiden Markram. Pant looked in complete control from the moment he arrived at the crease, playing an aggressive brand of cricket while maintaining composure under pressure. Markram's 24 provided useful support, but it was Pant who dictated the pace of the chase with a series of elegant boundaries and powerful sixes.",
-
-"Nicholas Pooran continued his excellent run of form with a rapid 41 from 24 deliveries, forming a crucial partnership with Pant that shifted momentum firmly in Lucknow's favour. Even when Punjab managed to pick up wickets during the latter stages of the innings, the required rate remained under control thanks to the foundation laid by the middle order. Contributions from Mitchell Marsh, Ayush Badoni and the lower order ensured the chase never lost direction.",
-
-"Although Punjab's bowlers fought back through Arshdeep Singh and Yuzvendra Chahal, they were unable to stop Lucknow's charge. Abdul Samad and Shahbaz Ahmed calmly finished the job to guide the home side across the finish line. Rishabh Pant was deservedly named Player of the Match for his brilliant 67 off 39 deliveries, an innings that combined leadership and attacking intent. The victory strengthens Lucknow's position near the top of the table, while Punjab Kings were left to reflect on a competitive performance that ultimately fell just short."
-
-
-],
-"publishedDate": "2026-03-06",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Rishabh Pant",
-"Lucknow Super Giants",
-"Punjab Kings",
-"IPL 2026",
-"Nicholas Pooran",
-"Mohammad Shami",
-"Match Report"
-]
-},
-{
-"id": 7,
-"matchId": 7,
-"title": "Rinku Singh Finishes in Style as KKR Edge Past Sunrisers Hyderabad",
-"slug": "rinku-singh-finishes-in-style-as-kkr-edge-past-sunrisers-hyderabad",
-"image": "v1781203735/images_hngtdd.jpg",
-"shortDescription": "Rinku Singh's unbeaten 64 guided Kolkata Knight Riders to a thrilling five-wicket victory over Sunrisers Hyderabad at Eden Gardens in IPL 2026.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Kolkata Knight Riders secured a memorable five-wicket victory over Sunrisers Hyderabad at a packed Eden Gardens, successfully chasing down a challenging target of 187. The home side reached 187 for 5 with three balls remaining, thanks to a match-winning unbeaten knock from local hero Rinku Singh, who once again delivered under pressure.",
-
-
-"After being put in to bat, Sunrisers Hyderabad produced another strong batting display despite continuing their search for a first win of the season. Travis Head led the charge with a fluent 51 off 31 deliveries, while Abhishek Sharma provided aggressive support with 29. Heinrich Klaasen contributed a valuable 37 in the middle overs as SRH posted a competitive 186 for 7 from their 20 overs.",
-
-"Kolkata's bowlers did well to prevent Hyderabad from pushing beyond the 200-run mark. Varun Chakaravarthy was the standout performer, weaving his magic through the middle overs to claim three crucial wickets while conceding just 28 runs. Umran Malik's pace fetched two important breakthroughs, and Sunil Narine's economical spell further restricted the visitors during the latter stages of the innings.",
-
-"In response, Kolkata began aggressively through Finn Allen and Angkrish Raghuvanshi. Allen's attacking 42 and Raghuvanshi's brisk 31 provided the perfect start, allowing KKR to maintain control of the chase during the powerplay. Even after losing a couple of wickets, the required rate never climbed out of reach thanks to the positive intent shown by the top order.",
-
-"As the innings progressed, the spotlight shifted to Rinku Singh. The left-hander played a sensational unbeaten knock of 64 from just 36 deliveries, combining fearless stroke play with remarkable composure. He struck five boundaries and four towering sixes, repeatedly finding gaps and punishing loose deliveries. Whenever Sunrisers looked capable of making a comeback, Rinku responded with a momentum-shifting boundary.",
-
-"Rahul Tripathi and Rachin Ravindra provided useful contributions, but it was Rinku who ensured there would be no late drama. Alongside Cameron Green, he calmly guided Kolkata across the finish line and completed a successful chase in front of the passionate Eden Gardens crowd. For his outstanding match-winning innings, Rinku Singh was deservedly named Player of the Match. The victory gives Kolkata Knight Riders a winning start to their campaign, while Sunrisers Hyderabad were left frustrated after suffering a fourth consecutive defeat despite another competitive batting effort."
-
-
-],
-"publishedDate": "2026-03-07",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Rinku Singh",
-"Kolkata Knight Riders",
-"Sunrisers Hyderabad",
-"IPL 2026",
-"Varun Chakaravarthy",
-"Travis Head",
-"Match Report"
-]
-},
-
-{
-"id": 8,
-"matchId": 8,
-"title": "Hardik's Heroics Seal Thrilling Win for Mumbai Indians Over Punjab Kings",
-"slug": "hardik-heroics-seal-thrilling-win-for-mumbai-indians-over-punjab-kings",
-"image": "v1781203812/images_orpcpa.jpg",
-"shortDescription": "Hardik Pandya's unbeaten 44 and an all-round team effort helped Mumbai Indians chase down 200 to defeat Punjab Kings by four wickets in a run-fest at Wankhede.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Fans at the Wankhede Stadium were treated to a batting spectacle as Mumbai Indians pulled off a thrilling four-wicket victory over Punjab Kings in one of the highest-scoring matches of IPL 2026 so far. Chasing a daunting target of 200, Mumbai reached 201 for 5 with just two balls remaining, extending their unbeaten start to the season.",
-
-
-"Punjab Kings delivered a strong batting performance after being asked to bat first. Captain Shreyas Iyer led from the front with a commanding 58 off 35 deliveries, while Prabhsimran Singh provided early momentum with a quick-fire 33. Marcus Stoinis continued his excellent run of form, smashing 36 from 22 balls, and valuable contributions throughout the middle order powered Punjab to an imposing 199 for 7.",
-
-"Despite the challenging conditions, Mumbai's bowlers produced key breakthroughs at important moments. Jasprit Bumrah once again showcased his class with an outstanding spell, picking up three wickets while conceding only 29 runs. Trent Boult supported him effectively with two wickets, helping Mumbai prevent Punjab from crossing the 200-run barrier by a wider margin.",
-
-"The chase began in ideal fashion for Mumbai Indians as Rohit Sharma and Ryan Rickelton attacked from the outset. Rohit's fluent 52 provided the foundation for the pursuit, while Rickelton's aggressive 24 ensured the required run rate never spiraled out of control. Suryakumar Yadav then continued the momentum with a stylish 39, entertaining the home crowd with his trademark stroke play.",
-
-"As wickets began to fall and the pressure intensified, captain Hardik Pandya stepped up when his team needed him most. Playing with confidence and composure, Hardik produced an unbeaten 44 from just 22 deliveries. His innings featured powerful hitting and intelligent shot selection, including three boundaries and three sixes that swung the momentum firmly in Mumbai's favour during the final overs.",
-
-"Punjab's bowlers fought hard to defend their total, with Arshdeep Singh and Yuzvendra Chahal claiming important wickets, but Mumbai's deep batting lineup proved too strong. Hardik remained calm in the closing stages and guided his side home alongside Shardul Thakur, sealing a memorable victory in front of a packed Wankhede crowd. For his match-winning innings and leadership under pressure, Hardik Pandya was named Player of the Match as Mumbai Indians secured their second consecutive win of the campaign."
-
-
-],
-"publishedDate": "2026-03-08",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Hardik Pandya",
-"Mumbai Indians",
-"Punjab Kings",
-"IPL 2026",
-"Rohit Sharma",
-"Jasprit Bumrah",
-"Match Report"
-]
-},
-{
-"id": 9,
-"matchId": 9,
-"title": "KL Rahul Anchors Delhi Titans to Thrilling Two-Wicket Victory Over KKR",
-"slug": "kl-rahul-anchors-delhi-titans-to-thrilling-two-wicket-victory-over-kkr",
-"image": "v1781203876/images_byciid.jpg",
-"shortDescription": "KL Rahul's superb 71 guided Delhi Titans to a tense two-wicket win over Kolkata Knight Riders in a closely fought encounter at the Arun Jaitley Stadium.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Delhi Titans secured their first victory of IPL 2026 with a dramatic two-wicket win over Kolkata Knight Riders in front of an enthusiastic home crowd at the Arun Jaitley Stadium. Chasing 185 for victory, Delhi crossed the finish line with just one ball remaining, ending a tense contest that swung repeatedly between the two sides.",
-
-
-"Kolkata Knight Riders posted a competitive total of 184 for 8 after being put in to bat. Finn Allen provided a blistering start with 41 from 25 deliveries, while Angkrish Raghuvanshi added a valuable 33 at the top of the order. Rinku Singh continued his fine form with a composed 38 and Rahul Tripathi chipped in with 21, helping KKR maintain momentum throughout the innings.",
-
-"Delhi's bowlers ensured the visitors never completely dominated proceedings. Mitchell Starc led the attack brilliantly with three wickets, while T. Natarajan picked up two crucial breakthroughs. Kuldeep Yadav's economical spell also played a key role in restricting Kolkata to a chaseable total.",
-
-"In response, Delhi's chase revolved around a magnificent innings from KL Rahul. The experienced opener displayed his class and composure, scoring 71 runs from just 44 deliveries. Rahul struck seven boundaries and three sixes, expertly balancing aggression with responsibility as wickets continued to fall around him.",
-
-"Prithvi Shaw provided early momentum with a quick-fire 26, while David Miller's aggressive 28 kept Delhi firmly in the hunt during the middle overs. Kolkata's bowlers fought hard through Varun Chakaravarthy and Umran Malik, both of whom claimed two wickets and repeatedly pulled their side back into the contest.",
-
-"With the match hanging in the balance during the final overs, Delhi's lower order held their nerve to complete the chase. KL Rahul's match-winning knock earned him the Player of the Match award and helped Delhi register a memorable victory. For Kolkata, it was a disappointing end after a competitive batting effort, while Delhi celebrated a much-needed win to kickstart their campaign."
-
-
-],
-"publishedDate": "2026-03-09",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"KL Rahul",
-"Delhi Titans",
-"Kolkata Knight Riders",
-"IPL 2026",
-"Mitchell Starc",
-"Rinku Singh",
-"Match Report"
-]
-},
-{
-"id": 10,
-"matchId": 10,
-"title": "Gill's Masterclass Guides Gujarat Titans to Narrow Win Over Rajasthan Royals",
-"slug": "gills-masterclass-guides-gujarat-titans-to-narrow-win-over-rajasthan-royals",
-"image": "v1781203925/images_tn0vot.jpg",
-"shortDescription": "Shubman Gill's brilliant 73 helped Gujarat Titans edge Rajasthan Royals by two wickets in a thrilling encounter at the Narendra Modi Stadium.",
-"category": "Match Report",
-"author": "CrickInfo Team",
-"content": [
-"Gujarat Titans opened their IPL 2026 campaign with a thrilling two-wicket victory over Rajasthan Royals in Ahmedabad. In a contest that remained alive until the final over, the Titans successfully chased down 182 and reached 183 for 7 with one ball to spare, delighting the home crowd at the Narendra Modi Stadium.",
-
-
-"Rajasthan Royals produced a solid batting performance after being asked to bat first. Yashasvi Jaiswal led the way with a fluent 49, narrowly missing out on a half-century. Shimron Hetmyer contributed an entertaining 34, while Riyan Parag added 27 to help Rajasthan post a competitive total of 181 for 7.",
-
-"Gujarat's bowlers worked collectively to keep the visitors under control. Kagiso Rabada was the standout performer with three wickets, while Mohammed Siraj chipped in with two important breakthroughs. Their efforts ensured Rajasthan never gained complete control despite several useful partnerships.",
-
-"Chasing 182, Gujarat received an excellent start from captain Shubman Gill. The stylish opener played a captain's innings, scoring 73 from 46 deliveries and anchoring the chase with authority. Jos Buttler provided strong support with 34, allowing Gujarat to maintain a healthy scoring rate throughout the innings.",
-
-"Rajasthan Royals fought back admirably through Jofra Archer and Ravi Bishnoi, both of whom claimed two wickets and kept the pressure firmly on the batting side. As wickets fell in the latter stages, the match became increasingly tense and the result remained uncertain until the final over.",
-
-"However, Gujarat's lower order held their nerve under pressure. With the required runs dwindling and the crowd fully engaged, the Titans managed to cross the finish line with just one ball remaining. Shubman Gill was deservedly named Player of the Match for his commanding knock of 73, which laid the foundation for Gujarat's hard-fought victory and gave them a winning start to their season."
-
-
-],
-"publishedDate": "2026-03-10",
-"readTime": "4 min read",
-"featured": false,
-"tags": [
-"Shubman Gill",
-"Gujarat Titans",
-"Rajasthan Royals",
-"IPL 2026",
-"Kagiso Rabada",
-"Yashasvi Jaiswal",
-"Match Report"
-]
-},
-{
-  "id": 11,
-  "matchId": 11,
-  "title": "KL Rahul's Unbeaten 76 Leads Delhi Titans to Thrilling Win Over Sunrisers",
-  "slug": "kl-rahul-unbeaten-76-leads-delhi-titans-to-thrilling-win-over-sunrisers",
-  "image": "f_auto/v1781203965/images_oix0uo.jpg",
-  "shortDescription": "KL Rahul anchored a tense chase with an unbeaten 76 as Delhi Titans edged Sunrisers Hyderabad by four wickets in a high-scoring contest at the Arun Jaitley Stadium.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Delhi Titans continued their strong start to IPL 2026 with a thrilling four-wicket victory over Sunrisers Hyderabad at the Arun Jaitley Stadium. Chasing a challenging target of 192, the hosts displayed remarkable composure under pressure and reached 192 for 5 with three balls to spare, delighting the home crowd with another successful run chase.",
-    "Earlier in the evening, Sunrisers Hyderabad produced one of their better batting performances of the season. Travis Head set the tone with a fluent 58 from 35 deliveries, while Ishan Kishan and Heinrich Klaasen provided valuable support through the middle overs. Contributions from Abhishek Sharma and Liam Livingstone ensured SRH posted a competitive total of 191 for 7, giving their bowlers something substantial to defend.",
-    "Delhi's bowling attack once again delivered at crucial moments despite the batting-friendly conditions. Mitchell Starc led the way with an impressive three-wicket haul, while T. Natarajan chipped in with two important breakthroughs. Kuldeep Yadav's economical spell in the middle overs helped slow Hyderabad's momentum and prevented the visitors from crossing the 200-run mark.",
-    "The chase was built around a masterful innings from captain KL Rahul. The experienced opener remained unbeaten on 76 from 47 balls, combining elegance with calculated aggression throughout his stay at the crease. Rahul paced the innings perfectly, rotating strike regularly while punishing loose deliveries whenever the opportunity arose.",
-    "Prithvi Shaw and Pathum Nissanka provided a flying start, while David Miller and Axar Patel added valuable runs during the middle overs to keep Delhi firmly in control of the chase. Even when Sunrisers managed to pick up wickets through Pat Cummins and Gerald Coetzee, Rahul's calm presence ensured the required run rate never spiraled out of control.",
-    "With the match entering its decisive phase, Rahul guided Delhi safely across the finish line alongside Nitish Rana. His unbeaten knock earned him the Player of the Match award and helped Delhi register another important victory. For Sunrisers Hyderabad, the defeat extended a difficult run of results despite a spirited batting effort that had given them genuine hope of ending their losing streak."
-  ],
-  "publishedDate": "2026-03-11",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "KL Rahul",
-    "Delhi Titans",
-    "Sunrisers Hyderabad",
-    "IPL 2026",
-    "Mitchell Starc",
-    "Travis Head",
-    "Match Report"
+  "blogs": [
+    {
+      "id": 1,
+      "matchId": 1,
+      "title": "Gaikwad Guides CSK to Thrilling Two-Wicket Victory Over SRH",
+      "slug": "gaikwad-guides-csk-to-thrilling-two-wicket-victory-over-srh",
+      "image": "v1781177441/images_rcjs8j.jpg",
+      "shortDescription": "Ruturaj Gaikwad starred with a match-winning 68 as Chennai Super Kings edged past Sunrisers Hyderabad by two wickets in a tense IPL 2026 season opener at Chepauk.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "The IPL 2026 season got off to a thrilling start at the MA Chidambaram Stadium in Chennai as Chennai Super Kings secured a dramatic two-wicket victory over Sunrisers Hyderabad. Chasing a competitive target of 177, CSK held their nerve in the closing stages to reach 178 for 8 with just two balls remaining, delighting the home crowd at Chepauk.",
+        "After winning the toss and electing to bowl first, Chennai managed to keep Sunrisers Hyderabad to 176 for 7 despite several aggressive batting performances. Travis Head provided an explosive start with a fluent 54 off 32 deliveries, while Heinrich Klaasen added a valuable 42 from just 25 balls. Abhishek Sharma also contributed with a brisk 31, helping SRH maintain momentum through the innings. However, CSK's bowlers delivered at crucial moments, with Noor Ahmad leading the charge by claiming three wickets for 29 runs. Matt Henry supported well with two wickets, ensuring Hyderabad could not push beyond the 180-run mark.",
+
+        "In reply, Chennai's chase was anchored brilliantly by captain Ruturaj Gaikwad. The stylish opener played with composure and authority, scoring 68 runs from 45 balls while striking six boundaries and two sixes. His partnership with Sanju Samson, who contributed 34, laid the foundation for the chase and kept the required rate under control through the middle overs.",
+
+        "Sunrisers Hyderabad fought back admirably through Pat Cummins and Dilshan Madushanka, both of whom struck at important intervals to keep the contest alive. As wickets continued to fall, the pressure shifted back onto Chennai. Dewald Brevis chipped in with a handy 26, while Shivam Dube added valuable runs before the match entered a tense final phase.",
+
+        "With the game hanging in the balance, veteran finisher MS Dhoni once again showcased his calmness under pressure. Remaining unbeaten on 14 from just seven deliveries, Dhoni guided Chennai across the finish line alongside the lower order. His late cameo ensured CSK completed the chase with two wickets in hand and two balls to spare.",
+
+        "For his match-defining knock at the top of the order, Ruturaj Gaikwad was named Player of the Match. The victory gives Chennai Super Kings a perfect start to their IPL 2026 campaign, while Sunrisers Hyderabad will take positives from a spirited performance despite falling just short in a closely contested encounter."
+      ],
+      "publishedDate": "2026-03-01",
+      "readTime": "4 min read",
+      "featured": true,
+      "tags": [
+        "Ruturaj Gaikwad",
+        "Chennai Super Kings",
+        "Sunrisers Hyderabad",
+        "IPL 2026",
+        "MS Dhoni",
+        "Noor Ahmad",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 2,
+      "matchId": 2,
+      "title": "Kohli Shines as RCB Hold Nerve to Defeat Gujarat Titans by 8 Runs",
+      "slug": "kohli-shines-as-rcb-hold-nerve-to-defeat-gujarat-titans-by-8-runs",
+      "image": "v1781202336/gtvsrcb_tfwdtz.jpg",
+      "shortDescription": "Virat Kohli's masterful 74 and a disciplined bowling effort helped Royal Challengers Bengaluru secure an eight-run victory over Gujarat Titans in a high-scoring contest at Ahmedabad.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Royal Challengers Bengaluru began their IPL 2026 campaign in impressive fashion, defeating Gujarat Titans by eight runs in an entertaining encounter at the Narendra Modi Stadium in Ahmedabad. After posting a formidable 192 for 6, RCB produced a composed bowling performance to restrict the hosts to 182 for 9 and claim their first win of the season.",
+
+        "Opting to bat first after winning the toss, Bengaluru's innings was built around another classic performance from Virat Kohli. The former RCB captain showcased his trademark consistency and elegance, scoring 74 runs from 48 deliveries. Kohli combined aggression with control, striking eight boundaries and two sixes while anchoring the innings from start to finish. Phil Salt provided explosive support at the top with a quick-fire 38, giving RCB the perfect platform during the powerplay.",
+
+        "Rajat Patidar and Devdutt Padikkal chipped in with useful contributions in the middle overs, ensuring the momentum remained firmly with Bengaluru. Late cameos from Krunal Pandya and Tim David added valuable runs in the closing stages, helping RCB finish on a challenging total of 192 for 6. Gujarat's bowling effort was led by Kagiso Rabada and Prasidh Krishna, who picked up two wickets each, but they struggled to contain Bengaluru's batting lineup.",
+
+        "Chasing 193, Gujarat Titans started positively through captain Shubman Gill and Jos Buttler. Gill's fluent 48 and Buttler's attacking 37 kept the required rate under control during the first half of the innings. Sai Sudharsan further strengthened the chase with a brisk 29, while Glenn Phillips added late fireworks with a valuable 21. At several stages, the Titans appeared well positioned to pull off the chase.",
+
+        "However, RCB's bowlers responded brilliantly when it mattered most. Josh Hazlewood delivered a match-winning spell, claiming three crucial wickets while conceding only 30 runs. Bhuvneshwar Kumar provided excellent support with two wickets of his own, repeatedly breaking important partnerships. As the pressure mounted in the final overs, Gujarat lost wickets at regular intervals and struggled to find the big hits required to stay ahead of the asking rate.",
+
+        "Despite a spirited fight from the middle and lower order, Gujarat Titans eventually finished on 182 for 9, falling eight runs short of the target. Virat Kohli was deservedly named Player of the Match for his commanding knock of 74 that laid the foundation for Bengaluru's victory. The result gives RCB valuable early momentum in the tournament, while Gujarat Titans will look to bounce back quickly after a competitive but disappointing defeat on home soil."
+      ],
+      "publishedDate": "2026-03-02",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Virat Kohli",
+        "Royal Challengers Bengaluru",
+        "Gujarat Titans",
+        "IPL 2026",
+        "Josh Hazlewood",
+        "Shubman Gill",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 3,
+      "matchId": 3,
+      "title": "Pooran Powers LSG to Five-Wicket Win Over Sunrisers Hyderabad",
+      "slug": "pooran-powers-lsg-to-five-wicket-win-over-sunrisers-hyderabad",
+      "image": "v1781203079/LSGvsSRH_fipqgi.jpg",
+      "shortDescription": "Nicholas Pooran's unbeaten 72 guided Lucknow Super Giants to a thrilling five-wicket victory over Sunrisers Hyderabad in a high-scoring contest at the Ekana Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Lucknow Super Giants continued their strong start to IPL 2026 with an impressive five-wicket victory over Sunrisers Hyderabad at the BRSABV Ekana Cricket Stadium in Lucknow. Chasing a challenging target of 182, the hosts produced a composed batting display and reached 182 for 5 with four balls to spare, thanks largely to a magnificent innings from Nicholas Pooran.",
+
+        "After being asked to bat first, Sunrisers Hyderabad once again showcased their explosive batting depth. Travis Head provided early momentum with a fluent 49 off just 30 deliveries, while Abhishek Sharma and Ishan Kishan maintained the aggressive approach. Heinrich Klaasen played a crucial role in the middle overs, striking 38 runs and helping SRH post a competitive total of 181 for 7. Despite several useful contributions throughout the lineup, Hyderabad were unable to find the late acceleration needed to push beyond the 190-run mark.",
+
+        "Lucknow's bowlers delivered disciplined performances throughout the innings. Mohammad Shami and Avesh Khan shared four wickets between them, repeatedly breaking important partnerships at key moments. Their ability to strike in the middle overs prevented Sunrisers from building the kind of momentum that has made them one of the most dangerous batting sides in the tournament.",
+
+        "In response, Lucknow began confidently through Rishabh Pant and Aiden Markram. Pant's entertaining 34 and Markram's quick-fire 28 ensured the chase got off to a solid start. However, regular wickets kept Sunrisers in the contest and prevented the hosts from completely taking control of the run chase.",
+
+        "The match ultimately belonged to Nicholas Pooran. The West Indian star produced a breathtaking unbeaten knock of 72 from just 41 deliveries, combining power and precision throughout his innings. Pooran struck six boundaries and four towering sixes while expertly managing the chase under pressure. His partnerships in the middle overs ensured Lucknow never fell behind the required rate, and he remained calm even as wickets fell around him.",
+
+        "With the finish line approaching, Pooran found support from Abdul Samad, whose late six helped seal the result. Lucknow crossed the target in 19.2 overs to secure a memorable victory in front of their home fans. For his match-winning unbeaten innings, Nicholas Pooran was deservedly named Player of the Match. The win gives Lucknow valuable momentum early in the season, while Sunrisers Hyderabad were left searching for answers after suffering their second consecutive defeat despite another strong batting effort."
+      ],
+      "publishedDate": "2026-03-03",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Nicholas Pooran",
+        "Lucknow Super Giants",
+        "Sunrisers Hyderabad",
+        "IPL 2026",
+        "Rishabh Pant",
+        "Mohammad Shami",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 4,
+      "matchId": 4,
+      "title": "Stoinis Stars as Punjab Kings Chase Down Delhi in High-Scoring Thriller",
+      "slug": "stoinis-stars-as-punjab-kings-chase-down-delhi-in-high-scoring-thriller",
+      "image": "v1781203184/DC_vs_PBKS_pyfvy6.jpg",
+      "shortDescription": "Marcus Stoinis produced a match-winning unbeaten 61 as Punjab Kings chased down a challenging target to defeat Delhi by four wickets at the Arun Jaitley Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Punjab Kings kicked off their IPL 2026 campaign with an impressive four-wicket victory over Delhi at the Arun Jaitley Stadium. In a match filled with aggressive batting and momentum swings, Punjab successfully chased down a target of 187, reaching 190 for 5 with one ball to spare and securing a valuable away win.",
+
+        "Batting first, Delhi posted a competitive total of 186 for 8 thanks to several valuable contributions throughout their lineup. KL Rahul led the charge with a composed 52 off 36 deliveries, anchoring the innings while Prithvi Shaw provided early fireworks with a brisk 31. Pathum Nissanka and David Miller maintained the scoring rate through the middle overs, while late cameos from Axar Patel and Tristan Stubbs ensured Delhi finished strongly.",
+
+        "Punjab's bowlers worked hard to keep the hosts under control despite the challenging conditions. Arshdeep Singh and Yuzvendra Chahal were the standout performers, claiming two wickets each and regularly breaking partnerships. Their efforts prevented Delhi from crossing the 200-run mark, a total that looked possible at several stages of the innings.",
+
+        "In response, Punjab Kings started positively through Prabhsimran Singh and captain Shreyas Iyer. The pair attacked from the outset, putting pressure on Delhi's bowlers and laying a solid foundation for the chase. Prabhsimran's fluent 39 and Iyer's entertaining 46 ensured Punjab remained ahead of the required rate for much of the innings.",
+
+        "The turning point came when Marcus Stoinis took control of the contest. The Australian all-rounder played a magnificent unbeaten knock of 61 from just 33 deliveries, combining intelligent stroke play with raw power. Stoinis struck four boundaries and four sixes, keeping Punjab firmly on course even as wickets fell at the other end. His calm presence in the middle ensured the visitors never lost sight of the target.",
+
+        "Delhi fought back through Mitchell Starc and Kuldeep Yadav, who picked up important wickets and briefly raised hopes of a late comeback. However, Stoinis remained unfazed under pressure and guided Punjab across the finish line alongside Marco Jansen. For his outstanding all-round impact and match-winning innings, Marcus Stoinis was deservedly named Player of the Match. The victory gives Punjab Kings an ideal start to their season, while Delhi will be left ruing missed opportunities despite posting a competitive total."
+      ],
+      "publishedDate": "2026-03-04",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Marcus Stoinis",
+        "Punjab Kings",
+        "Delhi Capitals",
+        "IPL 2026",
+        "KL Rahul",
+        "Shreyas Iyer",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 5,
+      "matchId": 5,
+      "title": "Suryakumar's Brilliance Leads Mumbai Indians to Comfortable Win Over SRH",
+      "slug": "suryakumar-brilliance-leads-mumbai-indians-to-comfortable-win-over-srh",
+      "image": "v1781203301/MI_vs_SRH_b3p1yu.jpg",
+      "shortDescription": "Suryakumar Yadav's unbeaten 78 powered Mumbai Indians to a six-wicket victory over Sunrisers Hyderabad in a high-scoring encounter at the Wankhede Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Mumbai Indians opened their IPL 2026 campaign in style with a commanding six-wicket victory over Sunrisers Hyderabad at the Wankhede Stadium. Chasing a challenging target of 189, the five-time champions produced a clinical batting performance to reach 189 for 4 with seven balls to spare, delighting their home supporters with an impressive all-round display.",
+
+        "After being put in to bat, Sunrisers Hyderabad once again showcased the batting firepower that has become their trademark. Travis Head led the charge with a fluent 57 off 34 deliveries, attacking from the outset and giving SRH a flying start. Heinrich Klaasen continued the momentum with an aggressive 39, while useful contributions from Abhishek Sharma and Ishan Kishan helped the visitors post a competitive total of 188 for 7.",
+
+        "Mumbai's bowlers performed admirably despite the batting-friendly conditions. Jasprit Bumrah was the standout performer, delivering another masterclass in pace bowling. The Indian spearhead picked up three crucial wickets while conceding only 27 runs, repeatedly breaking partnerships and preventing Hyderabad from pushing beyond the 200-run mark. Trent Boult also made valuable contributions with two wickets of his own.",
+
+        "Mumbai's chase got off to a strong start thanks to Rohit Sharma and Ryan Rickelton. Rohit played with characteristic authority, scoring 41 from 27 balls, while Rickelton added a quick 29. Their aggressive approach ensured Mumbai stayed ahead of the required run rate and laid a solid foundation for the middle order.",
+
+        "The match, however, belonged to Suryakumar Yadav. The stylish right-hander produced one of the finest innings of the season, remaining unbeaten on 78 from just 42 deliveries. Suryakumar combined innovation, timing and fearless stroke play to dismantle the Hyderabad attack. His innings included seven boundaries and four towering sixes, keeping the chase firmly under Mumbai's control despite occasional wickets at the other end.",
+
+        "As the pressure mounted on Sunrisers Hyderabad, Suryakumar continued to find gaps with remarkable consistency and guided Mumbai safely across the finish line. His match-winning knock earned him the Player of the Match award and highlighted why he remains one of the most dangerous T20 batters in world cricket. For Sunrisers Hyderabad, the defeat marked a third consecutive loss, while Mumbai Indians gained valuable momentum with a convincing victory on home soil."
+      ],
+      "publishedDate": "2026-03-05",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Suryakumar Yadav",
+        "Mumbai Indians",
+        "Sunrisers Hyderabad",
+        "IPL 2026",
+        "Jasprit Bumrah",
+        "Travis Head",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 6,
+      "matchId": 6,
+      "title": "Pant Leads LSG to Thrilling Four-Wicket Victory Over Punjab Kings",
+      "slug": "pant-leads-lsg-to-thrilling-four-wicket-victory-over-punjab-kings",
+      "image": "v1781203687/images_agqdkb.jpg",
+      "shortDescription": "Rishabh Pant produced a captain's knock of 67 as Lucknow Super Giants chased down 186 to defeat Punjab Kings by four wickets in an entertaining contest at Ekana Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Lucknow Super Giants continued their unbeaten start to IPL 2026 with a hard-fought four-wicket victory over Punjab Kings at the BRSABV Ekana Cricket Stadium. Chasing a competitive target of 186, the hosts held their nerve in the closing stages to reach 194 for 5 with two balls remaining, registering their second win of the season.",
+
+        "Punjab Kings posted a challenging total of 185 for 7 after being asked to bat first. Captain Shreyas Iyer once again led from the front with a fluent 44, while Prabhsimran Singh provided an explosive start with 36 off just 22 deliveries. Marcus Stoinis continued his impressive form by smashing 48 from 27 balls, keeping the scoreboard moving through the middle overs. Valuable contributions from Nehal Wadhera and Shashank Singh helped Punjab maintain momentum and finish with a strong total.",
+
+        "Lucknow's bowling attack ensured the visitors never completely dominated proceedings. Mohammad Shami and Avesh Khan delivered crucial breakthroughs, claiming two wickets each and preventing Punjab from building match-defining partnerships. Their disciplined spells proved vital in keeping the target within reach on a batting-friendly surface.",
+
+        "In response, Lucknow began positively through captain Rishabh Pant and Aiden Markram. Pant looked in complete control from the moment he arrived at the crease, playing an aggressive brand of cricket while maintaining composure under pressure. Markram's 24 provided useful support, but it was Pant who dictated the pace of the chase with a series of elegant boundaries and powerful sixes.",
+
+        "Nicholas Pooran continued his excellent run of form with a rapid 41 from 24 deliveries, forming a crucial partnership with Pant that shifted momentum firmly in Lucknow's favour. Even when Punjab managed to pick up wickets during the latter stages of the innings, the required rate remained under control thanks to the foundation laid by the middle order. Contributions from Mitchell Marsh, Ayush Badoni and the lower order ensured the chase never lost direction.",
+
+        "Although Punjab's bowlers fought back through Arshdeep Singh and Yuzvendra Chahal, they were unable to stop Lucknow's charge. Abdul Samad and Shahbaz Ahmed calmly finished the job to guide the home side across the finish line. Rishabh Pant was deservedly named Player of the Match for his brilliant 67 off 39 deliveries, an innings that combined leadership and attacking intent. The victory strengthens Lucknow's position near the top of the table, while Punjab Kings were left to reflect on a competitive performance that ultimately fell just short."
+      ],
+      "publishedDate": "2026-03-06",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Rishabh Pant",
+        "Lucknow Super Giants",
+        "Punjab Kings",
+        "IPL 2026",
+        "Nicholas Pooran",
+        "Mohammad Shami",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 7,
+      "matchId": 7,
+      "title": "Rinku Singh Finishes in Style as KKR Edge Past Sunrisers Hyderabad",
+      "slug": "rinku-singh-finishes-in-style-as-kkr-edge-past-sunrisers-hyderabad",
+      "image": "v1781203735/images_hngtdd.jpg",
+      "shortDescription": "Rinku Singh's unbeaten 64 guided Kolkata Knight Riders to a thrilling five-wicket victory over Sunrisers Hyderabad at Eden Gardens in IPL 2026.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Kolkata Knight Riders secured a memorable five-wicket victory over Sunrisers Hyderabad at a packed Eden Gardens, successfully chasing down a challenging target of 187. The home side reached 187 for 5 with three balls remaining, thanks to a match-winning unbeaten knock from local hero Rinku Singh, who once again delivered under pressure.",
+
+        "After being put in to bat, Sunrisers Hyderabad produced another strong batting display despite continuing their search for a first win of the season. Travis Head led the charge with a fluent 51 off 31 deliveries, while Abhishek Sharma provided aggressive support with 29. Heinrich Klaasen contributed a valuable 37 in the middle overs as SRH posted a competitive 186 for 7 from their 20 overs.",
+
+        "Kolkata's bowlers did well to prevent Hyderabad from pushing beyond the 200-run mark. Varun Chakaravarthy was the standout performer, weaving his magic through the middle overs to claim three crucial wickets while conceding just 28 runs. Umran Malik's pace fetched two important breakthroughs, and Sunil Narine's economical spell further restricted the visitors during the latter stages of the innings.",
+
+        "In response, Kolkata began aggressively through Finn Allen and Angkrish Raghuvanshi. Allen's attacking 42 and Raghuvanshi's brisk 31 provided the perfect start, allowing KKR to maintain control of the chase during the powerplay. Even after losing a couple of wickets, the required rate never climbed out of reach thanks to the positive intent shown by the top order.",
+
+        "As the innings progressed, the spotlight shifted to Rinku Singh. The left-hander played a sensational unbeaten knock of 64 from just 36 deliveries, combining fearless stroke play with remarkable composure. He struck five boundaries and four towering sixes, repeatedly finding gaps and punishing loose deliveries. Whenever Sunrisers looked capable of making a comeback, Rinku responded with a momentum-shifting boundary.",
+
+        "Rahul Tripathi and Rachin Ravindra provided useful contributions, but it was Rinku who ensured there would be no late drama. Alongside Cameron Green, he calmly guided Kolkata across the finish line and completed a successful chase in front of the passionate Eden Gardens crowd. For his outstanding match-winning innings, Rinku Singh was deservedly named Player of the Match. The victory gives Kolkata Knight Riders a winning start to their campaign, while Sunrisers Hyderabad were left frustrated after suffering a fourth consecutive defeat despite another competitive batting effort."
+      ],
+      "publishedDate": "2026-03-07",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Rinku Singh",
+        "Kolkata Knight Riders",
+        "Sunrisers Hyderabad",
+        "IPL 2026",
+        "Varun Chakaravarthy",
+        "Travis Head",
+        "Match Report"
+      ]
+    },
+
+    {
+      "id": 8,
+      "matchId": 8,
+      "title": "Hardik's Heroics Seal Thrilling Win for Mumbai Indians Over Punjab Kings",
+      "slug": "hardik-heroics-seal-thrilling-win-for-mumbai-indians-over-punjab-kings",
+      "image": "v1781203812/images_orpcpa.jpg",
+      "shortDescription": "Hardik Pandya's unbeaten 44 and an all-round team effort helped Mumbai Indians chase down 200 to defeat Punjab Kings by four wickets in a run-fest at Wankhede.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Fans at the Wankhede Stadium were treated to a batting spectacle as Mumbai Indians pulled off a thrilling four-wicket victory over Punjab Kings in one of the highest-scoring matches of IPL 2026 so far. Chasing a daunting target of 200, Mumbai reached 201 for 5 with just two balls remaining, extending their unbeaten start to the season.",
+
+        "Punjab Kings delivered a strong batting performance after being asked to bat first. Captain Shreyas Iyer led from the front with a commanding 58 off 35 deliveries, while Prabhsimran Singh provided early momentum with a quick-fire 33. Marcus Stoinis continued his excellent run of form, smashing 36 from 22 balls, and valuable contributions throughout the middle order powered Punjab to an imposing 199 for 7.",
+
+        "Despite the challenging conditions, Mumbai's bowlers produced key breakthroughs at important moments. Jasprit Bumrah once again showcased his class with an outstanding spell, picking up three wickets while conceding only 29 runs. Trent Boult supported him effectively with two wickets, helping Mumbai prevent Punjab from crossing the 200-run barrier by a wider margin.",
+
+        "The chase began in ideal fashion for Mumbai Indians as Rohit Sharma and Ryan Rickelton attacked from the outset. Rohit's fluent 52 provided the foundation for the pursuit, while Rickelton's aggressive 24 ensured the required run rate never spiraled out of control. Suryakumar Yadav then continued the momentum with a stylish 39, entertaining the home crowd with his trademark stroke play.",
+
+        "As wickets began to fall and the pressure intensified, captain Hardik Pandya stepped up when his team needed him most. Playing with confidence and composure, Hardik produced an unbeaten 44 from just 22 deliveries. His innings featured powerful hitting and intelligent shot selection, including three boundaries and three sixes that swung the momentum firmly in Mumbai's favour during the final overs.",
+
+        "Punjab's bowlers fought hard to defend their total, with Arshdeep Singh and Yuzvendra Chahal claiming important wickets, but Mumbai's deep batting lineup proved too strong. Hardik remained calm in the closing stages and guided his side home alongside Shardul Thakur, sealing a memorable victory in front of a packed Wankhede crowd. For his match-winning innings and leadership under pressure, Hardik Pandya was named Player of the Match as Mumbai Indians secured their second consecutive win of the campaign."
+      ],
+      "publishedDate": "2026-03-08",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Hardik Pandya",
+        "Mumbai Indians",
+        "Punjab Kings",
+        "IPL 2026",
+        "Rohit Sharma",
+        "Jasprit Bumrah",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 9,
+      "matchId": 9,
+      "title": "KL Rahul Anchors Delhi Titans to Thrilling Two-Wicket Victory Over KKR",
+      "slug": "kl-rahul-anchors-delhi-titans-to-thrilling-two-wicket-victory-over-kkr",
+      "image": "v1781203876/images_byciid.jpg",
+      "shortDescription": "KL Rahul's superb 71 guided Delhi Titans to a tense two-wicket win over Kolkata Knight Riders in a closely fought encounter at the Arun Jaitley Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Delhi Titans secured their first victory of IPL 2026 with a dramatic two-wicket win over Kolkata Knight Riders in front of an enthusiastic home crowd at the Arun Jaitley Stadium. Chasing 185 for victory, Delhi crossed the finish line with just one ball remaining, ending a tense contest that swung repeatedly between the two sides.",
+
+        "Kolkata Knight Riders posted a competitive total of 184 for 8 after being put in to bat. Finn Allen provided a blistering start with 41 from 25 deliveries, while Angkrish Raghuvanshi added a valuable 33 at the top of the order. Rinku Singh continued his fine form with a composed 38 and Rahul Tripathi chipped in with 21, helping KKR maintain momentum throughout the innings.",
+
+        "Delhi's bowlers ensured the visitors never completely dominated proceedings. Mitchell Starc led the attack brilliantly with three wickets, while T. Natarajan picked up two crucial breakthroughs. Kuldeep Yadav's economical spell also played a key role in restricting Kolkata to a chaseable total.",
+
+        "In response, Delhi's chase revolved around a magnificent innings from KL Rahul. The experienced opener displayed his class and composure, scoring 71 runs from just 44 deliveries. Rahul struck seven boundaries and three sixes, expertly balancing aggression with responsibility as wickets continued to fall around him.",
+
+        "Prithvi Shaw provided early momentum with a quick-fire 26, while David Miller's aggressive 28 kept Delhi firmly in the hunt during the middle overs. Kolkata's bowlers fought hard through Varun Chakaravarthy and Umran Malik, both of whom claimed two wickets and repeatedly pulled their side back into the contest.",
+
+        "With the match hanging in the balance during the final overs, Delhi's lower order held their nerve to complete the chase. KL Rahul's match-winning knock earned him the Player of the Match award and helped Delhi register a memorable victory. For Kolkata, it was a disappointing end after a competitive batting effort, while Delhi celebrated a much-needed win to kickstart their campaign."
+      ],
+      "publishedDate": "2026-03-09",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "KL Rahul",
+        "Delhi Titans",
+        "Kolkata Knight Riders",
+        "IPL 2026",
+        "Mitchell Starc",
+        "Rinku Singh",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 10,
+      "matchId": 10,
+      "title": "Gill's Masterclass Guides Gujarat Titans to Narrow Win Over Rajasthan Royals",
+      "slug": "gills-masterclass-guides-gujarat-titans-to-narrow-win-over-rajasthan-royals",
+      "image": "v1781203925/images_tn0vot.jpg",
+      "shortDescription": "Shubman Gill's brilliant 73 helped Gujarat Titans edge Rajasthan Royals by two wickets in a thrilling encounter at the Narendra Modi Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Gujarat Titans opened their IPL 2026 campaign with a thrilling two-wicket victory over Rajasthan Royals in Ahmedabad. In a contest that remained alive until the final over, the Titans successfully chased down 182 and reached 183 for 7 with one ball to spare, delighting the home crowd at the Narendra Modi Stadium.",
+
+        "Rajasthan Royals produced a solid batting performance after being asked to bat first. Yashasvi Jaiswal led the way with a fluent 49, narrowly missing out on a half-century. Shimron Hetmyer contributed an entertaining 34, while Riyan Parag added 27 to help Rajasthan post a competitive total of 181 for 7.",
+
+        "Gujarat's bowlers worked collectively to keep the visitors under control. Kagiso Rabada was the standout performer with three wickets, while Mohammed Siraj chipped in with two important breakthroughs. Their efforts ensured Rajasthan never gained complete control despite several useful partnerships.",
+
+        "Chasing 182, Gujarat received an excellent start from captain Shubman Gill. The stylish opener played a captain's innings, scoring 73 from 46 deliveries and anchoring the chase with authority. Jos Buttler provided strong support with 34, allowing Gujarat to maintain a healthy scoring rate throughout the innings.",
+
+        "Rajasthan Royals fought back admirably through Jofra Archer and Ravi Bishnoi, both of whom claimed two wickets and kept the pressure firmly on the batting side. As wickets fell in the latter stages, the match became increasingly tense and the result remained uncertain until the final over.",
+
+        "However, Gujarat's lower order held their nerve under pressure. With the required runs dwindling and the crowd fully engaged, the Titans managed to cross the finish line with just one ball remaining. Shubman Gill was deservedly named Player of the Match for his commanding knock of 73, which laid the foundation for Gujarat's hard-fought victory and gave them a winning start to their season."
+      ],
+      "publishedDate": "2026-03-10",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Shubman Gill",
+        "Gujarat Titans",
+        "Rajasthan Royals",
+        "IPL 2026",
+        "Kagiso Rabada",
+        "Yashasvi Jaiswal",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 11,
+      "matchId": 11,
+      "title": "KL Rahul's Unbeaten 76 Leads Delhi Titans to Thrilling Win Over Sunrisers",
+      "slug": "kl-rahul-unbeaten-76-leads-delhi-titans-to-thrilling-win-over-sunrisers",
+      "image": "f_auto/v1781203965/images_oix0uo.jpg",
+      "shortDescription": "KL Rahul anchored a tense chase with an unbeaten 76 as Delhi Titans edged Sunrisers Hyderabad by four wickets in a high-scoring contest at the Arun Jaitley Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Delhi Titans continued their strong start to IPL 2026 with a thrilling four-wicket victory over Sunrisers Hyderabad at the Arun Jaitley Stadium. Chasing a challenging target of 192, the hosts displayed remarkable composure under pressure and reached 192 for 5 with three balls to spare, delighting the home crowd with another successful run chase.",
+        "Earlier in the evening, Sunrisers Hyderabad produced one of their better batting performances of the season. Travis Head set the tone with a fluent 58 from 35 deliveries, while Ishan Kishan and Heinrich Klaasen provided valuable support through the middle overs. Contributions from Abhishek Sharma and Liam Livingstone ensured SRH posted a competitive total of 191 for 7, giving their bowlers something substantial to defend.",
+        "Delhi's bowling attack once again delivered at crucial moments despite the batting-friendly conditions. Mitchell Starc led the way with an impressive three-wicket haul, while T. Natarajan chipped in with two important breakthroughs. Kuldeep Yadav's economical spell in the middle overs helped slow Hyderabad's momentum and prevented the visitors from crossing the 200-run mark.",
+        "The chase was built around a masterful innings from captain KL Rahul. The experienced opener remained unbeaten on 76 from 47 balls, combining elegance with calculated aggression throughout his stay at the crease. Rahul paced the innings perfectly, rotating strike regularly while punishing loose deliveries whenever the opportunity arose.",
+        "Prithvi Shaw and Pathum Nissanka provided a flying start, while David Miller and Axar Patel added valuable runs during the middle overs to keep Delhi firmly in control of the chase. Even when Sunrisers managed to pick up wickets through Pat Cummins and Gerald Coetzee, Rahul's calm presence ensured the required run rate never spiraled out of control.",
+        "With the match entering its decisive phase, Rahul guided Delhi safely across the finish line alongside Nitish Rana. His unbeaten knock earned him the Player of the Match award and helped Delhi register another important victory. For Sunrisers Hyderabad, the defeat extended a difficult run of results despite a spirited batting effort that had given them genuine hope of ending their losing streak."
+      ],
+      "publishedDate": "2026-03-11",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "KL Rahul",
+        "Delhi Titans",
+        "Sunrisers Hyderabad",
+        "IPL 2026",
+        "Mitchell Starc",
+        "Travis Head",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 12,
+      "matchId": 12,
+      "title": "Gaikwad's Class Guides CSK to Thrilling Victory Over Gujarat Titans",
+      "slug": "gaikwads-class-guides-csk-to-thrilling-victory-over-gujarat-titans",
+      "image": "f_auto/v1781204035/images_ljya8w.jpg",
+      "shortDescription": "Ruturaj Gaikwad's elegant 74 and a composed chase helped Chennai Super Kings defeat Gujarat Titans by four wickets in a high-scoring clash at Chepauk.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Chennai Super Kings continued their unbeaten start to IPL 2026 with a hard-fought four-wicket victory over Gujarat Titans at the MA Chidambaram Stadium. In front of a packed Chepauk crowd, CSK chased down a challenging target of 188 with four balls to spare, securing their second win of the season.",
+        "After being asked to bat first, Gujarat Titans produced another strong batting performance led by captain Shubman Gill. The stylish opener struck 56 from 35 deliveries and shared valuable partnerships with Jos Buttler and Sai Sudharsan to provide the visitors with a solid platform. Contributions from the middle order ensured Gujarat posted a competitive total of 187 for 7 from their 20 overs.",
+        "Chennai's bowlers once again delivered when it mattered most. Noor Ahmad was the standout performer, claiming three wickets while maintaining excellent control through the middle overs. Matt Henry chipped in with two crucial breakthroughs as CSK prevented Gujarat from reaching the 200-run mark despite several aggressive batting displays.",
+        "In response, Ruturaj Gaikwad anchored the chase with another captain's knock. The CSK skipper looked in complete command throughout his innings, scoring 74 runs from 46 deliveries while combining elegant stroke play with calculated aggression. His partnership with Sanju Samson provided the perfect foundation for the pursuit.",
+        "As Gujarat fought back through Kagiso Rabada and Rashid Khan, the pressure briefly shifted towards the hosts. However, Dewald Brevis played an important supporting role with a quick 28, while Shivam Dube added valuable runs during the middle overs to keep the chase on track.",
+        "With the match entering its decisive phase, MS Dhoni once again showcased his finishing ability. Remaining unbeaten on 17, the veteran guided Chennai across the finish line alongside Aman Khan. For his match-winning innings and leadership at the top of the order, Ruturaj Gaikwad was named Player of the Match as CSK maintained their perfect start to the campaign."
+      ],
+      "publishedDate": "2026-03-12",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Ruturaj Gaikwad",
+        "Chennai Super Kings",
+        "Gujarat Titans",
+        "IPL 2026",
+        "MS Dhoni",
+        "Noor Ahmad",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 13,
+      "matchId": 13,
+      "title": "Jaiswal Leads Royals to Dramatic Last-Over Win Over Delhi",
+      "slug": "jaiswal-leads-royals-to-dramatic-last-over-win-over-delhi",
+      "image": "v1781204081/images_sjcdgt.jpg",
+      "shortDescription": "Yashasvi Jaiswal starred with a brilliant 72 as Rajasthan Royals edged past Delhi Titans by two wickets in a nail-biting contest at the Arun Jaitley Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Rajasthan Royals secured a thrilling two-wicket victory over Delhi Titans in a closely contested IPL 2026 encounter at the Arun Jaitley Stadium. Chasing 186 for victory, Rajasthan held their nerve in the final over to reach 186 for 7 and register an important win on the road.",
+        "Delhi Titans posted a competitive total of 185 for 7 after being asked to bat first. KL Rahul once again led from the front with a composed 63 from 41 balls, while Prithvi Shaw and Pathum Nissanka provided useful support at the top. David Miller added late fireworks to ensure Delhi finished with a challenging score on a batting-friendly surface.",
+        "Rajasthan's bowling attack worked collectively to keep the hosts under control. Jofra Archer and Ravi Bishnoi were particularly effective, picking up two wickets each and striking at crucial moments. Their efforts ensured Delhi never managed to break free despite several promising partnerships.",
+        "The chase was built around a magnificent innings from Yashasvi Jaiswal. The young opener continued his impressive form with a fluent 72 off 44 deliveries, striking boundaries regularly and maintaining control of the required run rate. His attacking approach put the Delhi bowlers under pressure from the outset.",
+        "Shimron Hetmyer contributed an aggressive 29, while Riyan Parag added a valuable cameo as Rajasthan stayed ahead of the asking rate. Delhi fought back admirably through Mitchell Starc and T. Natarajan, both of whom claimed two wickets and kept the contest alive until the final overs.",
+        "With wickets falling and tension building, Rajasthan's lower order held their composure to complete the chase with just two balls remaining. Yashasvi Jaiswal was deservedly named Player of the Match for his match-defining knock that laid the foundation for victory. The result gave Rajasthan a crucial win, while Delhi were left disappointed after another competitive performance slipped away in the closing stages."
+      ],
+      "publishedDate": "2026-03-13",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Yashasvi Jaiswal",
+        "Rajasthan Royals",
+        "Delhi Titans",
+        "IPL 2026",
+        "KL Rahul",
+        "Jofra Archer",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 14,
+      "matchId": 14,
+      "title": "Gill's Magnificent 79 Powers Gujarat Titans Past Lucknow in Run-Fest",
+      "slug": "gills-magnificent-79-powers-gujarat-titans-past-lucknow-in-run-fest",
+      "image": "v1781204143/images_q1cood.jpg",
+      "shortDescription": "Shubman Gill produced a captain's masterclass with 79 as Gujarat Titans edged Lucknow Super Giants by four wickets in a high-scoring thriller at Ahmedabad.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "The Narendra Modi Stadium witnessed another IPL classic as Gujarat Titans pulled off a thrilling four-wicket victory over Lucknow Super Giants in a contest dominated by batters. Chasing a daunting target of 196, Gujarat held their nerve in the closing stages to reach 196 for 5 with two balls to spare and secure a crucial victory in front of their home fans.",
+        "Lucknow Super Giants posted an imposing 195 for 7 after being asked to bat first. Captain Rishabh Pant led the charge with a brilliant 61 from 38 deliveries, combining elegant stroke play with aggressive intent. Aiden Markram and Nicholas Pooran provided excellent support, while Mitchell Marsh chipped in with a quick cameo to keep the scoreboard moving throughout the innings.",
+        "Despite the challenging conditions, Gujarat's bowlers managed to strike at important moments. Kagiso Rabada once again showcased his experience by claiming three wickets, while Mohammed Siraj contributed two crucial breakthroughs. Their efforts prevented Lucknow from crossing the 200-run mark, a total that looked well within reach at several stages of the innings.",
+        "In response, Gujarat received the perfect platform from captain Shubman Gill. The stylish opener played one of his finest innings of the season, scoring 79 runs from just 49 deliveries. Gill mixed timing and power brilliantly, finding boundaries with ease and ensuring the required run rate never spiraled out of control.",
+        "Jos Buttler provided valuable support with an attacking 36, while Sai Sudharsan continued his consistent run with a fluent 27. Even after Lucknow fought back through Avesh Khan and Mohammad Shami, Gujarat maintained control of the chase thanks to the foundation laid by their top order.",
+        "As the match entered its decisive phase, Rahul Tewatia once again lived up to his reputation as a finisher. Supported by Rashid Khan, he calmly guided Gujarat across the finish line and completed a memorable chase. Shubman Gill was deservedly named Player of the Match for his match-winning 79, an innings that reinforced his status as one of the premier batters in the tournament and helped Gujarat climb further up the standings."
+      ],
+      "publishedDate": "2026-03-14",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Shubman Gill",
+        "Gujarat Titans",
+        "Lucknow Super Giants",
+        "IPL 2026",
+        "Rishabh Pant",
+        "Kagiso Rabada",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 15,
+      "matchId": 15,
+      "title": "Kohli's Masterclass Guides RCB to Thrilling Chase Against Mumbai Indians",
+      "slug": "kohli-masterclass-guides-rcb-to-thrilling-chase-against-mumbai-indians",
+      "image": "v1781204198/images_y7ht06.jpg",
+      "shortDescription": "Virat Kohli's brilliant 82 powered Royal Challengers Bengaluru to a dramatic four-wicket victory over Mumbai Indians in a high-scoring encounter at Wankhede Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "A packed Wankhede Stadium witnessed another IPL classic as Royal Challengers Bengaluru pulled off a thrilling four-wicket victory over Mumbai Indians. Chasing a daunting target of 199, RCB held their nerve in the final over to reach 199 for 6 and register one of their most memorable wins of the season.",
+        "Mumbai Indians produced a strong batting display after being put in to bat. Rohit Sharma provided a fluent start with 48, while Suryakumar Yadav entertained the crowd with an aggressive 41 from just 24 deliveries. Valuable contributions from Ryan Rickelton, Tilak Varma and Hardik Pandya ensured Mumbai posted a formidable total of 198 for 6 from their allotted overs.",
+        "RCB's bowling unit managed to restrict Mumbai despite the batting-friendly conditions. Josh Hazlewood and Bhuvneshwar Kumar picked up two wickets each and delivered crucial breakthroughs whenever the hosts threatened to accelerate further. Their disciplined efforts proved vital in keeping the target within reach.",
+        "The chase belonged to Virat Kohli. The former RCB captain once again showcased his chasing brilliance, producing a magnificent innings of 82 from 51 balls. Kohli timed the ball beautifully throughout his stay at the crease, finding boundaries regularly and maintaining complete control of the required run rate.",
+        "Phil Salt provided an explosive start, while Rajat Patidar and Devdutt Padikkal chipped in with useful contributions. Even when Mumbai fought back through Jasprit Bumrah and Trent Boult, RCB never lost sight of the target thanks to Kohli's calm presence and leadership in the middle.",
+        "With the game heading towards a tense finish, Tim David provided the finishing touches with a quick cameo that took Bengaluru across the line with one ball to spare. Virat Kohli was deservedly named Player of the Match for his match-winning 82, helping RCB secure a statement victory against one of their biggest rivals."
+      ],
+      "publishedDate": "2026-03-15",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Virat Kohli",
+        "Royal Challengers Bengaluru",
+        "Mumbai Indians",
+        "IPL 2026",
+        "Josh Hazlewood",
+        "Rohit Sharma",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 16,
+      "matchId": 16,
+      "title": "Samson Stars as Chennai Super Kings Continue Unbeaten Run",
+      "slug": "samson-stars-as-chennai-super-kings-continue-unbeaten-run",
+      "image": "f_auto/v1781204218/images_hjr83s.jpg",
+      "shortDescription": "Sanju Samson's unbeaten 68 helped Chennai Super Kings chase down 191 and defeat Rajasthan Royals by six wickets at Chepauk.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Chennai Super Kings extended their unbeaten streak in IPL 2026 with a commanding six-wicket victory over Rajasthan Royals at the MA Chidambaram Stadium. In front of an energetic home crowd, CSK chased down a challenging target of 191 with seven balls remaining to strengthen their position near the top of the table.",
+        "Rajasthan Royals delivered another competitive batting performance after being asked to bat first. Yashasvi Jaiswal led the charge with a stylish 54, while Shimron Hetmyer and Riyan Parag added important runs through the middle overs. Contributions from Ravindra Jadeja and Dhruv Jurel helped Rajasthan reach an impressive total of 190 for 7.",
+        "Chennai's bowlers once again rose to the occasion. Noor Ahmad continued his excellent form with three wickets, while Matt Henry picked up two crucial breakthroughs. Their efforts prevented Rajasthan from pushing beyond the 200-run mark despite several aggressive partnerships.",
+        "The chase began positively for Chennai as captain Ruturaj Gaikwad produced another classy innings. The opener scored 58 from 37 deliveries and laid the perfect foundation for the pursuit. His partnership with Sanju Samson kept the required rate comfortably under control and put Rajasthan's bowlers under constant pressure.",
+        "Samson then took complete command of the contest. The wicketkeeper-batter remained unbeaten on 68 from just 41 deliveries, combining elegant stroke play with calculated aggression. Dewald Brevis provided useful support before MS Dhoni thrilled the Chepauk faithful with a quick unbeaten cameo that brought the target within touching distance.",
+        "Rajasthan's bowlers fought hard through Jofra Archer and Ravi Bishnoi, but Chennai's batting depth proved too strong. Samson guided his side safely across the finish line and was deservedly named Player of the Match for his match-winning innings. The victory maintained Chennai's perfect record, while Rajasthan were left searching for consistency after another close defeat."
+      ],
+      "publishedDate": "2026-03-16",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Sanju Samson",
+        "Chennai Super Kings",
+        "Rajasthan Royals",
+        "IPL 2026",
+        "Ruturaj Gaikwad",
+        "Noor Ahmad",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 17,
+      "matchId": 17,
+      "title": "Rinku's Heroics Seal Last-Over Thriller as KKR Edge RCB",
+      "slug": "rinku-heroics-seal-last-over-thriller-as-kkr-edge-rcb",
+      "image": "v1781204248/images_af9nmf.jpg",
+      "shortDescription": "Rinku Singh's unbeaten 71 guided Kolkata Knight Riders to a dramatic four-wicket victory over Royal Challengers Bengaluru in a run-filled encounter at Eden Gardens.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Eden Gardens witnessed one of the most thrilling contests of IPL 2026 as Kolkata Knight Riders chased down a daunting target of 203 to defeat Royal Challengers Bengaluru by four wickets. In a match packed with boundaries, momentum swings and individual brilliance, KKR held their nerve to complete the chase with two balls remaining.",
+        "Royal Challengers Bengaluru produced an impressive batting display after being put in to bat. Virat Kohli once again led from the front with a classy 66 from 42 deliveries, while Phil Salt provided an explosive start with 34. Useful contributions from Rajat Patidar, Devdutt Padikkal and Venkatesh Iyer helped Bengaluru post a challenging total of 202 for 8.",
+        "Despite the imposing target, Kolkata's top order showed positive intent from the outset. Finn Allen entertained the home crowd with a quick-fire 44, while Angkrish Raghuvanshi continued his impressive season with a fluent 37. Their aggressive approach ensured KKR remained ahead of the required rate during the powerplay.",
+        "As wickets began to fall in the middle overs, the responsibility shifted to Rinku Singh. The left-hander delivered another memorable performance under pressure, remaining unbeaten on 71 from just 42 deliveries. Mixing elegant stroke play with fearless hitting, Rinku struck six boundaries and four sixes to keep Kolkata firmly in control of the chase.",
+        "RCB's bowlers fought hard to defend their total. Josh Hazlewood and Bhuvneshwar Kumar picked up two wickets each, while Krunal Pandya and Yash Dayal chipped in with important breakthroughs. However, every time Bengaluru sensed an opening, Rinku responded with a crucial boundary to swing the momentum back in Kolkata's favour.",
+        "With the equation narrowing in the final over, Sunil Narine provided valuable support before Rinku finished the contest in style. His match-winning innings earned him the Player of the Match award and helped Kolkata secure a crucial victory. The result strengthened KKR's position in the standings, while RCB were left frustrated after posting more than 200 runs and still ending up on the losing side."
+      ],
+      "publishedDate": "2026-03-17",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Rinku Singh",
+        "Kolkata Knight Riders",
+        "Royal Challengers Bengaluru",
+        "IPL 2026",
+        "Virat Kohli",
+        "Finn Allen",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 18,
+      "matchId": 18,
+      "title": "Suryakumar's Unbeaten 74 Guides Mumbai Indians Past Delhi",
+      "slug": "suryakumar-unbeaten-74-guides-mumbai-indians-past-delhi",
+      "image": "f_auto/v1781204275/images_qbruez.jpg",
+      "shortDescription": "Suryakumar Yadav's brilliant unbeaten 74 helped Mumbai Indians chase down 188 and secure a convincing six-wicket victory over Delhi Titans.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Mumbai Indians continued their impressive IPL 2026 campaign with a commanding six-wicket victory over Delhi Titans at the Arun Jaitley Stadium. Chasing a target of 188, Mumbai produced a clinical batting performance and crossed the finish line with eight balls to spare.",
+        "Delhi Titans posted a competitive total of 187 for 7 after being asked to bat first. Captain KL Rahul once again showcased his consistency with a well-crafted 58, while Prithvi Shaw and Pathum Nissanka provided valuable support at the top of the order. Contributions from David Miller and Axar Patel ensured Delhi maintained momentum throughout their innings.",
+        "Mumbai's bowling attack once again delivered when it mattered. Jasprit Bumrah was outstanding, claiming three wickets while conceding just 31 runs. Trent Boult provided excellent support with two wickets, repeatedly breaking partnerships and preventing Delhi from pushing beyond the 190-run mark.",
+        "The chase began positively for Mumbai as Rohit Sharma and Ryan Rickelton attacked from the outset. Rohit's fluent 46 and Rickelton's quick 28 gave Mumbai the ideal platform and ensured the required run rate remained under control during the powerplay.",
+        "The star of the evening, however, was Suryakumar Yadav. The stylish right-hander played one of the finest innings of the tournament, remaining unbeaten on 74 from just 43 deliveries. Displaying his trademark innovation and timing, Suryakumar struck seven boundaries and four sixes while effortlessly dismantling Delhi's bowling attack.",
+        "Even after Delhi managed to pick up a few wickets in the middle overs, Suryakumar remained calm and guided Mumbai towards victory alongside Will Jacks. His match-winning knock earned him the Player of the Match award and reinforced Mumbai's status as one of the strongest teams in the competition. For Delhi Titans, another defeat highlighted the need for greater consistency despite several encouraging individual performances."
+      ],
+      "publishedDate": "2026-03-18",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Suryakumar Yadav",
+        "Mumbai Indians",
+        "Delhi Titans",
+        "IPL 2026",
+        "Jasprit Bumrah",
+        "KL Rahul",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 19,
+      "matchId": 19,
+      "title": "Gaikwad's Unbeaten 88 Powers CSK to Dominant Win Over KKR",
+      "slug": "gaikwad-unbeaten-88-powers-csk-to-dominant-win-over-kkr",
+      "image": "v1781204341/images_lxmv48.jpg",
+      "shortDescription": "Ruturaj Gaikwad starred with an unbeaten 88 as Chennai Super Kings chased down 201 to defeat Kolkata Knight Riders by eight wickets at Chepauk.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Chennai Super Kings continued their flawless IPL 2026 campaign with a commanding eight-wicket victory over Kolkata Knight Riders at the MA Chidambaram Stadium. Chasing a challenging target of 201, CSK produced one of the most complete batting performances of the season, reaching 201 for 2 with 11 balls to spare.",
+        "Earlier, Kolkata Knight Riders posted an impressive total of 200 for 8 after being asked to bat first. Finn Allen and Angkrish Raghuvanshi provided an explosive start, while Rinku Singh once again showcased his finishing ability with a valuable 39. Contributions throughout the batting order helped KKR cross the 200-run mark and set up an exciting contest.",
+        "Despite the strong total, Chennai's bowlers played a crucial role in keeping the innings under control. Noor Ahmad was outstanding with figures of four wickets for 26 runs, dismantling Kolkata's middle order and preventing them from pushing towards a much bigger score. Matt Henry also delivered a disciplined spell, picking up two important wickets.",
+        "The chase was headlined by a magnificent innings from captain Ruturaj Gaikwad. The stylish opener remained unbeaten on 88 from just 52 deliveries, timing the ball beautifully and finding boundaries with remarkable consistency. His knock featured a blend of elegance and controlled aggression that left the Kolkata bowlers searching for answers.",
+        "Sanju Samson continued his excellent form with a fluent 54 and shared a match-defining partnership with Gaikwad. The duo dominated both pace and spin, ensuring Chennai stayed comfortably ahead of the required rate throughout the innings. Even after Samson departed, the momentum never shifted away from the hosts.",
+        "MS Dhoni delighted the Chepauk crowd with a quick unbeaten cameo as Chennai sealed the chase in emphatic fashion. Ruturaj Gaikwad was deservedly named Player of the Match for his outstanding innings, helping CSK maintain their unbeaten record and strengthen their position at the top of the standings."
+      ],
+      "publishedDate": "2026-03-19",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Ruturaj Gaikwad",
+        "Chennai Super Kings",
+        "Kolkata Knight Riders",
+        "IPL 2026",
+        "Noor Ahmad",
+        "Sanju Samson",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 20,
+      "matchId": 20,
+      "title": "Shreyas Iyer Anchors Punjab Kings to Thrilling Win Over RCB",
+      "slug": "shreyas-iyer-anchors-punjab-kings-to-thrilling-win-over-rcb",
+      "image": "f_auto/v1781204367/images_tpg7tl.jpg",
+      "shortDescription": "Captain Shreyas Iyer's unbeaten 77 guided Punjab Kings to a dramatic four-wicket victory over Royal Challengers Bengaluru in Mullanpur.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Punjab Kings returned to winning ways with an impressive four-wicket victory over Royal Challengers Bengaluru at the Maharaja Yadavindra Singh Stadium. Chasing a target of 194, Punjab produced a composed batting effort and crossed the finish line with three balls remaining.",
+        "Royal Challengers Bengaluru posted a competitive total of 193 for 8 after being asked to bat first. Virat Kohli once again led the charge with a classy 62, while Phil Salt and Rajat Patidar provided valuable support. Contributions from Devdutt Padikkal and Venkatesh Iyer ensured RCB maintained momentum throughout their innings.",
+        "Punjab's bowling attack delivered crucial breakthroughs at regular intervals. Arshdeep Singh was the standout performer, claiming three wickets and controlling the scoring rate during key phases. Yuzvendra Chahal and Harpreet Brar also chipped in with important wickets to keep Bengaluru from building a truly massive total.",
+        "The chase was built around a captain's knock from Shreyas Iyer. The Punjab skipper remained unbeaten on 77 from 48 deliveries, displaying exceptional composure under pressure. His ability to rotate the strike and find boundaries at crucial moments kept Punjab firmly in control despite losing wickets around him.",
+        "Marcus Stoinis played an important supporting role with a brisk 31, while Prabhsimran Singh provided a strong start at the top of the order. As the chase entered the final overs, Shreyas continued to dictate proceedings and ensured the required rate never became a concern.",
+        "RCB's bowlers fought hard through Josh Hazlewood and Bhuvneshwar Kumar, but Punjab's batting depth proved decisive. Shreyas Iyer guided his side home alongside Marco Jansen and was deservedly named Player of the Match. The victory boosted Punjab's campaign, while Bengaluru were left to reflect on another close defeat despite posting a competitive score."
+      ],
+      "publishedDate": "2026-03-20",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Shreyas Iyer",
+        "Punjab Kings",
+        "Royal Challengers Bengaluru",
+        "IPL 2026",
+        "Virat Kohli",
+        "Arshdeep Singh",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 21,
+      "matchId": 21,
+      "title": "Finn Allen's Explosive 79 Leads KKR Past Rajasthan Royals",
+      "slug": "finn-allen-explosive-79-leads-kkr-past-rajasthan-royals",
+      "image": "v1781204416/images_az9i50.jpg",
+      "shortDescription": "Finn Allen's brilliant 79 powered Kolkata Knight Riders to a convincing six-wicket victory over Rajasthan Royals at Eden Gardens.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Kolkata Knight Riders produced a clinical all-round performance to defeat Rajasthan Royals by six wickets at Eden Gardens. Chasing 189 for victory, KKR reached the target with nine balls to spare, delighting their home supporters with an entertaining display.",
+        "Rajasthan Royals posted a competitive total of 188 for 8 after being asked to bat first. Yashasvi Jaiswal led the charge with a fluent 57, while Shimron Hetmyer and Riyan Parag made valuable contributions in the middle order. Despite several promising partnerships, Rajasthan struggled to accelerate in the closing overs.",
+        "Kolkata's bowling attack once again delivered when required. Varun Chakaravarthy starred with three wickets, while Umran Malik picked up two crucial breakthroughs. Their efforts ensured Rajasthan were restricted to a total that remained within reach on a good batting surface.",
+        "The chase was dominated by Finn Allen, who produced one of the finest innings of the tournament so far. The New Zealand batter smashed 79 from just 46 deliveries, combining fearless stroke play with excellent shot selection. His aggressive approach immediately put Rajasthan's bowlers under pressure.",
+        "Angkrish Raghuvanshi provided solid support at the top, while Rinku Singh once again displayed his finishing skills with an unbeaten 41. Together, they ensured Kolkata maintained complete control of the chase and never allowed Rajasthan a route back into the contest.",
+        "Finn Allen's match-winning innings earned him the Player of the Match award as Kolkata secured another important victory. The win strengthened KKR's playoff ambitions, while Rajasthan Royals continued to search for consistency after suffering yet another defeat in a closely fought season."
+      ],
+      "publishedDate": "2026-03-21",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Finn Allen",
+        "Kolkata Knight Riders",
+        "Rajasthan Royals",
+        "IPL 2026",
+        "Rinku Singh",
+        "Yashasvi Jaiswal",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 22,
+      "matchId": 22,
+      "title": "Gaikwad and Samson Script Record Partnership as CSK Crush Punjab Kings",
+      "slug": "gaikwad-and-samson-script-record-partnership-as-csk-crush-punjab-kings",
+      "image": "v1781204452/images_z5omfq.jpg",
+      "shortDescription": "Ruturaj Gaikwad and Sanju Samson produced an unbeaten opening stand as Chennai Super Kings stormed to a dominant 10-wicket victory over Punjab Kings at Chepauk.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Chennai Super Kings delivered one of the most dominant performances of IPL 2026, dismantling Punjab Kings by 10 wickets at the MA Chidambaram Stadium. Chasing a target of 182, CSK made light work of the pursuit and reached 182 without losing a wicket in just 16.5 overs, extending their unbeaten run and strengthening their grip at the top of the table.",
+        "Punjab Kings posted a competitive total of 181 for 9 after being asked to bat first. Captain Shreyas Iyer led the resistance with a composed 52, while Prabhsimran Singh and Marcus Stoinis chipped in with useful contributions. However, Punjab repeatedly lost wickets at crucial moments and failed to build the partnerships required to push beyond the 190-run mark.",
+        "The foundation of Chennai's success was laid by their bowlers, who once again produced a disciplined performance. Noor Ahmad continued his remarkable form with figures of 4 for 24, dismantling Punjab's middle order with his clever variations. Matt Henry provided excellent support by claiming three wickets, ensuring the visitors never gained complete control of the innings.",
+        "What followed was a batting masterclass from Chennai's opening pair. Captain Ruturaj Gaikwad and Sanju Samson dominated the Punjab bowling attack from the very beginning, finding boundaries with ease and maintaining a scoring rate well above the required mark. Their understanding and shot selection left Punjab searching for answers throughout the chase.",
+        "Gaikwad narrowly missed out on a century, remaining unbeaten on a magnificent 96 from 56 deliveries. The CSK skipper combined elegance and aggression perfectly, striking eleven boundaries and three sixes. At the other end, Samson was equally destructive, finishing unbeaten on 77 from just 45 balls and ensuring there would be no opportunity for a Punjab comeback.",
+        "The emphatic victory highlighted Chennai's strength in every department and sent a strong message to the rest of the competition. Ruturaj Gaikwad was deservedly named Player of the Match for his outstanding innings, while CSK celebrated their fifth consecutive victory of the season in front of a jubilant Chepauk crowd."
+      ],
+      "publishedDate": "2026-03-22",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Ruturaj Gaikwad",
+        "Chennai Super Kings",
+        "Punjab Kings",
+        "IPL 2026",
+        "Sanju Samson",
+        "Noor Ahmad",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 23,
+      "matchId": 23,
+      "title": "Pant's Unbeaten 81 Powers Lucknow Past Rajasthan Royals",
+      "slug": "pant-unbeaten-81-powers-lucknow-past-rajasthan-royals",
+      "image": "v1781204487/images_qrf5qq.jpg",
+      "shortDescription": "Rishabh Pant led from the front with an unbeaten 81 as Lucknow Super Giants chased down 186 to defeat Rajasthan Royals by six wickets.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Lucknow Super Giants continued their impressive IPL 2026 campaign with a convincing six-wicket victory over Rajasthan Royals at the BRSABV Ekana Cricket Stadium. Chasing 186 for victory, the hosts produced a composed batting display and crossed the finish line with seven balls to spare.",
+        "Earlier, Rajasthan Royals posted a competitive 185 for 7 after being put in to bat. Yashasvi Jaiswal once again showcased his class with a fluent 61, while Shimron Hetmyer and Riyan Parag made valuable contributions in the middle order. Despite several strong partnerships, Rajasthan were unable to accelerate significantly in the death overs.",
+        "Lucknow's bowlers played a crucial role in restricting the visitors. Avesh Khan was the standout performer with three wickets, repeatedly breaking important partnerships. Mohammad Shami chipped in with two wickets, while the pace attack collectively ensured Rajasthan remained within a chaseable range.",
+        "The chase belonged to captain Rishabh Pant, who produced another outstanding innings under pressure. Pant remained unbeaten on 81 from 49 deliveries, displaying a perfect blend of aggression and composure. His innings featured elegant stroke play, powerful hitting and intelligent strike rotation that kept Lucknow firmly in control throughout the pursuit.",
+        "Aiden Markram provided an excellent platform with a brisk 36, while Nicholas Pooran continued his fine run of form by smashing 29 from just 18 deliveries. Their partnerships with Pant ensured the required rate never became a concern, allowing Lucknow to dictate the tempo of the chase.",
+        "Even though Rajasthan's bowlers managed a few breakthroughs through Jofra Archer and Ravi Bishnoi, they could not contain Pant's brilliance. The Lucknow skipper guided his side home alongside Ayush Badoni and was deservedly named Player of the Match. The victory further strengthened LSG's position in the standings, while Rajasthan's struggles continued with another narrow defeat."
+      ],
+      "publishedDate": "2026-03-23",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Rishabh Pant",
+        "Lucknow Super Giants",
+        "Rajasthan Royals",
+        "IPL 2026",
+        "Yashasvi Jaiswal",
+        "Avesh Khan",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 24,
+      "matchId": 24,
+      "title": "Gill's Unbeaten 84 Guides Gujarat Titans Past Mumbai Indians in Thriller",
+      "slug": "gills-unbeaten-84-guides-gujarat-titans-past-mumbai-indians-in-thriller",
+      "image": "v1781204526/images_u8bppx.jpg",
+      "shortDescription": "Shubman Gill produced a captain's masterclass with an unbeaten 84 as Gujarat Titans chased down 192 to defeat Mumbai Indians by six wickets in Ahmedabad.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Gujarat Titans continued their impressive IPL 2026 campaign with a thrilling six-wicket victory over Mumbai Indians at the Narendra Modi Stadium. Chasing a challenging target of 192, the Titans displayed composure and class to reach 192 for 4 in just 18.4 overs, delighting the Ahmedabad crowd with another memorable run chase.",
+        "Earlier, Mumbai Indians posted a competitive total of 191 for 8 after being asked to bat first. Rohit Sharma led the charge with a fluent 53 from 35 deliveries, while Suryakumar Yadav contributed a brisk 37 and Ryan Rickelton added 26. Contributions throughout the batting order ensured Mumbai maintained momentum, but regular wickets prevented them from posting an even bigger score.",
+        "Gujarat's bowlers played a crucial role in restricting the visitors. Kagiso Rabada once again showcased his class by claiming three important wickets, while Mohammed Siraj chipped in with two breakthroughs. Rashid Khan's economical spell further tightened the scoring rate during the middle overs, helping keep Mumbai within reach.",
+        "The chase belonged to captain Shubman Gill, who delivered another innings of the highest quality. Remaining unbeaten on 84 from 51 deliveries, Gill anchored the pursuit with remarkable composure and timing. His innings featured nine boundaries and three sixes, keeping Gujarat firmly in control despite the pressure of a demanding chase.",
+        "Jos Buttler provided explosive support with 39 from just 24 balls, while Sai Sudharsan continued his consistent run with a valuable 28. Their partnerships with Gill ensured the required rate never became a concern and allowed Gujarat to maintain complete control of the contest.",
+        "Although Jasprit Bumrah and Trent Boult managed a few breakthroughs for Mumbai Indians, the hosts never lost their grip on the chase. Gill guided Gujarat safely across the finish line alongside Washington Sundar and was deservedly named Player of the Match. The victory strengthened Gujarat's position among the league leaders, while Mumbai were left to reflect on missed opportunities despite a strong batting effort."
+      ],
+      "publishedDate": "2026-03-24",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Shubman Gill",
+        "Gujarat Titans",
+        "Mumbai Indians",
+        "IPL 2026",
+        "Kagiso Rabada",
+        "Rohit Sharma",
+        "Match Report"
+      ]
+    },
+    {
+      "id": 25,
+      "matchId": 25,
+      "title": "Kohli's Unbeaten 82 Powers RCB to Clinical Win Over Lucknow",
+      "slug": "kohli-unbeaten-82-powers-rcb-to-clinical-win-over-lucknow",
+      "image": "f_auto/v1781204558/images_yoiqft.jpg",
+      "shortDescription": "Virat Kohli remained unbeaten on 82 as Royal Challengers Bengaluru chased down 185 to defeat Lucknow Super Giants by six wickets at Ekana Stadium.",
+      "category": "Match Report",
+      "author": "CrickInfo Team",
+      "content": [
+        "Royal Challengers Bengaluru produced a professional all-round performance to defeat Lucknow Super Giants by six wickets at the BRSABV Ekana Cricket Stadium. Chasing 185 for victory, RCB reached 185 for 3 with ten balls to spare and secured an important win away from home.",
+        "Lucknow Super Giants posted a competitive total of 184 for 7 after being put in to bat. Captain Rishabh Pant once again led from the front with a well-crafted 49, while Nicholas Pooran entertained with a quick-fire 41. Aiden Markram and Mitchell Marsh also made useful contributions, helping LSG build a strong platform throughout the innings.",
+        "RCB's bowlers delivered when it mattered most. Josh Hazlewood was outstanding with three wickets, repeatedly breaking key partnerships and slowing Lucknow's momentum. Bhuvneshwar Kumar supported him brilliantly with two wickets, while Suyash Sharma and Yash Dayal maintained control through the middle overs.",
+        "The chase was anchored by Virat Kohli, who continued his outstanding form in IPL 2026. The veteran batter remained unbeaten on 82 from 51 deliveries, combining elegance and authority throughout his innings. Kohli's ability to rotate the strike and accelerate when required ensured RCB remained ahead of the asking rate from start to finish.",
+        "Phil Salt provided an explosive start with 31, while Rajat Patidar and Devdutt Padikkal chipped in with valuable contributions. Even after Lucknow managed a few breakthroughs through Avesh Khan and Mohammad Shami, Bengaluru's batting unit never lost control of the chase.",
+        "Kohli eventually guided RCB across the finish line alongside Venkatesh Iyer, completing another successful run chase for his side. For his unbeaten match-winning knock, Virat Kohli was deservedly named Player of the Match. The victory boosted Bengaluru's campaign significantly, while Lucknow Super Giants suffered a setback despite posting a competitive total."
+      ],
+      "publishedDate": "2026-03-25",
+      "readTime": "4 min read",
+      "featured": false,
+      "tags": [
+        "Virat Kohli",
+        "Royal Challengers Bengaluru",
+        "Lucknow Super Giants",
+        "IPL 2026",
+        "Josh Hazlewood",
+        "Rishabh Pant",
+        "Match Report"
+      ]
+    }
   ]
-},
-{
-  "id": 12,
-  "matchId": 12,
-  "title": "Gaikwad's Class Guides CSK to Thrilling Victory Over Gujarat Titans",
-  "slug": "gaikwads-class-guides-csk-to-thrilling-victory-over-gujarat-titans",
-  "image": "f_auto/v1781204035/images_ljya8w.jpg",
-  "shortDescription": "Ruturaj Gaikwad's elegant 74 and a composed chase helped Chennai Super Kings defeat Gujarat Titans by four wickets in a high-scoring clash at Chepauk.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Chennai Super Kings continued their unbeaten start to IPL 2026 with a hard-fought four-wicket victory over Gujarat Titans at the MA Chidambaram Stadium. In front of a packed Chepauk crowd, CSK chased down a challenging target of 188 with four balls to spare, securing their second win of the season.",
-    "After being asked to bat first, Gujarat Titans produced another strong batting performance led by captain Shubman Gill. The stylish opener struck 56 from 35 deliveries and shared valuable partnerships with Jos Buttler and Sai Sudharsan to provide the visitors with a solid platform. Contributions from the middle order ensured Gujarat posted a competitive total of 187 for 7 from their 20 overs.",
-    "Chennai's bowlers once again delivered when it mattered most. Noor Ahmad was the standout performer, claiming three wickets while maintaining excellent control through the middle overs. Matt Henry chipped in with two crucial breakthroughs as CSK prevented Gujarat from reaching the 200-run mark despite several aggressive batting displays.",
-    "In response, Ruturaj Gaikwad anchored the chase with another captain's knock. The CSK skipper looked in complete command throughout his innings, scoring 74 runs from 46 deliveries while combining elegant stroke play with calculated aggression. His partnership with Sanju Samson provided the perfect foundation for the pursuit.",
-    "As Gujarat fought back through Kagiso Rabada and Rashid Khan, the pressure briefly shifted towards the hosts. However, Dewald Brevis played an important supporting role with a quick 28, while Shivam Dube added valuable runs during the middle overs to keep the chase on track.",
-    "With the match entering its decisive phase, MS Dhoni once again showcased his finishing ability. Remaining unbeaten on 17, the veteran guided Chennai across the finish line alongside Aman Khan. For his match-winning innings and leadership at the top of the order, Ruturaj Gaikwad was named Player of the Match as CSK maintained their perfect start to the campaign."
-  ],
-  "publishedDate": "2026-03-12",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Ruturaj Gaikwad",
-    "Chennai Super Kings",
-    "Gujarat Titans",
-    "IPL 2026",
-    "MS Dhoni",
-    "Noor Ahmad",
-    "Match Report"
-  ]
-},
-{
-  "id": 13,
-  "matchId": 13,
-  "title": "Jaiswal Leads Royals to Dramatic Last-Over Win Over Delhi",
-  "slug": "jaiswal-leads-royals-to-dramatic-last-over-win-over-delhi",
-  "image": "v1781204081/images_sjcdgt.jpg",
-  "shortDescription": "Yashasvi Jaiswal starred with a brilliant 72 as Rajasthan Royals edged past Delhi Titans by two wickets in a nail-biting contest at the Arun Jaitley Stadium.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Rajasthan Royals secured a thrilling two-wicket victory over Delhi Titans in a closely contested IPL 2026 encounter at the Arun Jaitley Stadium. Chasing 186 for victory, Rajasthan held their nerve in the final over to reach 186 for 7 and register an important win on the road.",
-    "Delhi Titans posted a competitive total of 185 for 7 after being asked to bat first. KL Rahul once again led from the front with a composed 63 from 41 balls, while Prithvi Shaw and Pathum Nissanka provided useful support at the top. David Miller added late fireworks to ensure Delhi finished with a challenging score on a batting-friendly surface.",
-    "Rajasthan's bowling attack worked collectively to keep the hosts under control. Jofra Archer and Ravi Bishnoi were particularly effective, picking up two wickets each and striking at crucial moments. Their efforts ensured Delhi never managed to break free despite several promising partnerships.",
-    "The chase was built around a magnificent innings from Yashasvi Jaiswal. The young opener continued his impressive form with a fluent 72 off 44 deliveries, striking boundaries regularly and maintaining control of the required run rate. His attacking approach put the Delhi bowlers under pressure from the outset.",
-    "Shimron Hetmyer contributed an aggressive 29, while Riyan Parag added a valuable cameo as Rajasthan stayed ahead of the asking rate. Delhi fought back admirably through Mitchell Starc and T. Natarajan, both of whom claimed two wickets and kept the contest alive until the final overs.",
-    "With wickets falling and tension building, Rajasthan's lower order held their composure to complete the chase with just two balls remaining. Yashasvi Jaiswal was deservedly named Player of the Match for his match-defining knock that laid the foundation for victory. The result gave Rajasthan a crucial win, while Delhi were left disappointed after another competitive performance slipped away in the closing stages."
-  ],
-  "publishedDate": "2026-03-13",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Yashasvi Jaiswal",
-    "Rajasthan Royals",
-    "Delhi Titans",
-    "IPL 2026",
-    "KL Rahul",
-    "Jofra Archer",
-    "Match Report"
-  ]
-},
-{
-  "id": 14,
-  "matchId": 14,
-  "title": "Gill's Magnificent 79 Powers Gujarat Titans Past Lucknow in Run-Fest",
-  "slug": "gills-magnificent-79-powers-gujarat-titans-past-lucknow-in-run-fest",
-  "image": "v1781204143/images_q1cood.jpg",
-  "shortDescription": "Shubman Gill produced a captain's masterclass with 79 as Gujarat Titans edged Lucknow Super Giants by four wickets in a high-scoring thriller at Ahmedabad.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "The Narendra Modi Stadium witnessed another IPL classic as Gujarat Titans pulled off a thrilling four-wicket victory over Lucknow Super Giants in a contest dominated by batters. Chasing a daunting target of 196, Gujarat held their nerve in the closing stages to reach 196 for 5 with two balls to spare and secure a crucial victory in front of their home fans.",
-    "Lucknow Super Giants posted an imposing 195 for 7 after being asked to bat first. Captain Rishabh Pant led the charge with a brilliant 61 from 38 deliveries, combining elegant stroke play with aggressive intent. Aiden Markram and Nicholas Pooran provided excellent support, while Mitchell Marsh chipped in with a quick cameo to keep the scoreboard moving throughout the innings.",
-    "Despite the challenging conditions, Gujarat's bowlers managed to strike at important moments. Kagiso Rabada once again showcased his experience by claiming three wickets, while Mohammed Siraj contributed two crucial breakthroughs. Their efforts prevented Lucknow from crossing the 200-run mark, a total that looked well within reach at several stages of the innings.",
-    "In response, Gujarat received the perfect platform from captain Shubman Gill. The stylish opener played one of his finest innings of the season, scoring 79 runs from just 49 deliveries. Gill mixed timing and power brilliantly, finding boundaries with ease and ensuring the required run rate never spiraled out of control.",
-    "Jos Buttler provided valuable support with an attacking 36, while Sai Sudharsan continued his consistent run with a fluent 27. Even after Lucknow fought back through Avesh Khan and Mohammad Shami, Gujarat maintained control of the chase thanks to the foundation laid by their top order.",
-    "As the match entered its decisive phase, Rahul Tewatia once again lived up to his reputation as a finisher. Supported by Rashid Khan, he calmly guided Gujarat across the finish line and completed a memorable chase. Shubman Gill was deservedly named Player of the Match for his match-winning 79, an innings that reinforced his status as one of the premier batters in the tournament and helped Gujarat climb further up the standings."
-  ],
-  "publishedDate": "2026-03-14",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Shubman Gill",
-    "Gujarat Titans",
-    "Lucknow Super Giants",
-    "IPL 2026",
-    "Rishabh Pant",
-    "Kagiso Rabada",
-    "Match Report"
-  ]
-},
-{
-  "id": 15,
-  "matchId": 15,
-  "title": "Kohli's Masterclass Guides RCB to Thrilling Chase Against Mumbai Indians",
-  "slug": "kohli-masterclass-guides-rcb-to-thrilling-chase-against-mumbai-indians",
-  "image": "v1781204198/images_y7ht06.jpg",
-  "shortDescription": "Virat Kohli's brilliant 82 powered Royal Challengers Bengaluru to a dramatic four-wicket victory over Mumbai Indians in a high-scoring encounter at Wankhede Stadium.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "A packed Wankhede Stadium witnessed another IPL classic as Royal Challengers Bengaluru pulled off a thrilling four-wicket victory over Mumbai Indians. Chasing a daunting target of 199, RCB held their nerve in the final over to reach 199 for 6 and register one of their most memorable wins of the season.",
-    "Mumbai Indians produced a strong batting display after being put in to bat. Rohit Sharma provided a fluent start with 48, while Suryakumar Yadav entertained the crowd with an aggressive 41 from just 24 deliveries. Valuable contributions from Ryan Rickelton, Tilak Varma and Hardik Pandya ensured Mumbai posted a formidable total of 198 for 6 from their allotted overs.",
-    "RCB's bowling unit managed to restrict Mumbai despite the batting-friendly conditions. Josh Hazlewood and Bhuvneshwar Kumar picked up two wickets each and delivered crucial breakthroughs whenever the hosts threatened to accelerate further. Their disciplined efforts proved vital in keeping the target within reach.",
-    "The chase belonged to Virat Kohli. The former RCB captain once again showcased his chasing brilliance, producing a magnificent innings of 82 from 51 balls. Kohli timed the ball beautifully throughout his stay at the crease, finding boundaries regularly and maintaining complete control of the required run rate.",
-    "Phil Salt provided an explosive start, while Rajat Patidar and Devdutt Padikkal chipped in with useful contributions. Even when Mumbai fought back through Jasprit Bumrah and Trent Boult, RCB never lost sight of the target thanks to Kohli's calm presence and leadership in the middle.",
-    "With the game heading towards a tense finish, Tim David provided the finishing touches with a quick cameo that took Bengaluru across the line with one ball to spare. Virat Kohli was deservedly named Player of the Match for his match-winning 82, helping RCB secure a statement victory against one of their biggest rivals."
-  ],
-  "publishedDate": "2026-03-15",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Virat Kohli",
-    "Royal Challengers Bengaluru",
-    "Mumbai Indians",
-    "IPL 2026",
-    "Josh Hazlewood",
-    "Rohit Sharma",
-    "Match Report"
-  ]
-},
-{
-  "id": 16,
-  "matchId": 16,
-  "title": "Samson Stars as Chennai Super Kings Continue Unbeaten Run",
-  "slug": "samson-stars-as-chennai-super-kings-continue-unbeaten-run",
-  "image": "f_auto/v1781204218/images_hjr83s.jpg",
-  "shortDescription": "Sanju Samson's unbeaten 68 helped Chennai Super Kings chase down 191 and defeat Rajasthan Royals by six wickets at Chepauk.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Chennai Super Kings extended their unbeaten streak in IPL 2026 with a commanding six-wicket victory over Rajasthan Royals at the MA Chidambaram Stadium. In front of an energetic home crowd, CSK chased down a challenging target of 191 with seven balls remaining to strengthen their position near the top of the table.",
-    "Rajasthan Royals delivered another competitive batting performance after being asked to bat first. Yashasvi Jaiswal led the charge with a stylish 54, while Shimron Hetmyer and Riyan Parag added important runs through the middle overs. Contributions from Ravindra Jadeja and Dhruv Jurel helped Rajasthan reach an impressive total of 190 for 7.",
-    "Chennai's bowlers once again rose to the occasion. Noor Ahmad continued his excellent form with three wickets, while Matt Henry picked up two crucial breakthroughs. Their efforts prevented Rajasthan from pushing beyond the 200-run mark despite several aggressive partnerships.",
-    "The chase began positively for Chennai as captain Ruturaj Gaikwad produced another classy innings. The opener scored 58 from 37 deliveries and laid the perfect foundation for the pursuit. His partnership with Sanju Samson kept the required rate comfortably under control and put Rajasthan's bowlers under constant pressure.",
-    "Samson then took complete command of the contest. The wicketkeeper-batter remained unbeaten on 68 from just 41 deliveries, combining elegant stroke play with calculated aggression. Dewald Brevis provided useful support before MS Dhoni thrilled the Chepauk faithful with a quick unbeaten cameo that brought the target within touching distance.",
-    "Rajasthan's bowlers fought hard through Jofra Archer and Ravi Bishnoi, but Chennai's batting depth proved too strong. Samson guided his side safely across the finish line and was deservedly named Player of the Match for his match-winning innings. The victory maintained Chennai's perfect record, while Rajasthan were left searching for consistency after another close defeat."
-  ],
-  "publishedDate": "2026-03-16",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Sanju Samson",
-    "Chennai Super Kings",
-    "Rajasthan Royals",
-    "IPL 2026",
-    "Ruturaj Gaikwad",
-    "Noor Ahmad",
-    "Match Report"
-  ]
-},
-{
-  "id": 17,
-  "matchId": 17,
-  "title": "Rinku's Heroics Seal Last-Over Thriller as KKR Edge RCB",
-  "slug": "rinku-heroics-seal-last-over-thriller-as-kkr-edge-rcb",
-  "image": "v1781204248/images_af9nmf.jpg",
-  "shortDescription": "Rinku Singh's unbeaten 71 guided Kolkata Knight Riders to a dramatic four-wicket victory over Royal Challengers Bengaluru in a run-filled encounter at Eden Gardens.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Eden Gardens witnessed one of the most thrilling contests of IPL 2026 as Kolkata Knight Riders chased down a daunting target of 203 to defeat Royal Challengers Bengaluru by four wickets. In a match packed with boundaries, momentum swings and individual brilliance, KKR held their nerve to complete the chase with two balls remaining.",
-    "Royal Challengers Bengaluru produced an impressive batting display after being put in to bat. Virat Kohli once again led from the front with a classy 66 from 42 deliveries, while Phil Salt provided an explosive start with 34. Useful contributions from Rajat Patidar, Devdutt Padikkal and Venkatesh Iyer helped Bengaluru post a challenging total of 202 for 8.",
-    "Despite the imposing target, Kolkata's top order showed positive intent from the outset. Finn Allen entertained the home crowd with a quick-fire 44, while Angkrish Raghuvanshi continued his impressive season with a fluent 37. Their aggressive approach ensured KKR remained ahead of the required rate during the powerplay.",
-    "As wickets began to fall in the middle overs, the responsibility shifted to Rinku Singh. The left-hander delivered another memorable performance under pressure, remaining unbeaten on 71 from just 42 deliveries. Mixing elegant stroke play with fearless hitting, Rinku struck six boundaries and four sixes to keep Kolkata firmly in control of the chase.",
-    "RCB's bowlers fought hard to defend their total. Josh Hazlewood and Bhuvneshwar Kumar picked up two wickets each, while Krunal Pandya and Yash Dayal chipped in with important breakthroughs. However, every time Bengaluru sensed an opening, Rinku responded with a crucial boundary to swing the momentum back in Kolkata's favour.",
-    "With the equation narrowing in the final over, Sunil Narine provided valuable support before Rinku finished the contest in style. His match-winning innings earned him the Player of the Match award and helped Kolkata secure a crucial victory. The result strengthened KKR's position in the standings, while RCB were left frustrated after posting more than 200 runs and still ending up on the losing side."
-  ],
-  "publishedDate": "2026-03-17",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Rinku Singh",
-    "Kolkata Knight Riders",
-    "Royal Challengers Bengaluru",
-    "IPL 2026",
-    "Virat Kohli",
-    "Finn Allen",
-    "Match Report"
-  ]
-},
-{
-  "id": 18,
-  "matchId": 18,
-  "title": "Suryakumar's Unbeaten 74 Guides Mumbai Indians Past Delhi",
-  "slug": "suryakumar-unbeaten-74-guides-mumbai-indians-past-delhi",
-  "image": "f_auto/v1781204275/images_qbruez.jpg",
-  "shortDescription": "Suryakumar Yadav's brilliant unbeaten 74 helped Mumbai Indians chase down 188 and secure a convincing six-wicket victory over Delhi Titans.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Mumbai Indians continued their impressive IPL 2026 campaign with a commanding six-wicket victory over Delhi Titans at the Arun Jaitley Stadium. Chasing a target of 188, Mumbai produced a clinical batting performance and crossed the finish line with eight balls to spare.",
-    "Delhi Titans posted a competitive total of 187 for 7 after being asked to bat first. Captain KL Rahul once again showcased his consistency with a well-crafted 58, while Prithvi Shaw and Pathum Nissanka provided valuable support at the top of the order. Contributions from David Miller and Axar Patel ensured Delhi maintained momentum throughout their innings.",
-    "Mumbai's bowling attack once again delivered when it mattered. Jasprit Bumrah was outstanding, claiming three wickets while conceding just 31 runs. Trent Boult provided excellent support with two wickets, repeatedly breaking partnerships and preventing Delhi from pushing beyond the 190-run mark.",
-    "The chase began positively for Mumbai as Rohit Sharma and Ryan Rickelton attacked from the outset. Rohit's fluent 46 and Rickelton's quick 28 gave Mumbai the ideal platform and ensured the required run rate remained under control during the powerplay.",
-    "The star of the evening, however, was Suryakumar Yadav. The stylish right-hander played one of the finest innings of the tournament, remaining unbeaten on 74 from just 43 deliveries. Displaying his trademark innovation and timing, Suryakumar struck seven boundaries and four sixes while effortlessly dismantling Delhi's bowling attack.",
-    "Even after Delhi managed to pick up a few wickets in the middle overs, Suryakumar remained calm and guided Mumbai towards victory alongside Will Jacks. His match-winning knock earned him the Player of the Match award and reinforced Mumbai's status as one of the strongest teams in the competition. For Delhi Titans, another defeat highlighted the need for greater consistency despite several encouraging individual performances."
-  ],
-  "publishedDate": "2026-03-18",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Suryakumar Yadav",
-    "Mumbai Indians",
-    "Delhi Titans",
-    "IPL 2026",
-    "Jasprit Bumrah",
-    "KL Rahul",
-    "Match Report"
-  ]
-},
-{
-  "id": 19,
-  "matchId": 19,
-  "title": "Gaikwad's Unbeaten 88 Powers CSK to Dominant Win Over KKR",
-  "slug": "gaikwad-unbeaten-88-powers-csk-to-dominant-win-over-kkr",
-  "image": "v1781204341/images_lxmv48.jpg",
-  "shortDescription": "Ruturaj Gaikwad starred with an unbeaten 88 as Chennai Super Kings chased down 201 to defeat Kolkata Knight Riders by eight wickets at Chepauk.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Chennai Super Kings continued their flawless IPL 2026 campaign with a commanding eight-wicket victory over Kolkata Knight Riders at the MA Chidambaram Stadium. Chasing a challenging target of 201, CSK produced one of the most complete batting performances of the season, reaching 201 for 2 with 11 balls to spare.",
-    "Earlier, Kolkata Knight Riders posted an impressive total of 200 for 8 after being asked to bat first. Finn Allen and Angkrish Raghuvanshi provided an explosive start, while Rinku Singh once again showcased his finishing ability with a valuable 39. Contributions throughout the batting order helped KKR cross the 200-run mark and set up an exciting contest.",
-    "Despite the strong total, Chennai's bowlers played a crucial role in keeping the innings under control. Noor Ahmad was outstanding with figures of four wickets for 26 runs, dismantling Kolkata's middle order and preventing them from pushing towards a much bigger score. Matt Henry also delivered a disciplined spell, picking up two important wickets.",
-    "The chase was headlined by a magnificent innings from captain Ruturaj Gaikwad. The stylish opener remained unbeaten on 88 from just 52 deliveries, timing the ball beautifully and finding boundaries with remarkable consistency. His knock featured a blend of elegance and controlled aggression that left the Kolkata bowlers searching for answers.",
-    "Sanju Samson continued his excellent form with a fluent 54 and shared a match-defining partnership with Gaikwad. The duo dominated both pace and spin, ensuring Chennai stayed comfortably ahead of the required rate throughout the innings. Even after Samson departed, the momentum never shifted away from the hosts.",
-    "MS Dhoni delighted the Chepauk crowd with a quick unbeaten cameo as Chennai sealed the chase in emphatic fashion. Ruturaj Gaikwad was deservedly named Player of the Match for his outstanding innings, helping CSK maintain their unbeaten record and strengthen their position at the top of the standings."
-  ],
-  "publishedDate": "2026-03-19",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Ruturaj Gaikwad",
-    "Chennai Super Kings",
-    "Kolkata Knight Riders",
-    "IPL 2026",
-    "Noor Ahmad",
-    "Sanju Samson",
-    "Match Report"
-  ]
-},
-{
-  "id": 20,
-  "matchId": 20,
-  "title": "Shreyas Iyer Anchors Punjab Kings to Thrilling Win Over RCB",
-  "slug": "shreyas-iyer-anchors-punjab-kings-to-thrilling-win-over-rcb",
-  "image": "f_auto/v1781204367/images_tpg7tl.jpg",
-  "shortDescription": "Captain Shreyas Iyer's unbeaten 77 guided Punjab Kings to a dramatic four-wicket victory over Royal Challengers Bengaluru in Mullanpur.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Punjab Kings returned to winning ways with an impressive four-wicket victory over Royal Challengers Bengaluru at the Maharaja Yadavindra Singh Stadium. Chasing a target of 194, Punjab produced a composed batting effort and crossed the finish line with three balls remaining.",
-    "Royal Challengers Bengaluru posted a competitive total of 193 for 8 after being asked to bat first. Virat Kohli once again led the charge with a classy 62, while Phil Salt and Rajat Patidar provided valuable support. Contributions from Devdutt Padikkal and Venkatesh Iyer ensured RCB maintained momentum throughout their innings.",
-    "Punjab's bowling attack delivered crucial breakthroughs at regular intervals. Arshdeep Singh was the standout performer, claiming three wickets and controlling the scoring rate during key phases. Yuzvendra Chahal and Harpreet Brar also chipped in with important wickets to keep Bengaluru from building a truly massive total.",
-    "The chase was built around a captain's knock from Shreyas Iyer. The Punjab skipper remained unbeaten on 77 from 48 deliveries, displaying exceptional composure under pressure. His ability to rotate the strike and find boundaries at crucial moments kept Punjab firmly in control despite losing wickets around him.",
-    "Marcus Stoinis played an important supporting role with a brisk 31, while Prabhsimran Singh provided a strong start at the top of the order. As the chase entered the final overs, Shreyas continued to dictate proceedings and ensured the required rate never became a concern.",
-    "RCB's bowlers fought hard through Josh Hazlewood and Bhuvneshwar Kumar, but Punjab's batting depth proved decisive. Shreyas Iyer guided his side home alongside Marco Jansen and was deservedly named Player of the Match. The victory boosted Punjab's campaign, while Bengaluru were left to reflect on another close defeat despite posting a competitive score."
-  ],
-  "publishedDate": "2026-03-20",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Shreyas Iyer",
-    "Punjab Kings",
-    "Royal Challengers Bengaluru",
-    "IPL 2026",
-    "Virat Kohli",
-    "Arshdeep Singh",
-    "Match Report"
-  ]
-},
-{
-  "id": 21,
-  "matchId": 21,
-  "title": "Finn Allen's Explosive 79 Leads KKR Past Rajasthan Royals",
-  "slug": "finn-allen-explosive-79-leads-kkr-past-rajasthan-royals",
-  "image": "v1781204416/images_az9i50.jpg",
-  "shortDescription": "Finn Allen's brilliant 79 powered Kolkata Knight Riders to a convincing six-wicket victory over Rajasthan Royals at Eden Gardens.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Kolkata Knight Riders produced a clinical all-round performance to defeat Rajasthan Royals by six wickets at Eden Gardens. Chasing 189 for victory, KKR reached the target with nine balls to spare, delighting their home supporters with an entertaining display.",
-    "Rajasthan Royals posted a competitive total of 188 for 8 after being asked to bat first. Yashasvi Jaiswal led the charge with a fluent 57, while Shimron Hetmyer and Riyan Parag made valuable contributions in the middle order. Despite several promising partnerships, Rajasthan struggled to accelerate in the closing overs.",
-    "Kolkata's bowling attack once again delivered when required. Varun Chakaravarthy starred with three wickets, while Umran Malik picked up two crucial breakthroughs. Their efforts ensured Rajasthan were restricted to a total that remained within reach on a good batting surface.",
-    "The chase was dominated by Finn Allen, who produced one of the finest innings of the tournament so far. The New Zealand batter smashed 79 from just 46 deliveries, combining fearless stroke play with excellent shot selection. His aggressive approach immediately put Rajasthan's bowlers under pressure.",
-    "Angkrish Raghuvanshi provided solid support at the top, while Rinku Singh once again displayed his finishing skills with an unbeaten 41. Together, they ensured Kolkata maintained complete control of the chase and never allowed Rajasthan a route back into the contest.",
-    "Finn Allen's match-winning innings earned him the Player of the Match award as Kolkata secured another important victory. The win strengthened KKR's playoff ambitions, while Rajasthan Royals continued to search for consistency after suffering yet another defeat in a closely fought season."
-  ],
-  "publishedDate": "2026-03-21",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Finn Allen",
-    "Kolkata Knight Riders",
-    "Rajasthan Royals",
-    "IPL 2026",
-    "Rinku Singh",
-    "Yashasvi Jaiswal",
-    "Match Report"
-  ]
-},
-{
-  "id": 22,
-  "matchId": 22,
-  "title": "Gaikwad and Samson Script Record Partnership as CSK Crush Punjab Kings",
-  "slug": "gaikwad-and-samson-script-record-partnership-as-csk-crush-punjab-kings",
-  "image": "v1781204452/images_z5omfq.jpg",
-  "shortDescription": "Ruturaj Gaikwad and Sanju Samson produced an unbeaten opening stand as Chennai Super Kings stormed to a dominant 10-wicket victory over Punjab Kings at Chepauk.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Chennai Super Kings delivered one of the most dominant performances of IPL 2026, dismantling Punjab Kings by 10 wickets at the MA Chidambaram Stadium. Chasing a target of 182, CSK made light work of the pursuit and reached 182 without losing a wicket in just 16.5 overs, extending their unbeaten run and strengthening their grip at the top of the table.",
-    "Punjab Kings posted a competitive total of 181 for 9 after being asked to bat first. Captain Shreyas Iyer led the resistance with a composed 52, while Prabhsimran Singh and Marcus Stoinis chipped in with useful contributions. However, Punjab repeatedly lost wickets at crucial moments and failed to build the partnerships required to push beyond the 190-run mark.",
-    "The foundation of Chennai's success was laid by their bowlers, who once again produced a disciplined performance. Noor Ahmad continued his remarkable form with figures of 4 for 24, dismantling Punjab's middle order with his clever variations. Matt Henry provided excellent support by claiming three wickets, ensuring the visitors never gained complete control of the innings.",
-    "What followed was a batting masterclass from Chennai's opening pair. Captain Ruturaj Gaikwad and Sanju Samson dominated the Punjab bowling attack from the very beginning, finding boundaries with ease and maintaining a scoring rate well above the required mark. Their understanding and shot selection left Punjab searching for answers throughout the chase.",
-    "Gaikwad narrowly missed out on a century, remaining unbeaten on a magnificent 96 from 56 deliveries. The CSK skipper combined elegance and aggression perfectly, striking eleven boundaries and three sixes. At the other end, Samson was equally destructive, finishing unbeaten on 77 from just 45 balls and ensuring there would be no opportunity for a Punjab comeback.",
-    "The emphatic victory highlighted Chennai's strength in every department and sent a strong message to the rest of the competition. Ruturaj Gaikwad was deservedly named Player of the Match for his outstanding innings, while CSK celebrated their fifth consecutive victory of the season in front of a jubilant Chepauk crowd."
-  ],
-  "publishedDate": "2026-03-22",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Ruturaj Gaikwad",
-    "Chennai Super Kings",
-    "Punjab Kings",
-    "IPL 2026",
-    "Sanju Samson",
-    "Noor Ahmad",
-    "Match Report"
-  ]
-},
-{
-  "id": 23,
-  "matchId": 23,
-  "title": "Pant's Unbeaten 81 Powers Lucknow Past Rajasthan Royals",
-  "slug": "pant-unbeaten-81-powers-lucknow-past-rajasthan-royals",
-  "image": "v1781204487/images_qrf5qq.jpg",
-  "shortDescription": "Rishabh Pant led from the front with an unbeaten 81 as Lucknow Super Giants chased down 186 to defeat Rajasthan Royals by six wickets.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Lucknow Super Giants continued their impressive IPL 2026 campaign with a convincing six-wicket victory over Rajasthan Royals at the BRSABV Ekana Cricket Stadium. Chasing 186 for victory, the hosts produced a composed batting display and crossed the finish line with seven balls to spare.",
-    "Earlier, Rajasthan Royals posted a competitive 185 for 7 after being put in to bat. Yashasvi Jaiswal once again showcased his class with a fluent 61, while Shimron Hetmyer and Riyan Parag made valuable contributions in the middle order. Despite several strong partnerships, Rajasthan were unable to accelerate significantly in the death overs.",
-    "Lucknow's bowlers played a crucial role in restricting the visitors. Avesh Khan was the standout performer with three wickets, repeatedly breaking important partnerships. Mohammad Shami chipped in with two wickets, while the pace attack collectively ensured Rajasthan remained within a chaseable range.",
-    "The chase belonged to captain Rishabh Pant, who produced another outstanding innings under pressure. Pant remained unbeaten on 81 from 49 deliveries, displaying a perfect blend of aggression and composure. His innings featured elegant stroke play, powerful hitting and intelligent strike rotation that kept Lucknow firmly in control throughout the pursuit.",
-    "Aiden Markram provided an excellent platform with a brisk 36, while Nicholas Pooran continued his fine run of form by smashing 29 from just 18 deliveries. Their partnerships with Pant ensured the required rate never became a concern, allowing Lucknow to dictate the tempo of the chase.",
-    "Even though Rajasthan's bowlers managed a few breakthroughs through Jofra Archer and Ravi Bishnoi, they could not contain Pant's brilliance. The Lucknow skipper guided his side home alongside Ayush Badoni and was deservedly named Player of the Match. The victory further strengthened LSG's position in the standings, while Rajasthan's struggles continued with another narrow defeat."
-  ],
-  "publishedDate": "2026-03-23",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Rishabh Pant",
-    "Lucknow Super Giants",
-    "Rajasthan Royals",
-    "IPL 2026",
-    "Yashasvi Jaiswal",
-    "Avesh Khan",
-    "Match Report"
-  ]
-},
-{
-  "id": 24,
-  "matchId": 24,
-  "title": "Gill's Unbeaten 84 Guides Gujarat Titans Past Mumbai Indians in Thriller",
-  "slug": "gills-unbeaten-84-guides-gujarat-titans-past-mumbai-indians-in-thriller",
-  "image": "v1781204526/images_u8bppx.jpg",
-  "shortDescription": "Shubman Gill produced a captain's masterclass with an unbeaten 84 as Gujarat Titans chased down 192 to defeat Mumbai Indians by six wickets in Ahmedabad.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Gujarat Titans continued their impressive IPL 2026 campaign with a thrilling six-wicket victory over Mumbai Indians at the Narendra Modi Stadium. Chasing a challenging target of 192, the Titans displayed composure and class to reach 192 for 4 in just 18.4 overs, delighting the Ahmedabad crowd with another memorable run chase.",
-    "Earlier, Mumbai Indians posted a competitive total of 191 for 8 after being asked to bat first. Rohit Sharma led the charge with a fluent 53 from 35 deliveries, while Suryakumar Yadav contributed a brisk 37 and Ryan Rickelton added 26. Contributions throughout the batting order ensured Mumbai maintained momentum, but regular wickets prevented them from posting an even bigger score.",
-    "Gujarat's bowlers played a crucial role in restricting the visitors. Kagiso Rabada once again showcased his class by claiming three important wickets, while Mohammed Siraj chipped in with two breakthroughs. Rashid Khan's economical spell further tightened the scoring rate during the middle overs, helping keep Mumbai within reach.",
-    "The chase belonged to captain Shubman Gill, who delivered another innings of the highest quality. Remaining unbeaten on 84 from 51 deliveries, Gill anchored the pursuit with remarkable composure and timing. His innings featured nine boundaries and three sixes, keeping Gujarat firmly in control despite the pressure of a demanding chase.",
-    "Jos Buttler provided explosive support with 39 from just 24 balls, while Sai Sudharsan continued his consistent run with a valuable 28. Their partnerships with Gill ensured the required rate never became a concern and allowed Gujarat to maintain complete control of the contest.",
-    "Although Jasprit Bumrah and Trent Boult managed a few breakthroughs for Mumbai Indians, the hosts never lost their grip on the chase. Gill guided Gujarat safely across the finish line alongside Washington Sundar and was deservedly named Player of the Match. The victory strengthened Gujarat's position among the league leaders, while Mumbai were left to reflect on missed opportunities despite a strong batting effort."
-  ],
-  "publishedDate": "2026-03-24",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Shubman Gill",
-    "Gujarat Titans",
-    "Mumbai Indians",
-    "IPL 2026",
-    "Kagiso Rabada",
-    "Rohit Sharma",
-    "Match Report"
-  ]
-},
-{
-  "id": 25,
-  "matchId": 25,
-  "title": "Kohli's Unbeaten 82 Powers RCB to Clinical Win Over Lucknow",
-  "slug": "kohli-unbeaten-82-powers-rcb-to-clinical-win-over-lucknow",
-  "image": "f_auto/v1781204558/images_yoiqft.jpg",
-  "shortDescription": "Virat Kohli remained unbeaten on 82 as Royal Challengers Bengaluru chased down 185 to defeat Lucknow Super Giants by six wickets at Ekana Stadium.",
-  "category": "Match Report",
-  "author": "CrickInfo Team",
-  "content": [
-    "Royal Challengers Bengaluru produced a professional all-round performance to defeat Lucknow Super Giants by six wickets at the BRSABV Ekana Cricket Stadium. Chasing 185 for victory, RCB reached 185 for 3 with ten balls to spare and secured an important win away from home.",
-    "Lucknow Super Giants posted a competitive total of 184 for 7 after being put in to bat. Captain Rishabh Pant once again led from the front with a well-crafted 49, while Nicholas Pooran entertained with a quick-fire 41. Aiden Markram and Mitchell Marsh also made useful contributions, helping LSG build a strong platform throughout the innings.",
-    "RCB's bowlers delivered when it mattered most. Josh Hazlewood was outstanding with three wickets, repeatedly breaking key partnerships and slowing Lucknow's momentum. Bhuvneshwar Kumar supported him brilliantly with two wickets, while Suyash Sharma and Yash Dayal maintained control through the middle overs.",
-    "The chase was anchored by Virat Kohli, who continued his outstanding form in IPL 2026. The veteran batter remained unbeaten on 82 from 51 deliveries, combining elegance and authority throughout his innings. Kohli's ability to rotate the strike and accelerate when required ensured RCB remained ahead of the asking rate from start to finish.",
-    "Phil Salt provided an explosive start with 31, while Rajat Patidar and Devdutt Padikkal chipped in with valuable contributions. Even after Lucknow managed a few breakthroughs through Avesh Khan and Mohammad Shami, Bengaluru's batting unit never lost control of the chase.",
-    "Kohli eventually guided RCB across the finish line alongside Venkatesh Iyer, completing another successful run chase for his side. For his unbeaten match-winning knock, Virat Kohli was deservedly named Player of the Match. The victory boosted Bengaluru's campaign significantly, while Lucknow Super Giants suffered a setback despite posting a competitive total."
-  ],
-  "publishedDate": "2026-03-25",
-  "readTime": "4 min read",
-  "featured": false,
-  "tags": [
-    "Virat Kohli",
-    "Royal Challengers Bengaluru",
-    "Lucknow Super Giants",
-    "IPL 2026",
-    "Josh Hazlewood",
-    "Rishabh Pant",
-    "Match Report"
-  ]
-}
-
-
-
-
-
-
-
-
-
-
-]
 }

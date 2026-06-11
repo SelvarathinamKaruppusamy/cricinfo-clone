@@ -174,7 +174,9 @@
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {
@@ -189,4 +191,3 @@
     padding: 0.35rem 0.75rem;
   }
 }
-

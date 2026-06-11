@@ -8,18 +8,20 @@
     <header class="blog-header">
       <span class="blog-category-badge">{{ blog.category }}</span>
       <h1 class="blog-title">{{ blog.title }}</h1>
-      
+
       <div class="blog-meta-wrapper">
         <div class="meta-chip author-chip">
           <span class="material-symbols-outlined icon-v">account_circle</span>
-          <span>By <strong>{{ blog.author }}</strong></span>
+          <span
+            >By <strong>{{ blog.author }}</strong></span
+          >
         </div>
-        
+
         <div class="meta-chip">
           <span class="material-symbols-outlined icon-v">calendar_month</span>
-          <span>{{ blog.publishedDate | date:'longDate' }}</span>
+          <span>{{ blog.publishedDate | date: 'longDate' }}</span>
         </div>
-        
+
         <div class="meta-chip">
           <span class="material-symbols-outlined icon-v">schedule</span>
           <span>{{ blog.readTime }}</span>
@@ -29,7 +31,7 @@
 
     <div class="blog-banner">
       @if (blog.image) {
-        <img [ngSrc]="blog.image" fill priority [alt]="blog.title" class="banner-img">
+        <img [ngSrc]="blog.image" fill priority [alt]="blog.title" class="banner-img" />
       } @else {
         <div class="placeholder-banner">
           <span class="material-symbols-outlined banner-icon">sports_cricket</span>

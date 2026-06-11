@@ -10,6 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(),
-    provideCloudinaryLoader('https://res.cloudinary.com/dde7fld9d')
-  ]
+    provideCloudinaryLoader('https://res.cloudinary.com/dde7fld9d'),
+  ],
 };

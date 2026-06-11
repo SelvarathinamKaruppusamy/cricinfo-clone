@@ -8,35 +8,35 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'completed',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'completed',
     loadComponent: () =>
-      import('./Completed/Components/completed-list/completed-list')
-        .then(c => c.CompletedList)
+      import('./Completed/Components/completed-list/completed-list').then((c) => c.CompletedList),
   },
   {
     path: 'completed/:matchNo',
     loadComponent: () =>
-      import('./Completed/Components/completed-details/completed-details')
-        .then(c => c.CompletedDetails)
+      import('./Completed/Components/completed-details/completed-details').then(
+        (c) => c.CompletedDetails,
+      ),
   },
   // FIX: Change lazy loading to direct component assignment for your blog blocks
   {
     path: 'blog',
-    component: BlogList
+    component: BlogList,
   },
   {
     path: 'blog-detail/:id',
-    component: BlogDetails
+    component: BlogDetails,
   },
   {
     path: 'points-table',
-    component: PointsTable
+    component: PointsTable,
   },
   {
     path: '**',
-    redirectTo: 'completed'
-  }
+    redirectTo: 'completed',
+  },
 ];

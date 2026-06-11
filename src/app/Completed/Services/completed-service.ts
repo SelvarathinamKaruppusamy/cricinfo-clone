@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Match } from '../Models/match-module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CompletedService {
-
   private http = inject(HttpClient);
 
   private apiUrl = 'http://localhost:3000/completed';
@@ -16,8 +15,6 @@ export class CompletedService {
   }
 
   getMatch(matchNo: number) {
-    return this.http.get<Match[]>(
-      `${this.apiUrl}?matchNo=${matchNo}`
-    );
+    return this.http.get<Match[]>(`${this.apiUrl}?matchNo=${matchNo}`);
   }
 }

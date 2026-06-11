@@ -33,11 +33,11 @@ export class CompletedDetails implements OnInit {
     if (!this.relatedBlog || !this.relatedBlog.image) {
       return '';
     }
-    
+
     if (this.relatedBlog.image.startsWith('http')) {
       return this.relatedBlog.image;
     }
-    
+
     return `https://res.cloudinary.com/dde7fld9d/image/upload/f_auto,q_auto,w_1080/${this.relatedBlog.image}`;
   }
 
@@ -73,25 +73,22 @@ export class CompletedDetails implements OnInit {
   private fetchRelatedBlog(): void {
     if (!this.match) return;
 
-    this.http
-      .get<any[]>('http://localhost:3001/blogs')
-      .subscribe({
-        next: (blogs) => {
-          this.relatedBlog = blogs.find(
-            blog => Number(blog.matchId) === Number(this.match?.matchNo)
-          ) || null;
+    this.http.get<any[]>('http://localhost:3001/blogs').subscribe({
+      next: (blogs) => {
+        this.relatedBlog =
+          blogs.find((blog) => Number(blog.matchId) === Number(this.match?.matchNo)) || null;
 
-          // Added safe navigation (?.) to prevent app crashes if no blog matches the ID
-          console.log('MATCH:', this.match?.matchNo);
-          console.log('RELATED BLOG:', this.relatedBlog);
-          console.log('IMAGE PATH:', this.relatedBlog?.image);
+        // Added safe navigation (?.) to prevent app crashes if no blog matches the ID
+        console.log('MATCH:', this.match?.matchNo);
+        console.log('RELATED BLOG:', this.relatedBlog);
+        console.log('IMAGE PATH:', this.relatedBlog?.image);
 
-          this.cd.detectChanges(); // Keeps template fully synced with async server timing
-        },
-        error: (err) => {
-          console.error('Blog Fetch Error', err);
-        }
-      });
+        this.cd.detectChanges(); // Keeps template fully synced with async server timing
+      },
+      error: (err) => {
+        console.error('Blog Fetch Error', err);
+      },
+    });
   }
 
   openBlogDetails(): void {

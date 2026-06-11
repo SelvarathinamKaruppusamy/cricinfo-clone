@@ -1,41 +1,45 @@
-<div class="match-detail-container" *ngIf="match" >
+<div class="match-detail-container" *ngIf="match">
+  
   <div class="sticky-header-wrapper">
     <div class="header-inner-content">
-      <div class="top-meta">IPL · {{ match.date }}</div>
+      
+      <div class="top-meta">
+        IPL · {{ match.date }}
+      </div>
 
       <div class="scoreboard-main">
         <div class="team-info left">
           <img [src]="match.teams[0].logo" [alt]="match.teams[0].shortName" class="team-logo" />
           <span class="team-name">{{ match.teams[0].shortName }}</span>
         </div>
-
+ 
         <div class="scores-display">
           <div class="score-box text-right">
             <span class="runs">{{ match.teams[0].scores }}</span>
             <span class="overs">({{ match.teams[0].overs }})</span>
           </div>
-
+          
           <div class="vs-divider">vs</div>
-
+ 
           <div class="score-box text-left">
             <span class="runs">{{ match.teams[1].scores }}</span>
             <span class="overs">({{ match.teams[1].overs }})</span>
           </div>
         </div>
-
+ 
         <div class="team-info right">
           <span class="team-name">{{ match.teams[1].shortName }}</span>
           <img [src]="match.teams[1].logo" [alt]="match.teams[1].shortName" class="team-logo" />
         </div>
       </div>
-
+ 
       <div class="match-status-text">
         {{ match.result }}
       </div>
       <div class="match-sub-text">
         Final · T20 {{ match.matchNo.toString().padStart(2, '0') }} of 45
       </div>
-
+ 
       <div class="navigation-tabs">
         <button [class.active]="selectedTab === 'summary'" (click)="changeTab('summary')">
           Summary
@@ -43,284 +47,239 @@
         <button [class.active]="selectedTab === 'scorecard'" (click)="changeTab('scorecard')">
           Scorecard
         </button>
-        <button [class.active]="selectedTab === 'commentary'" (click)="changeTab('commentary')">
-          Commentary
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="scrollable-content">
-    <div *ngIf="selectedTab === 'summary'" class="summary-tab-container">
-      <div class="potm-simple-card" *ngIf="match.playerOfTheMatch">
-        <div class="potm-avatar-wrapper">
-          <div class="potm-avatar-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="#5f6368">
-              <path
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"
-              />
-            </svg>
-          </div>
-        </div>
-        <div class="potm-details">
-          <div class="potm-heading">Player of the Match</div>
-          <div class="potm-player-title">
-            {{ match.playerOfTheMatch }}
-            <span class="potm-live-stats" *ngIf="getPotmStats()">{{ getPotmStats() }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="summary-team-block" *ngFor="let team of match.teams">
-        <div class="summary-team-header">
-          <span class="summary-team-name">{{ team.fullName }}</span>
-          <span class="summary-team-score">
-            {{ team.scores }} <span class="summary-overs">({{ team.overs }} ov)</span>
-          </span>
-        </div>
-
-        <div class="performers-flex-row">
-          <div class="performers-column-side">
-            <div class="performer-list-row" *ngFor="let batter of getTopBatters(team.batting)">
-              <div class="performer-meta-group">
-                <div class="mini-profile-circle"></div>
-                <div class="performer-identity-text">
-                  <span class="perf-name">{{ batter.name }}</span>
-                  <span class="perf-data text-muted">
-                    {{ batter.runs }}{{ batter.status === 'Not Out' ? '*' : '' }} ({{
-                      batter.balls
-                    }})
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="performers-column-side text-right-align">
-            <div
-              class="performer-list-row justify-end"
-              *ngFor="let bowler of getTopBowlers(getBowlingRecordsForTeam(team))"
-            >
-              <div class="performer-meta-group layout-reverse">
-                <div class="performer-identity-text">
-                  <span class="perf-name">{{ bowler.name }}</span>
-                  <span class="perf-data text-muted">
-                    {{ bowler.wickets }}/{{ bowler.runsConceded }} ({{ bowler.overs }})
-                  </span>
-                </div>
-                <div class="mini-profile-circle"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="summary-match-footer">
-        <div class="footer-meta-item">
-          <strong>Toss:</strong> {{ match.tossWinner }} won & elected to
-          {{ match.tossDecision | lowercase }}
-        </div>
-        <div class="footer-meta-item">
-          <strong>Venue:</strong> {{ match.venue }}, {{ match.city }}
-        </div>
-      </div>
-    </div>
-
-    <div *ngIf="selectedTab === 'scorecard'">
-      <div class="innings-bar">
-        <button
-          *ngFor="let team of match.teams"
-          [class.active]="selectedTeamId === team.teamId"
-          (click)="selectInnings(team.teamId)"
-        >
-          {{ team.shortName }}
+        <button [class.active]="selectedTab === 'blog'" (click)="changeTab('blog')">
+          Blog
         </button>
       </div>
 
-      <div class="card-section">
-        <table class="cricket-table batting-table">
-          <thead>
-            <tr>
-              <th class="text-left">Batting</th>
-              <th>R</th>
-              <th>B</th>
-              <th>4s</th>
-              <th>6s</th>
-              <th>SR</th>
-            </tr>
-          </thead>
+    </div>
+  </div>
 
-          <tbody>
-            <!-- ONLY PLAYERS WHO BATTED -->
-            <tr
-              *ngFor="let player of selectedTeam?.batting"
-              [hidden]="player.status === 'Did Not Bat'"
-            >
-              <td class="text-left">
-                <div class="player-meta-container">
-                  <div class="player-identity-block">
-                    <div class="player-name-row">
-                      <span class="player-name">
-                        {{ player.name }}
-                      </span>
+  <div class="page-layout">
+    <div class="match-content">
+      <div class="scrollable-content">
 
-                      <span *ngIf="player.isImpactPlayer" class="badge-ip"> (IP) </span>
-
-                      <span
-                        *ngIf="player.isImpactPlayer && player.status !== 'Did Not Bat'"
-                        class="arrow-in"
-                      >
-                        ←
-                      </span>
-                    </div>
-
-                    <div class="player-status-subtext">
-                      {{ player.status || 'Not Out' }}
+        <div *ngIf="selectedTab === 'summary'" class="tab-pane-fade">
+          <div class="summary-main-content">
+            
+            <div class="potm-simple-card" *ngIf="match.playerOfTheMatch">
+              <div class="potm-avatar-wrapper">
+                <div class="potm-avatar-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="#5f6368">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="potm-details">
+                <div class="potm-heading">Player of the Match</div>
+                <div class="potm-player-title">
+                  {{ match.playerOfTheMatch }}
+                  <span class="potm-live-stats" *ngIf="getPotmStats()">{{ getPotmStats() }}</span>
+                </div>
+              </div>
+            </div>
+ 
+            <div class="summary-team-block" *ngFor="let team of match.teams">
+              <div class="summary-team-header">
+                <span class="summary-team-name">{{ team.fullName }}</span>
+                <span class="summary-team-score">
+                  {{ team.scores }} <span class="summary-overs">({{ team.overs }} ov)</span>
+                </span>
+              </div>
+ 
+              <div class="performers-flex-row">
+                <div class="performers-column-side">
+                  <div class="performer-list-row" *ngFor="let batter of getTopBatters(team.batting)">
+                    <div class="performer-meta-group">
+                      <div class="mini-profile-circle"></div>
+                      <div class="performer-identity-text">
+                        <span class="perf-name">{{ batter.name }}</span>
+                        <span class="perf-data text-muted">
+                          {{ batter.runs }}{{ batter.status === 'Not Out' ? '*' : '' }} ({{ batter.balls }})
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </td>
-
-              <td class="font-weight-bold numerical-cell">
-                {{ player.runs }}
-              </td>
-
-              <td class="numerical-cell text-muted">
-                {{ player.balls }}
-              </td>
-
-              <td class="numerical-cell text-muted">
-                {{ player.fours }}
-              </td>
-
-              <td class="numerical-cell text-muted">
-                {{ player.sixes }}
-              </td>
-
-              <td class="numerical-cell text-muted">
-                {{ player.strikeRate }}
-              </td>
-            </tr>
-
-            <!-- EXTRAS -->
-            <tr class="summary-meta-row">
-              <td class="text-left summary-label-cell">
-                <span class="summary-title"> Extras </span>
-
-                <span class="summary-breakdown" *ngIf="selectedTeam?.extrasBreakdown">
-                  ({{ selectedTeam.extrasBreakdown }})
-                </span>
-              </td>
-              <div></div>
-
-              <td class="font-weight-bold numerical-cell text-right" colspan="1">
-                {{ selectedTeam?.extras || 0 }}
-              </td>
-
-              <td colspan="4"></td>
-            </tr>
-
-            <!-- TOTAL -->
-            <tr class="summary-meta-row total-highlight-row">
-              <td class="text-left summary-label-cell">
-                <span class="summary-title"> Total runs </span>
-              </td>
-
-              <td class="font-weight-bold numerical-cell text-right" colspan="1">
-                {{ selectedTeam?.scores }}
-              </td>
-
-              <td colspan="4" class="text-left text-muted font-normal-size">
-                ({{ selectedTeam?.wickets || 0 }} wkts, {{ selectedTeam?.overs || 0 }} overs)
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card-section yet-to-bat-container">
-        <div class="section-title"></div>
-
-        <div class="yet-to-bat-inline-list">
-          <ng-container *ngFor="let player of selectedTeam?.batting">
-            <ng-container *ngIf="player.status === 'Did Not Bat'">
-              <span class="ytb-divider"> → </span>
-
-              <span class="ytb-player">
-                <span class="player-link-style">
-                  {{ player.name }}
-                </span>
-              </span>
-            </ng-container>
-          </ng-container>
-        </div>
-      </div>
-
-      <div class="card-section" *ngIf="bowlingTeam">
-        <table class="cricket-table bowling-table">
-          <thead>
-            <tr>
-              <th class="text-left">Bowling</th>
-              <th>O</th>
-              <th>M</th>
-              <th>R</th>
-              <th>W</th>
-              <th>Econ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let bowler of bowlingTeam.bowling">
-              <td class="text-left">
-                <div class="player-meta-container">
-                  <div class="player-identity-block">
-                    <div class="player-name-row">
-                      <span class="player-name">{{ bowler.name }}</span>
-                      <span *ngIf="bowler.isImpactPlayer" class="badge-ip">(IP)</span>
-                      <span *ngIf="bowler.isImpactPlayer" class="arrow-in">←</span>
+ 
+                <div class="performers-column-side text-right-align">
+                  <div class="performer-list-row justify-end" *ngFor="let bowler of getTopBowlers(getBowlingRecordsForTeam(team))">
+                    <div class="performer-meta-group layout-reverse">
+                      <div class="performer-identity-text">
+                        <span class="perf-name">{{ bowler.name }}</span>
+                        <span class="perf-data text-muted">
+                          {{ bowler.wickets }}/{{ bowler.runsConceded }} ({{ bowler.overs }})
+                        </span>
+                      </div>
+                      <div class="mini-profile-circle"></div>
                     </div>
                   </div>
                 </div>
-              </td>
-              <td class="numerical-cell text-muted">{{ bowler.overs }}</td>
-              <td class="numerical-cell text-muted">{{ bowler.maidens || 0 }}</td>
-              <td class="numerical-cell text-muted">{{ bowler.runsConceded }}</td>
-              <td class="font-weight-bold numerical-cell">{{ bowler.wickets }}</td>
-              <td class="numerical-cell text-muted">{{ bowler.economy }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              </div>
+            </div>
+ 
+            <div class="summary-match-footer">
+              <div class="footer-meta-item">
+                <strong>Toss:</strong> {{ match.tossWinner }} won & elected to {{ match.tossDecision | lowercase }}
+              </div>
+              <div class="footer-meta-item">
+                <strong>Venue:</strong> {{ match.venue }}, {{ match.city }}
+              </div>
+            </div>
 
-      <div class="card-section yet-to-bat-container">
-        <div>
-          <p>
-            <strong>Toss:</strong> {{ match.tossWinner }} won the toss and decided to
-            {{ match.tossDecision | lowercase }}
-          </p>
-          <p><strong>Venue:</strong> {{ match.venue }}, {{ match.city }}</p>
+          </div> 
         </div>
+
+        <div *ngIf="selectedTab === 'scorecard'" class="tab-pane-fade">
+          <div class="innings-bar">
+            <button *ngFor="let team of match.teams" [class.active]="selectedTeamId === team.teamId" (click)="selectInnings(team.teamId)">
+              {{ team.shortName }}
+            </button>
+          </div>
+ 
+          <div class="card-section">
+            <table class="cricket-table batting-table">
+              <thead>
+                <tr>
+                  <th class="text-left">Batting</th>
+                  <th>R</th>
+                  <th>B</th>
+                  <th>4s</th>
+                  <th>6s</th>
+                  <th>SR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let player of selectedTeam?.batting" [hidden]="player.status === 'Did Not Bat'">
+                  <td class="text-left">
+                    <div class="player-meta-container">
+                      <div class="player-identity-block">
+                        <div class="player-name-row">
+                          <span class="player-name">{{ player.name }}</span>
+                          <span *ngIf="player.isImpactPlayer" class="badge-ip">(IP)</span>
+                          <span *ngIf="player.isImpactPlayer && player.status !== 'Did Not Bat'" class="arrow-in">←</span>
+                        </div>
+                        <div class="player-status-subtext">
+                          {{ player.status || 'Not Out' }}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="font-weight-bold numerical-cell">{{ player.runs }}</td>
+                  <td class="numerical-cell text-muted">{{ player.balls }}</td>
+                  <td class="numerical-cell text-muted">{{ player.fours }}</td>
+                  <td class="numerical-cell text-muted">{{ player.sixes }}</td>
+                  <td class="numerical-cell text-muted">{{ player.strikeRate }}</td>
+                </tr>
+
+                <tr class="summary-meta-row">
+                  <td class="text-left summary-label-cell">
+                    <span class="summary-title">Extras</span>
+                    <span class="summary-breakdown" *ngIf="selectedTeam?.extrasBreakdown">({{ selectedTeam.extrasBreakdown }})</span>
+                  </td>
+                  <td class="font-weight-bold numerical-cell text-right" colspan="1">
+                    {{ selectedTeam?.extras || 0 }}
+                  </td>
+                  <td colspan="4"></td>
+                </tr>
+
+                <tr class="summary-meta-row total-highlight-row">
+                  <td class="text-left summary-label-cell">
+                    <span class="summary-title">Total runs</span>
+                  </td>
+                  <td class="font-weight-bold numerical-cell text-right" colspan="1">
+                    {{ selectedTeam?.scores }}
+                  </td>
+                  <td colspan="4" class="text-left text-muted font-normal-size">
+                    ({{ selectedTeam?.wickets || 0 }} wkts, {{ selectedTeam?.overs || 0 }} overs)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-section yet-to-bat-container">
+            <div class="yet-to-bat-inline-list">
+              <ng-container *ngFor="let player of selectedTeam?.batting">
+                <ng-container *ngIf="player.status === 'Did Not Bat'">
+                  <span class="ytb-divider">→</span>
+                  <span class="ytb-player">
+                    <span class="player-link-style">{{ player.name }}</span>
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="card-section" *ngIf="bowlingTeam">
+            <table class="cricket-table bowling-table">
+              <thead>
+                <tr>
+                  <th class="text-left">Bowling</th>
+                  <th>O</th>
+                  <th>M</th>
+                  <th>R</th>
+                  <th>W</th>
+                  <th>Econ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let bowler of bowlingTeam.bowling">
+                  <td class="text-left">
+                    <div class="player-meta-container">
+                      <div class="player-identity-block">
+                        <div class="player-name-row">
+                          <span class="player-name">{{ bowler.name }}</span>
+                          <span *ngIf="bowler.isImpactPlayer" class="badge-ip">(IP)</span>
+                          <span *ngIf="bowler.isImpactPlayer" class="arrow-in">←</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="numerical-cell text-muted">{{ bowler.overs }}</td>
+                  <td class="numerical-cell text-muted">{{ bowler.maidens || 0 }}</td>
+                  <td class="numerical-cell text-muted">{{ bowler.runsConceded }}</td>
+                  <td class="font-weight-bold numerical-cell">{{ bowler.wickets }}</td>
+                  <td class="numerical-cell text-muted">{{ bowler.economy }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-section yet-to-bat-container">
+            <div>
+              <p><strong>Toss:</strong> {{ match.tossWinner }} won the toss and decided to {{ match.tossDecision | lowercase }}</p>
+              <p><strong>Venue:</strong> {{ match.venue }}, {{ match.city }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 'blog'" class="tab-pane-fade">
+          <div *ngIf="relatedBlog" class="related-blog-section">
+            <div class="related-blog-heading">Match Report</div>
+            
+            <div class="related-blog-card vertical-card" (click)="openBlogDetails()">
+              <img class="blog-top-image" [src]="blogImageUrl" [alt]="relatedBlog.title">
+              <div class="related-blog-content">
+                <div class="related-blog-chip">
+                  <span class="material-symbols-outlined">article</span>
+                  Match Report
+                </div>
+                <h3>{{ relatedBlog.title }}</h3>
+                <p>{{ relatedBlog.shortDescription }}</p>
+                
+                <div class="related-blog-footer">
+                  <span>{{ relatedBlog.readTime }}</span>
+                  <span class="material-symbols-outlined">trending_flat</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <div *ngIf="selectedTab === 'commentary'">
-  <div
-    class="card-section"
-    style="
-      padding: 24px;
-      margin-top: 20px;
-      width: 100%;
-      box-sizing: border-box;
-    "
-  >
-    <h3 style="margin-top: 0; font-size: 16px; font-weight: 500;">
-      Match Commentary
-    </h3>
-
-    <p class="text-muted" style="font-size: 13px; margin-bottom: 0;">
-      Available soon...
-    </p>
   </div>
-</div>
 
-  </div>
 </div>

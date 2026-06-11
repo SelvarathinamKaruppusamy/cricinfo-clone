@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 // Import them directly at the top
 import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
+import { PointsTable } from './points-table/points-table';
 
 export const routes: Routes = [
   {
@@ -13,13 +14,13 @@ export const routes: Routes = [
     path: 'completed',
     loadComponent: () =>
       import('./Completed/Components/completed-list/completed-list')
-        .then(c => c.CompletedListComponent)
+        .then(c => c.CompletedList)
   },
   {
     path: 'completed/:matchNo',
     loadComponent: () =>
       import('./Completed/Components/completed-details/completed-details')
-        .then(c => c.CompletedDetailsComponent)
+        .then(c => c.CompletedDetails)
   },
   // FIX: Change lazy loading to direct component assignment for your blog blocks
   {
@@ -29,6 +30,10 @@ export const routes: Routes = [
   {
     path: 'blog-detail/:id',
     component: BlogDetails
+  },
+  {
+    path: 'points-table',
+    component: PointsTable
   },
   {
     path: '**',

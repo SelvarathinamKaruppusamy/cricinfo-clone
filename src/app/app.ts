@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { PointsTable } from "./points-table/points-table";
 
 @Component({
   selector: 'app-root',

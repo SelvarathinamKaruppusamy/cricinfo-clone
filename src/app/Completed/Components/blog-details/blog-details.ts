@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+
 interface Blog {
   id: number;
   matchId: number;
@@ -32,6 +33,7 @@ export class BlogDetails implements OnInit {
   private http = inject(HttpClient);
   private route = inject(ActivatedRoute);
   private apiUrl = 'http://localhost:3001/blogs';
+  
 
   blog$!: Observable<Blog>;
 

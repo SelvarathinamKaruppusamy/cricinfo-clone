@@ -1,54 +1,94 @@
-/* Container Frame Setup */
+/* ==========================================================================
+   1. CORE CONTAINER LAYOUT (Enforces Consistent Sizing)
+   ========================================================================== */
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f8f9fa;
+  --border-color: #e0e0e0;
+  --text-main: #202124;
+  --text-muted: #5f6368;
+  --accent-color: #1a73e8;
+  --accent-bg: #e8f0fe;
+  --card-radius: 12px;
+  --transition-speed: 0.25s;
+}
+
 .match-detail-container {
+  max-width: 650px; /* Forces uniform dashboard aspect */
+  margin: 20px auto;
+  background: var(--primary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #ffffff; /* White background to match the global theme */
-  color: #202124;
-  max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: 20px;
+  color: var(--text-main);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fixed Height Viewport Wrapper */
+.page-layout {
+  width: 100%;
+}
+
+.match-content {
+  width: 100%;
+}
+
+/* Crucial: Keeps the box exactly the same height across all tab contents */
+.scrollable-content {
+  height: 480px; 
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: var(--secondary-bg);
+}
+
+/* Smooth Tab Transitions */
+.tab-pane-fade {
+  animation: fadeIn var(--transition-speed) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
-   ALTERED STICKY HEADER SYSTEM 
+   2. CONSTANT STICKY HEADER & SCOREBOARD
    ========================================================================== */
 .sticky-header-wrapper {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 999;                 /* Forces the header on top of scrolling data tables */
-  background-color: #ffffff;    /* Solid white background blocks background text visibility */
-  width: 100%;                  /* Spans edge-to-edge across the screen to create an invisible wall */
-  border-bottom: 1px solid #dadce0;
-}
-
-/* NEW INNER CONTENT ALIGNMENT BOX */
-.header-inner-content {
-  max-width: 960px;             /* Perfectly matches the scorecard table max-width! */
-  margin: 0 auto;
-  padding: 16px 16px 0 16px;
-  box-sizing: border-box;
+  background: var(--primary-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 20px 0 20px;
 }
 
 .top-meta {
-  font-size: 13px;
-  color: #70757a;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
   margin-bottom: 12px;
 }
 
 .scoreboard-main {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 12px;
 }
 
 .team-info {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  flex: 1;
 }
-.team-info.left { justify-content: flex-start; }
-.team-info.right { justify-content: flex-end; }
+
+.team-info.right {
+  justify-content: flex-end;
+}
 
 .team-logo {
   width: 36px;
@@ -57,210 +97,170 @@
 }
 
 .team-name {
-  font-size: 16px;
-  font-weight: 400;
-  color: #202124;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .scores-display {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 12px;
+  flex: 1.5;
 }
 
 .score-box {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
 }
 
-.text-right { text-align: right; }
-.text-left { text-align: left; }
-
 .runs {
-  font-size: 18px;
-  font-weight: 500;
-  color: #202124;
+  font-size: 22px;
+  font-weight: 800;
 }
 
 .overs {
-  font-size: 13px;
-  color: #70757a;
-  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 .vs-divider {
-  font-size: 13px;
-  color: #70757a;
-  font-weight: 400;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  background: var(--secondary-bg);
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
+/* ==========================================================================
+   CENTERED MATCH STATUS & METADATA (Matches Reference Layout)
+   ========================================================================== */
 .match-status-text {
-  text-align: center;
-  font-size: 14px;
-  color: #202124;
-  margin-bottom: 4px;
+  width: 100%;             /* Ensures text centers relative to the full card width */
+  text-align: center;      /* Centers the main result message */
+  font-size: 15px;         /* Slightly increased for distinct readability */
+  font-weight: 500;        /* Premium look matching Google's scoreboard styling */
+  color: #d30808;          /* Swatched neutral dark tone from screenshot (overrides sharp red) */
+  margin-top: 16px;        /* Pushes section down comfortably away from logos */
+  margin-bottom: 4px;      /* Tight gap between status and match sub-text */
 }
 
 .match-sub-text {
-  text-align: center;
-  font-size: 12px;
-  color: #70757a;
-  margin-bottom: 16px;
+  width: 100%;             /* Ensures text centers relative to the full card width */
+  text-align: center;      /* Centers the tournament details */
+  font-size: 13px;
+  color: #70757a;          /* Muted ash-grey tone matching screenshot metadata */
+  margin-bottom: 16px;     /* Comfortable padding right before the navigation tabs start */
 }
 
-/* NAVIGATION TABS CONTAINER */
+/* ==========================================================================
+   3. NAVIGATION TABS
+   ========================================================================== */
 .navigation-tabs {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
+  gap: 4px;
 }
 
-/* EACH TAB BUTTON */
 .navigation-tabs button {
   flex: 1;
   background: none;
   border: none;
-  padding: 12px 0;
-  font-size: 13px;
-  font-weight: 500;
-  color: #70757a;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  padding: 12px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
   cursor: pointer;
-  position: relative;
-  transition: color 0.2s ease;
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition-speed) ease;
 }
 
 .navigation-tabs button:hover {
-  color: #202124;
+  color: var(--text-main);
 }
 
 .navigation-tabs button.active {
-  color: #1a73e8;
-}
-
-/* ACTIVE UNDERLINE */
-.navigation-tabs button.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: #1a73e8;
-  border-radius: 0;
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
 }
 
 /* ==========================================================================
-   UNALTERED CODE SECTIONS (Maintains perfect structural consistency)
+   4. SUMMARY TAB VIEWS
    ========================================================================== */
-
-/* CONTENT WIDTH MATCH */
-.scrollable-content,
-.card-section {
-  max-width: 660px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Container Spacing */
-.summary-tab-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 16px;
-  font-family: Roboto, Arial, sans-serif;
-  color: #202124;
-}
-
-/* PLAYER OF THE MATCH - FLAT UNCOLORED STYLE */
 .potm-simple-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  background: #ffffff;
-  border: 1px solid #dadce0;
+  gap: 12px;
+  background: var(--primary-bg);
+  padding: 12px 16px;
   border-radius: 8px;
-  padding: 14px 20px;
-  margin-bottom: 24px;
-}
-
-.potm-avatar-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 14px;
+  border: 1px solid var(--border-color);
 }
 
 .potm-avatar-icon {
-  width: 44px;
-  height: 44px;
+  background: var(--secondary-bg);
+  padding: 8px;
   border-radius: 50%;
-  background-color: #f1f3f4;
-  border: 1px solid #dadce0;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .potm-heading {
-  font-size: 12px;
-  color: #70757a;
+  font-size: 11px;
   text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  color: var(--text-muted);
 }
 
 .potm-player-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  color: #5d5e61;
 }
 
 .potm-live-stats {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
-  color: #70757a;
-  margin-left: 8px;
+  color: var(--text-muted);
+  margin-left: 6px;
 }
 
-/* TEAM SCORE STRIPS */
 .summary-team-block {
-  margin-bottom: 28px;
+  background: var(--primary-bg);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border-color);
 }
 
 .summary-team-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e8eaed;
-  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
   margin-bottom: 12px;
 }
 
 .summary-team-name {
   font-weight: 700;
-  font-size: 15px;
 }
 
 .summary-team-score {
   font-weight: 700;
-  font-size: 15px;
 }
 
 .summary-overs {
   font-weight: 400;
-  color: #70757a;
-  font-size: 13px;
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
-/* SIDE BY SIDE COLUMN SYSTEM */
+/* ==========================================================================
+   PERFORMERS ALIGNMENT (Left-aligned text blocks, pushed to both edges)
+   ========================================================================== */
 .performers-flex-row {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  gap: 20px;
+  width: 100%;
 }
 
 .performers-column-side {
@@ -270,29 +270,60 @@
   gap: 12px;
 }
 
+/* Force the right side container to align its internal items to the right wall */
+.performers-column-side.text-right-align {
+  align-items: flex-end; 
+}
+
+/* The row containers */
 .performer-list-row {
   display: flex;
   align-items: center;
-  height: 38px;
+  width: 100%;
 }
 
+/* The key wrapper: matches layout on both sides (Dot then Text) */
 .performer-meta-group {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start; /* Aligns dot with the top line of text */
+  gap: 10px;
 }
 
+/* Override for the right side: Keeps standard dot-then-text order, but restricts width */
 .performer-meta-group.layout-reverse {
-  margin-left: auto;
+  flex-direction: row !important; /* Forces normal left-to-right order (Dot first) */
+  justify-content: flex-start;
+  width: auto; /* Lets the block hug its content naturally */
 }
 
-/* Minimalist grey dot profile representation */
+/* Shared player layout (both left and right sides are now left-aligned) */
+.performer-identity-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Forces left alignment for bowler names too */
+}
+
+.perf-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.perf-data {
+  font-size: 12px;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+
+/* Grey dot setup */
 .mini-profile-circle {
-  width: 32px;
-  height: 32px;
+  width: 6px;
+  height: 6px;
+  background-color: #a1a4a8;
   border-radius: 50%;
-  background-color: #f1f3f4;
-  border: 1px solid #e8eaed;
+  margin-top: 5px; /* Centers dot vertically with the first line of text */
+  flex-shrink: 0;
 }
 
 .performer-identity-text {
@@ -300,101 +331,83 @@
   flex-direction: column;
 }
 
+.text-right-align {
+  text-align: right;
+}
+
 .perf-name {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .perf-data {
-  font-size: 13px;
-  color: #70757a;
+  font-size: 12px;
 }
 
-/* Utilities */
-.text-muted { color: #70757a; }
-.text-right-align { text-align: right; }
-.justify-end { justify-content: flex-end; }
-
-/* SUMMARY FOOTER INFORMATION */
 .summary-match-footer {
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid #dadce0;
+  background: var(--primary-bg);
+  border-radius: 8px;
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  font-size: 13px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 13px;
-  color: #3c4043;
 }
 
-/* SCROLLABLE SCORECARD CONTAINER */
-.scrollable-content {
-  max-width: 960px;
-  margin: 0 auto;
-  background: #fff;
-}
-
-/* TEAM TABS */
-/* TEAM TABS */
+/* ==========================================================================
+   5. SCORECARD TAB VIEWS (Tables & Inning Selectors)
+   ========================================================================== */
+/* ==========================================================================
+   MATCHING SPECIFIC REFERENCE IMAGE (Full-Width Tab Split Layout)
+   ========================================================================== */
 .innings-bar {
   display: flex;
-  justify-content: center;   /* centers tabs */
-  align-items: center;
-
-  gap: 80px;                 /* spacing between CSK and SRH */
-
-  border-bottom: 1px solid #dadce0;
-
   width: 100%;
-  margin-bottom: 0;
+  background-color: #fcfcfc; /* Light premium gray background fill */
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 16px;
+  padding: 0; /* Ensures buttons flush to edges */
 }
 
-/* BUTTON STYLE */
 .innings-bar button {
+  flex: 1; /* Forces both teams to take up exactly 50% width */
   background: none;
   border: none;
-
-  padding: 16px 0;
-
-  font-size: 18px;      /* bigger text */
-  font-weight:600;
-
-  color: #70757a;
+  padding: 14px 8px; /* Generous vertical padding matching reference */
+  font-size: 15px;
+  font-weight: 500;
+  color: #757575; /* Subdued gray text for inactive state */
   cursor: pointer;
-
-  position: relative;
-  transition: color 0.2s ease;
-
-  min-width: 120px;     /* keeps equal width feel */
   text-align: center;
+  border-bottom: 2px solid transparent; /* Hidden bottom line placeholder */
+  transition: all var(--transition-speed) ease;
+  
+  /* Reset text transforms if your team objects contain full names like "Royal Challengers Bengaluru" */
+  text-transform: none; 
+  letter-spacing: normal;
 }
 
-/* ACTIVE TAB */
+.innings-bar button:hover {
+  color: var(--text-main);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
 .innings-bar button.active {
-  color: #1857be;
+  color: var(--text-main);
+  font-weight: 600;
+  background-color: #ffffff; /* Clean white contrast background for active selection */
+  border-bottom: 3px solid #000000; /* Distinct thick dark active underline indicator */
 }
 
-/* ACTIVE UNDERLINE */
-.innings-bar button.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;                /* Aligns perfectly over the container border line */
-  left: 16px;               /* Matches the exact left padding of your button */
-  right: 16px;              /* Matches the exact right padding of your button */
-  height: 3px;
-  background: #1857be;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-
-/* CARD LAYOUT TABLES */
 .card-section {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: var(--primary-bg);
   border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  margin-bottom: 14px;
 }
+
 .cricket-table {
   width: 100%;
   border-collapse: collapse;
@@ -402,128 +415,173 @@
 }
 
 .cricket-table th {
-  background-color: #f8f9fa;
-  color: #5c5d5e;
+  color: var(--text-muted);
   font-weight: 500;
-  padding: 8px 12px; /* Reduced vertical padding */
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
   text-align: right;
-  border-bottom: 1px solid #dadce0;
 }
 
 .cricket-table td {
-  padding: 8px 12px; /* Tightened cell paddings to drop height bloat */
-  text-align: right;
+  padding: 10px 8px;
   border-bottom: 1px solid #f1f3f4;
-  vertical-align: middle;
 }
 
-.numerical-cell {
-  width: 48px;
-  min-width: 44px;
-}
-
-/* Flex arrangements for handling stacked text gracefully */
-.player-meta-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Optional styling placeholder for your player round avatar images */
-.table-player-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: #f1f3f4;
-  border: 1px solid #e8eaed;
-}
-
-.player-identity-block {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.4;
-}
-
-.player-name-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.player-name {
-  color: #1a73e8; /* Google Link Blue style */
-  font-weight: 400;
-  font-size: 13px;
-}
-
-/* The newly introduced stacked dismissal subtext */
-.player-status-subtext {
-  font-size: 12px;
-  color: #70757a;
-  font-weight: 400;
-}
-
-.cricket-table th.text-left, 
+.cricket-table th.text-left,
 .cricket-table td.text-left {
   text-align: left;
 }
 
-.player-name-cell {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.player-status-subtext {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
 
-.player-name {
-  color: #1a73e8;
-  font-weight: 500;
+.numerical-cell {
+  text-align: right;
 }
 
 .badge-ip {
   font-size: 10px;
-  color: #34a853;
+  background: #fce8e6;
+  color: #c5221f;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-left: 4px;
   font-weight: bold;
 }
 
-.status-cell {
-  color: #70757a;
-  max-width: 220px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.arrow-in {
+  color: #137333;
+  margin-left: 4px;
+  font-weight: bold;
 }
 
-.font-weight-bold {
-  font-weight: 700;
+.summary-meta-row td {
+  border-top: 1px solid var(--border-color);
+  background-color: var(--primary-bg);
 }
 
-/* YET TO BAT LAYOUT */
+.total-highlight-row td {
+  background-color: #fafafa;
+  font-size: 14px;
+}
+
+/* Yet To Bat Panel */
 .yet-to-bat-container {
-  padding: 16px;
+  font-size: 13px;
 }
 
-.yet-to-bat-container .section-title {
-  font-size: 13px;
-  font-weight: bold;
-  color: #5f6368;
+.section-title {
+  font-weight: 700;
+  color: var(--text-muted);
   margin-bottom: 8px;
   text-transform: uppercase;
+  font-size: 11px;
   letter-spacing: 0.5px;
 }
 
-.yet-to-bat-list {
+.yet-to-bat-inline-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.ytb-divider {
+  color: var(--border-color);
+}
+
+.ytb-player {
+  color: var(--accent-color);
+}
+
+/* ==========================================================================
+   6. BLOG / MATCH REPORT VIEW
+   ========================================================================== */
+.related-blog-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.related-blog-heading {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.related-blog-card {
+  background: var(--primary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.related-blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.blog-top-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.related-blog-content {
+  padding: 16px;
+}
+
+.related-blog-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-bg);
+  color: var(--accent-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.related-blog-chip .material-symbols-outlined {
   font-size: 14px;
-  color: #1a73e8;
+}
+
+.related-blog-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.related-blog-content p {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
-/* GENERAL MATCH FOOTER DETAILS */
-.match-footer-info {
-  margin-top: 20px;
-  margin-left: 160px;
-  padding: 0 8px;
-  font-size: 13px;
-  color: #131314;
-  line-height: 1.9;
+.related-blog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid #f1f3f4;
+  padding-top: 12px;
 }
+
+/* ==========================================================================
+   7. UTILITY UTILS
+   ========================================================================== */
+.text-muted { color: var(--text-muted); }
+.font-weight-bold { font-weight: 700; }
+.font-normal-size { font-size: 12px; }

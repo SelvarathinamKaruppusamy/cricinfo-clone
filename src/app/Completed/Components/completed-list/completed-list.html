@@ -4,14 +4,13 @@
 
     <div
       class="match-card"
-      (click)="openScorecard(match.matchNo)"
-    >
+      (click)="openScorecard(match.matchNo)">
 
       <div class="header">
 
         <div class="match-info">
-  T20 {{ match.matchNo.toString().padStart(2, '0') }} of 45
-</div>
+          T20 {{ match.matchNo.toString().padStart(2, '0') }} of 45
+        </div>
 
         <div class="date">
           {{ match.date }}
@@ -55,11 +54,13 @@
       <div class="footer">
 
         <div class="venue">
+
           <span class="material-icons location-icon">
             location_on
           </span>
 
           {{ match.venue }}
+
         </div>
 
       </div>

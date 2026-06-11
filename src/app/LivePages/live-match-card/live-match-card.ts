@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, effect, inject, OnInit } from '@angular/core';
-import { LiveService } from '../../Services/live-service';
-import { LiveModel, Player } from '../../Models/models';
+import { LiveService } from '../Services/live-service';
+import { LiveModel, Player } from '../Models/models';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';

@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component, computed, effect, inject, OnInit } from '
 
 import { CommonModule } from '@angular/common';
 
-import { LiveService } from '../../Services/live-service';
+import { LiveService } from '../Services/live-service';
 
-import { LiveModel, commentary } from '../../Models/models';
+import { LiveModel, commentary } from '../Models/models';
 
 @Component({
   selector: 'app-commentary',

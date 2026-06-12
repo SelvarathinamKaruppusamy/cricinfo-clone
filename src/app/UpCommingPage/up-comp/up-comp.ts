@@ -12,16 +12,9 @@ import { Router } from '@angular/router';
 })
 export class UpComp {
   cards: any[] = [];
-
-  constructor(
-    private service: UpcService,
-    private cd: ChangeDetectorRef,
-    private router: Router,
-  ) {}
-
-  cardDetail() {
-    alert('Testing');
-  }
+  service = inject(UpcService);
+  cd = inject(ChangeDetectorRef);
+  router = inject(Router);
 
   ngOnInit() {
     this.service.getMatch().subscribe((matches) => {

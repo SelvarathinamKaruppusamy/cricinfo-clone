@@ -1,4 +1,7 @@
 @if (match) {
+  <button mat-icon-button (click)="redirectfun()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
   <mat-card>
     <div class="card">
       <div class="header">
@@ -14,13 +17,6 @@
         <div class="center-info">
           <h1>VS</h1>
         </div>
-
-        <!-- <div class="ipl-img">
-              <img src="ipl-logo.png">
-              <p class="ipl">
-                <b>T20</b>
-              </p>
-            </div> -->
         <div class="team">
           <img [src]="match.teams[1].logo" class="team-img" />
 
@@ -164,78 +160,6 @@
           </div>
         </mat-tab>
       </mat-tab-group>
-
-      <!-- <mat-card class="!mb-5">
-
-      <mat-card-header class="!flex !w-full !justify-center ">
-        <mat-card-title class="!font-bold">
-          Team Comparison
-        </mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <mat-grid-list cols="3" rowHeight="60px">
-
-          <mat-grid-tile>
-            <b>Stats</b>
-          </mat-grid-tile>
-
-          <mat-grid-tile>
-            <b>{{match.teams[0].shortName}}</b>
-          </mat-grid-tile>
-
-          <mat-grid-tile>
-            <b>{{match.teams[1].shortName}}</b>
-          </mat-grid-tile>
-
-          <mat-grid-tile>Wins</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[0].winCount}}</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[1].winCount}}</mat-grid-tile>
-
-          <mat-grid-tile>Losses</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[0].lossCount}}</mat-grid-tile>
-          <mat-grid-tile>{{match.teams[1].lossCount}}</mat-grid-tile>
-
-        </mat-grid-list>
-
-      </mat-card-content>
-
-    </mat-card>
-
-<mat-list>
-
-    <mat-divider></mat-divider>
-  <mat-list-item>
-    <mat-icon matListItemIcon>location_on</mat-icon>
-    <span matListItemTitle>Venue</span>
-    <span matListItemLine>{{match.venue}}, {{match.city}}</span>
-  </mat-list-item>
-
-      <mat-divider></mat-divider>
-  <mat-list-item>
-    <mat-icon matListItemIcon>sports_cricket</mat-icon>
-    <span matListItemTitle>Tournament</span>
-    <span matListItemLine>IPL T20 2026</span>
-  </mat-list-item>
-
-      <mat-divider></mat-divider>
-  <div class="description">
-
-  <mat-list-item style="height: auto;">
-  <mat-icon matListItemIcon>description</mat-icon>
-  <span matListItemTitle>Match Description</span>
-  <p matListItemLine style="white-space: normal; -webkit-line-clamp: unset; line-clamp: unset;">
-    Both teams showed great intent throughout the tournament, keeping the contest competitive.
-    Momentum shifted several times as players from both sides delivered impactful performances.
-    Key moments at crucial stages ultimately shaped the outcome of the game.
-  </p>  
-
-
-  </mat-list-item>
-  </div>
-
-</mat-list> -->
     </div>
   </mat-card>
 }

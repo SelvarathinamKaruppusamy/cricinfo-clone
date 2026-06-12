@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { Squads } from './squads/squads';
-import { UpComp } from './up-comp/up-comp';
-import { Match } from './match/match';
+import { Squads } from './NavBar/squads/squads';
+import { UpComp } from './UpCommingPage/up-comp/up-comp';
+import { Match } from './UpCommingPage/match/match';
 import { LiveMatchCard } from './LivePages/live-match-card/live-match-card';
 import { Livepage } from './LivePages/livepage/livepage';
 

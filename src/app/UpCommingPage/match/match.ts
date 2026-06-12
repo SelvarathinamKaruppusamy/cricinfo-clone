@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { UpcService } from '../up-comp/upc-service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -8,8 +8,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-match',
   imports: [
@@ -22,6 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDividerModule,
     MatChipsModule,
     MatExpansionModule,
+    MatButtonModule,
   ],
   templateUrl: './match.html',
   styleUrl: './match.css',
@@ -31,12 +33,10 @@ export class Match implements OnInit {
   match: any;
   panel1 = true;
   panel2 = true;
-
-  constructor(
-    private rout: ActivatedRoute,
-    private service: UpcService,
-    private cd: ChangeDetectorRef,
-  ) {}
+  rout = inject(ActivatedRoute);
+  service = inject(UpcService);
+  cd = inject(ChangeDetectorRef);
+  route = inject(Router);
 
   ngOnInit() {
     const id = this.rout.snapshot.paramMap.get('id')!;
@@ -44,5 +44,8 @@ export class Match implements OnInit {
       this.match = res;
       this.cd.detectChanges();
     });
+  }
+  redirectfun() {
+    this.route.navigate(['/upcoming']);
   }
 }

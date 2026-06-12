@@ -3,6 +3,7 @@
   top: 0;
   z-index: 1000;
   background-color: rgba(6, 52, 133, 0.904);
+  color: white;
 }
 
 .logo {
@@ -16,6 +17,6 @@
 
 .active-link {
   /* border-bottom: 3px solid white; */
-  background-color: white;
+  background-color: rgb(10, 175, 167);
   font-weight: 600;
 }

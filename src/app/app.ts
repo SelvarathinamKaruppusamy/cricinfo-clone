@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Squads } from './NavBar/squads/squads';
 import { Nav } from './NavBar/nav/nav';
+
 // import { UpComp } from './up-comp/up-comp';
 // import { Match } from './match/match';
 

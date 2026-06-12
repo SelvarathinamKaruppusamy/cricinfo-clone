@@ -19,6 +19,7 @@ export class Nav {
     { label: 'Completed', route: '/completed' },
     { label: 'Squads', route: '/squads' },
     { label: 'Points Table', route: '/points-table' },
+    { label: 'Blog', route: '/blog' },
   ];
   constructor(private router: Router) {}
   activateRoute = '';

@@ -14,8 +14,8 @@ import Chart from 'chart.js/auto';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 
-import { LiveService } from '../../Services/live-service';
-import { LiveModel, Player, Team } from '../../Models/models';
+import { LiveService } from '../Services/live-service';
+import { LiveModel, Player, Team } from '../Models/models';
 
 @Component({
   selector: 'app-statistics',

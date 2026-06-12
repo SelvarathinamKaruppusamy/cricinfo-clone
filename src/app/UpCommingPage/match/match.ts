@@ -11,6 +11,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
+import { MatchData } from './match.models/match.models-module';
+
 @Component({
   selector: 'app-match',
   imports: [
@@ -30,7 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
 })
 export class Match implements OnInit {
-  match: any;
+  match!: MatchData;
   panel1 = true;
   panel2 = true;
   rout = inject(ActivatedRoute);

@@ -13,6 +13,7 @@ export interface Team {
   lossCount: number;
   totalMatch: number;
   players: Player[];
+  matchStatus:boolean[];
 }
 
 export interface MatchData {
@@ -23,4 +24,5 @@ export interface MatchData {
   city: string;
   date: string;
   teams: Team[];
+  matchStatus:boolean[]
 }

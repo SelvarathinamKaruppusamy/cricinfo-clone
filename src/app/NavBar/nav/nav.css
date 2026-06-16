@@ -1,9 +1,21 @@
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
   background-color: rgba(6, 52, 133, 0.904);
   color: white;
+  /* position:fixed; */
+
+  /* position:fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+ 
+  z-index: 1000;
+ 
+  background-color: rgba(6, 52, 133, 0.904);
+  color: white;
+  transition: transform 0.3s ease; */
 }
 
 .logo {
@@ -20,3 +32,7 @@
   background-color: rgb(10, 175, 167);
   font-weight: 600;
 }
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+ 

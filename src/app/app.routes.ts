@@ -33,6 +33,12 @@ export const routes: Routes = [
   {
     path: 'upcoming',
     component: UpComp,
+    children:[
+      {
+        path:'upcomingMatchPage',
+        component:Match,
+      }
+    ]
   },
   {
     path: 'completed',

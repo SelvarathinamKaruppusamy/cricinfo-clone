@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @use 'tailwindcss';
-@import '@angular/material/prebuilt-themes/azure-blue.css';
+@use '@angular/material/prebuilt-themes/azure-blue.css';
 
 html {
   @include mat.typography-hierarchy(mat.define-theme());

@@ -1,0 +1,43 @@
+<div class="blog-list-container">
+  <h1 class="page-title">Latest Match Reports</h1>
+
+  <div class="blog-grid">
+    @for (blog of blogs$ | async; track blog.id) {
+      <article class="blog-card">
+        <div class="blog-image-wrapper">
+          @if (blog.image) {
+            <img
+              [ngSrc]="blog.image"
+              width="400"
+              height="250"
+              [alt]="blog.title"
+              class="blog-img"
+            />
+          } @else {
+            <div class="placeholder-img">No Image Available</div>
+          }
+        </div>
+
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span>By {{ blog.author }}</span> •
+            <span>{{ blog.publishedDate | date: 'mediumDate' }}</span>
+          </div>
+
+          <h2 class="blog-heading">{{ blog.title }}</h2>
+
+          <p class="blog-description">{{ blog.shortDescription }}</p>
+
+          <div class="blog-footer">
+            <span class="read-time">{{ blog.readTime }}</span>
+            <button class="read-btn" [routerLink]="['/blog-detail', blog.id]">
+              Read Full Report
+            </button>
+          </div>
+        </div>
+      </article>
+    } @empty {
+      <p class="loading-text">Loading matches from server...</p>
+    }
+  </div>
+</div>

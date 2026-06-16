@@ -1,0 +1,99 @@
+.table-container {
+  width: 95%;
+  margin: 20px auto;
+}
+
+h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+thead {
+  background: #1e293b;
+  color: white;
+}
+
+th {
+  padding: 14px;
+  text-align: center;
+  font-weight: 600;
+}
+
+td {
+  padding: 14px;
+  text-align: center;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.team-column {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team-column img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.positive {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.negative {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.form-circle {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.win {
+  background-color: #22c55e;
+}
+
+.loss {
+  background-color: #ef4444;
+}
+
+.not-available {
+  color: #9ca3af;
+}

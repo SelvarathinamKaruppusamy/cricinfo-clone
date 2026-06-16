@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="navbar">
+  <mat-icon matListItemIcon>sports_cricket</mat-icon>
+  <span class="logo"> CricInfo</span>
+  <span class="spacer"></span>
+  @for (item of items; track item.route) {
+    <a 
+      mat-button
+      class="!text-white"
+      (click)="getMethod(item.route)"
+      [class.active-link]="activateRoute === item.route"
+      >{{ item.label }}</a
+    >
+  }
+</mat-toolbar>

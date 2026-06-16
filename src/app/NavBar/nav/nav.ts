@@ -14,7 +14,6 @@ import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-nav',
-  imports: [MatToolbarModule, MatButtonModule,MatIconModule],
   imports: [
     MatToolbarModule,
     MatCardModule,

@@ -9,6 +9,7 @@ import { matchCard } from './up-comp';
 export class UpcService {
   http = inject(HttpClient);
   upcommingdata!:matchCard
+  upCommingdata!:matchCard
   getMatch() {
     return this.http.get<any[]>('http://localhost:5000/matches');
   }

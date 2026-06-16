@@ -42,6 +42,11 @@ export interface Player {
   overs: number;
   economy: number;
 }
+export interface IplNews {
+  image: string;
+  title: string;
+  description: string;
+}
 export const commentary = {
   '0': [
     '🛑 Dot ball! Solid defensive shot, no run.',

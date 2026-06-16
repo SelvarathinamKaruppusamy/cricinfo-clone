@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-nav',
-  imports: [MatToolbarModule, MatButtonModule, RouterLinkActive, RouterLink, MatIconModule],
+  imports: [MatToolbarModule, MatButtonModule,MatIconModule],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
   standalone: true,

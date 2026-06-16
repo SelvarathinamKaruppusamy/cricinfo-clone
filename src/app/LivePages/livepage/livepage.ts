@@ -60,11 +60,8 @@ export class Livepage implements OnInit {
       if (balls.length === 0 || balls.length === this.lastProcessedBallCount) {
         return;
       }
-
       this.lastProcessedBallCount = balls?.length;
-
       const latestBall = balls[balls?.length - 1];
-
       this.processBall(latestBall);
       this.requiredRun();
     });
@@ -73,11 +70,10 @@ export class Livepage implements OnInit {
     this.service?.tosswin.update((n) => Number(prompt(`Toss Time RCB vs CSK`)));
     this.service?.GetLiveMatches().subscribe((res) => {
       this.live = res[0];
+      this.live.tossWinner=this.live.teams[this.service?.tosswin()].shortName
       this.service.live = this.live;
       this.service?.currentBattingTeam.set(this.service.tosswin());
-
       this.service?.currentBowlingTeam.set(this.service.tossloss());
-
       this.service?.players1.update((player) => [
         ...player,
         this.live.teams[this.service?.currentBattingTeam()].players[0],
@@ -114,7 +110,7 @@ export class Livepage implements OnInit {
   }
   currentBowler = computed(() => this.service?.bowlers1()[this.service?.currentBowlerIndex()]);
   currentbatters = computed(() =>
-    this.service?.players1().filter((player) => player.status === 'Not Out'),
+    this.service?.players1().filter((player) => player?.status === 'Not Out'),
   );
   currentBatter1 = computed(() => this.currentbatters()[0]);
   currentBatter2 = computed(() => this.currentbatters()[1]);
@@ -122,32 +118,19 @@ export class Livepage implements OnInit {
   legalBalls = 0;
   inningsBalls = 0;
   currentOverRuns = 0;
+  bowler!:Player
 
   processBall(ball: string) {
     if (!this.striker || !this.nonStriker) {
       return;
     }
 
-    let bowler = this.service?.bowlers1()[this.service?.currentBowlerIndex()];
+    this.bowler = this.service?.bowlers1()[this.service?.currentBowlerIndex()];
     this.currentBowlerBalls.push(ball);
     // ---------------- WIDE / NO BALL ----------------
 
     if (ball === this.wide || ball === this.noBall) {
-      bowler.runsConceded++;
-      this.updateBowlerInLive(bowler);
-      this.currentOverRuns++;
-
-      this.live.teams[this.service?.currentBattingTeam()].scores++;
-
-      this.live.teams[this.service?.currentBattingTeam()].extras++;
-
-      const bowlerBalls = this.bowlerBallCount[bowler.id] || 0;
-
-      if (bowlerBalls > 0) {
-        bowler.economy = Number((bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
-        this.updateBowlerInLive(bowler);
-      }
-
+     this.BallWideAndNoBall()
       return;
     }
 
@@ -156,12 +139,12 @@ export class Livepage implements OnInit {
     this.legalBalls++;
     this.inningsBalls++;
 
-    this.bowlerBallCount[bowler.id] = (this.bowlerBallCount[bowler.id] || 0) + 1;
+    this.bowlerBallCount[this.bowler.id] = (this.bowlerBallCount[this.bowler.id] || 0) + 1;
 
-    const bowlerBalls = this.bowlerBallCount[bowler.id];
+    const bowlerBalls = this.bowlerBallCount[this.bowler.id];
 
-    bowler.overs = Math.floor(bowlerBalls / 6) + (bowlerBalls % 6) / 10;
-    this.updateBowlerInLive(bowler);
+    this.bowler.overs = Math.floor(bowlerBalls / 6) + (bowlerBalls % 6) / 10;
+    this.updateBowlerInLive(this.bowler);
     this.live.teams[this.service?.currentBattingTeam()].overs =
       Math.floor(this.inningsBalls / 6) + (this.inningsBalls % 6) / 10;
 
@@ -174,16 +157,16 @@ export class Livepage implements OnInit {
         ((this.striker?.runs / this.striker?.balls) * 100).toFixed(2),
       );
 
-      bowler.wickets++;
-      this.updateBowlerInLive(bowler);
+      this.bowler.wickets++;
+      this.updateBowlerInLive(this.bowler);
       const nextPlayer = this.handleWicket();
 
       if (nextPlayer) {
         this.striker = nextPlayer;
       }
 
-      bowler.economy = Number((bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
-      this.updateBowlerInLive(bowler);
+      this.bowler.economy = Number((this.bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
+      this.updateBowlerInLive(this.bowler);
     } else {
       const run = this.playerruns(ball);
 
@@ -193,8 +176,8 @@ export class Livepage implements OnInit {
 
       // Bowler Runs
 
-      bowler.runsConceded += run;
-      this.updateBowlerInLive(bowler);
+      this.bowler.runsConceded += run;
+      this.updateBowlerInLive(this.bowler);
       this.currentOverRuns += run;
 
       // Batter Stats
@@ -218,23 +201,39 @@ export class Livepage implements OnInit {
         [this.striker, this.nonStriker] = [this.nonStriker, this.striker];
       }
 
-      bowler.economy = Number((bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
-      this.updateBowlerInLive(bowler);
+      this.bowler.economy = Number((this.bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
+      this.updateBowlerInLive(this.bowler);
     }
 
     // ---------------- OVER COMPLETE ----------------
 
     if (this.legalBalls === this.six) {
       if (this.currentOverRuns === 0) {
-        bowler.maidens++;
-        this.updateBowlerInLive(bowler);
+        this.bowler.maidens++;
+        this.updateBowlerInLive(this.bowler);
       }
       [this.striker, this.nonStriker] = [this.nonStriker, this.striker];
       this.changeBowler();
-      bowler = this.service?.bowlers1()[this.service?.currentBowlerIndex()];
+      this.bowler = this.service?.bowlers1()[this.service?.currentBowlerIndex()];
       this.legalBalls = 0;
       this.currentBowlerBalls = [];
     }
+  }
+  BallWideAndNoBall(){
+     this.bowler.runsConceded++;
+      this.updateBowlerInLive(this.bowler);
+      this.currentOverRuns++;
+
+      this.live.teams[this.service?.currentBattingTeam()].scores++;
+
+      this.live.teams[this.service?.currentBattingTeam()].extras++;
+
+      const bowlerBalls = this.bowlerBallCount[this.bowler.id] || 0;
+
+      if (bowlerBalls > 0) {
+        this.bowler.economy = Number((this.bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
+        this.updateBowlerInLive(this.bowler);
+      }
   }
   playerruns(b: string): number {
     switch (b) {

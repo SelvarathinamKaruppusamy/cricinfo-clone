@@ -20,7 +20,7 @@ interface Match {
   teams: Team[];
 }
 
-interface matchCard {
+export interface matchCard {
   id: number;
   status: string;
   matchNo: number;
@@ -59,8 +59,9 @@ export class UpComp {
         time: '7:30 PM ',
         date: match.date,
       }));
+      this.service.upcommingdata=this.cards[0]
       this.cd.detectChanges();
-      //console.log(this.card);
+      console.log(this.service.upcommingdata);
     });
   }
   open(id: number) {

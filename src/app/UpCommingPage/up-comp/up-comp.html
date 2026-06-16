@@ -1,36 +1,40 @@
 <div class="card">
-  @for (card of cards; track card.id) {
-    <div class="match-card" (click)="open(card.id)" style="background-color: whitesmoke">
-      <div class="header">
-        <span class="status">{{ card.status }}</span>
-        <span class="status"> {{ card.matchNo }} of 45 </span>
-      </div>
-
-      <div class="team-upd">
-        <div>
-          <div class="team">
-            <img [src]="card.team1.logo" class="image" />
-            <span>{{ card.team1.shortName }}</span>
-          </div>
-
-          <div class="team">
-            <img [src]="card.team2.logo" class="image" />
-            <span>{{ card.team2.shortName }}</span>
-          </div>
-        </div>
-        <div class="place">
-          <span>{{ card.date }}</span>
-          <div class="team">
-            <h4>{{ card.time }}</h4>
-          </div>
-        </div>
-      </div>
-      <div class="header">
-        <span class="venue">{{ card.stadium }}</span>
-        <span class="venue">
-          {{ card.city }}
-        </span>
-      </div>
-    </div>
-  }
-</div>
+   @for (card of cards; track card.id) 
+   { 
+    <div class="match-card" (click)="open(card.id)">
+       <div class="header"> <span class="header-font">
+        {{ card.status|uppercase }}</span> 
+        <div class="right-info"> 
+          <span class="status"> IPL T20 </span> 
+          <div class="upcom"></div> <span class="status">
+            {{card.city}}
+          </span>
+         </div>
+         </div> 
+         <div class="team-upd"> 
+          <div>
+             <div class="team"> 
+              <img [src]="card.team1.logo" class="image" /> 
+              <span>{{ card.team1.shortName }}</span> 
+            </div> 
+            <div class="team">
+               <img [src]="card.team2.logo" class="image" /> 
+               <span>{{ card.team2.shortName }}</span>
+               </div> 
+              </div>
+               <div class="place"> 
+                <span>{{ formatDate(card.date)}}</span> 
+                <div class="team">
+                   <h4>{{ card.time }}</h4>
+                   </div> 
+                  </div> 
+                </div> 
+                <div class="footer">
+                   <div class="header"> 
+                    <span class="venue">Table</span>
+                     <span class="venue"> {{ card.stadium }} </span> 
+                    </div> 
+                  </div> 
+                </div> 
+              } 
+            </div> 

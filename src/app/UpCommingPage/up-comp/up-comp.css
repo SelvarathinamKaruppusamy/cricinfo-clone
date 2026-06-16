@@ -1,73 +1,115 @@
 .card {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
-  margin-left: 50px;
+  /* flex-wrap:wrap-reverse */
+
 }
+
 .match-card {
-  width: 350px;
-  padding: 15px;
+  width: 100%;
+  max-width: 360px;
+  height: 201px;
+  margin: auto;
+  background:white;
+  border: 1px solid gainsboro;
   border-radius: 12px;
-  background: white;
-  box-shadow: 0 1px 1px gray;
-  margin: 20px;
-  transition: all 0.1s ease;
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .match-card:hover {
-  transform: translateY(-0.1px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.status {
-  font-size: 10px;
-  font-weight: 600;
-  color: gray;
-}
-
-.venue {
-  margin-top: 10px;
+.header-font {
   font-size: 12px;
-  color: gray;
+  font-weight: 700;
+  color: grey;
+  letter-spacing: 0.8px;
 }
 
-.team-row {
+.right-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color:grey;
+}
+
+.upcom {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: grey;
+}
+
+.team-upd {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin: 12px 0;
+  align-items: flex-start;
+  margin: 14px 0;
 }
 
 .team {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 17px;
+  margin-bottom: 12px;
 }
 
-.time-section {
-  text-align: right;
+.image {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.team span {
+  font-size: 18px;
+  font-weight: 500;
+  color:black;
 }
 
 .place {
-  margin-bottom: 20px;
-  text-align: end;
+  text-align: right;
+}
+
+.place span {
+  display: block;
+  font-size: 10px;
+  color:gray;
+}
+
+.place h4 {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+
+.venue {
+  font-size: 13px;
+  color: gray;
+}
+
+/* .match-card .header:last-child {
   margin-top: 10px;
-  font-size: 11px;
-}
-.image {
-  width: 40px;
-  height: 40px;
-  padding: 3px;
-}
-.team-upd {
-  display: flex;
-  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid white
+} */
+ .footer {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
 }

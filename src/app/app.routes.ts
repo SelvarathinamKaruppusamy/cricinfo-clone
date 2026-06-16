@@ -55,7 +55,11 @@ export const routes: Routes = [
     component: BlogDetails,
   },
   {
-    path: 'points-table',
+    path : 'points-table',
     component: PointsTable,
   },
+ {
+  path: 'points-table/:matchNo',
+  component: PointsTable
+},
 ];

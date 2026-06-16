@@ -11,7 +11,7 @@
         <th>L</th>
         <th>Pts</th>
         <th>NRR</th>
-        <th>Last 5 Matches</th>
+        <th>Recent Results</th>
       </tr>
     </thead>
 
@@ -35,7 +35,7 @@
             {{ team.nrr > 0 ? '+' : '' }}{{ team.nrr }}
           </td>
 
-          <td>
+          <!-- <td>
             @if (team.form.length === 5) {
               <div class="form-container">
                 @for (result of team.form; track $index) {
@@ -47,7 +47,37 @@
             } @else {
               <span class="not-available">--</span>
             }
-          </td>
+          </td> -->
+          <td>
+  @if (team.form && team.form.length > 0) {
+
+    <div class="form-container">
+
+      @for (
+        result of team.form.slice(-5);
+        track $index
+      ) {
+
+        <span
+          class="form-circle"
+          [class.win]="result"
+          [class.loss]="!result"
+        >
+          {{ result ? 'W' : 'L' }}
+        </span>
+
+      }
+
+    </div>
+
+  } @else {
+
+    <span class="not-available">
+      --
+    </span>
+
+  }
+</td>
         </tr>
       }
     </tbody>

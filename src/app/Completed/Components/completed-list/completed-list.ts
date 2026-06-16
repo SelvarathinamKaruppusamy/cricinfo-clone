@@ -9,7 +9,6 @@ import { CompletedService } from '../../Services/completed-service';
   selector: 'app-completed-list',
   standalone: true,
   imports: [CommonModule],
-
   templateUrl: 'completed-list.html',
   styleUrl: 'completed-list.css',
 })
@@ -28,19 +27,15 @@ export class CompletedList implements OnInit {
   bowlingTeam: any = null;
 
   ngOnInit(): void {
-    console.log('ngOnInit called');
-
     const matchNo = Number(this.route.snapshot.paramMap.get('matchNo'));
-
-    console.log('Route Param:', this.route.snapshot.paramMap.get('matchNo'));
-
-    console.log('Converted:', Number(this.route.snapshot.paramMap.get('matchNo')));
 
     this.service.getCompletedMatches().subscribe({
       next: (data) => {
         this.matches = data;
 
-        const selectedMatch = this.matches.find((match) => Number(match.matchNo) === matchNo);
+        const selectedMatch = this.matches.find(
+          (match) => Number(match.matchNo) === matchNo
+        );
 
         if (selectedMatch) {
           this.selectMatch(selectedMatch);
@@ -56,13 +51,10 @@ export class CompletedList implements OnInit {
 
   selectMatch(selectedMatch: Match): void {
     this.match = selectedMatch;
+
     if (this.match?.teams && this.match.teams.length > 0) {
       this.selectInnings(this.match.teams[0].teamId);
     }
-  }
-
-  isWinnerr(team: any): any {
-    this.bowlingTeam = this.changeTab;
   }
 
   changeTab(tab: 'summary' | 'scorecard' | 'commentary'): void {
@@ -71,13 +63,24 @@ export class CompletedList implements OnInit {
 
   selectInnings(teamId: any): void {
     if (!this.match) return;
+
     this.selectedTeamId = teamId;
-    this.selectedTeam = this.match.teams.find((t) => t.teamId === teamId);
-    this.bowlingTeam = this.match.teams.find((t) => t.teamId !== teamId);
+
+    this.selectedTeam = this.match.teams.find(
+      (t) => t.teamId === teamId
+    );
+
+    this.bowlingTeam = this.match.teams.find(
+      (t) => t.teamId !== teamId
+    );
   }
 
   openScorecard(matchNo: number): void {
     this.router.navigate(['/completed', matchNo]);
+  }
+
+  openPointsTable(matchNo: number): void {
+    this.router.navigate(['/points-table', matchNo]);
   }
 
   isWinner(team: any): boolean {
@@ -86,49 +89,79 @@ export class CompletedList implements OnInit {
 
   getBowlingRecordsForTeam(currentTeam: any): any[] {
     if (!this.match) return [];
-    const opposingTeam = this.match.teams.find((t) => t.teamId !== currentTeam.teamId);
+
+    const opposingTeam = this.match.teams.find(
+      (t) => t.teamId !== currentTeam.teamId
+    );
+
     return opposingTeam ? opposingTeam.bowling : [];
   }
 
   getTopBatters(battingList: any[] | undefined): any[] {
     if (!battingList) return [];
+
     return [...battingList]
-      .filter((player) => player.runs !== null && player.status !== 'Did Not Bat')
+      .filter(
+        (player) =>
+          player.runs !== null &&
+          player.status !== 'Did Not Bat'
+      )
       .sort((a, b) => b.runs - a.runs)
       .slice(0, 3);
   }
 
   getTopBowlers(bowlingList: any[] | undefined): any[] {
     if (!bowlingList) return [];
+
     return [...bowlingList]
-      .filter((player) => player.overs !== null && player.overs !== '0.0')
+      .filter(
+        (player) =>
+          player.overs !== null &&
+          player.overs !== '0.0'
+      )
       .sort((a, b) => {
         if (b.wickets !== a.wickets) {
-          //decending order sorting to get higher wickets comes first
           return b.wickets - a.wickets;
         }
-        return a.runsConceded - b.runsConceded; //ascending order to get lower run comes firsttt
+
+        return a.runsConceded - b.runsConceded;
       })
       .slice(0, 3);
   }
 
   getPotmStats(): string {
-    if (!this.match || !this.match.playerOfTheMatch) return '';
+    if (!this.match || !this.match.playerOfTheMatch) {
+      return '';
+    }
+
     const potmName = this.match.playerOfTheMatch;
 
     for (const team of this.match.teams) {
-      // if batter POM
-      const batter = team.batting?.find((b) => b.name === potmName);
-      if (batter && batter.runs !== null && batter.status !== 'Did Not Bat') {
-        const notOutMark = batter.status === 'Not Out' ? '*' : '';
+      const batter = team.batting?.find(
+        (b) => b.name === potmName
+      );
+
+      if (
+        batter &&
+        batter.runs !== null &&
+        batter.status !== 'Did Not Bat'
+      ) {
+        const notOutMark =
+          batter.status === 'Not Out' ? '*' : '';
+
         return `${batter.runs}${notOutMark} (${batter.balls})`;
       }
 
-      const bowler = team.bowling?.find((b) => b.name === potmName); //bowler
+      const bowler = team.bowling?.find(
+        (b) => b.name === potmName
+      );
+
       if (bowler && bowler.overs) {
         return `${bowler.wickets}/${bowler.runsConceded} (${bowler.overs})`;
       }
     }
+
     return '';
   }
+
 }

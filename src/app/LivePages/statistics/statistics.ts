@@ -37,7 +37,7 @@ export class Statistics implements AfterViewInit {
   target = 0;
   constructor() {
     effect(() => {
-      this.service.ball();
+      this.service?.ball();
 
       if (this.live) {
         this.calculateStatistics();
@@ -46,10 +46,8 @@ export class Statistics implements AfterViewInit {
 
         this.createChart();
       }
-      console.log(this.service.live);
     });
   }
-
   battingTeam!: Team;
 
   live!: LiveModel;
@@ -83,11 +81,11 @@ export class Statistics implements AfterViewInit {
   }
 
   loadMatch() {
-    this.service.GetLiveMatches().subscribe({
+    this.service?.GetLiveMatches().subscribe({
       next: (res) => {
         this.live = res[0];
-        this.battingTeam = this.live.teams[this.service.tosswin()];
-        const currentBatters = this.service.players1().filter((p) => p.status === 'Not Out');
+        this.battingTeam = this.live.teams[this.service?.tosswin()];
+        const currentBatters = this.service?.players1().filter((p) => p.status === 'Not Out');
         this.batter1 = currentBatters[0];
         this.batter2 = currentBatters[1];
         this.calculatePartnership();
@@ -100,7 +98,7 @@ export class Statistics implements AfterViewInit {
   }
 
   calculateStatistics() {
-    const balls = this.service.ball();
+    const balls = this.service?.ball();
     let currentOverScore = 0;
     let wicketCount = 0;
     this.totalRuns = 0;
@@ -112,7 +110,7 @@ export class Statistics implements AfterViewInit {
     this.wickets = [];
     this.cumulativeRuns = [];
     balls.forEach((ball) => {
-      const runs = this.service.calculateScore(ball);
+      const runs = this.service?.calculateScore(ball);
       this.totalRuns += runs;
       this.cumulativeRuns.push(this.totalRuns);
       currentOverScore += runs;
@@ -129,7 +127,7 @@ export class Statistics implements AfterViewInit {
       }
       if (ball === 'W') {
         wicketCount++;
-        const outPlayer = this.service.completedBatters()[wicketCount - 1];
+        const outPlayer = this.service?.completedBatters()[wicketCount - 1];
         this.wickets.push({
           score: `${wicketCount}-${this.totalRuns}`,
           player: outPlayer?.name ?? `Batter ${wicketCount}`,
@@ -149,17 +147,17 @@ export class Statistics implements AfterViewInit {
     this.firstInningsRuns = this.calculateRunsProgress(this.service.firstInningsBalls());
 
     this.secondInningsRuns = this.calculateRunsProgress(this.service.secondInningsBalls());
-    if (this.service.innings() === 2) {
-      const firstInningsTeam = this.live.teams[this.service.tosswin()];
+    if (this.service?.innings() === 2) {
+      const firstInningsTeam = this.live.teams[this.service?.tosswin()];
 
-      const secondInningsTeam = this.live.teams[this.service.tossloss()];
+      const secondInningsTeam = this.live.teams[this.service?.tossloss()];
 
-      this.target = this.service.completedBattingTeam.scores + 1;
+      this.target = this.service?.completedBattingTeam.scores + 1;
       this.requiredRuns =
-        this.target - this.service.live.teams[this.service.currentBattingTeam()].scores;
+        this.target - this.service?.live.teams[this.service?.currentBattingTeam()].scores;
 
       const ballsBowled =
-        Math.floor(secondInningsTeam.overs) * 6 + Math.round((secondInningsTeam.overs % 1) * 10);
+        Math.floor(secondInningsTeam?.overs) * 6 + Math.round((secondInningsTeam?.overs % 1) * 10);
 
       const remainingBalls = 120 - ballsBowled;
 
@@ -180,7 +178,7 @@ export class Statistics implements AfterViewInit {
     const runs: number[] = [];
 
     balls.forEach((ball) => {
-      total += this.service.calculateScore(ball);
+      total += this.service?.calculateScore(ball);
 
       runs.push(total);
     });
@@ -188,7 +186,7 @@ export class Statistics implements AfterViewInit {
     return runs;
   }
   calculatePartnership() {
-    const currentBatters = this.service.players1().filter((p) => p.status === 'Not Out');
+    const currentBatters = this.service?.players1().filter((p) => p.status === 'Not Out');
 
     if (currentBatters.length < 2) {
       return;
@@ -201,7 +199,7 @@ export class Statistics implements AfterViewInit {
     this.partnershipBalls = this.batter1.balls + this.batter2.balls;
   }
 
-  currentBowler = computed(() => this.service.bowlers1()[this.service.currentBowlerIndex()]);
+  currentBowler = computed(() => this.service?.bowlers1()[this.service?.currentBowlerIndex()]);
   createChart() {
     if (!this.chartCanvas) {
       return;

@@ -1,7 +1,8 @@
-mat-card{
-  transition: all 0.3s ease;
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-mat-card:hover{
-  transform: translateY(-4px);
+.hide-scrollbar {
+  scrollbar-width: none;
 }

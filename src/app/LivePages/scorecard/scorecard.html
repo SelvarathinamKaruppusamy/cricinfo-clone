@@ -1,7 +1,7 @@
 @if (live) {
   <mat-tab-group>
     <!-- FIRST INNINGS -->
-    <mat-tab [label]="firstInningsTeam()?.shortName || '1st Innings'">
+    <mat-tab [label]="firstInningsTeam().shortName || '1st Innings'">
       <!-- Batting -->
       <div class="p-4 overflow-x-auto">
         <table class="w-full text-sm">
@@ -52,20 +52,20 @@
       <div class="bg-teal-700 text-white px-4 py-3">
         <div class="flex justify-between">
           <span>Extras</span>
-          <span>{{ firstInningsTeam()?.extras }}</span>
+          <span>{{ firstInningsTeam().extras }}</span>
         </div>
 
         <div class="flex justify-between mt-2 font-semibold">
           <span>Total</span>
           <span>
-            {{ firstInningsTeam()?.scores }}/
-            {{ firstInningsTeam()?.wickets }}
-            ({{ firstInningsTeam()?.overs }} ovs)
+            {{ firstInningsTeam().scores }}/
+            {{ firstInningsTeam().wickets }}
+            ({{ firstInningsTeam().overs }} ovs)
           </span>
         </div>
 
         <div class="mt-3 text-xs flex items-center gap-2">
-          @for (player of firstInningsTeam()?.players ?? []; track player.id) {
+          @for (player of firstInningsTeam().players; track player.id) {
             @if (player.balls === 0) {
               <mat-icon>arrow_back</mat-icon>
               <p>{{ player.name }}</p>
@@ -112,7 +112,7 @@
     <!-- SECOND INNINGS -->
 
     @if (secondInningsStarted()) {
-      <mat-tab [label]="secondInningsTeam()?.shortName || '2nd Innings'">
+      <mat-tab [label]="secondInningsTeam().shortName || '2nd Innings'">
         <!-- Batting -->
 
         <div class="p-4 overflow-x-auto">
@@ -167,20 +167,20 @@
         <div class="bg-teal-700 text-white px-4 py-3">
           <div class="flex justify-between">
             <span>Extras</span>
-            <span>{{ secondInningsTeam()?.extras }}</span>
+            <span>{{ secondInningsTeam().extras }}</span>
           </div>
 
           <div class="flex justify-between mt-2 font-semibold">
             <span>Total</span>
             <span>
-              {{ secondInningsTeam()?.scores }}/
-              {{ secondInningsTeam()?.wickets }}
-              ({{ secondInningsTeam()?.overs }} ovs)
+              {{ secondInningsTeam().scores }}/
+              {{ secondInningsTeam().wickets }}
+              ({{ secondInningsTeam().overs }} ovs)
             </span>
           </div>
 
           <div class="mt-3 text-xs flex items-center gap-2">
-            @for (player of secondInningsTeam()?.players ?? []; track player.id) {
+            @for (player of secondInningsTeam().players; track player.id) {
               @if (player.balls === 0 && player.status !== 'Not Out') {
                 <mat-icon>arrow_back</mat-icon>
                 <p>{{ player.name }}</p>

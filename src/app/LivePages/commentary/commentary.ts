@@ -26,12 +26,12 @@ export class Commentary implements OnInit {
   battingTeam = computed(() => this.service.live?.teams[this.service.currentBattingTeam()]);
   constructor() {
     effect(() => {
-      this.service.ball();
+      this.service?.ball();
       this.buildCommentary();
     });
   }
   ngOnInit(): void {
-    this.live = this.service.live;
+    this.live = this.service?.live;
   }
 
   buildCommentary() {
@@ -41,35 +41,35 @@ export class Commentary implements OnInit {
     this.over = [];
     this.ballcount = 0;
     this.overscore = 0;
-    this.service.ball().forEach((ball) => {
-      this.overscore += this.service.calculateScore(ball);
+    this.service?.ball().forEach((ball) => {
+      this.overscore += this.service?.calculateScore(ball);
       const comments = this.commentary[ball as keyof typeof commentary];
       const text = comments[Math.floor(Math.random() * comments.length)];
-      this.over.push({ ball, text });
+      this.over.unshift({ ball, text });
       if (ball !== 'Wd' && ball !== 'Nb') {
         this.ballcount++;
       }
       if (this.ballcount === 6) {
-        this.commentaryLog.unshift([...this.over]);
-        this.overscores.push(this.overscore);
+        this.commentaryLog?.unshift([...this.over]);
+        this.overscores?.unshift(this.overscore);
         const previous =
           this.cumulativeScores.length > 0
             ? this.cumulativeScores[this.cumulativeScores.length - 1]
             : 0;
-        this.cumulativeScores.push(previous + this.overscore);
+        this.cumulativeScores.unshift(previous + this.overscore);
         this.over = [];
         this.ballcount = 0;
         this.overscore = 0;
       }
     });
     if (this.over.length > 0) {
-      this.commentaryLog.push([...this.over]);
-      this.overscores.push(this.overscore);
+      this.commentaryLog.unshift([...this.over]);
+      this.overscores.unshift(this.overscore);
       const previous =
         this.cumulativeScores.length > 0
           ? this.cumulativeScores[this.cumulativeScores.length - 1]
           : 0;
-      this.cumulativeScores.push(previous + this.overscore);
+      this.cumulativeScores.unshift(previous + this.overscore);
     }
   }
 

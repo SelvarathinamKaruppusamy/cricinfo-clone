@@ -7,6 +7,7 @@ import { Livepage } from './LivePages/livepage/livepage';
 import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
+import { CompletedDetails } from './Completed/Components/completed-details/completed-details';
 
 export const routes: Routes = [
   {
@@ -17,11 +18,20 @@ export const routes: Routes = [
   {
     path: 'live',
     component: LiveMatchCard,
-  },
-  {
+    children:[
+       {
     path: 'livepage',
     component: Livepage,
   },
+  {
+    path: 'match/:id',
+    component: Match,
+  },
+   {
+  path: 'completed/:matchNo',
+  loadComponent: () =>
+    import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
+  },]},
   {
     path: 'squads',
     component: Squads,
@@ -64,4 +74,8 @@ export const routes: Routes = [
     path: 'points-table',
     component: PointsTable,
   },
+  {
+  path: 'points-table/:matchNo',
+  component: PointsTable
+},
 ];

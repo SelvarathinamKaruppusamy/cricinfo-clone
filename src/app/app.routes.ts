@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Squads } from './NavBar/squads/squads';
 import { UpComp } from './UpCommingPage/up-comp/up-comp';
 import { Match } from './UpCommingPage/match/match';
 import { LiveMatchCard } from './LivePages/live-match-card/live-match-card';
@@ -7,7 +6,7 @@ import { Livepage } from './LivePages/livepage/livepage';
 import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
-import { CompletedDetails } from './Completed/Components/completed-details/completed-details';
+import { Stats } from './stats/stats';
 
 export const routes: Routes = [
   {
@@ -33,8 +32,8 @@ export const routes: Routes = [
     import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
   },]},
   {
-    path: 'squads',
-    component: Squads,
+    path: 'stats/:type',
+    component: Stats,
   },
   {
     path: 'match/:id',
@@ -75,7 +74,7 @@ export const routes: Routes = [
     component: PointsTable,
   },
   {
-  path: 'points-table/:matchNo',
-  component: PointsTable
-},
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
 ];

@@ -1,3 +1,4 @@
+<div class="mt-17">
 <div class="blog-list-container">
   <div class="page-header">
     <h1 class="page-title">Latest Match Reports</h1>
@@ -8,6 +9,7 @@
       <input type="text" placeholder="Search Blogs" [(ngModel)]="searchTerm" (input)="onSearch()" />
     </div>
   </div>
+
 
   <div class="blog-grid">
     @for (blog of blogs$ | async; track blog.id) {
@@ -58,4 +60,5 @@
       <p class="loading-text">No matching reports found.</p>
     }
   </div>
+</div>
 </div>

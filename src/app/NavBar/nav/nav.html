@@ -1,7 +1,7 @@
-<mat-toolbar color="primary" class="navbar" [class.navbar-hidden]="!isNavbarVisible">
-  <mat-icon matListItemIcon>sports_cricket</mat-icon>
+<mat-toolbar color="primary" class="navbar">
+  <mat-icon>sports_cricket</mat-icon>
 
-  <span class="logo">CricInfo</span>
+  <span class="logo"> CricInfo</span>
 
   <span class="spacer"></span>
 
@@ -10,20 +10,54 @@
       mat-button
       class="!text-white"
       (click)="getMethod(item.route)"
-      [class.active-link]="activateRoute === item.route"
-    >
+      [class.active-link]="activateRoute === item.route">
       {{ item.label }}
     </a>
   }
+
+  <!-- STATS DROPDOWN -->
+
+  <button
+    mat-button
+    class="!text-white"
+    [matMenuTriggerFor]="statsMenu">
+
+    Stats
+
+    <mat-icon>arrow_drop_down</mat-icon>
+
+  </button>
+
+  <mat-menu #statsMenu="matMenu">
+
+    <button
+      mat-menu-item
+      (click)="getMethod('/stats/overall')">
+
+      Overall Stats
+
+    </button>
+
+    <button
+      mat-menu-item
+      (click)="getMethod('/stats/purple')">
+
+      Purple Cap
+
+    </button>
+
+    <button
+      mat-menu-item
+      (click)="getMethod('/stats/orange')">
+
+      Orange Cap
+
+    </button>
+
+  </mat-menu>
+
 </mat-toolbar>
 
-<mat-chip-listbox class="team-filter" [multiple]="false">
-  @for (team of teams; track team.teamId) {
-    <mat-chip-option [selected]="selectedTeamId === team.teamId" (click)="matchFilter(team.teamId)">
-      {{ team.shortName }}
-    </mat-chip-option>
-  }
-</mat-chip-listbox>
 
 @if (filteredMatches.length > 0) {
   <div class="match-container">

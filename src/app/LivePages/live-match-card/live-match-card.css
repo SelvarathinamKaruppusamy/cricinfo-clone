@@ -1,7 +1,126 @@
-mat-card{
-  transition: all 0.3s ease;
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-mat-card:hover{
-  transform: translateY(-4px);
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+mat-chip-listbox {
+  display: flex;
+  overflow-x: auto;
+}
+
+mat-chip-option {
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.team-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 6px;
+}
+
+.match-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.match-card {
+  width: 320px;
+  height: 200px;
+  border-radius: 16px !important;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.match-status {
+  font-size: 13px;
+  font-weight: 700;
+  color: #8a8a8a;
+  letter-spacing: 1px;
+}
+
+.league-info {
+  font-size: 13px;
+  color: #8a8a8a;
+}
+
+.teams-section {
+  margin-top: 22px;
+}
+
+.team-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.team-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+
+.team-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+}
+
+.time-section {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  text-align: right;
+}
+
+.match-date {
+  font-size: 13px;
+  color: #888;
+}
+
+.match-time {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin-top: 4px;
+}
+
+mat-divider {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 46px;
+}
+
+.card-footer {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 14px;
+  color: #777;
+}
+
+.venue {
+  color: #777;
 }

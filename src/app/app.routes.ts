@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Squads } from './NavBar/squads/squads';
 import { UpComp } from './UpCommingPage/up-comp/up-comp';
 import { Match } from './UpCommingPage/match/match';
 import { LiveMatchCard } from './LivePages/live-match-card/live-match-card';
@@ -7,6 +6,8 @@ import { Livepage } from './LivePages/livepage/livepage';
 import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
+import { Stats } from './stats/stats';
+import { Schedule } from './schedule/schedule';
 
 export const routes: Routes = [
   {
@@ -17,14 +18,23 @@ export const routes: Routes = [
   {
     path: 'live',
     component: LiveMatchCard,
-  },
-  {
+    children:[
+       {
     path: 'livepage',
     component: Livepage,
   },
   {
-    path: 'squads',
-    component: Squads,
+    path: 'match/:id',
+    component: Match,
+  },
+   {
+  path: 'completed/:matchNo',
+  loadComponent: () =>
+    import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
+  },]},
+  {
+    path: 'stats/:type',
+    component: Stats,
   },
   {
     path: 'match/:id',
@@ -64,4 +74,12 @@ export const routes: Routes = [
     path: 'points-table',
     component: PointsTable,
   },
+  {
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
+  {
+    path:'schedule/:id',
+    component:Schedule
+  }
 ];

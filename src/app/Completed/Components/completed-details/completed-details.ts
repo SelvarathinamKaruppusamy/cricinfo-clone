@@ -42,23 +42,36 @@ export class CompletedDetails implements OnInit {
   }
 
   ngOnInit(): void {
-    const matchNo = Number(this.route.snapshot.paramMap.get('matchNo'));
+
+  this.route.params.subscribe(params => {
+
+    const matchNo = Number(params['matchNo']);
+
+    console.log('MATCH CHANGED:', matchNo);
 
     this.service.getCompletedMatches().subscribe({
       next: (data) => {
+
         this.matches = data;
-        const selectedMatch = this.matches.find((match) => Number(match.matchNo) === matchNo);
+
+        const selectedMatch = this.matches.find(
+          match => Number(match.matchNo) === matchNo
+        );
 
         if (selectedMatch) {
           this.selectMatch(selectedMatch);
         }
-        // Removed unnecessary manual change detection call here (handled natively by subscription template bindings)
+
+        this.cd.detectChanges();
       },
       error: (err) => {
         console.error('Failed to load completed matches:', err);
-      },
+      }
     });
-  }
+
+  });
+
+}
 
   selectMatch(selectedMatch: Match): void {
     this.match = selectedMatch;

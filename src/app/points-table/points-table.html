@@ -1,6 +1,5 @@
 <div class="table-container">
   <h2>IPL Points Table</h2>
-
   <table>
     <thead>
       <tr>
@@ -11,31 +10,30 @@
         <th>L</th>
         <th>Pts</th>
         <th>NRR</th>
-        <th>Last 5 Matches</th>
+        <th>Recent Results</th>
       </tr>
     </thead>
-
     <tbody>
       @for (team of pointsTable; track team.teamId; let i = $index) {
         <tr>
           <td>{{ i + 1 }}</td>
-
+ 
           <td class="team-column">
             <img [src]="team.logo" [alt]="team.name" />
-
+ 
             <span>{{ team.name }}</span>
           </td>
-
+ 
           <td>{{ team.played }}</td>
           <td>{{ team.wins }}</td>
           <td>{{ team.losses }}</td>
           <td>{{ team.points }}</td>
-
+ 
           <td [class.positive]="team.nrr >= 0" [class.negative]="team.nrr < 0">
             {{ team.nrr > 0 ? '+' : '' }}{{ team.nrr }}
           </td>
-
-          <td>
+ 
+          <!-- <td>
             @if (team.form.length === 5) {
               <div class="form-container">
                 @for (result of team.form; track $index) {
@@ -47,7 +45,37 @@
             } @else {
               <span class="not-available">--</span>
             }
-          </td>
+          </td> -->
+          <td>
+  @if (team.form && team.form.length > 0) {
+ 
+    <div class="form-container">
+ 
+      @for (
+        result of team.form.slice(-5);
+        track $index
+      ) {
+ 
+        <span
+          class="form-circle"
+          [class.win]="result"
+          [class.loss]="!result"
+        >
+          {{ result ? 'W' : 'L' }}
+        </span>
+ 
+      }
+ 
+    </div>
+ 
+  } @else {
+ 
+    <span class="not-available">
+      --
+    </span>
+ 
+  }
+</td>
         </tr>
       }
     </tbody>

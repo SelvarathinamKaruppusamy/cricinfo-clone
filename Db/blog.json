@@ -26,8 +26,8 @@
       "featured": true,
       "tags": [
         "Ruturaj Gaikwad",
-        "Chennai Super Kings",
-        "Sunrisers Hyderabad",
+        "CSK",
+        "SRH",
         "IPL 2026",
         "MS Dhoni",
         "Noor Ahmad",
@@ -61,8 +61,8 @@
       "featured": false,
       "tags": [
         "Virat Kohli",
-        "Royal Challengers Bengaluru",
-        "Gujarat Titans",
+        "RCB",
+        "GT",
         "IPL 2026",
         "Josh Hazlewood",
         "Shubman Gill",
@@ -94,15 +94,7 @@
       "publishedDate": "2026-03-03",
       "readTime": "4 min read",
       "featured": false,
-      "tags": [
-        "Nicholas Pooran",
-        "Lucknow Super Giants",
-        "Sunrisers Hyderabad",
-        "IPL 2026",
-        "Rishabh Pant",
-        "Mohammad Shami",
-        "Match Report"
-      ]
+      "tags": ["LSG", "SRH", "IPL 2026", "Rishabh Pant", "Mohammad Shami", "Match Report"]
     },
     {
       "id": 4,
@@ -131,8 +123,8 @@
       "featured": false,
       "tags": [
         "Marcus Stoinis",
-        "Punjab Kings",
-        "Delhi Capitals",
+        "PBKS",
+        "DC",
         "IPL 2026",
         "KL Rahul",
         "Shreyas Iyer",
@@ -166,8 +158,8 @@
       "featured": false,
       "tags": [
         "Suryakumar Yadav",
-        "Mumbai Indians",
-        "Sunrisers Hyderabad",
+        "MI",
+        "SRH",
         "IPL 2026",
         "Jasprit Bumrah",
         "Travis Head",
@@ -201,8 +193,8 @@
       "featured": false,
       "tags": [
         "Rishabh Pant",
-        "Lucknow Super Giants",
-        "Punjab Kings",
+        "LSG",
+        "PBKS",
         "IPL 2026",
         "Nicholas Pooran",
         "Mohammad Shami",
@@ -236,8 +228,8 @@
       "featured": false,
       "tags": [
         "Rinku Singh",
-        "Kolkata Knight Riders",
-        "Sunrisers Hyderabad",
+        "KKR",
+        "SRH",
         "IPL 2026",
         "Varun Chakaravarthy",
         "Travis Head",
@@ -272,8 +264,8 @@
       "featured": false,
       "tags": [
         "Hardik Pandya",
-        "Mumbai Indians",
-        "Punjab Kings",
+        "MI",
+        "PBKS",
         "IPL 2026",
         "Rohit Sharma",
         "Jasprit Bumrah",
@@ -305,15 +297,7 @@
       "publishedDate": "2026-03-09",
       "readTime": "4 min read",
       "featured": false,
-      "tags": [
-        "KL Rahul",
-        "Delhi Titans",
-        "Kolkata Knight Riders",
-        "IPL 2026",
-        "Mitchell Starc",
-        "Rinku Singh",
-        "Match Report"
-      ]
+      "tags": ["KL Rahul", "DC", "KKR", "IPL 2026", "Mitchell Starc", "Rinku Singh", "Match Report"]
     },
     {
       "id": 10,
@@ -342,8 +326,8 @@
       "featured": false,
       "tags": [
         "Shubman Gill",
-        "Gujarat Titans",
-        "Rajasthan Royals",
+        "GT",
+        "RR",
         "IPL 2026",
         "Kagiso Rabada",
         "Yashasvi Jaiswal",
@@ -370,15 +354,7 @@
       "publishedDate": "2026-03-11",
       "readTime": "4 min read",
       "featured": false,
-      "tags": [
-        "KL Rahul",
-        "Delhi Titans",
-        "Sunrisers Hyderabad",
-        "IPL 2026",
-        "Mitchell Starc",
-        "Travis Head",
-        "Match Report"
-      ]
+      "tags": ["KL Rahul", "DC", "SRH", "IPL 2026", "Mitchell Starc", "Travis Head", "Match Report"]
     },
     {
       "id": 12,
@@ -400,15 +376,7 @@
       "publishedDate": "2026-03-12",
       "readTime": "4 min read",
       "featured": false,
-      "tags": [
-        "Ruturaj Gaikwad",
-        "Chennai Super Kings",
-        "Gujarat Titans",
-        "IPL 2026",
-        "MS Dhoni",
-        "Noor Ahmad",
-        "Match Report"
-      ]
+      "tags": ["Ruturaj Gaikwad", "CSK", "GT", "IPL 2026", "MS Dhoni", "Noor Ahmad", "Match Report"]
     },
     {
       "id": 13,
@@ -432,8 +400,8 @@
       "featured": false,
       "tags": [
         "Yashasvi Jaiswal",
-        "Rajasthan Royals",
-        "Delhi Titans",
+        "RR",
+        "DC",
         "IPL 2026",
         "KL Rahul",
         "Jofra Archer",
@@ -462,8 +430,8 @@
       "featured": false,
       "tags": [
         "Shubman Gill",
-        "Gujarat Titans",
-        "Lucknow Super Giants",
+        "GT",
+        "LSG",
         "IPL 2026",
         "Rishabh Pant",
         "Kagiso Rabada",
@@ -492,8 +460,8 @@
       "featured": false,
       "tags": [
         "Virat Kohli",
-        "Royal Challengers Bengaluru",
-        "Mumbai Indians",
+        "RCB",
+        "MI",
         "IPL 2026",
         "Josh Hazlewood",
         "Rohit Sharma",
@@ -522,8 +490,8 @@
       "featured": false,
       "tags": [
         "Sanju Samson",
-        "Chennai Super Kings",
-        "Rajasthan Royals",
+        "CSK",
+        "RR",
         "IPL 2026",
         "Ruturaj Gaikwad",
         "Noor Ahmad",
@@ -550,15 +518,7 @@
       "publishedDate": "2026-03-17",
       "readTime": "4 min read",
       "featured": false,
-      "tags": [
-        "Rinku Singh",
-        "Kolkata Knight Riders",
-        "Royal Challengers Bengaluru",
-        "IPL 2026",
-        "Virat Kohli",
-        "Finn Allen",
-        "Match Report"
-      ]
+      "tags": ["Rinku Singh", "KKR", "RCB", "IPL 2026", "Virat Kohli", "Finn Allen", "Match Report"]
     },
     {
       "id": 18,
@@ -582,8 +542,8 @@
       "featured": false,
       "tags": [
         "Suryakumar Yadav",
-        "Mumbai Indians",
-        "Delhi Titans",
+        "MI",
+        "DC",
         "IPL 2026",
         "Jasprit Bumrah",
         "KL Rahul",
@@ -612,8 +572,8 @@
       "featured": false,
       "tags": [
         "Ruturaj Gaikwad",
-        "Chennai Super Kings",
-        "Kolkata Knight Riders",
+        "CSK",
+        "KKR",
         "IPL 2026",
         "Noor Ahmad",
         "Sanju Samson",
@@ -642,8 +602,8 @@
       "featured": false,
       "tags": [
         "Shreyas Iyer",
-        "Punjab Kings",
-        "Royal Challengers Bengaluru",
+        "PBKS",
+        "RCB",
         "IPL 2026",
         "Virat Kohli",
         "Arshdeep Singh",
@@ -672,8 +632,8 @@
       "featured": false,
       "tags": [
         "Finn Allen",
-        "Kolkata Knight Riders",
-        "Rajasthan Royals",
+        "KKR",
+        "RR",
         "IPL 2026",
         "Rinku Singh",
         "Yashasvi Jaiswal",
@@ -702,8 +662,8 @@
       "featured": false,
       "tags": [
         "Ruturaj Gaikwad",
-        "Chennai Super Kings",
-        "Punjab Kings",
+        "CSK",
+        "PBKS",
         "IPL 2026",
         "Sanju Samson",
         "Noor Ahmad",
@@ -732,8 +692,8 @@
       "featured": false,
       "tags": [
         "Rishabh Pant",
-        "Lucknow Super Giants",
-        "Rajasthan Royals",
+        "LSG",
+        "RR",
         "IPL 2026",
         "Yashasvi Jaiswal",
         "Avesh Khan",
@@ -762,8 +722,8 @@
       "featured": false,
       "tags": [
         "Shubman Gill",
-        "Gujarat Titans",
-        "Mumbai Indians",
+        "GT",
+        "MI",
         "IPL 2026",
         "Kagiso Rabada",
         "Rohit Sharma",
@@ -792,8 +752,8 @@
       "featured": false,
       "tags": [
         "Virat Kohli",
-        "Royal Challengers Bengaluru",
-        "Lucknow Super Giants",
+        "RCB",
+        "LSG",
         "IPL 2026",
         "Josh Hazlewood",
         "Rishabh Pant",

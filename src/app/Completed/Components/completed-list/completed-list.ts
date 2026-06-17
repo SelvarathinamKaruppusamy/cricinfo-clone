@@ -38,7 +38,7 @@ export class CompletedList implements OnInit {
 
     this.service.getCompletedMatches().subscribe({
       next: (data) => {
-        this.matches = data;
+        this.matches = [...data].reverse();
 
         const selectedMatch = this.matches.find((match) => Number(match.matchNo) === matchNo);
 

@@ -31,12 +31,10 @@ export class CompletedList implements OnInit {
  
     this.service.getCompletedMatches().subscribe({
       next: (data) => {
-        this.matches = data;
- 
-        const selectedMatch = this.matches.find(
-          (match) => Number(match.matchNo) === matchNo
-        );
- 
+        this.matches = [...data].reverse();
+
+        const selectedMatch = this.matches.find((match) => Number(match.matchNo) === matchNo);
+
         if (selectedMatch) {
           this.selectMatch(selectedMatch);
         }

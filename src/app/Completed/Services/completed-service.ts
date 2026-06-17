@@ -8,7 +8,7 @@ import { Match } from '../Models/match-module';
 export class CompletedService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:3000/completed';
+  private apiUrl = 'http://localhost:7000/completed';
 
   getCompletedMatches() {
     return this.http.get<Match[]>(this.apiUrl);

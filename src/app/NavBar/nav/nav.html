@@ -1,0 +1,76 @@
+<mat-toolbar color="primary" class="navbar" [class.navbar-hidden]="!isNavbarVisible">
+  <mat-icon matListItemIcon>sports_cricket</mat-icon>
+
+  <span class="logo">CricInfo</span>
+
+  <span class="spacer"></span>
+
+  @for (item of items; track item.route) {
+    <a
+      mat-button
+      class="!text-white"
+      (click)="getMethod(item.route)"
+      [class.active-link]="activateRoute === item.route"
+    >
+      {{ item.label }}
+    </a>
+  }
+</mat-toolbar>
+
+<mat-chip-listbox class="team-filter" [multiple]="false">
+  @for (team of teams; track team.teamId) {
+    <mat-chip-option [selected]="selectedTeamId === team.teamId" (click)="matchFilter(team.teamId)">
+      {{ team.shortName }}
+    </mat-chip-option>
+  }
+</mat-chip-listbox>
+
+@if (filteredMatches.length > 0) {
+  <div class="match-container">
+    @for (match of filteredMatches; track match.matchNo) {
+      <mat-card class="match-card">
+        <div class="card-header">
+          <div class="match-status">UPCOMING</div>
+
+          <div class="league-info">IPL T20 • {{ match.city }}</div>
+        </div>
+
+        <div class="teams-section">
+          <div class="team-row">
+            <img [src]="match.teams[0].logo" [alt]="match.teams[0].shortName" class="team-logo" />
+
+            <span class="team-name">
+              {{ match.teams[0].shortName }}
+            </span>
+          </div>
+
+          <div class="team-row">
+            <img [src]="match.teams[1].logo" [alt]="match.teams[1].shortName" class="team-logo" />
+
+            <span class="team-name">
+              {{ match.teams[1].shortName }}
+            </span>
+          </div>
+        </div>
+
+        <div class="time-section">
+          <div class="match-date">
+            {{ match.date }}
+          </div>
+
+          <div class="match-time">7.30</div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="card-footer">
+          <span>Table</span>
+
+          <span class="venue">
+            {{ match.venue }}
+          </span>
+        </div>
+      </mat-card>
+    }
+  </div>
+}

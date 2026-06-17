@@ -1,14 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
  
 import { Match } from '../../Models/match-module';
 import { CompletedService } from '../../Services/completed-service';
+import { Schedule } from '../../../schedule/schedule';
  
 @Component({
   selector: 'app-completed-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: 'completed-list.html',
   styleUrl: 'completed-list.css',
 })
@@ -162,6 +163,9 @@ export class CompletedList implements OnInit {
     }
  
     return '';
+  }
+  schedulepage(id:number){
+    this.router.navigate(['/schedule',id])
   }
  
 }

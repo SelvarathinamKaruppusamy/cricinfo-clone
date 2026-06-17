@@ -1,9 +1,11 @@
 <div class="schedule-container">
   <div class="match-list">
-
     <!-- 1. COMPLETED MATCHES -->
     @for (match of completed; track match.id) {
-    <div class="match-row" (click)="selectMatch(match.matchNo)" [class.selected]="selectedMatchId === match.matchNo">
+   <div
+  [id]="'match-' + match.matchNo"
+  class="match-row"
+  [class.selected]="selectedMatchId === match.matchNo">
       <div class="match-date">{{ match.date }}</div>
       <div class="match-details">
         <div class="series-header">
@@ -41,7 +43,10 @@
 
     <!-- 2. LIVE MATCHES -->
     @for (match of live; track match.id) {
-    <div class="match-row" (click)="selectMatch(match.matchNo)" [class.selected]="selectedMatchId === match.matchNo">
+    <div
+  [id]="'match-' + match.matchNo"
+  class="match-row"
+  [class.selected]="selectedMatchId === match.matchNo">
       <div class="match-date">{{ match.date }}</div>
       <div class="match-details">
         <div class="series-header">
@@ -76,7 +81,10 @@
 
     <!-- 3. UPCOMING MATCHES -->
     @for (match of upcoming; track match.id) {
-    <div class="match-row" (click)="selectMatch(match.matchNo)" [class.selected]="selectedMatchId === match.matchNo">
+    <div
+  [id]="'match-' + match.matchNo"
+  class="match-row"
+  [class.selected]="selectedMatchId === match.matchNo">
       <div class="match-date">{{ match.date }}</div>
       <div class="match-details">
         <div class="series-header">

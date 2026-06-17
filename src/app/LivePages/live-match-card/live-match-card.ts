@@ -4,7 +4,7 @@ import { LiveModel, Player, Team } from '../Models/models';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UpcService } from '../../UpCommingPage/up-comp/upc-service';
 import { CompletedService } from '../../Completed/Services/completed-service';
 import { Match } from '../../Completed/Models/match-module';
@@ -16,7 +16,7 @@ import { MatChipsModule } from '@angular/material/chips';
 @Component({
   selector: 'app-live-match-card',
   imports: [MatIconModule, CommonModule, MatCardModule, RouterOutlet, AdCoverupPage,MatDivider,
-    MatChipsModule],
+    MatChipsModule,RouterLink],
   templateUrl: './live-match-card.html',
   styleUrl: './live-match-card.css',
 })
@@ -142,5 +142,8 @@ export class LiveMatchCard implements OnInit {
   }
   table(id: number) {
     this.route.navigate(['/points-table', id]);
+  }
+  schedulepage(id:number){
+    this.route.navigate(['/schedule',id])
   }
 }

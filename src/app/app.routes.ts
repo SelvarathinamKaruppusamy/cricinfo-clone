@@ -7,6 +7,7 @@ import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
 import { Stats } from './stats/stats';
+import { Schedule } from './schedule/schedule';
 
 export const routes: Routes = [
   {
@@ -77,4 +78,8 @@ export const routes: Routes = [
     path: 'points-table/:matchNo',
     component: PointsTable,
   },
+  {
+    path:'schedule/:id',
+    component:Schedule
+  }
 ];

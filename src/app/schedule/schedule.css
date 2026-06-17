@@ -3,7 +3,9 @@
   font-family: Arial, sans-serif;
   padding: 15px;
   max-width: 850px;
-  margin: 0 auto;
+  margin-top: 50px;
+margin-left: auto;
+margin-right: auto;
 }
 
 .match-list {

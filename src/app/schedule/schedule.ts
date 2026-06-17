@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ScheduleServise } from './schedule-servise';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { UpcService } from '../UpCommingPage/up-comp/upc-service';
+import { LiveService } from '../LivePages/Services/live-service';
+import { CompletedService } from '../Completed/Services/completed-service';
 
 interface MatchCard {
   id: number;
@@ -26,27 +30,39 @@ export class Schedule implements OnInit {
   live: MatchCard[] = [];
   upcoming: MatchCard[] = [];
   completed: MatchCard[] = [];
-
+  cd=inject(ChangeDetectorRef)
+  selectedMatchId: number | null = null;
+  route=inject(ActivatedRoute)
+  upservice=inject(UpcService)
+  liveservice=inject(LiveService)
+  completedservice=inject(CompletedService)
   constructor(private service: ScheduleServise) {}
 
   ngOnInit() {
-    this.service.getLiveMatches().subscribe((data) => {
+    this.liveservice.GetLiveMatches().subscribe((data) => {
       this.live = data.map(this.mapMatch);
+      setTimeout(() => {
+      this.scrollToSelectedMatch();
     });
-
-    this.service.getUpcomingMatches().subscribe((data) => {
+       this.cd.detectChanges()
+    });
+    this.upservice.getMatch().subscribe((data) => {
       this.upcoming = data.map(this.mapMatch);
+      setTimeout(() => {
+      this.scrollToSelectedMatch();
     });
-
-    this.service.getCompletedMatches().subscribe((data) => {
+      this.cd.detectChanges()
+    });
+    this.completedservice.getCompletedMatches().subscribe((data) => {
       this.completed = data.map(this.mapMatch);
+      setTimeout(() => {
+      this.scrollToSelectedMatch();
     });
-  }
-
-  selectedMatchId: number | null = null;
-
-  selectMatch(id: number): void {
-    this.selectedMatchId = id;
+      this.cd.detectChanges()
+    });
+    this.route.params.subscribe((res)=>{
+      this.selectedMatchId=Number(res['id']);
+    })
   }
   mapMatch(match: any): MatchCard {
     return {
@@ -74,4 +90,16 @@ export class Schedule implements OnInit {
       result: match.result || '',
     };
   }
+  scrollToSelectedMatch() {
+  if (!this.selectedMatchId) return;
+
+  const element = document.getElementById(
+    `match-${this.selectedMatchId}`
+  );
+
+  element?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+}
 }

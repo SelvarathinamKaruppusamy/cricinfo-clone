@@ -7,8 +7,12 @@ import { Livepage } from './LivePages/livepage/livepage';
 import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
+<<<<<<< HEAD
 import { CompletedDetails } from './Completed/Components/completed-details/completed-details';
 
+=======
+import { Stats } from './stats/stats';
+>>>>>>> 0cbdffbf3a282f657fde83683435dd0dcb8c1dc4
 export const routes: Routes = [
   {
     path: '',
@@ -35,6 +39,10 @@ export const routes: Routes = [
   {
     path: 'squads',
     component: Squads,
+  },
+  {
+    path: 'stats/:type',
+    component: Stats,
   },
   {
     path: 'match/:id',
@@ -75,7 +83,7 @@ export const routes: Routes = [
     component: PointsTable,
   },
   {
-  path: 'points-table/:matchNo',
-  component: PointsTable
-},
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
 ];

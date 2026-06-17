@@ -147,7 +147,7 @@
   text-align: center; /* Centers the main result message */
   font-size: 15px; /* Slightly increased for distinct readability */
   font-weight: 500; /* Premium look matching Google's scoreboard styling */
-  color: #d30808; /* Swatched neutral dark tone from screenshot (overrides sharp red) */
+  color:blue; /* Swatched neutral dark tone from screenshot (overrides sharp red) */
   margin-top: 16px; /* Pushes section down comfortably away from logos */
   margin-bottom: 4px; /* Tight gap between status and match sub-text */
 }

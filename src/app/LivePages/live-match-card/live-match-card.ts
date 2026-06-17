@@ -100,6 +100,7 @@ export class LiveMatchCard implements OnInit {
   }
   changebutton(){
     this.trackflag=true
+    this.selectedTeamId=0
   }
   changebutton1(){
     this.trackflag=false

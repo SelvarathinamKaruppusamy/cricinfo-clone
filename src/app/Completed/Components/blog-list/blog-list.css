@@ -5,12 +5,12 @@
   min-height: 100vh;
   padding: 2.5rem 1rem;
 }
-
+ 
 .blog-list-container {
   max-width: 950px;
   margin: 0 auto;
 }
-
+ 
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -18,45 +18,45 @@
   gap: 20px;
   margin-bottom: 32px;
 }
-
+ 
 .page-title {
   margin-bottom: 0;
 }
-
+ 
 .search-box {
   display: flex;
   align-items: center;
   gap: 10px;
-
+ 
   width: 340px;
-
+ 
   background: #ffffff;
-
+ 
   border: 1px solid #dbe2ea;
-
+ 
   border-radius: 12px;
-
+ 
   padding: 12px 16px;
-
+ 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
-
+ 
 .search-box input {
   width: 100%;
-
+ 
   border: none;
-
+ 
   outline: none;
-
+ 
   background: transparent;
-
+ 
   font-size: 14px;
 }
-
+ 
 .search-box .material-symbols-outlined {
   color: #64748b;
 }
-
+ 
 .page-title {
   font-size: 2rem;
   color: #0f172a;
@@ -66,13 +66,13 @@
   padding-left: 14px;
   letter-spacing: -0.5px;
 }
-
+ 
 .blog-grid {
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
 }
-
+ 
 /* Horizontal Split-Card Layout */
 .blog-card {
   display: flex;
@@ -84,19 +84,19 @@
     0 2px 4px -2px rgba(15, 23, 42, 0.05);
   border: 1px solid #f1f5f9;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* ALTERATION: Changed from default 'stretch' to 'center'. 
-     This keeps your box size rigid and stops the right-side text height 
+ 
+  /* ALTERATION: Changed from default 'stretch' to 'center'.
+     This keeps your box size rigid and stops the right-side text height
      from stretching your left-side image vertically! */
   align-items: center;
 }
-
+ 
 .blog-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 20px -3px rgba(15, 23, 42, 0.08);
   border-color: #e2e8f0;
 }
-
+ 
 /* ALTERATION: Locked this down to a pristine 16:9 box container.
    No matter how short or long the description text is, the image wrapper size remains constant. */
 .blog-image-wrapper {
@@ -108,52 +108,52 @@
   align-items: center;
   justify-content: center;
 }
-
+ 
 .blog-img {
   width: 100%;
   height: 100%;
-  /* ALTERATION: Swapped back to 'cover' so it spans seamlessly to the edges 
+  /* ALTERATION: Swapped back to 'cover' so it spans seamlessly to the edges
      of the locked 320x180 box without empty padding spaces */
   object-fit: cover;
   display: block;
 }
-
+ 
 .search-box {
   display: flex;
-
+ 
   align-items: center;
-
+ 
   gap: 10px;
-
+ 
   background: #fff;
-
+ 
   border: 1px solid #dbe2ea;
-
+ 
   border-radius: 12px;
-
+ 
   padding: 14px 16px;
-
+ 
   margin-bottom: 24px;
-
+ 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
-
+ 
 .search-box input {
   width: 100%;
-
+ 
   border: none;
-
+ 
   outline: none;
-
+ 
   font-size: 15px;
-
+ 
   background: transparent;
 }
-
+ 
 .search-box .material-symbols-outlined {
   color: #64748b;
 }
-
+ 
 .placeholder-img {
   width: 100%;
   height: 100%;
@@ -163,12 +163,12 @@
   background: #e2e8f0;
   color: #236ed7;
 }
-
+ 
 .placeholder-icon {
   font-size: 2.5rem !important;
 }
-
-/* ALTERATION: Set flex to '1' so it seamlessly expands to occupy the 
+ 
+/* ALTERATION: Set flex to '1' so it seamlessly expands to occupy the
    remaining space of the card without pushing or altering the overall box limits. */
 .blog-content {
   flex: 1;
@@ -178,7 +178,7 @@
   box-sizing: border-box;
   overflow: hidden; /* Safely limits rogue content bounds */
 }
-
+ 
 /* Metadata Chips Row Layout */
 .blog-meta-wrapper {
   display: flex;
@@ -187,7 +187,7 @@
   gap: 0.5rem;
   margin-bottom: 0.85rem;
 }
-
+ 
 .list-meta-chip {
   display: inline-flex;
   align-items: center;
@@ -199,17 +199,17 @@
   font-size: 0.8rem;
   font-weight: 500;
 }
-
+ 
 .author-highlight {
   background-color: #eff6ff;
   color: #1d4ed8;
 }
-
+ 
 .list-icon {
   font-size: 1rem !important;
   vertical-align: middle;
 }
-
+ 
 .blog-heading {
   font-size: 1.35rem;
   color: #2a220f;
@@ -217,14 +217,14 @@
   font-weight: 700;
   line-height: 1.4;
 }
-
+ 
 .blog-description {
   color: #475569;
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0 0 1.5rem 0;
 }
-
+ 
 /* Footer Layout Alignments */
 .blog-footer {
   display: flex;
@@ -232,19 +232,19 @@
   align-items: center;
   margin-top: auto; /* Securely anchors the button row to the bottom line */
 }
-
+ 
 .read-time-wrapper {
   display: flex;
   align-items: center;
   gap: 0.35rem;
   color: #64748b;
 }
-
+ 
 .read-time {
   font-size: 0.82rem;
   font-weight: 500;
 }
-
+ 
 /* Premium Navigation Action Button Layout */
 .read-btn {
   display: inline-flex;
@@ -260,41 +260,41 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
+ 
 .btn-arrow {
   font-size: 1.2rem !important;
   transition: transform 0.2s ease;
 }
-
+ 
 .read-btn:hover {
   background-color: #0376da;
   color: #ffffff;
 }
-
+ 
 .read-btn:hover .btn-arrow {
   transform: translateX(4px);
 }
-
+ 
 /* Empty State Styles */
 .loading-container {
   text-align: center;
   padding: 4rem 0;
   color: #64748b;
 }
-
+ 
 .spinning-loader {
   font-size: 2rem !important;
   animation: spin 1.2s linear infinite;
   margin-bottom: 0.5rem;
   color: #0376da;
 }
-
+ 
 @keyframes spin {
   100% {
     transform: rotate(360deg);
   }
 }
-
+ 
 /* Smart Responsive System Media Triggers */
 @media (max-width: 768px) {
   .blog-card {
@@ -314,3 +314,5 @@
     font-size: 1.2rem;
   }
 }
+ 
+ 

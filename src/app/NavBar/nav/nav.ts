@@ -6,6 +6,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { NavService } from './nav-service';
 import { MatCardModule } from '@angular/material/card';
+import { MatDivider } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-nav',
@@ -17,6 +19,7 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     MatDivider,
     MatChipsModule,
+    MatMenuModule,
     MatButtonModule,
     RouterLinkActive,
     RouterLink,

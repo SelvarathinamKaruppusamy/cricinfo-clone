@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, combineLatest, map, BehaviorSubject } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+ 
 @Component({
   selector: 'app-blog-list',
   standalone: true,
@@ -14,36 +14,45 @@ import { FormsModule } from '@angular/forms';
 })
 export class BlogList implements OnInit {
   private http = inject(HttpClient);
-
+ 
   private apiUrl = 'http://localhost:3001/blogs';
-
+ 
   searchTerm = '';
-
+ 
   private searchSubject = new BehaviorSubject<string>('');
-
+ 
   blogs$!: Observable<any[]>;
-
+ 
   ngOnInit(): void {
     const blogsData$ = this.http.get<any[]>(this.apiUrl).pipe(map((blogs) => [...blogs].reverse()));
+ 
+   this.blogs$ = combineLatest([
+  blogsData$,
+  this.searchSubject
+]).pipe(
+  map(([blogs, search]) => {
+    const term = search.trim().toLowerCase();
 
-    this.blogs$ = combineLatest([blogsData$, this.searchSubject]).pipe(
-      map(([blogs, search]) => {
-        if (!search.trim()) {
-          return blogs;
-        }
+    if (!term) {
+      return blogs;
+    }
 
-        const term = search.toLowerCase();
-
-        return blogs.filter((blog) => {
-          const tagMatch = blog.tags?.some((tag: string) => tag.toLowerCase().includes(term));
-
-          return tagMatch;
-        });
-      }),
+    return blogs.filter(blog =>
+      blog.title?.toLowerCase().includes(term) ||
+      blog.author?.toLowerCase().includes(term) ||
+      blog.category?.toLowerCase().includes(term) ||
+      blog.tags?.some((tag: string) =>
+        tag.toLowerCase().includes(term)
+      )
     );
+  })
+);
   }
-
-  onSearch(): void {
-    this.searchSubject.next(this.searchTerm);
-  }
+ 
+  onSearch(event: Event) {
+  const value = (event.target as HTMLInputElement).value;
+  this.searchSubject.next(value);
 }
+}
+ 
+ 

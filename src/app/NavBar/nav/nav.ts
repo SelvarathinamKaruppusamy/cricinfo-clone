@@ -9,7 +9,19 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-nav',
-  imports: [MatToolbarModule, MatButtonModule, RouterLinkActive, RouterLink, MatIconModule,MatMenuModule],
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatDivider,
+    MatChipsModule,
+    MatButtonModule,
+    RouterLinkActive,
+    RouterLink,
+    MatIconModule,
+  ],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
   standalone: true,

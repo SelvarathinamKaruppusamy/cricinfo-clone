@@ -19,7 +19,6 @@ export class Nav {
     { label: 'Live', route: '/' },
     { label: 'Upcoming', route: '/upcoming' },
     { label: 'Completed', route: '/completed' },
-    {label : 'squads',route : '/squads'},
     { label: 'Points Table', route: '/points-table' },
     { label: 'Blog', route: '/blog' },
   ];

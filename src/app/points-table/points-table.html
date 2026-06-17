@@ -32,11 +32,7 @@
           <td [class.positive]="team.nrr >= 0" [class.negative]="team.nrr < 0">
             {{ team.nrr > 0 ? '+' : '' }}{{ team.nrr }}
           </td>
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 0cbdffbf3a282f657fde83683435dd0dcb8c1dc4
           <!-- <td>
             @if (team.form.length === 5) {
               <div class="form-container">
@@ -52,24 +48,14 @@
           </td> -->
           <td>
   @if (team.form && team.form.length > 0) {
-<<<<<<< HEAD
  
     <div class="form-container">
  
-=======
-
-    <div class="form-container">
-
->>>>>>> 0cbdffbf3a282f657fde83683435dd0dcb8c1dc4
       @for (
         result of team.form.slice(-5);
         track $index
       ) {
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 0cbdffbf3a282f657fde83683435dd0dcb8c1dc4
         <span
           class="form-circle"
           [class.win]="result"
@@ -77,7 +63,6 @@
         >
           {{ result ? 'W' : 'L' }}
         </span>
-<<<<<<< HEAD
  
       }
  
@@ -89,19 +74,6 @@
       --
     </span>
  
-=======
-
-      }
-
-    </div>
-
-  } @else {
-
-    <span class="not-available">
-      --
-    </span>
-
->>>>>>> 0cbdffbf3a282f657fde83683435dd0dcb8c1dc4
   }
 </td>
         </tr>

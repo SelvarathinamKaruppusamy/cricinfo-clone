@@ -7,7 +7,7 @@ import { Livepage } from './LivePages/livepage/livepage';
 import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
-
+import { Stats } from './stats/stats';
 export const routes: Routes = [
   {
     path: '',
@@ -25,6 +25,10 @@ export const routes: Routes = [
   {
     path: 'squads',
     component: Squads,
+  },
+  {
+    path: 'stats/:type',
+    component: Stats,
   },
   {
     path: 'match/:id',
@@ -55,11 +59,11 @@ export const routes: Routes = [
     component: BlogDetails,
   },
   {
-    path : 'points-table',
+    path: 'points-table',
     component: PointsTable,
   },
- {
-  path: 'points-table/:matchNo',
-  component: PointsTable
-},
+  {
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
 ];

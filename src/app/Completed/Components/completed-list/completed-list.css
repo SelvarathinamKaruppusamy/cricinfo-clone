@@ -4,179 +4,179 @@
   gap: 16px;
   padding: 20px;
 }
-
+ 
 .match-card {
   background: #ffffff;
   border: 1px solid #d9e2ec;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-
+ 
   display: flex;
   flex-direction: column;
-
+ 
   transition: all 0.25s ease;
 }
-
+ 
 .match-card:hover {
   transform: translateY(-3px);
-
+ 
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-
+ 
   border-color: #bfd8ea;
 }
-
+ 
 .match-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+ 
   padding: 14px 16px 10px;
 }
-
+ 
 .match-status {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.5px;
-
+ 
   color: #64748b;
 }
-
+ 
 .match-header {
   font-size: 13px;
   font-weight: 500;
-
+ 
   color: #466b92;
 }
-
+ 
 .teams-section {
   padding: 0 16px;
 }
-
+ 
 .team-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+ 
   margin-bottom: 14px;
 }
-
+ 
 .team-info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
+ 
 .team-info img {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
-
+ 
 .team-info span {
   font-size: 15px;
   font-weight: 600;
   color: #0f172a;
 }
-
+ 
 .team-score {
   font-size: 15px;
   font-weight: 700;
   color: #0f172a;
 }
-
+ 
 .header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
-
+ 
 .status {
   font-size: 10px;
   font-weight: 600;
   color: gray;
 }
-
+ 
 .venue {
   margin-top: 10px;
   font-size: 12px;
   color: gray;
 }
-
-
+ 
+ 
 .result {
-  padding: 0 16px;
-
-  font-size: 14px;
+  padding: 0 15px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.4;
-
+ 
   color: #0077b6;
-
-  min-height: 40px;
+ 
+  min-height: 15px;
 }
-
+ 
 .venue {
   display: flex;
   align-items: center;
   gap: 4px;
-
+ 
   padding: 0 16px 14px;
-
+ 
   font-size: 13px;
   color: #64748b;
 }
-
+ 
 .location-icon {
   font-size: 17px;
   color: #64748b;
 }
-
+ 
 .footer {
   display: flex;
-
+ 
   margin-top: auto;
-
+ 
   border-top: 1px solid #e2e8f0;
 }
-
+ 
 .footer-link {
   flex: 1;
-
+ 
   text-align: center;
-
+ 
   padding: 12px;
-
+ 
   font-size: 13px;
   font-weight: 600;
-
+ 
   color: #0077b6;
-
+ 
   transition: all 0.2s ease;
 }
-
+ 
 .footer-link:first-child {
   border-right: 1px solid #e2e8f0;
 }
-
+ 
 .footer-link:hover {
   background: #f0f9ff;
 }
-
+ 
 @media (max-width: 1200px) {
   .completed-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
+ 
 @media (max-width: 900px) {
   .completed-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
+ 
 @media (max-width: 600px) {
   .completed-container {
     grid-template-columns: 1fr;
   }
 }
+ 

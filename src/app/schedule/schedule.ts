@@ -62,7 +62,11 @@ export class Schedule implements OnInit {
     });
     this.route.params.subscribe((res)=>{
       this.selectedMatchId=Number(res['id']);
+      setTimeout(() => {
+      this.scrollToSelectedMatch();
+    });
     })
+    this.cd.detectChanges()
   }
   mapMatch(match: any): MatchCard {
     return {

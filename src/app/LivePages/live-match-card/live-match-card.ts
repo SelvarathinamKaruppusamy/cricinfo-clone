@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, effect, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, inject, OnInit, signal } from '@angular/core';
 import { LiveService } from '../Services/live-service';
 import { LiveModel, Player, Team } from '../Models/models';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { AdCoverupPage } from '../../ad-coverup-page/ad-coverup-page';
 import { MatchData, Teams } from '../../UpCommingPage/match/match.models/match.models-module';
 import { MatDivider } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
+import { T } from '@angular/cdk/keycodes';
 @Component({
   selector: 'app-live-match-card',
   imports: [MatIconModule, CommonModule, MatCardModule, RouterOutlet, AdCoverupPage,MatDivider,
@@ -45,6 +46,7 @@ export class LiveMatchCard implements OnInit {
   matchs: Match[] = [];
   filteredMatches: Match[] = [];
   trackflag=true
+  trackflag1=true
   constructor() {
     effect(() => {
       this.service?.ball();
@@ -52,7 +54,6 @@ export class LiveMatchCard implements OnInit {
       this.team2 = this.service.live.teams[1];
       this.requiredRun();
       this.changedetector.detectChanges();
-      console.log(this.service.live);
     });
   }
   ngOnInit(): void {
@@ -62,7 +63,6 @@ export class LiveMatchCard implements OnInit {
       this.team1 = this.live.teams[0];
       this.team2 = this.live.teams[1];
       this.changedetector.detectChanges();
-      //console.log(this.upcommingdata)
     });
     this.upservice?.getMatch().subscribe((res) => {
       this.upcommingdata = res[0];
@@ -88,8 +88,9 @@ export class LiveMatchCard implements OnInit {
       this.teams = uniqueTeams;
       //Filter Cards Details Ends   
       this.changedetector.detectChanges();
-      console.log(this.completeddata);
+
     });
+    this.changedetector.detectChanges()
   }
   //Filter Card Fun
   matchFilter(teamId: number) {
@@ -100,9 +101,11 @@ export class LiveMatchCard implements OnInit {
   }
   changebutton(){
     this.trackflag=true
+    this.trackflag1=true
     this.selectedTeamId=0
   }
   changebutton1(){
+    this.trackflag1=true
     this.trackflag=false
   }
   scrollLeft() {
@@ -127,24 +130,33 @@ export class LiveMatchCard implements OnInit {
       const ballsBowled =
         Math.floor(this.live.teams[this.service?.tossloss()].overs) * this.six +
         Math.round((this.live.teams[this.service?.tossloss()].overs % 1) * 10);
-
       this.remainingBalls = this.totalBalls - ballsBowled;
     }
   }
   movetolivepage() {
     // console.log(this.team1)
+    this.trackflag1=false
     this.route.navigateByUrl('/live/livepage');
   }
   movetoupcommingpage() {
+    this.trackflag1=false
     this.route.navigateByUrl(`/live/match/${this.upcommingdata.id}`);
   }
   completedpage(matchNo: number): void {
+    this.trackflag1=false
     this.route.navigate(['/live/completed', matchNo]);
   }
-  table(id: number) {
-    this.route.navigate(['/points-table', id]);
+  table(event:Event,id: number) {
+    event.stopPropagation();
+    console.log('poinsable');
+     this.trackflag1=false
+    this.route.navigate(['/live/points-table', id]);
   }
-  schedulepage(id:number){
-    this.route.navigate(['/schedule',id])
+  schedulepage(event:Event,id:number){
+    event.stopPropagation();
+    console.log('schedule');
+    this.trackflag1=false
+    this.route.navigate(['/live/schedule',id])
+    this.changedetector.detectChanges()
   }
 }

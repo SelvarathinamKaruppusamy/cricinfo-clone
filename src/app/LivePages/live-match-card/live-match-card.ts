@@ -15,8 +15,16 @@ import { MatDivider } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 @Component({
   selector: 'app-live-match-card',
-  imports: [MatIconModule, CommonModule, MatCardModule, RouterOutlet, AdCoverupPage,MatDivider,
-    MatChipsModule,RouterLink],
+  imports: [
+    MatIconModule,
+    CommonModule,
+    MatCardModule,
+    RouterOutlet,
+    AdCoverupPage,
+    MatDivider,
+    MatChipsModule,
+    RouterLink,
+  ],
   templateUrl: './live-match-card.html',
   styleUrl: './live-match-card.css',
 })
@@ -44,7 +52,61 @@ export class LiveMatchCard implements OnInit {
   selectedTeamId = 0;
   matchs: Match[] = [];
   filteredMatches: Match[] = [];
-  trackflag=true
+  trackflag = true;
+
+  teamsLogo = [
+    {
+      teamId: 1,
+      shortName: 'LSG',
+      logo: 'lsg.png',
+    },
+    {
+      teamId: 2,
+      shortName: 'RCB',
+      logo: 'rcb.png',
+    },
+    {
+      teamId: 3,
+      shortName: 'GT',
+      logo: 'gt.png',
+    },
+    {
+      teamId: 4,
+      shortName: 'MI',
+      logo: 'mi.png',
+    },
+    {
+      teamId: 5,
+      shortName: 'RR',
+      logo: 'rr.png',
+    },
+    {
+      teamId: 6,
+      shortName: 'CSK',
+      logo: 'csk.png',
+    },
+    {
+      teamId: 7,
+      shortName: 'PBKS',
+      logo: 'pbks.png',
+    },
+    {
+      teamId: 8,
+      shortName: 'KKR',
+      logo: 'kkr.png',
+    },
+    {
+      teamId: 9,
+      shortName: 'DC',
+      logo: 'dc.png',
+    },
+    {
+      teamId: 10,
+      shortName: 'SRH',
+      logo: 'srh.png',
+    },
+  ];
+
   constructor() {
     effect(() => {
       this.service?.ball();
@@ -86,7 +148,7 @@ export class LiveMatchCard implements OnInit {
         });
       });
       this.teams = uniqueTeams;
-      //Filter Cards Details Ends   
+      //Filter Cards Details Ends
       this.changedetector.detectChanges();
       console.log(this.completeddata);
     });
@@ -98,12 +160,12 @@ export class LiveMatchCard implements OnInit {
       match.teams.some((team) => team.teamId === teamId),
     );
   }
-  changebutton(){
-    this.trackflag=true
-    this.selectedTeamId=0
+  changebutton() {
+    this.trackflag = true;
+    this.selectedTeamId = 0;
   }
-  changebutton1(){
-    this.trackflag=false
+  changebutton1() {
+    this.trackflag = false;
   }
   scrollLeft() {
     this.cardContainer.nativeElement.scrollBy({
@@ -144,7 +206,7 @@ export class LiveMatchCard implements OnInit {
   table(id: number) {
     this.route.navigate(['/points-table', id]);
   }
-  schedulepage(id:number){
-    this.route.navigate(['/schedule',id])
+  schedulepage(id: number) {
+    this.route.navigate(['/schedule', id]);
   }
 }

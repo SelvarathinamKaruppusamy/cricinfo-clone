@@ -1,20 +1,28 @@
-
-<div class="flex items-center gap-4 flex-wrap mt-17">
-  <button class="ml-5 border px-3 py-1 text-xs rounded bg-white" (click)="changebutton()">
-    Matches (7)
+<div class="flex items-center gap-3 flex-wrap mt-17">
+  <button class="matches-btn" (click)="changebutton()">
+    <div class="chip-content">
+      <img src="ipl-logo.png" alt="IPL" class="filter-logo" />
+      <span>Matches (7)</span>
+    </div>
   </button>
+
   <mat-chip-listbox class="team-filter" [multiple]="false">
-    @for (team of teams; track team.teamId) {
+    @for (teamLogo of teamsLogo; track teamLogo.teamId) {
       <mat-chip-option
-        [selected]="selectedTeamId === team.teamId"
-        (click)="matchFilter(team.teamId)"
+        [selected]="selectedTeamId === teamLogo.teamId"
+        (click)="matchFilter(teamLogo.teamId)"
         (click)="changebutton1()"
       >
-        {{ team.shortName }}
+        <div class="chip-content">
+          <img [src]="teamLogo.logo" [alt]="teamLogo.shortName" class="filter-logo" />
+
+          <span>{{ teamLogo.shortName }}</span>
+        </div>
       </mat-chip-option>
     }
   </mat-chip-listbox>
 </div>
+
 <div class="relative m-1">
   <button
     class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-100"
@@ -91,7 +99,7 @@
         </div>
         <!-- Footer -->
         <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-                      <button (click)="schedulepage(upcommingdata.matchNo)">Schedule</button>
+          <button (click)="schedulepage(upcommingdata.matchNo)">Schedule</button>
 
           <div class="pl-5" (click)="table(live.matchNo)">Table</div>
         </div>
@@ -189,7 +197,7 @@
 
         <!-- Footer -->
         <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-                      <button (click)="schedulepage(live.matchNo)">Schedule</button>
+          <button (click)="schedulepage(live.matchNo)">Schedule</button>
 
           <div class="pl-5" (click)="table(live.matchNo)">Table</div>
         </div>
@@ -333,7 +341,7 @@
 
           <!-- Footer -->
           <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-                        <button (click)="schedulepage(match.matchNo)">Schedule</button>
+            <button (click)="schedulepage(match.matchNo)">Schedule</button>
 
             <div class="pl-5" (click)="table(match.matchNo)">Table</div>
           </div>

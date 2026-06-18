@@ -31,7 +31,8 @@ export const routes: Routes = [
   path: 'completed/:matchNo',
   loadComponent: () =>
     import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
-  },]},
+  },
+]},
   {
     path: 'stats/:type',
     component: Stats,

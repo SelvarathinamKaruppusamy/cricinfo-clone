@@ -37,7 +37,7 @@ mat-chip-option {
   border-radius: 16px !important;
   padding: 16px;
   background: #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(155, 217, 231, 0.349) !important;
   position: relative;
 }
 
@@ -123,4 +123,12 @@ mat-divider {
 
 .venue {
   color: #777;
+}
+.filter-logo {
+ 
+  width: 20px;
+ 
+  height: 20px;
+ 
+  object-fit: contain;
 }

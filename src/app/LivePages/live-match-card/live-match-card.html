@@ -1,17 +1,29 @@
 
+//new
 <div class="flex items-center gap-4 flex-wrap mt-17">
+
   <button class="ml-5 border px-3 py-1 text-xs rounded bg-white" (click)="changebutton()">
-    Matches (7)
+    <div class="flex items-center gap-2">
+<img src="ipl-logo.png" alt="IPL" class="filter-logo">
+    <span>Matches (7)</span>
+    </div>
   </button>
-  <mat-chip-listbox class="team-filter" [multiple]="false">
+  <mat-chip-listbox class="team-filter" [multiple]="false"  hideSingleSelectionIndicator>
     @for (team of teams; track team.teamId) {
-      <mat-chip-option
-        [selected]="selectedTeamId === team.teamId"
-        (click)="matchFilter(team.teamId)"
-        (click)="changebutton1()"
-      >
-        {{ team.shortName }}
-      </mat-chip-option>
+  <mat-chip-option
+  [selected]="selectedTeamId === team.teamId"
+  (click)="matchFilter(team.teamId)"
+  (click)="changebutton1()"
+>
+  <div class="flex items-center gap-2">
+    <img
+      [src]="team.logo"
+      [alt]="team.shortName"
+      class="w-5 h-5 object-contain"
+    />
+    <span>{{ team.shortName }}</span>
+  </div>
+</mat-chip-option>
     }
   </mat-chip-listbox>
 </div>

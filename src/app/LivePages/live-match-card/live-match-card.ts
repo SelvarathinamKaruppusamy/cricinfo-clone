@@ -16,8 +16,16 @@ import { MatChipsModule } from '@angular/material/chips';
 import { T } from '@angular/cdk/keycodes';
 @Component({
   selector: 'app-live-match-card',
-  imports: [MatIconModule, CommonModule, MatCardModule, RouterOutlet, AdCoverupPage,MatDivider,
-    MatChipsModule,RouterLink],
+  imports: [
+    MatIconModule,
+    CommonModule,
+    MatCardModule,
+    RouterOutlet,
+    AdCoverupPage,
+    MatDivider,
+    MatChipsModule,
+    RouterLink,
+  ],
   templateUrl: './live-match-card.html',
   styleUrl: './live-match-card.css',
 })
@@ -45,8 +53,8 @@ export class LiveMatchCard implements OnInit {
   selectedTeamId = 0;
   matchs: Match[] = [];
   filteredMatches: Match[] = [];
-  trackflag=true
-  trackflag1=true
+  trackflag = true;
+  trackflag1 = true;
   constructor() {
     effect(() => {
       this.service?.ball();
@@ -86,11 +94,10 @@ export class LiveMatchCard implements OnInit {
         });
       });
       this.teams = uniqueTeams;
-      //Filter Cards Details Ends   
+      //Filter Cards Details Ends
       this.changedetector.detectChanges();
-
     });
-    this.changedetector.detectChanges()
+    this.changedetector.detectChanges();
   }
   //Filter Card Fun
   matchFilter(teamId: number) {
@@ -99,14 +106,14 @@ export class LiveMatchCard implements OnInit {
       match.teams.some((team) => team.teamId === teamId),
     );
   }
-  changebutton(){
-    this.trackflag=true
-    this.trackflag1=true
-    this.selectedTeamId=0
+  changebutton() {
+    this.trackflag = true;
+    this.trackflag1 = true;
+    this.selectedTeamId = 0;
   }
-  changebutton1(){
-    this.trackflag1=true
-    this.trackflag=false
+  changebutton1() {
+    this.trackflag1 = true;
+    this.trackflag = false;
   }
   scrollLeft() {
     this.cardContainer.nativeElement.scrollBy({
@@ -135,28 +142,26 @@ export class LiveMatchCard implements OnInit {
   }
   movetolivepage() {
     // console.log(this.team1)
-    this.trackflag1=false
+    this.trackflag1 = false;
     this.route.navigateByUrl('/live/livepage');
   }
   movetoupcommingpage() {
-    this.trackflag1=false
+    this.trackflag1 = false;
     this.route.navigateByUrl(`/live/match/${this.upcommingdata.id}`);
   }
   completedpage(matchNo: number): void {
-    this.trackflag1=false
+    this.trackflag1 = false;
     this.route.navigate(['/live/completed', matchNo]);
   }
-  table(event:Event,id: number) {
+  table(event: Event, id: number) {
     event.stopPropagation();
-    console.log('poinsable');
-     this.trackflag1=false
+    this.trackflag1 = false;
     this.route.navigate(['/live/points-table', id]);
   }
-  schedulepage(event:Event,id:number){
+  schedulepage(event: Event, id: number) {
     event.stopPropagation();
-    console.log('schedule');
-    this.trackflag1=false
-    this.route.navigate(['/live/schedule',id])
-    this.changedetector.detectChanges()
+    this.trackflag1 = false;
+    this.route.navigate(['/live/schedule', id]);
+    this.changedetector.detectChanges();
   }
 }

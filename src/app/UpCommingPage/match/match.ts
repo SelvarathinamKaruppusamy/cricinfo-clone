@@ -55,4 +55,5 @@ export class Match implements OnInit {
   const [year, day, month] = date.split('-');
   return `${day}-${month}-${year}`;
 }
+
 }

@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="navbar">
+<mat-toolbar color="primary" class="!bg-sky-900 navbar">
   <mat-icon>sports_cricket</mat-icon>
 
   <span class="logo"> CricInfo</span>
@@ -8,7 +8,7 @@
   @for (item of items; track item.route) {
     <a
       mat-button
-      class="!text-white"
+      class="!text-white !rounded-none"
       (click)="getMethod(item.route)"
       [class.active-link]="activateRoute === item.route">
       {{ item.label }}

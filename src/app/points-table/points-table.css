@@ -1,5 +1,5 @@
 .table-container {
-  width: 95%;
+  width: 50%;
   margin: 70px auto;
 }
 
@@ -15,7 +15,7 @@ table {
 }
 
 thead {
-  background: #1e293b;
+  background:rgb(17, 15, 15);
   color: white;
 }
 
@@ -26,7 +26,7 @@ th {
 }
 
 td {
-  padding: 14px;
+  padding: 5px;
   text-align: center;
 }
 

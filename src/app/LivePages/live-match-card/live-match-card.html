@@ -1,17 +1,29 @@
 
+//new
 <div class="flex items-center gap-4 flex-wrap mt-17">
+
   <button class="ml-5 border px-3 py-1 text-xs rounded bg-white" (click)="changebutton()">
-    Matches (7)
+    <div class="flex items-center gap-2">
+<img src="ipl-logo.png" alt="IPL" class="filter-logo">
+    <span>Matches (7)</span>
+    </div>
   </button>
-  <mat-chip-listbox class="team-filter" [multiple]="false">
+  <mat-chip-listbox class="team-filter" [multiple]="false"  hideSingleSelectionIndicator>
     @for (team of teams; track team.teamId) {
-      <mat-chip-option
-        [selected]="selectedTeamId === team.teamId"
-        (click)="matchFilter(team.teamId)"
-        (click)="changebutton1()"
-      >
-        {{ team.shortName }}
-      </mat-chip-option>
+  <mat-chip-option
+  [selected]="selectedTeamId === team.teamId"
+  (click)="matchFilter(team.teamId)"
+  (click)="changebutton1()"
+>
+  <div class="flex items-center gap-2">
+    <img
+      [src]="team.logo"
+      [alt]="team.shortName"
+      class="w-5 h-5 object-contain"
+    />
+    <span>{{ team.shortName }}</span>
+  </div>
+</mat-chip-option>
     }
   </mat-chip-listbox>
 </div>
@@ -91,9 +103,9 @@
         </div>
         <!-- Footer -->
         <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-                      <button (click)="schedulepage(upcommingdata.matchNo)">Schedule</button>
+                      <button (click)="schedulepage($event,upcommingdata.matchNo)">Schedule</button>
 
-          <div class="pl-5" (click)="table(live.matchNo)">Table</div>
+          <div class="pl-5" (click)="table($event,upcommingdata.matchNo)">Table</div>
         </div>
       </mat-card>
       <!-- Live Card -->
@@ -189,9 +201,9 @@
 
         <!-- Footer -->
         <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-                      <button (click)="schedulepage(live.matchNo)">Schedule</button>
+                      <button (click)="schedulepage($event,live.matchNo)">Schedule</button>
 
-          <div class="pl-5" (click)="table(live.matchNo)">Table</div>
+          <div class="pl-5" (click)="table($event,live.matchNo)">Table</div>
         </div>
       </mat-card>
       <!-- Compled Card -->
@@ -261,8 +273,8 @@
 
           <!-- Footer -->
           <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-            <button (click)="schedulepage(completed.matchNo)">Schedule</button>
-            <div class="pl-5" (click)="table(completed.matchNo)">Table</div>
+            <button (click)="schedulepage($event,completed.matchNo)">Schedule</button>
+            <div class="pl-5" (click)="table($event,completed.matchNo)">Table</div>
           </div>
         </mat-card>
       }
@@ -333,9 +345,9 @@
 
           <!-- Footer -->
           <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-                        <button (click)="schedulepage(match.matchNo)">Schedule</button>
+                        <button (click)="schedulepage($event,match.matchNo)">Schedule</button>
 
-            <div class="pl-5" (click)="table(match.matchNo)">Table</div>
+            <div class="pl-5" (click)="table($event,match.matchNo)">Table</div>
           </div>
         </mat-card>
       }
@@ -348,5 +360,12 @@
     <mat-icon>chevron_right</mat-icon>
   </button>
 </div>
+
+@if(trackflag1){
+  <app-ad-coverup-page></app-ad-coverup-page>
+}
+@else{
 <router-outlet></router-outlet>
-<app-ad-coverup-page></app-ad-coverup-page>
+}
+  
+

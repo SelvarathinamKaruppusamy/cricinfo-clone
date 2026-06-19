@@ -2,7 +2,6 @@
   position:fixed;
   top: 0;
   z-index: 9999;
-  background-color:blue;
   color: white;
 }
 .logo {
@@ -14,7 +13,7 @@
 }
 .active-link {
   /* border-bottom: 3px solid white; */
-  background-color: rgb(10, 175, 167);
+  border-bottom: 2px solid white;
   font-weight: 600;
 }
 .filter-card {

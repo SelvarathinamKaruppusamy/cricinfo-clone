@@ -31,6 +31,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+  
 }
 
 .header-font {
@@ -100,7 +101,8 @@
 
 .venue {
   font-size: 13px;
-  color: gray;
+font-weight: 600;
+    color: #0077b6;
 }
 
 /* .match-card .header:last-child {

@@ -1,5 +1,4 @@
 <div class="table-container">
-  <h2>IPL Points Table</h2>
   <table>
     <thead>
       <tr>
@@ -32,20 +31,6 @@
           <td [class.positive]="team.nrr >= 0" [class.negative]="team.nrr < 0">
             {{ team.nrr > 0 ? '+' : '' }}{{ team.nrr }}
           </td>
- 
-          <!-- <td>
-            @if (team.form.length === 5) {
-              <div class="form-container">
-                @for (result of team.form; track $index) {
-                  <span class="form-circle" [class.win]="result" [class.loss]="!result">
-                    {{ result ? 'W' : 'L' }}
-                  </span>
-                }
-              </div>
-            } @else {
-              <span class="not-available">--</span>
-            }
-          </td> -->
           <td>
   @if (team.form && team.form.length > 0) {
  

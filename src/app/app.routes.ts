@@ -31,7 +31,17 @@ export const routes: Routes = [
   path: 'completed/:matchNo',
   loadComponent: () =>
     import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
-  },]},
+  },
+   {
+    path:'schedule/:id',
+    component:Schedule
+  },
+  {
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
+]
+},
   {
     path: 'stats/:type',
     component: Stats,

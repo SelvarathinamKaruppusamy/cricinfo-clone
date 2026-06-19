@@ -23,7 +23,7 @@
                </div> 
               </div>
                <div class="place"> 
-                <span>{{ formatDate(card.date)}}</span> 
+                <span>{{ formatDate(card.date)|date:'dd MMM yyyy'}}</span> 
                 <div class="team">
                    <h4>{{ card.time }}</h4>
                    </div> 
@@ -31,7 +31,7 @@
                 </div> 
                 <div class="footer">
                    <div class="header"> 
-                    <span class="venue">Table</span>
+                    <span class="venue" (click)="schedulepage($event,card.matchNo)">Schedule</span>
                      <span class="venue"> {{ card.stadium }} </span> 
                     </div> 
                   </div> 

@@ -67,9 +67,12 @@ export class UpComp {
   open(id: number) {
     this.router.navigate(['/match', id]);
   }
-
-  formatDate(date: string): string {
-  const [year, day, month] = date.split('-');
-  return `${day}-${month}-${year}`;
+formatDate(date: string): Date {
+  const [year, month, day] = date.split('-').map(Number);
+  return new Date(year, month - 1, day);
 }
+schedulepage(event: Event, id: number) {
+    event.stopPropagation();
+    this.router.navigate(['/schedule', id]);
+  }
 }

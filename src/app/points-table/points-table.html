@@ -15,55 +15,77 @@
     </thead>
     <tbody>
       @for (team of pointsTable; track team.teamId; let i = $index) {
-        <tr>
-          <td>{{ i + 1 }}</td>
- 
-          <td class="team-column">
-            <img [src]="team.logo" [alt]="team.name" />
- 
-            <span>{{ team.name }}</span>
-          </td>
-          <td>9</td>
-          <td>{{ team.played }}</td>
-          <td>{{ team.wins }}</td>
-          <td>{{ team.losses }}</td>
-          <td>{{ team.points }}</td>
- 
-          <td [class.positive]="team.nrr >= 0" [class.negative]="team.nrr < 0">
-            {{ team.nrr > 0 ? '+' : '' }}{{ team.nrr }}
-          </td>
-          <td>
-  @if (team.form && team.form.length > 0) {
- 
-    <div class="form-container">
- 
-      @for (
-        result of team.form.slice(-5);
-        track $index
-      ) {
- 
-        <span
-          class="form-circle"
-          [class.win]="result"
-          [class.loss]="!result"
-        >
-          {{ result ? 'W' : 'L' }}
-        </span>
- 
-      }
- 
-    </div>
- 
-  } @else {
- 
-    <span class="not-available">
-      --
-    </span>
- 
-  }
-</td>
-        </tr>
+      <tr>
+        <td>{{ i + 1 }}</td>
+
+        <td class="team-column">
+          <img [src]="team.logo" [alt]="team.name" />
+
+          <span>{{ team.name }}</span>
+        </td>
+        <td>9</td>
+        <td>{{ team.played }}</td>
+        <td>{{ team.wins }}</td>
+        <td>{{ team.losses }}</td>
+        <td>{{ team.points }}</td>
+
+        <td [class.positive]="team.nrr >= 0" [class.negative]="team.nrr < 0">
+          {{ team.nrr > 0 ? '+' : '' }}{{ team.nrr }}
+        </td>
+        <td>
+          @if (team.form && team.form.length > 0) {
+
+          <div class="form-container">
+
+            @for (
+            result of team.form.slice(-5);
+            track $index
+            ) {
+
+            <span class="form-circle" [class.win]="result" [class.loss]="!result">
+              {{ result ? 'W' : 'L' }}
+            </span>
+
+            }
+
+          </div>
+
+          } @else {
+
+          <span class="not-available">
+            --
+          </span>
+
+          }
+        </td>
+      </tr>
       }
     </tbody>
+
   </table>
+<div class="legend-box">
+  <h5>Last 5 matches</h5>
+
+  <div class="legend-grid">
+
+    <div class="legend-item">
+      <span class="legend-circle legend-win">W</span>
+      <span>Win</span>
+    </div>
+
+    <div class="legend-text"><strong>M </strong> → Match</div>
+
+    <div class="legend-text"><strong>Pts </strong> → Points</div>
+
+    <div class="legend-item">
+      <span class="legend-circle legend-loss">L</span>
+      <span>Loss</span>
+    </div>
+
+    <div class="legend-text"><strong>P</strong> → Played</div>
+
+    <div class="legend-text"><strong>NRR</strong> → Net Run Rate</div>
+
+  </div>
+</div>
 </div>

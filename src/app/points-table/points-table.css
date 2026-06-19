@@ -150,4 +150,64 @@ tbody tr:hover {
   font-size: 15px;
   color: #111;
 }
- 
+ /* ==========================
+   Mobile Responsive
+========================== */
+@media (max-width: 768px) {
+
+  .table-container {
+    width: 100%;
+    margin: 20px 0;
+    overflow-x: auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  table {
+    min-width: 750px;
+  }
+
+  th,
+  td {
+    padding: 10px 8px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .team-column {
+    gap: 8px;
+  }
+
+  .team-column img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .form-circle {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .legend-box {
+    min-width: 750px;
+    margin-top: 12px;
+  }
+
+  .legend-grid {
+    grid-template-columns: repeat(3, auto);
+    column-gap: 20px;
+    row-gap: 12px;
+  }
+
+  .legend-text,
+  .legend-item span {
+    font-size: 13px;
+  }
+
+  .legend-circle {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+}

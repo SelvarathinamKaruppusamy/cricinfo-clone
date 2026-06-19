@@ -3,8 +3,6 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
-  /* flex-wrap:wrap-reverse */
-
 }
 
 .match-card {
@@ -101,17 +99,19 @@
 
 .venue {
   font-size: 13px;
-font-weight: 600;
+   font-weight: 600;
     color: #0077b6;
+     cursor: pointer;
+    border-bottom:1px solid #0077b6;
+    
 }
-
-/* .match-card .header:last-child {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid white
-} */
  .footer {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid #e2e8f0;
+}
+.venuee {
+  font-size: 13px;
+font-weight: 600;
+    color:grey;
 }

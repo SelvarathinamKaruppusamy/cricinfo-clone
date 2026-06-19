@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { UpcService } from './upc-service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 interface Team {
   teamId: number;
@@ -34,7 +35,7 @@ export interface matchCard {
 
 @Component({
   selector: 'app-up-comp',
-  imports: [CommonModule,RouterOutlet],
+  imports: [CommonModule,RouterOutlet,MatButtonModule],
   templateUrl: './up-comp.html',
   styleUrl: './up-comp.css',
   standalone: true,

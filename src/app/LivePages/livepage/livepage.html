@@ -4,9 +4,14 @@
 @if (live) {
   <mat-card class="!bg-sky-800 text-white !rounded-t-lg !rounded-b-none shadow-xl">
     <!-- Tournament Header -->
-    <div class="flex justify-between items-center px-6 py-4 border-b border-white-700">
+    <div
+  class="flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-center px-3 sm:px-6  border-b border-white-700"
+>
       <div class="flex items-center gap-3">
-        <img src="/ipl-logo.png" width="100" height="100" class="border-white-700">
+        <img
+  src="/ipl-logo.png"
+  class="w-16 sm:w-20 md:w-24 lg:w-28 h-auto"
+/>
         <div>
           <h2 class="font-semibold text-lg">Indian Premier League 2026</h2>
           <p class="text-slate-400 text-sm">Match {{ live.matchNo }} • T20</p>
@@ -19,30 +24,38 @@
     </div>
 
     <!-- Teams -->
-    <div class="grid grid-cols-3 items-center px-6 py-8">
-      <!-- Team 1 -->
-      <div class="flex items-center gap-4">
-        <img [src]="live.teams[0].logo" class="w-20 h-20 object-contain" />
-        <div>
-          <h3 class="text-xl font-bold">
-            {{ live.teams[0].shortName }}
-          </h3>
+    <div
+  class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center px-3 sm:px-6 py-6 sm:py-8"
+>
+  <!-- Team 1 -->
+  <div class="flex items-center justify-center md:justify-start gap-4">
+    <img
+      [src]="live.teams[0].logo"
+      class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain"
+    />
 
-          @if ((live.teams[0].scores ?? 0) > 0) {
-            <p class="text-2xl font-bold">
-              <span class="text-green-400 font-bold">{{ live.teams[0].scores }}</span
-              >/<span class="text-red-400 font-bold">{{ live.teams[0].wickets }}</span>
-            </p>
+    <div class="text-center md:text-left">
+      <h3 class="text-base sm:text-lg md:text-xl font-bold">
+        {{ live.teams[0].shortName }}
+      </h3>
 
-            <p class="text-slate-400 text-sm">({{ live.teams[0].overs }} Overs)</p>
-          } @else {
-            <p class="text-sm font-bold text-green-400">Yet to bat</p>
-          }
-        </div>
-      </div>
+      @if ((live.teams[0].scores ?? 0) > 0) {
+        <p class="text-lg sm:text-xl md:text-2xl font-bold">
+          <span class="text-green-400">{{ live.teams[0].scores }}</span> /
+          <span class="text-red-400">{{ live.teams[0].wickets }}</span>
+        </p>
+
+        <p class="text-slate-400 text-sm">
+          ({{ live.teams[0].overs }} Overs)
+        </p>
+      } @else {
+        <p class="text-sm font-bold text-green-400">Yet to bat</p>
+      }
+    </div>
+  </div>
 
       <!-- Center -->
-      <div class="text-center space-y-4">
+      <div class="text-center space-y-2 md:space-y-4">
         <span
           class="inline-flex items-center gap-2 bg-red-600/20 border border-red-500/30 px-4 py-1.5 rounded-full text-sm font-bold tracking-wider text-red-400"
         >
@@ -74,30 +87,37 @@
       </div>
 
       <!-- Team 2 -->
-      <div class="flex justify-end items-center gap-4">
-        <div class="text-right">
-          <h3 class="text-xl font-bold">
-            {{ live.teams[1].shortName }}
-          </h3>
+       <div class="flex items-center justify-center md:justify-end gap-4">
+    <div class="text-center md:text-right">
+      <h3 class="text-base sm:text-lg md:text-xl font-bold">
+        {{ live.teams[1].shortName }}
+      </h3>
 
-          @if ((live.teams[1].scores ?? 0) > 0) {
-            <p class="text-2xl font-bold">
-              <span class="text-green-400 font-bold">{{ live.teams[1].scores }}</span
-              >/<span class="text-red-400 font-bold">{{ live.teams[1].wickets }}</span>
-            </p>
+      @if ((live.teams[1].scores ?? 0) > 0) {
+        <p class="text-lg sm:text-xl md:text-2xl font-bold">
+          <span class="text-green-400">{{ live.teams[1].scores }}</span> /
+          <span class="text-red-400">{{ live.teams[1].wickets }}</span>
+        </p>
 
-            <p class="text-slate-400 text-sm">({{ live.teams[1].overs }} Overs)</p>
-          } @else {
-            <p class="text-sm font-bold text-green-400">Yet to bat</p>
-          }
-        </div>
+        <p class="text-slate-400 text-sm">
+          ({{ live.teams[1].overs }} Overs)
+        </p>
+      } @else {
+        <p class="text-sm font-bold text-green-400">Yet to bat</p>
+      }
+    </div>
 
-        <img [src]="live.teams[1].logo" class="w-20 h-20 object-contain" />
-      </div>
+    <img
+      [src]="live.teams[1].logo"
+      class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain"
+    />
+  </div>
     </div>
 
     <!-- Last Over -->
-    <div class="flex p-5 justify-between">
+    <div
+  class="flex flex-col lg:flex-row gap-4 lg:gap-0 p-3 sm:p-5 justify-between"
+>
       <div class="text-lg text-white py-4">
         <p>
           {{ currentBatter1()?.name }}
@@ -127,7 +147,7 @@
       </div>
 
       <div>
-        <div class="flex justify-end gap-2 p-3">
+        <div class="flex flex-wrap justify-center lg:justify-end gap-2 p-3">
           @for (b of currentBowlerBalls; track $index) {
             <div
               class="w-8 h-8 rounded-full border flex items-center justify-center"
@@ -157,7 +177,9 @@
     </div>
 
     <!-- Match Info -->
-    <div class="grid grid-cols-3 gap-4 px-6 py-4 bg-sky-900 border-t border-white-700">
+   <div
+  class="grid grid-cols-1 md:grid-cols-3 gap-4 px-3 sm:px-6 py-4 bg-sky-900 border-t border-white-700 text-sm"
+>
       <div class="flex items-center gap-2">
         <mat-icon>location_on</mat-icon>
         <span> {{ live.venue }}, {{ live.city }} </span>
@@ -179,7 +201,7 @@
     </div>
   </mat-card>
 
-  <mat-card class="mt-4 rounded-2xl">
+  <mat-card class="mt-4 rounded-2xl overflow-hidden">
     <mat-tab-group>
       <mat-tab label="Scorecard">
         <app-scorecard></app-scorecard>

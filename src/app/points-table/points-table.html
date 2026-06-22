@@ -4,12 +4,13 @@
       <tr>
         <th>Pos</th>
         <th>Team</th>
+        <th>M</th>
         <th>P</th>
         <th>W</th>
         <th>L</th>
         <th>Pts</th>
         <th>NRR</th>
-        <th>Recent Results</th>
+        <th>Last 5</th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +23,7 @@
  
             <span>{{ team.name }}</span>
           </td>
- 
+          <td>9</td>
           <td>{{ team.played }}</td>
           <td>{{ team.wins }}</td>
           <td>{{ team.losses }}</td>
@@ -32,37 +33,45 @@
             {{ team.nrr > 0 ? '+' : '' }}{{ team.nrr }}
           </td>
           <td>
-  @if (team.form && team.form.length > 0) {
- 
-    <div class="form-container">
- 
-      @for (
-        result of team.form.slice(-5);
-        track $index
-      ) {
- 
-        <span
-          class="form-circle"
-          [class.win]="result"
-          [class.loss]="!result"
-        >
-          {{ result ? 'W' : 'L' }}
-        </span>
- 
-      }
- 
-    </div>
- 
-  } @else {
- 
-    <span class="not-available">
-      --
-    </span>
- 
-  }
-</td>
+            @if (team.form && team.form.length > 0) {
+              <div class="form-container">
+                @for (result of team.form.slice(-5); track $index) {
+                  <span class="form-circle" [class.win]="result" [class.loss]="!result">
+                    {{ result ? 'W' : 'L' }}
+                  </span>
+                }
+              </div>
+            } @else {
+              <span class="not-available"> -- </span>
+            }
+          </td>
         </tr>
       }
     </tbody>
   </table>
+  <div class="legend-box">
+    <h5>Key Terms</h5>
+ 
+    <div class="legend-grid">
+      <div class="legend-item">
+        <span class="legend-circle legend-win">W</span>
+        <span>Win</span>
+      </div>
+ 
+      <div class="legend-text"><strong>M </strong> → Match</div>
+ 
+      <div class="legend-text"><strong>Pts </strong> → Points</div>
+ 
+      <div class="legend-item">
+        <span class="legend-circle legend-loss">L</span>
+        <span>Loss</span>
+      </div>
+ 
+      <div class="legend-text"><strong>P</strong> → Played</div>
+ 
+      <div class="legend-text"><strong>NRR</strong> → Net Run Rate</div>
+    </div>
+  </div>
 </div>
+ 
+ 

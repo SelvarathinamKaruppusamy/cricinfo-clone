@@ -10,7 +10,8 @@ import { Stats } from './stats/stats';
 import { Schedule } from './schedule/schedule';
 import { AdminLogin } from './admin-login/admin-login';
 import { authGuardAdminGuard } from './admin-login/auth-guard-admin-guard';
-import { Signup } from './Admin/Sign up/sign-up-page/sign-up-page';
+import { Signup } from './Admin/sign-up-page/sign-up-page';
+// import { Signup } from './Admin/Sign up/sign-up-page/sign-up-page';
 
 export const routes: Routes = [
   {
@@ -106,9 +107,9 @@ export const routes: Routes = [
     path: 'signup',
     component: Signup,
   },
-  // {
-  //   // path: 'admin/dashboard',
-  //   // component: DashboardComponent,
-  //   // canActivate: [authGuardAdminGuard],
-  // },
+  {
+    path: 'admin/signup',
+    component: Signup,
+    canActivate: [authGuardAdminGuard],
+  },
 ];

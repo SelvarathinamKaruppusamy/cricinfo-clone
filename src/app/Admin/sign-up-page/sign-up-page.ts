@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { AdminService } from '../../../admin-login/admin-service';
+import { AdminService } from '../../admin-login/admin-service';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';

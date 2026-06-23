@@ -9,67 +9,6 @@
 
     <form [formGroup]="adminForm">
 
-      <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input
-          matInput
-          formControlName="username"
-          placeholder="Enter Username">
-        <mat-icon matSuffix>person</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Generated Password</mat-label>
-        <input
-          matInput
-          readonly
-          formControlName="password">
-        <mat-icon matSuffix>lock</mat-icon>
-      </mat-form-field>
-
-      <div class="button-container">
-
-        <button
-          mat-stroked-button
-          color="primary"
-          type="button"
-          (click)="generatePassword()">
-
-          <mat-icon>refresh</mat-icon>
-          Generate Again
-
-        </button>
-
-        <button
-          mat-raised-button
-          color="primary"
-          type="button"
-          (click)="register()">
-
-          <mat-icon>person_add</mat-icon>
-          Register
-
-        </button>
-        
-
-      </div>
-
-    </form>
-
-  </mat-card>
-
-</div> -->
-<div class="container">
-
-  <mat-card class="register-card">
-
-    <div class="header">
-      <mat-icon>admin_panel_settings</mat-icon>
-      <h1>Create Admin</h1>
-    </div>
-
-    <form [formGroup]="adminForm">
-
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Username</mat-label>
         <input
@@ -125,13 +64,82 @@
 
       </div>
 
-      <div class="login-link">
+    </form>
 
-        <p>Already have an admin account?</p>
+  </mat-card>
 
-        <a routerLink="/admin">
-          Back to Login
-        </a>
+</div> -->
+<div class="container">
+
+  <mat-card class="register-card">
+
+    <div class="header">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <h1>Create Admin</h1>
+      <p>Create and manage administrator accounts</p>
+    </div>
+
+    <form [formGroup]="adminForm">
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Username</mat-label>
+
+        <input
+          matInput
+          formControlName="username"
+          placeholder="Enter Username">
+
+        <mat-icon matSuffix>person</mat-icon>
+
+        @if (adminForm.get('username')?.invalid &&
+             adminForm.get('username')?.touched) {
+
+          <mat-error>
+            Username is required
+          </mat-error>
+
+        }
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Generated Password</mat-label>
+
+        <input
+          matInput
+          readonly
+          formControlName="password">
+
+        <mat-icon matSuffix>lock</mat-icon>
+
+      </mat-form-field>
+
+      <div class="button-container">
+
+        <button
+          mat-stroked-button
+          color="primary"
+          type="button"
+          (click)="generatePassword()">
+
+          <mat-icon>refresh</mat-icon>
+          Generate Again
+
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="register()"
+          [disabled]="adminForm.invalid">
+
+          <mat-icon>person_add</mat-icon>
+          Register
+
+        </button>
 
       </div>
 

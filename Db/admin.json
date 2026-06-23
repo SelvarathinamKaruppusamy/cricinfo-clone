@@ -3,14 +3,21 @@
     {
       "userName": "admin",
       "passWord": "1234",
-      "id": "Y6ADPfmkMYw"
+      "id": "SUHRRjLScbo"
     },
     {
       "adminId": 1,
       "username": "bharath",
-      "password": "%cyJAVOEwy",
+      "password": "qET8Dj$lYy",
       "firstLogin": true,
-      "id": "L1hobElIaNc"
+      "id": "9mdJQ-VhQrg"
+    },
+    {
+      "adminId": 2,
+      "username": "bharath",
+      "password": "c2ZHKpAe88",
+      "firstLogin": true,
+      "id": "8rZ1ZmaIDzw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -1,5 +1,7 @@
 <div class="mt-17 flex justify-center items-center">
   <div class="blog-detail-container ">
+    <!-- async subscribe and unsubscribe automatically without writing ("nest: ") in .ts file
+     we directly access the data  -->
   @if (blog$ | async; as blog) {
     <a routerLink="/blog" class="back-link">
       <span class="material-symbols-outlined">arrow_back</span>

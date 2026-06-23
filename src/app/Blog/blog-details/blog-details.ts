@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Blog } from '../../Models/match-module';
+import { Blog } from '../../Completed/Models/match-module';
 
 @Component({
   selector: 'app-blog-detail',
@@ -29,4 +29,6 @@ export class BlogDetails implements OnInit {
       }),
     );
   }
+  
+
 }

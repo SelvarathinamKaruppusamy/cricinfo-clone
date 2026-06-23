@@ -14,6 +14,7 @@ import { MatchData, Teams } from '../../UpCommingPage/match/match.models/match.m
 import { MatDivider } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { T } from '@angular/cdk/keycodes';
+import { catchError, EMPTY } from 'rxjs';
 @Component({
   selector: 'app-live-match-card',
   imports: [
@@ -65,21 +66,30 @@ export class LiveMatchCard implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.service?.GetLiveMatches().subscribe((res) => {
+    this.service?.GetLiveMatches().pipe(catchError((err)=>{
+      console.log(err)
+      return EMPTY
+    })).subscribe((res) => {
       this.live = res[0];
       this.service.live = this.live;
       this.team1 = this.live.teams[0];
       this.team2 = this.live.teams[1];
       this.changedetector.detectChanges();
     });
-    this.upservice?.getMatch().subscribe((res) => {
+    this.upservice?.getMatch().pipe(catchError((err)=>{
+      console.log(err)
+      return EMPTY
+    })).subscribe((res) => {
       this.upcommingdata = res[0];
       this.upteam1 = this.upcommingdata.teams[0];
       this.upteam2 = this.upcommingdata.teams[1];
       console.log(this.upcommingdata);
       this.changedetector.detectChanges();
     });
-    this.comservice.getCompletedMatches().subscribe((res) => {
+    this.comservice.getCompletedMatches().pipe(catchError((err)=>{
+      console.log(err)
+      return EMPTY
+    })).subscribe((res) => {
       //Landing Page Completed Last 5 Matches
       this.completeddata = res.slice(-5).reverse();
       //Filter Cards Details Starts

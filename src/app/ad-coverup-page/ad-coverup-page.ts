@@ -16,17 +16,15 @@ export class AdCoverupPage implements OnInit, OnDestroy {
 
   iplNews: IplNews[] = [
     {
-      image: 'virat.jpg',
-      title: 'Can King Kohli Finally Bring Glory to Bengaluru?',
-      description:
-        'Virat Kohli continues to lead from the front as Royal Challengers Bengaluru mount another serious title challenge. With a balanced squad, match-winners in every department, and momentum on their side, fans are beginning to believe that this could finally be the season where Kohli lifts another major trophy and ends the long wait for IPL glory.',
-    },
+  image: 'virat.jpg',
+  title: 'Can King Kohli Lift His Second Trophy?',
+  description: 'With RCB looking stronger than ever, fans are dreaming of Virat Kohli adding a second major trophy to his illustrious career.'
+},
     {
-      image: 'dhoni.png',
-      title: 'Thala’s Presence Sparks New Hope for CSK',
-      description:
-        'When Chennai Super Kings needed inspiration the most, MS Dhoni once again became the center of attention. His leadership, calmness under pressure, and unmatched ability to influence big moments have reignited belief among CSK supporters, who dream of yet another memorable comeback story.',
-    },
+  image: 'dhoni.png',
+  title: 'Thala Returns to Rescue CSK',
+  description: 'With CSK facing one of their toughest phases, MS Dhoni steps up once again, giving fans hope of a remarkable turnaround.'
+},
     {
       image: 'playoffs.jpg',
       title: 'Playoff Race Heats Up as Every Match Becomes a Final',

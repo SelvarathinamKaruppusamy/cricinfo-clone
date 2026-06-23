@@ -1,3 +1,4 @@
+
 <div class="flex items-center gap-4 flex-wrap mt-17">
 
   <button class="ml-5 border px-3 py-1 text-xs rounded bg-white" (click)="changebutton()">
@@ -44,7 +45,7 @@
         <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
           <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
             <!-- <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> -->
-            {{ upcommingdata.status | uppercase }}
+            {{ upcommingdata?.status | uppercase }}
           </div>
 
           <div class="flex items-center gap-2 text-[11px] text-slate-500">
@@ -52,7 +53,7 @@
 
             <div class="flex items-center gap-0.5">
               <mat-icon class="!text-[12px] !w-[12px] !h-[12px]"> location_on </mat-icon>
-              {{ upcommingdata.city }}
+              {{ upcommingdata?.city }}
             </div>
           </div>
         </div>
@@ -78,11 +79,11 @@
               <div class="flex items-center gap-2">
                 <img
                   [src]="upteam2?.logo"
-                  [alt]="upteam2.shortName"
+                  [alt]="upteam2?.shortName"
                   class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
                 />
                 <span class="text-sm font-semibold text-slate-900">
-                  {{ upteam2.shortName }}
+                  {{ upteam2?.shortName }}
                 </span>
               </div>
             </div>
@@ -116,7 +117,7 @@
         <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
           <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
             <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-            {{ live.status }}
+            {{ live?.status }}
           </div>
 
           <div class="flex items-center gap-2 text-[11px] text-slate-500">
@@ -124,7 +125,7 @@
 
             <div class="flex items-center gap-0.5">
               <mat-icon class="!text-[12px] !w-[12px] !h-[12px]"> location_on </mat-icon>
-              {{ live.city }}
+              {{ live?.city }}
             </div>
           </div>
         </div>
@@ -133,8 +134,8 @@
         <div class="flex justify-between items-center py-1">
           <div class="flex items-center gap-2">
             <img
-              [src]="team1.logo"
-              [alt]="team1.shortName"
+              [src]="team1?.logo"
+              [alt]="team1?.shortName"
               class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
             />
 

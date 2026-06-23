@@ -32,7 +32,7 @@ describe('CompletedDetails', () => {
             },
           ],
         },
-      ])
+      ]),
     ),
   };
 

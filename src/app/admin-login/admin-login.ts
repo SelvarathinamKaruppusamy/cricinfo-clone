@@ -33,7 +33,8 @@ export class AdminLogin {
 
         this.authService.setAuthenticated(true);
 
-        // this.router.navigate(['/admin/summa']);    use user which have to make route
+        this.router.navigate(['/admin/signup']); 
+        //    use user which have to make route
 
       } else {
 

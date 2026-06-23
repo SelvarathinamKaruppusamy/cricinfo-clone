@@ -25,7 +25,7 @@ describe('PointsTable', () => {
             paramMap: of(
               convertToParamMap({
                 matchNo: '5',
-              })
+              }),
             ),
           },
         },
@@ -49,9 +49,7 @@ describe('PointsTable', () => {
   });
 
   it('should load points table on init', () => {
-    mockCompletedService.getCompletedMatches.mockReturnValue(
-      of([])
-    );
+    mockCompletedService.getCompletedMatches.mockReturnValue(of([]));
 
     const spy = vi.spyOn(component, 'loadPointsTable');
 
@@ -91,17 +89,13 @@ describe('PointsTable', () => {
       },
     ];
 
-    mockCompletedService.getCompletedMatches.mockReturnValue(
-      of(matches)
-    );
+    mockCompletedService.getCompletedMatches.mockReturnValue(of(matches));
 
     component.loadPointsTable();
 
     expect(component.pointsTable.length).toBe(2);
 
-    const csk = component.pointsTable.find(
-      (t) => t.teamId === 1
-    );
+    const csk = component.pointsTable.find((t) => t.teamId === 1);
 
     expect(csk.points).toBe(2);
     expect(csk.wins).toBe(1);
@@ -139,15 +133,11 @@ describe('PointsTable', () => {
       },
     ];
 
-    mockCompletedService.getCompletedMatches.mockReturnValue(
-      of(matches)
-    );
+    mockCompletedService.getCompletedMatches.mockReturnValue(of(matches));
 
     component.loadPointsTable();
 
-    const csk = component.pointsTable.find(
-      (t) => t.teamId === 1
-    );
+    const csk = component.pointsTable.find((t) => t.teamId === 1);
 
     expect(csk.nrr).toBeGreaterThan(0);
   });
@@ -183,9 +173,7 @@ describe('PointsTable', () => {
       },
     ];
 
-    mockCompletedService.getCompletedMatches.mockReturnValue(
-      of(matches)
-    );
+    mockCompletedService.getCompletedMatches.mockReturnValue(of(matches));
 
     component.loadPointsTable();
 

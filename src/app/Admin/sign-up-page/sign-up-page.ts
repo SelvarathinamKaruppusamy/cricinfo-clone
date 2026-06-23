@@ -1,13 +1,8 @@
 import { Component, inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { AdminService } from '../admin-service';
-
+import { AdminService } from '../../admin-login/admin-service';
+import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -24,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    RouterLink,
   ],
   templateUrl: './sign-up-page.html',
   styleUrl: './sign-up-page.css',
@@ -41,15 +37,12 @@ export class Signup {
   }
 
   generatePassword(): void {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%';
 
     let password = '';
 
     for (let i = 0; i < 10; i++) {
-      password += chars.charAt(
-        Math.floor(Math.random() * chars.length)
-      );
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
     }
 
     this.adminForm.patchValue({
@@ -64,11 +57,8 @@ export class Signup {
 
     this.adminService.getAdmins().subscribe({
       next: (admins: any[]) => {
-
         const nextAdminId =
-          admins.length === 0
-            ? 1
-            : Math.max(...admins.map(admin => admin.adminId || 0)) + 1;
+          admins.length === 0 ? 1 : Math.max(...admins.map((admin) => admin.adminId || 0)) + 1;
 
         const admin = {
           adminId: nextAdminId,

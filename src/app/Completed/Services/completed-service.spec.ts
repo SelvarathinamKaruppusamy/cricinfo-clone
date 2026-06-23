@@ -39,9 +39,7 @@ describe('CompletedService', () => {
       expect(res).toEqual(mockData);
     });
 
-    expect(mockHttpClient.get).toHaveBeenCalledWith(
-      'http://localhost:7000/completed'
-    );
+    expect(mockHttpClient.get).toHaveBeenCalledWith('http://localhost:7000/completed');
   });
 
   it('should get match by matchNo', () => {
@@ -53,8 +51,6 @@ describe('CompletedService', () => {
       expect(res).toEqual(mockData);
     });
 
-    expect(mockHttpClient.get).toHaveBeenCalledWith(
-      'http://localhost:7000/completed?matchNo=1'
-    );
+    expect(mockHttpClient.get).toHaveBeenCalledWith('http://localhost:7000/completed?matchNo=1');
   });
 });

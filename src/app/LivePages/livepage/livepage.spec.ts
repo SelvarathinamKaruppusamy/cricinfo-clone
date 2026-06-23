@@ -77,7 +77,7 @@ describe('Livepage', () => {
             },
           ],
         },
-      ])
+      ]),
     );
 
     await TestBed.configureTestingModule({
@@ -112,8 +112,7 @@ describe('Livepage', () => {
   it('should add ball', () => {
     component.addball('4');
 
-    expect(mockLiveService.addBall)
-      .toHaveBeenCalledWith('4');
+    expect(mockLiveService.addBall).toHaveBeenCalledWith('4');
   });
 
   it('should calculate required runs', () => {
@@ -132,17 +131,17 @@ describe('Livepage', () => {
       ],
     } as any;
     mockLiveService.live = {
-  teams: [
-    {
-      scores: 100,
-      overs: 10,
-    },
-    {
-      scores: 0,
-      overs: 0,
-    },
-  ],
-};
+      teams: [
+        {
+          scores: 100,
+          overs: 10,
+        },
+        {
+          scores: 0,
+          overs: 0,
+        },
+      ],
+    };
 
     component.requiredRun();
 
@@ -152,8 +151,7 @@ describe('Livepage', () => {
   it('should redirect to second innings', () => {
     component.startSecondInnings();
 
-    expect(mockLiveService.startSecondInnings)
-      .toHaveBeenCalled();
+    expect(mockLiveService.startSecondInnings).toHaveBeenCalled();
   });
 
   it('should handle wicket with no next player', () => {

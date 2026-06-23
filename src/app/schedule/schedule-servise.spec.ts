@@ -1,8 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { ScheduleServise } from './schedule-servise';
 
@@ -34,9 +31,7 @@ describe('ScheduleServise', () => {
       expect(data).toEqual(mockData);
     });
 
-    const req = httpMock.expectOne(
-      'http://localhost:3000/matches'
-    );
+    const req = httpMock.expectOne('http://localhost:3000/matches');
 
     expect(req.request.method).toBe('GET');
 
@@ -50,9 +45,7 @@ describe('ScheduleServise', () => {
       expect(data).toEqual(mockData);
     });
 
-    const req = httpMock.expectOne(
-      'http://localhost:5000/matches'
-    );
+    const req = httpMock.expectOne('http://localhost:5000/matches');
 
     expect(req.request.method).toBe('GET');
 
@@ -66,9 +59,7 @@ describe('ScheduleServise', () => {
       expect(data).toEqual(mockData);
     });
 
-    const req = httpMock.expectOne(
-      'http://localhost:7000/completed'
-    );
+    const req = httpMock.expectOne('http://localhost:7000/completed');
 
     expect(req.request.method).toBe('GET');
 

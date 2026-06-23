@@ -15,6 +15,12 @@ export class AdminService {
       'http://localhost:9999/admin'
     );
   }
+   createAdmin(admin: any) {
+    return this.http.post(
+      'http://localhost:9999/admin',
+      admin
+    );
+  }
 
   setAuthenticated(value: boolean) {
     this.isLoggedIn = value;

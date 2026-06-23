@@ -2,7 +2,23 @@
   "admin": [
     {
       "userName": "admin",
-      "passWord": "1234"
+      "passWord": "1234",
+      "id": "SUHRRjLScbo"
+    },
+    {
+      "adminId": 1,
+      "username": "bharath",
+      "password": "qET8Dj$lYy",
+      "firstLogin": true,
+      "id": "9mdJQ-VhQrg"
+    },
+    {
+      "adminId": 2,
+      "username": "bharath",
+      "password": "c2ZHKpAe88",
+      "firstLogin": true,
+      "id": "8rZ1ZmaIDzw"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

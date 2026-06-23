@@ -9,7 +9,7 @@ import { UpcService } from '../../UpCommingPage/up-comp/upc-service';
 import { CompletedService } from '../../Completed/Services/completed-service';
 import { Match } from '../../Completed/Models/match-module';
 import { ElementRef, ViewChild } from '@angular/core';
-import { AdCoverupPage } from '../../ad-coverup-page/ad-coverup-page';
+import { AdCoverupPage } from '../ad-coverup-page/ad-coverup-page';
 import { MatchData, Teams } from '../../UpCommingPage/match/match.models/match.models-module';
 import { MatDivider } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';

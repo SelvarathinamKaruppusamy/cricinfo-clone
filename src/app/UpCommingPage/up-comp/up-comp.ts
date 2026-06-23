@@ -3,7 +3,6 @@ import { UpcService } from './upc-service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-
 interface Team {
   teamId: number;
   shortName: string;

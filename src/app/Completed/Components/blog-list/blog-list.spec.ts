@@ -19,7 +19,7 @@ describe('BlogList', () => {
           content: ['Virat played well'],
           tags: ['IPL', 'RCB'],
         },
-      ])
+      ]),
     ),
   };
 

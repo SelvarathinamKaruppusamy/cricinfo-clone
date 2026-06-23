@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Nav } from './NavBar/nav/nav';
-// import { Signup } from './Admin/Sign up/sign-up-page/sign-up-page';
 
 
 @Component({

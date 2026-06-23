@@ -74,9 +74,7 @@ describe('Stats', () => {
         ],
       },
       {
-        teams: [
-          { teamId: 1, shortName: 'CSK' },
-        ],
+        teams: [{ teamId: 1, shortName: 'CSK' }],
       },
     ];
 

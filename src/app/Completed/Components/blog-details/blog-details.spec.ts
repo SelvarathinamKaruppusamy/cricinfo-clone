@@ -19,7 +19,7 @@ describe('BlogDetails', () => {
         image: 'sample.jpg',
         content: ['Test content'],
         tags: ['IPL'],
-      })
+      }),
     ),
   };
 
@@ -37,7 +37,7 @@ describe('BlogDetails', () => {
             paramMap: of(
               convertToParamMap({
                 id: '1',
-              })
+              }),
             ),
           },
         },

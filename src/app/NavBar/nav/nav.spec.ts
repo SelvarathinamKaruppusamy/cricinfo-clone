@@ -51,9 +51,7 @@ describe('Nav', () => {
 
     expect(component.activateRoute).toBe('/upcoming');
 
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith(
-      '/upcoming'
-    );
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/upcoming');
   });
 
   it('should navigate to completed page', () => {
@@ -61,8 +59,6 @@ describe('Nav', () => {
 
     expect(component.activateRoute).toBe('/completed');
 
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith(
-      '/completed'
-    );
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/completed');
   });
 });

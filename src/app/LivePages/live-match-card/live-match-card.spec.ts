@@ -37,7 +37,7 @@ describe('LiveMatchCard', () => {
         {
           teams: [{ shortName: 'RCB' }, { shortName: 'CSK' }],
         },
-      ])
+      ]),
     ),
   };
 
@@ -48,7 +48,7 @@ describe('LiveMatchCard', () => {
           id: 1,
           teams: [{}, {}],
         },
-      ])
+      ]),
     ),
   };
 
@@ -62,7 +62,7 @@ describe('LiveMatchCard', () => {
             { teamId: 2, shortName: 'CSK' },
           ],
         },
-      ])
+      ]),
     ),
   };
 
@@ -122,15 +122,13 @@ describe('LiveMatchCard', () => {
   it('should navigate to live page', () => {
     component.movetolivepage();
 
-    expect(mockRouter.navigateByUrl)
-      .toHaveBeenCalledWith('/live/livepage');
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/live/livepage');
   });
 
   it('should navigate to completed page', () => {
     component.completedpage(5);
 
-    expect(mockRouter.navigate)
-      .toHaveBeenCalledWith(['/live/completed', 5]);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/live/completed', 5]);
   });
 
   it('should navigate to points table', () => {
@@ -142,8 +140,7 @@ describe('LiveMatchCard', () => {
 
     expect(event.stopPropagation).toHaveBeenCalled();
 
-    expect(mockRouter.navigate)
-      .toHaveBeenCalledWith(['/live/points-table', 10]);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/live/points-table', 10]);
   });
 
   it('should calculate required runs', () => {

@@ -73,11 +73,7 @@ describe('Statistics', () => {
   });
 
   it('should calculate runs progress', () => {
-    const result = component.calculateRunsProgress([
-      '1',
-      '2',
-      '4',
-    ]);
+    const result = component.calculateRunsProgress(['1', '2', '4']);
 
     expect(result).toEqual([1, 3, 7]);
   });
@@ -103,13 +99,7 @@ describe('Statistics', () => {
   });
 
   it('should calculate statistics', () => {
-    mockLiveService.ball.mockReturnValue([
-      '1',
-      '4',
-      '0',
-      'Wd',
-      '6',
-    ]);
+    mockLiveService.ball.mockReturnValue(['1', '4', '0', 'Wd', '6']);
 
     component.calculateStatistics();
 

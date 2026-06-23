@@ -1,9 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
-import {
-  HttpTestingController,
-  provideHttpClientTesting,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { LiveService } from './live-service';
 
@@ -13,11 +10,7 @@ describe('LiveService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        LiveService,
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ],
+      providers: [LiveService, provideHttpClient(), provideHttpClientTesting()],
     });
 
     service = TestBed.inject(LiveService);
@@ -87,9 +80,7 @@ describe('LiveService', () => {
       expect(data).toEqual(mockData);
     });
 
-    const req = httpMock.expectOne(
-      'http://localhost:3000/matches'
-    );
+    const req = httpMock.expectOne('http://localhost:3000/matches');
 
     expect(req.request.method).toBe('GET');
 
@@ -102,15 +93,15 @@ describe('LiveService', () => {
       status: 'Live',
     };
 
-    service.UpdateMatch(1, {
-      status: 'Live',
-    }).subscribe((data) => {
-      expect(data).toEqual(mockResponse);
-    });
+    service
+      .UpdateMatch(1, {
+        status: 'Live',
+      })
+      .subscribe((data) => {
+        expect(data).toEqual(mockResponse);
+      });
 
-    const req = httpMock.expectOne(
-      'http://localhost:3000/matches/1'
-    );
+    const req = httpMock.expectOne('http://localhost:3000/matches/1');
 
     expect(req.request.method).toBe('PUT');
 

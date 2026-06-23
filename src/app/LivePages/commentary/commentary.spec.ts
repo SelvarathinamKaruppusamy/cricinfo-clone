@@ -11,10 +11,7 @@ describe('Commentary', () => {
 
   const mockLiveService: any = {
     live: {
-      teams: [
-        { shortName: 'RCB' },
-        { shortName: 'CSK' },
-      ],
+      teams: [{ shortName: 'RCB' }, { shortName: 'CSK' }],
     },
 
     currentBattingTeam: signal(0),

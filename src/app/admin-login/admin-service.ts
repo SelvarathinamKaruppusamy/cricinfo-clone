@@ -13,7 +13,7 @@ export class AdminService {
     return this.http.get<any[]>('http://localhost:9999/admin');
   }
   updateAdmin(id: string, data: any) {
-    return this.http.put(`http://localhost:8888/admin/${id}`, data);
+    return this.http.put(`http://localhost:9999/admin/${id}`, data);
   }
   setAuthenticated(value: boolean) {
     this.isLoggedIn = value;
@@ -25,5 +25,8 @@ export class AdminService {
 
   logout() {
     this.isLoggedIn = false;
+  }
+  createAdmin(admin: any) {
+    return this.http.post('http://localhost:9999/admin', admin);
   }
 }

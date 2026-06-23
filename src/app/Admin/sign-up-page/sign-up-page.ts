@@ -67,8 +67,6 @@ export class Signup {
           firstLogin: true,
         };
 
-        console.log(admin);
-
         this.adminService.createAdmin(admin).subscribe({
           next: () => {
             alert('Admin Registered Successfully');

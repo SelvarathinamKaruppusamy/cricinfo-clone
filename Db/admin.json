@@ -3,10 +3,9 @@
     {
       "id": "1",
       "userName": "admin",
-      "passWord": "admin123",
+      "passWord": "1234",
       "firstLogin": false
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }
- 

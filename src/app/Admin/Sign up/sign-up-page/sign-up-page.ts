@@ -6,8 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { AdminService } from '../admin-service';
-
+import { AdminService } from '../../../admin-login/admin-service';
+import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    RouterLink
   ],
   templateUrl: './sign-up-page.html',
   styleUrl: './sign-up-page.css',

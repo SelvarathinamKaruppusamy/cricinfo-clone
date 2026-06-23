@@ -8,6 +8,8 @@ import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
 import { Stats } from './stats/stats';
 import { Schedule } from './schedule/schedule';
+import { AdminLogin } from './admin-login/admin-login';
+import { authGuardAdminGuard } from './admin-login/auth-guard-admin-guard';
 
 export const routes: Routes = [
   {
@@ -18,30 +20,32 @@ export const routes: Routes = [
   {
     path: 'live',
     component: LiveMatchCard,
-    children:[
-       {
-    path: 'livepage',
-    component: Livepage,
+    children: [
+      {
+        path: 'livepage',
+        component: Livepage,
+      },
+      {
+        path: 'match/:id',
+        component: Match,
+      },
+      {
+        path: 'completed/:matchNo',
+        loadComponent: () =>
+          import('./Completed/Components/completed-details/completed-details').then(
+            (c) => c.CompletedDetails,
+          ),
+      },
+      {
+        path: 'schedule/:id',
+        component: Schedule,
+      },
+      {
+        path: 'points-table/:matchNo',
+        component: PointsTable,
+      },
+    ],
   },
-  {
-    path: 'match/:id',
-    component: Match,
-  },
-   {
-  path: 'completed/:matchNo',
-  loadComponent: () =>
-    import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
-  },
-   {
-    path:'schedule/:id',
-    component:Schedule
-  },
-  {
-    path: 'points-table/:matchNo',
-    component: PointsTable,
-  },
-]
-},
   {
     path: 'stats/:type',
     component: Stats,
@@ -53,12 +57,12 @@ export const routes: Routes = [
   {
     path: 'upcoming',
     component: UpComp,
-    children:[
+    children: [
       {
-        path:'upcomingMatchPage',
-        component:Match,
-      }
-    ]
+        path: 'upcomingMatchPage',
+        component: Match,
+      },
+    ],
   },
   {
     path: 'completed',
@@ -89,7 +93,17 @@ export const routes: Routes = [
     component: PointsTable,
   },
   {
-    path:'schedule/:id',
-    component:Schedule
-  }
+    path: 'schedule/:id',
+    component: Schedule,
+  },
+  //ADMIN
+  {
+    path: 'admin',
+    component: AdminLogin,
+  },
+  {
+    // path: 'admin/dashboard',
+    // component: DashboardComponent,
+    canActivate: [authGuardAdminGuard],
+  },
 ];

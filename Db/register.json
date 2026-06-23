@@ -1,0 +1,12 @@
+{
+  "admins": [
+    {
+      "adminId": 1,
+      "username": "bharath",
+      "password": "OQ9UMOEMw0",
+      "firstLogin": true,
+      "id": "TAP4NQlHHxo"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

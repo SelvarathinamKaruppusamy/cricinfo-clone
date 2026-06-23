@@ -1,8 +1,12 @@
 {
   "admin": [
     {
+      "id": "1",
       "userName": "admin",
-      "passWord": "1234"
+      "passWord": "admin123",
+      "firstLogin": false
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
+ 

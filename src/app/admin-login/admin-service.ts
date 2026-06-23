@@ -5,17 +5,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AdminService {
-  
   private isLoggedIn = false;
 
   constructor(private http: HttpClient) {}
 
   getAdmins() {
-    return this.http.get<any[]>(
-      'http://localhost:9999/admin'
-    );
+    return this.http.get<any[]>('http://localhost:9999/admin');
   }
-
+  updateAdmin(id: string, data: any) {
+    return this.http.put(`http://localhost:8888/admin/${id}`, data);
+  }
   setAuthenticated(value: boolean) {
     this.isLoggedIn = value;
   }

@@ -1,21 +1,25 @@
-<div class="login-box">
-
+<div class="login-box" *ngIf="!showResetForm">
   <h2>Admin Login</h2>
 
-  <input
-    type="text"
-    placeholder="Username"
-    [(ngModel)]="username"
-    name="name">
+  <input type="text" placeholder="Username" [(ngModel)]="username" />
 
-  <input
-    type="password"
-    placeholder="Password"
-    [(ngModel)]="password"
-    name="password">
+  <input type="password" placeholder="Password" [(ngModel)]="password" />
 
-  <button (click)="login()">
-    Login
-  </button>
+  <button (click)="login()">Login</button>
 
+  <button (click)="openResetForm()">Reset Password</button>
+</div>
+
+<div class="login-box" *ngIf="showResetForm">
+  <h2>Reset Password</h2>
+
+  <input type="text" placeholder="Username" [(ngModel)]="resetUsername" />
+
+  <input type="password" placeholder="Current Password" [(ngModel)]="currentPassword" />
+
+  <input type="password" placeholder="New Password" [(ngModel)]="newPassword" />
+
+  <button (click)="updatePassword()">Update Password</button>
+
+  <button (click)="cancelReset()">Back To Login</button>
 </div>

@@ -28,7 +28,11 @@ export class AdminLogin {
 
   login() {
     this.authService.getAdmins().subscribe((users) => {
-      const user = users.find((x) => x.userName === this.username && x.passWord === this.password);
+      const user = users.find(
+        (x) =>
+          (x.userName === this.username || x.username === this.username) &&
+          (x.passWord === this.password || x.password === this.password),
+      );
 
       if (!user) {
         alert('Invalid Username or Password');
@@ -36,8 +40,7 @@ export class AdminLogin {
       }
 
       this.authService.setAuthenticated(true);
-
-      // this.router.navigate(['/admin/summa']);   use the routing
+      // this.router.navigate(['/admin/signup']);
     });
   }
 
@@ -56,7 +59,9 @@ export class AdminLogin {
   updatePassword() {
     this.authService.getAdmins().subscribe((users) => {
       const user = users.find(
-        (x) => x.userName === this.resetUsername && x.passWord === this.currentPassword,
+        (x) =>
+          (x.userName === this.resetUsername || x.username === this.resetUsername) &&
+          (x.passWord === this.currentPassword || x.password === this.currentPassword),
       );
 
       if (!user) {
@@ -72,12 +77,12 @@ export class AdminLogin {
       const updatedUser = {
         ...user,
         passWord: this.newPassword,
+        password: this.newPassword,
         firstLogin: false,
       };
 
       this.authService.updateAdmin(user.id, updatedUser).subscribe(() => {
         alert('Password Updated Successfully');
-
         this.cancelReset();
       });
     });

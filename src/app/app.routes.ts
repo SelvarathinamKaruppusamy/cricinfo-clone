@@ -12,7 +12,9 @@ import { LiveAdmin } from './Admin/LiveAdmin/live-admin/live-admin';
 import { TossPanel } from './Admin/LiveAdmin/toss-panel/toss-panel';
 import { LiveUpdateAdmin } from './Admin/LiveAdmin/live-update-admin/live-update-admin';
 import { CompletedUpdateAdmin } from './Admin/LiveAdmin/completed-update-admin/completed-update-admin';
-
+import { NavBar } from './Admin/nav-bar/nav-bar';
+import { Upcome } from './Admin/upcome/upcome';
+import { AdminLanding } from './Admin/admin-landing/admin-landing';
 export const routes: Routes = [
   {
     path: '',
@@ -99,7 +101,20 @@ export const routes: Routes = [
     component:Schedule
   },
   {
-    path: 'admin',
+    path:'admin',
+    component:AdminLanding
+  },
+  
+    {
+  path: 'navbarAdmin',
+  component: NavBar,
+  children: [
+    {
+     path:'upComeAdmin',
+    component: Upcome
+    },
+    {
+    path: 'adminLive',
     component: LiveAdmin,
     children: [
       { path: '', redirectTo: 'toss', pathMatch: 'full' },
@@ -111,6 +126,13 @@ export const routes: Routes = [
         path:'completed',component:CompletedUpdateAdmin
       }
 
-    ]
+    ]},
+    
+  ]
+},
+  {
+    path:'upComeAdmin',
+    component: Upcome
   }
+  
 ];

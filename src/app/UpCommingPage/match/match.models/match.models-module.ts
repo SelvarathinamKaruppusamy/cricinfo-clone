@@ -32,3 +32,14 @@ export interface Teams {
   shortName: string;
   logo?: string;
 }
+export interface updateMatch{
+  id:string;
+  matchNo:number;
+  venue:string;
+  city:string;
+  date:string;
+  status:string;
+ teams:Team[]
+
+
+}

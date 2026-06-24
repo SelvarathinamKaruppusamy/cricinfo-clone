@@ -1,0 +1,88 @@
+<div
+  class="h-screen w-[280px] bg-slate-300 text-slate-900 border-r border-slate-200 flex flex-col shadow-sm"
+>
+  <!-- Logo -->
+  <div class="px-6 py-5 border-b border-slate-200">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center">
+        <mat-icon class="!text-violet-600">sports_cricket</mat-icon>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">CricInfo Admin</h2>
+        <p class="text-sm text-slate-500">Match Control Panel</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <div class="flex-1 px-4 py-5">
+    <nav class="space-y-3">
+      <!-- Toss Panel -->
+      <a
+        routerLink="/admin/toss"
+        routerLinkActive="bg-violet-600 text-white shadow-md"
+        class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-slate-100 text-slate-700"
+      >
+        <div class="flex items-center gap-4">
+          <mat-icon class="group-[.bg-violet-600]:!text-white">sports_cricket</mat-icon>
+          <span class="text-lg font-medium">Toss Panel</span>
+        </div>
+      </a>
+
+      <!-- Live Update -->
+      <a
+        routerLink="/admin/liveupdate"
+        routerLinkActive="bg-violet-600 text-white shadow-md"
+        class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-slate-100 text-slate-700"
+      >
+        <div class="flex items-center gap-4">
+          <mat-icon class="group-[.bg-violet-600]:!text-white">monitoring</mat-icon>
+          <span class="text-lg font-medium">Live Update</span>
+        </div>
+      </a>
+
+      <!-- Completed Update -->
+      <a
+        routerLink="/admin/completed"
+        routerLinkActive="bg-violet-600 text-white shadow-md"
+        class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-slate-100 text-slate-700"
+      >
+        <div class="flex items-center gap-4">
+          <mat-icon class="group-[.bg-violet-600]:!text-white">task_alt</mat-icon>
+          <span class="text-lg font-medium">Completed Update</span>
+        </div>
+      </a>
+      <!-- Logout -->
+      <!-- <button
+        type="button"
+        class="w-full flex items-center gap-4 rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-red-50 text-slate-700"
+      >
+        <mat-icon>logout</mat-icon>
+        <span class="text-lg font-medium">Logout</span>
+      </button> -->
+    </nav>
+  </div>
+
+  <!-- Bottom Match Status -->
+  <div class="p-4 border-t border-slate-200">
+    <mat-card class="!bg-slate-50 !text-slate-900 !rounded-2xl border border-slate-200 shadow-sm">
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-semibold">Match Status</h3>
+          <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
+            LIVE
+          </span>
+        </div>
+
+        <div class="space-y-2 text-sm text-slate-600">
+          <p class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+            1st Innings
+          </p>
+          <p class="ml-4 text-slate-500">Yet to Begin</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

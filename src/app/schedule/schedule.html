@@ -1,0 +1,115 @@
+<div class="schedule-container">
+  <div class="match-list">
+    <!-- 1. COMPLETED MATCHES -->
+    @for (match of completed; track match.id) {
+   <div
+  [id]="'match-' + match.matchNo"
+  class="match-row"
+  [class.selected]="selectedMatchId === match.matchNo">
+      <div class="match-date">{{ match.date }}</div>
+      <div class="match-details">
+        <div class="series-header">
+          <span class="status-indicator">RESULT</span> •
+          {{ match.matchNo }}th Match • {{ match.stadium }}, {{ match.city }}
+        </div>
+        <div class="teams-box">
+          <div class="team-list-container">
+            <div class="team-line">
+              <img [src]="match.team1?.logo" [alt]="match.team1?.shortName" />
+              <span class="team-name-text">{{ match.team1?.shortName }}</span>
+              <span class="score-value-block">
+                @if (match.team1?.overs) {
+                <span class="overs-target-details">({{ match.team1.overs }} ov)</span>
+                }
+                {{ match.team1?.score }}
+              </span>
+            </div>
+            <div class="team-line">
+              <img [src]="match.team2?.logo" [alt]="match.team2?.shortName" />
+              <span class="team-name-text">{{ match.team2?.shortName }}</span>
+              <span class="score-value-block">
+                @if (match.team2?.overs) {
+                <span class="overs-target-details">({{ match.team2.overs }} ov)</span>
+                }
+                {{ match.team2?.score }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="result-status-note">{{ match.result }}</div>
+      </div>
+    </div>
+    }
+
+    <!-- 2. LIVE MATCHES -->
+    @for (match of live; track match.id) {
+    <div
+  [id]="'match-' + match.matchNo"
+  class="match-row"
+  [class.selected]="selectedMatchId === match.matchNo">
+      <div class="match-date">{{ match.date }}</div>
+      <div class="match-details">
+        <div class="series-header">
+          <span class="status-indicator live-text">LIVE</span> •
+          {{ match.matchNo }}th Match • {{ match.stadium }}, {{ match.city }}
+        </div>
+        <div class="teams-box">
+          <div class="team-list-container">
+            <div class="team-line">
+              <img [src]="match.team1.logo" [alt]="match.team1.shortName" />
+              <span class="team-name-text">{{ match.team1.shortName }}</span>
+              <span class="score-value-block">{{ match.team1.score }}</span>
+            </div>
+            <div class="team-line">
+              <img [src]="match.team2.logo" [alt]="match.team2.shortName" />
+              <span class="team-name-text">
+                {{ match.team2.shortName }}<span class="live-dot">•</span>
+              </span>
+              <span class="score-value-block">
+                @if (match.team2.overs) {
+                <span class="overs-target-details">{{ match.team2.overs }}</span>
+                }
+                {{ match.team2.score }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="result-status-note">{{ match.result }}</div>
+      </div>
+    </div>
+    }
+
+    <!-- 3. UPCOMING MATCHES -->
+    @for (match of upcoming; track match.id) {
+    <div
+  [id]="'match-' + match.matchNo"
+  class="match-row"
+  [class.selected]="selectedMatchId === match.matchNo">
+      <div class="match-date">{{ match.date }}</div>
+      <div class="match-details">
+        <div class="series-header">
+          {{ match.matchNo }}th Match • {{ match.stadium }}, {{ match.city }}
+        </div>
+        <div class="teams-box">
+          <div class="team-list-container">
+            <div class="team-line">
+              <img [src]="match.team1.logo" [alt]="match.team1.shortName" />
+              <span class="team-name-text">{{ match.team1.shortName }}</span>
+            </div>
+            <div class="team-line">
+              <img [src]="match.team2.logo" [alt]="match.team2.shortName" />
+              <span class="team-name-text">{{ match.team2.shortName }}</span>
+            </div>
+          </div>
+          <div class="upcoming-time-container">
+            <div class="primary-time-label">{{ match.time }}</div>
+            <div class="secondary-zone-label">4:30 am GMT | 10:00 am Local</div>
+          </div>
+        </div>
+        <div class="result-status-note">Match yet to begin</div>
+      </div>
+    </div>
+    }
+
+  </div>
+</div>

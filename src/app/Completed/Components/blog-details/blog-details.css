@@ -1,15 +1,12 @@
 :host {
   display: block;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: #ffffff;
-  color: #1a202c;
   min-height: 100vh;
   padding: 2.5rem 1rem;
 }
 
 .blog-detail-container {
   max-width: 850px;
-  margin: 0 auto;
+  margin: 25 auto;
 }
 
 /* Modernized Back Button Action Link */

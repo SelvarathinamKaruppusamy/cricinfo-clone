@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Squads } from './NavBar/squads/squads';
 import { UpComp } from './UpCommingPage/up-comp/up-comp';
 import { Match } from './UpCommingPage/match/match';
 import { LiveMatchCard } from './LivePages/live-match-card/live-match-card';
@@ -7,7 +6,12 @@ import { Livepage } from './LivePages/livepage/livepage';
 import { BlogList } from './Completed/Components/blog-list/blog-list';
 import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
-import { CompletedDetails } from './Completed/Components/completed-details/completed-details';
+import { Stats } from './stats/stats';
+import { Schedule } from './schedule/schedule';
+import { LiveAdmin } from './Admin/LiveAdmin/live-admin/live-admin';
+import { TossPanel } from './Admin/LiveAdmin/toss-panel/toss-panel';
+import { LiveUpdateAdmin } from './Admin/LiveAdmin/live-update-admin/live-update-admin';
+import { CompletedUpdateAdmin } from './Admin/LiveAdmin/completed-update-admin/completed-update-admin';
 
 export const routes: Routes = [
   {
@@ -31,10 +35,20 @@ export const routes: Routes = [
   path: 'completed/:matchNo',
   loadComponent: () =>
     import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
-  },]},
+  },
+   {
+    path:'schedule/:id',
+    component:Schedule
+  },
   {
-    path: 'squads',
-    component: Squads,
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
+]
+},
+  {
+    path: 'stats/:type',
+    component: Stats,
   },
   {
     path: 'match/:id',
@@ -43,6 +57,12 @@ export const routes: Routes = [
   {
     path: 'upcoming',
     component: UpComp,
+    children:[
+      {
+        path:'upcomingMatchPage',
+        component:Match,
+      }
+    ]
   },
   {
     path: 'completed',
@@ -69,7 +89,26 @@ export const routes: Routes = [
     component: PointsTable,
   },
   {
-  path: 'points-table/:matchNo',
-  component: PointsTable
-},
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
+  {
+    path:'schedule/:id',
+    component:Schedule
+  },
+  {
+    path: 'admin',
+    component: LiveAdmin,
+    children: [
+      { path: '', redirectTo: 'toss', pathMatch: 'full' },
+      { path: 'toss', component:TossPanel },
+      {
+        path:'liveupdate' ,component:LiveUpdateAdmin
+      },
+      {
+        path:'completed',component:CompletedUpdateAdmin
+      }
+
+    ]
+  }
 ];

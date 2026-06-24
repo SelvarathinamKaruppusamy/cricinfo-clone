@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  computed,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LiveService } from '../../../LivePages/Services/live-service';
 import { MatCardModule } from '@angular/material/card';
@@ -40,7 +34,7 @@ export class LiveUpdateAdmin implements OnInit {
   currentBowler = computed<Player | undefined>(() => this.service.currentBowler);
 
   currentBatters = computed<Player[]>(() =>
-    this.service.players1().filter((p) => p.status === 'Not Out')
+    this.service.players1().filter((p) => p.status === 'Not Out'),
   );
 
   batter1 = computed<Player | undefined>(() => this.currentBatters()[0]);
@@ -113,9 +107,7 @@ export class LiveUpdateAdmin implements OnInit {
     const target = this.service.completedBattingTeam.scores + 1;
 
     return (
-      secondBatting.scores >= target ||
-      secondBatting.overs >= 20 ||
-      secondBatting.wickets >= 10
+      secondBatting.scores >= target || secondBatting.overs >= 20 || secondBatting.wickets >= 10
     );
   });
 
@@ -135,9 +127,7 @@ export class LiveUpdateAdmin implements OnInit {
     const target = this.service.completedBattingTeam.scores + 1;
 
     return (
-      secondBatting.scores >= target ||
-      secondBatting.overs >= 20 ||
-      secondBatting.wickets >= 10
+      secondBatting.scores >= target || secondBatting.overs >= 20 || secondBatting.wickets >= 10
     );
   });
 
@@ -168,8 +158,7 @@ export class LiveUpdateAdmin implements OnInit {
     }
 
     // innings ended and chasing team failed
-    const inningsFinished =
-      secondBatting.overs >= 20 || secondBatting.wickets >= 10;
+    const inningsFinished = secondBatting.overs >= 20 || secondBatting.wickets >= 10;
 
     if (inningsFinished) {
       if (secondBatting.scores === firstBatting.scores) {

@@ -7,10 +7,8 @@ import { SidenavLive } from '../sidenav-live/sidenav-live';
 
 @Component({
   selector: 'app-live-admin',
-  imports: [RouterOutlet,SidenavLive],
+  imports: [RouterOutlet, SidenavLive],
   templateUrl: './live-admin.html',
   styleUrl: './live-admin.css',
 })
-export class LiveAdmin {
-  
-}
+export class LiveAdmin {}

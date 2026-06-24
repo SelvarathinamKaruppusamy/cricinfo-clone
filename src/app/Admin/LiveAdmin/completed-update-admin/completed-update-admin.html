@@ -1,6 +1,5 @@
 @if (live(); as match) {
   <div class="p-3 space-y-3 bg-sky-800 rounded-2xl">
-
     <!-- Page Title -->
     <mat-card class="px-4 py-3 !bg-slate-800 !text-white shadow-none border border-slate-700">
       <h2 class="text-base font-semibold">Complete Match Update</h2>
@@ -15,7 +14,9 @@
 
       <div class="grid md:grid-cols-2 gap-3">
         <!-- Team 1 -->
-        <div class="border border-slate-700 rounded-lg px-3 py-2.5 flex justify-between items-center bg-slate-900">
+        <div
+          class="border border-slate-700 rounded-lg px-3 py-2.5 flex justify-between items-center bg-slate-900"
+        >
           <div class="flex items-center gap-2">
             <img [src]="match.teams[0].logo" class="w-8 h-8 object-contain" />
             <div>
@@ -36,7 +37,9 @@
         </div>
 
         <!-- Team 2 -->
-        <div class="border border-slate-700 rounded-lg px-3 py-2.5 flex justify-between items-center bg-slate-900">
+        <div
+          class="border border-slate-700 rounded-lg px-3 py-2.5 flex justify-between items-center bg-slate-900"
+        >
           <div class="flex items-center gap-2">
             <img [src]="match.teams[1].logo" class="w-8 h-8 object-contain" />
             <div>
@@ -87,9 +90,7 @@
 
         <!-- Player of Match -->
         <div>
-          <label class="block text-xs font-medium text-slate-300 mb-1">
-            Player of the Match
-          </label>
+          <label class="block text-xs font-medium text-slate-300 mb-1"> Player of the Match </label>
           <select
             [(ngModel)]="playerOfMatch"
             class="w-full border border-slate-600 rounded-lg px-3 py-2 text-sm outline-none bg-slate-900 text-white"
@@ -108,7 +109,9 @@
     <!-- Next Upcoming Match + Final Action -->
     <div class="flex gap-3">
       <!-- Next Upcoming Match -->
-      <mat-card class="px-4 py-3 flex-1 !bg-slate-800 !text-white shadow-none border border-slate-700">
+      <mat-card
+        class="px-4 py-3 flex-1 !bg-slate-800 !text-white shadow-none border border-slate-700"
+      >
         <h3 class="text-sm font-semibold mb-3 text-slate-200">Next Upcoming Match</h3>
 
         @if (upcomingPreview(); as upcoming) {
@@ -126,7 +129,9 @@
       </mat-card>
 
       <!-- Final Action -->
-      <mat-card class="px-4 py-3 flex-1 !bg-slate-800 !text-white shadow-none border border-slate-700">
+      <mat-card
+        class="px-4 py-3 flex-1 !bg-slate-800 !text-white shadow-none border border-slate-700"
+      >
         <div class="flex flex-col gap-3">
           <div>
             <h3 class="text-sm font-semibold text-slate-200">Finalize Match</h3>
@@ -147,7 +152,5 @@
     </div>
   </div>
 } @else {
-  <div class="p-4 text-center text-xs text-slate-400 bg-slate-900 rounded-xl">
-    Loading match...
-  </div>
+  <div class="p-4 text-center text-xs text-slate-400 bg-slate-900 rounded-xl">Loading match...</div>
 }

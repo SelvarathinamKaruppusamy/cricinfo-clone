@@ -58,14 +58,14 @@ export class CompletedUpdateAdmin implements OnInit {
     }
 
     const ok = confirm(
-      `Complete this match?\n\nResult: ${this.resultText || 'Auto-generated result'}\nPlayer of the Match: ${this.playerOfMatch}`
+      `Complete this match?\n\nResult: ${this.resultText || 'Auto-generated result'}\nPlayer of the Match: ${this.playerOfMatch}`,
     );
 
     if (!ok) return;
 
     this.transitionService.completeMatchAndPromoteUpcoming(
       this.playerOfMatch.trim(),
-      this.resultText.trim()
+      this.resultText.trim(),
     );
   }
 }

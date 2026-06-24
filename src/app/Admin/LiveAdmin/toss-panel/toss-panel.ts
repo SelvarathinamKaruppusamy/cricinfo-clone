@@ -12,13 +12,7 @@ import { LiveModel, Team } from '../../../LivePages/Models/models';
 @Component({
   selector: 'app-toss-panel',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSnackBarModule,
-  ],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatSnackBarModule],
   templateUrl: './toss-panel.html',
   styleUrl: './toss-panel.css',
 })
@@ -56,17 +50,12 @@ export class TossPanel implements OnInit {
   }
 
   get tossSummary(): string {
-    if (
-      this.selectedTossWinner === null ||
-      !this.selectedCall ||
-      !this.selectedDecision
-    ) {
+    if (this.selectedTossWinner === null || !this.selectedCall || !this.selectedDecision) {
       return '';
     }
 
     const winner = this.live?.teams[this.selectedTossWinner]?.shortName ?? '';
-    const decisionText =
-      this.selectedDecision === 'Bat' ? 'bat first' : 'bowl first';
+    const decisionText = this.selectedDecision === 'Bat' ? 'bat first' : 'bowl first';
 
     return `${winner} won the toss (${this.selectedCall}) and elected to ${decisionText}.`;
   }

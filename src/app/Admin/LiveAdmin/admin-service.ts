@@ -19,7 +19,7 @@ export class AdminService {
       catchError((error) => {
         console.error(error);
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -28,7 +28,7 @@ export class AdminService {
       catchError((error) => {
         console.error(error);
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -37,7 +37,7 @@ export class AdminService {
       catchError((error) => {
         console.error(error);
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -46,7 +46,7 @@ export class AdminService {
       catchError((error) => {
         console.error(error);
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -82,11 +82,7 @@ export class AdminService {
   // =========================
   // LIVE -> COMPLETED
   // =========================
-  buildCompletedMatchFromLive(
-    liveMatch: LiveModel,
-    resultText: string,
-    playerOfMatch: string
-  ) {
+  buildCompletedMatchFromLive(liveMatch: LiveModel, resultText: string, playerOfMatch: string) {
     const completedTeams = liveMatch.teams.map((team) => {
       const totalRuns = team.scores ?? 0;
       const totalWickets = team.wickets ?? 0;
@@ -102,10 +98,7 @@ export class AdminService {
         fours: player.fours ?? null,
         sixes: player.sixes ?? null,
         strikeRate: player.strikeRate ?? null,
-        status:
-          player.status && player.status.trim() !== ''
-            ? player.status
-            : 'Did Not Bat',
+        status: player.status && player.status.trim() !== '' ? player.status : 'Did Not Bat',
       }));
 
       const bowling = team.players
@@ -220,7 +213,7 @@ export class AdminService {
         const completedPayload = this.buildCompletedMatchFromLive(
           structuredClone(liveMatch),
           finalResult,
-          playerOfMatch
+          playerOfMatch,
         );
 
         const nextLivePayload = this.buildLiveMatchFromUpcoming(nextUpcoming);

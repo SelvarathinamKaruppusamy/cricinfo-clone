@@ -104,10 +104,6 @@ export const routes: Routes = [
     component: AdminLogin,
   },
   {
-    path: 'signup',
-    component: Signup,
-  },
-  {
     path: 'admin/signup',
     component: Signup,
     canActivate: [authGuardAdminGuard],

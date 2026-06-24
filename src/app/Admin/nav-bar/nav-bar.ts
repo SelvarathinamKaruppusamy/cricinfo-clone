@@ -22,7 +22,7 @@ export class NavBar {
 rout=[
   {label:'Live', routes:'/navbarAdmin/adminLive'},
   {label:'UpComing', routes:'/navbarAdmin/upComeAdmin'},
-  // {label:'completed',routes:'/completedAdmin' }
+   {label:'blog',routes:'/navbarAdmin/admin/blogs' }
 ];
 
 router=inject(Router);

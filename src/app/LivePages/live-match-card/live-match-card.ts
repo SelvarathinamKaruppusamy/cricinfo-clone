@@ -46,7 +46,7 @@ export class LiveMatchCard implements OnInit {
   requiredRuns = 0;
   remainingBalls = 120;
   six = 6;
-  totalBalls = 0;
+  totalBalls = 120;
   upcommingdata!: LiveModel;
   completeddata: Match[] = [];
   comservice = inject(CompletedService);

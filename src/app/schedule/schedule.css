@@ -4,8 +4,8 @@
   padding: 15px;
   max-width: 850px;
   margin-top: 50px;
-margin-left: auto;
-margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .match-list {
@@ -106,12 +106,6 @@ margin-right: auto;
   margin-right: 6px;
 }
 
-.live-dot {
-  color: #d93025;
-  margin-left: 4px;
-  font-weight: bold;
-}
-
 .upcoming-time-container {
   text-align: right;
   padding-left: 15px;
@@ -171,7 +165,7 @@ margin-right: auto;
 
 .match-row {
   transition: all 0.2s ease-in-out;
-  grid-template-columns: 110px 1fr; 
+  grid-template-columns: 110px 1fr;
   padding: 18px 20px;
   border-bottom: 1px solid #edf0f2;
   background: #ffffff;
@@ -379,7 +373,7 @@ margin-right: auto;
   }
 
   .match-links {
-    display: none; 
+    display: none;
   }
 }
 
@@ -432,8 +426,8 @@ margin-right: auto;
 }
 
 .match-row.selected {
-  background-color: #d2e3fc !important; 
-  border-left: 4px solid #1a73e8; 
+  background-color: #d2e3fc !important;
+  border-left: 4px solid #1a73e8;
   transition: background-color 0.2s ease;
 }
 
@@ -478,7 +472,7 @@ margin-right: auto;
 }
 
 .match-links {
-  display: none; 
+  display: none;
 }
 
 @media (max-width: 480px) {

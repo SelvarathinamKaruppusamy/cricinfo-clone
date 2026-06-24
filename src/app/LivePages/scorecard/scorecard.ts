@@ -14,26 +14,23 @@ import { LiveModel } from '../Models/models';
   templateUrl: './scorecard.html',
   styleUrl: './scorecard.css',
 })
-export class Scorecard implements OnInit {
+export class Scorecard {
   service = inject(LiveService);
 
-  live!: LiveModel;
+  live = computed(() => this.service.live());
 
-  ngOnInit(): void {
-    this.live = this.service.live;
-  }
 
-  firstInningsTeam = computed(() => this.live?.teams?.[this.service.tosswin()]);
+  firstInningsTeam = computed(() => this.live()?.teams?.[this.service.tosswin()]);
 
-  secondInningsTeam = computed(() => this.live?.teams?.[this.service.tossloss()]);
+  secondInningsTeam = computed(() => this.live()?.teams?.[this.service.tossloss()]);
 
-  firstInningsBatters = computed(() => this.live?.teams?.[this.service.tosswin()].players);
+  firstInningsBatters = computed(() => this.live()?.teams?.[this.service.tosswin()].players);
 
-  firstInningsBowlers = computed(() => this.live?.teams?.[this.service.tossloss()].players);
+  firstInningsBowlers = computed(() => this.live()?.teams?.[this.service.tossloss()].players);
 
-  secondInningsBatters = computed(() => this.live?.teams?.[this.service.tossloss()].players);
+  secondInningsBatters = computed(() => this.live()?.teams?.[this.service.tossloss()].players);
 
-  secondInningsBowlers = computed(() => this.live?.teams?.[this.service.tosswin()].players);
+  secondInningsBowlers = computed(() => this.live()?.teams?.[this.service.tosswin()].players);
 
   secondInningsStarted = computed(() => this.service.players1().length > 0);
 }

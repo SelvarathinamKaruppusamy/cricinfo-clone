@@ -56,14 +56,21 @@ export class LiveMatchCard implements OnInit {
   filteredMatches: Match[] = [];
   trackflag = true;
   trackflag1 = true;
+
   constructor() {
     effect(() => {
-      this.service?.ball();
-      this.team1 = this.service.live.teams[0];
-      this.team2 = this.service.live.teams[1];
-      this.requiredRun();
-      this.changedetector.detectChanges();
-    });
+  this.service.ball(); // just to re-run effect when balls change if needed
+
+  const live = this.service.live();
+  if (!live) return;
+
+  this.live = live;
+  this.team1 = live.teams[0];
+  this.team2 = live.teams[1];
+
+  this.requiredRun();
+  this.changedetector.detectChanges();
+});
   }
   ngOnInit(): void {
     this.service?.GetLiveMatches().pipe(catchError((err)=>{
@@ -71,9 +78,9 @@ export class LiveMatchCard implements OnInit {
       return EMPTY
     })).subscribe((res) => {
       this.live = res[0];
-      this.service.live = this.live;
-      this.team1 = this.live.teams[0];
-      this.team2 = this.live.teams[1];
+this.service.live.set(this.live);
+this.team1 = this.live.teams[0];
+this.team2 = this.live.teams[1];
       this.changedetector.detectChanges();
     });
     this.upservice?.getMatch().pipe(catchError((err)=>{
@@ -138,18 +145,23 @@ export class LiveMatchCard implements OnInit {
       behavior: 'smooth',
     });
   }
-  requiredRun() {
-    if (this.service.innings() === 2) {
-      this.target = this.service?.completedBattingTeam.scores + 1;
-      this.requiredRuns =
-        this.target - this.service.live.teams[this.service?.currentBattingTeam()].scores;
+ requiredRun() {
+  const live = this.service.live();
+  if (!live) return;
+  
+  if (this.service.innings() === 2) {
+    this.target = (this.service.completedBattingTeam?.scores ?? 0) + 1;
 
-      const ballsBowled =
-        Math.floor(this.live.teams[this.service?.tossloss()].overs) * this.six +
-        Math.round((this.live.teams[this.service?.tossloss()].overs % 1) * 10);
-      this.remainingBalls = this.totalBalls - ballsBowled;
-    }
+    this.requiredRuns =
+      this.target - live.teams[this.service.currentBattingTeam()].scores;
+
+    const ballsBowled =
+      Math.floor(this.live.teams[this.service.tossloss()].overs) * this.six +
+      Math.round((this.live.teams[this.service.tossloss()].overs % 1) * 10);
+
+    this.remainingBalls = this.totalBalls - ballsBowled;
   }
+}
   movetolivepage() {
     // console.log(this.team1)
     this.trackflag1 = false;

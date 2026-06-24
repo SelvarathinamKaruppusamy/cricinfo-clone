@@ -184,17 +184,17 @@
           @if (service.innings() === 2) {
             @if (requiredRuns > 0) {
               <h1>
-                {{ service.live.teams[service.tossloss()].shortName }}
+                {{ service.live()?.teams?.[service.tossloss()]?.shortName }}
                 needs {{ requiredRuns }} runs in {{ remainingBalls }} balls
               </h1>
             } @else if (requiredRuns < 0) {
               <h1>
-                {{ service.live.teams[service.tossloss()].shortName }}
+               {{ service.live()?.teams?.[service.tossloss()]?.shortName }}
                 won by {{ remainingBalls }} balls
               </h1>
             }
           } @else {
-            <h1>{{ service.live.tossWinner }} chose to bat</h1>
+            <h1>{{ service.live()?.tossWinner }} chose to {{service.live()?.tossDecision}}</h1>
           }
         </div>
 

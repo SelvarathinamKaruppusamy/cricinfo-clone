@@ -1,0 +1,179 @@
+<div class="min-h-screen bg-sky-800 rounded-2xl text-white p-3 md:p-4 space-y-4">
+  @if (live(); as match) {
+    <!-- Top Card -->
+    <mat-card class="!bg-slate-900 !text-white p-4 rounded-xl shadow-lg">
+      <div class="grid lg:grid-cols-2 gap-4">
+        <!-- Left -->
+        <div class="space-y-3">
+          <div>
+            <h2 class="text-xl font-bold">Admin Live Update</h2>
+            <p class="text-slate-400 text-xs md:text-sm">
+              Match {{ match.matchNo }} • {{ match.venue }}, {{ match.city }}
+            </p>
+          </div>
+          @if (winnerText()) {
+  <div class="mt-4 rounded-xl bg-green-700/20 border border-green-500 p-4 text-center">
+    <h2 class="text-xl font-bold text-green-300">{{ winnerText() }}</h2>
+  </div>
+}
+          <div class="grid md:grid-cols-2 gap-3">
+            <!-- Batting Team -->
+            <div class="bg-slate-800 rounded-lg p-3">
+              <p class="text-slate-400 text-xs">Batting Team</p>
+              <h3 class="text-lg font-bold mt-1">
+                {{ currentBattingTeam()?.shortName }}
+              </h3>
+
+              <p class="mt-1 text-base">
+                <span class="text-green-400">{{ currentBattingTeam()?.scores }}</span> /
+                <span class="text-red-400">{{ currentBattingTeam()?.wickets }}</span>
+                <span class="text-slate-400 text-xs">
+                  ({{ currentBattingTeam()?.overs }} ov)
+                </span>
+              </p>
+
+              <p class="text-xs text-slate-400 mt-1">
+                Extras: {{ currentBattingTeam()?.extras }}
+              </p>
+            </div>
+
+            <!-- Bowling Team -->
+            <div class="bg-slate-800 rounded-lg p-3">
+              <p class="text-slate-400 text-xs">Bowling Team</p>
+              <h3 class="text-lg font-bold mt-1">
+                {{ currentBowlingTeam()?.shortName }}
+              </h3>
+
+              <p class="text-xs text-slate-400 mt-2">
+                Innings: {{ service.innings() }}
+              </p>
+
+              @if (service.innings() === 2) {
+                <p class="mt-2 text-sm">
+                  Target:
+                  <span class="text-orange-400 font-bold">{{ target() }}</span>
+                </p>
+                <p class="text-sm">
+                  Need:
+                  <span class="text-yellow-400 font-bold">{{ requiredRuns() }}</span>
+                  in
+                  <span class="text-cyan-400 font-bold">{{ remainingBalls() }}</span>
+                  balls
+                </p>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="space-y-3">
+          <!-- Current Batters -->
+          <div class="bg-slate-800 rounded-lg p-3">
+            <p class="text-slate-400 text-xs mb-2">Current Batters</p>
+
+            <div class="flex justify-between py-1 text-sm">
+              <span>
+                {{ batter1()?.name }}
+                @if (striker()?.id === batter1()?.id) {
+                  <span class="text-red-400">*</span>
+                }
+              </span>
+              <span>{{ batter1()?.runs }} ({{ batter1()?.balls }})</span>
+            </div>
+
+            <div class="flex justify-between py-1 text-sm">
+              <span>
+                {{ batter2()?.name }}
+                @if (striker()?.id === batter2()?.id) {
+                  <span class="text-red-400">*</span>
+                }
+              </span>
+              <span>{{ batter2()?.runs }} ({{ batter2()?.balls }})</span>
+            </div>
+          </div>
+
+          <!-- Current Bowler -->
+          <div class="bg-slate-800 rounded-lg p-3">
+            <p class="text-slate-400 text-xs mb-2">Current Bowler</p>
+            <div class="flex justify-between text-sm">
+              <span>{{ currentBowler()?.name }}</span>
+              <span>
+                {{ currentBowler()?.overs }} -
+                {{ currentBowler()?.runsConceded }} -
+                {{ currentBowler()?.wickets }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Ball Buttons -->
+    <mat-card class="!bg-slate-900 !text-white p-4 rounded-xl shadow-lg">
+      <h3 class="text-lg font-bold mb-3">Ball Update</h3>
+
+      <div class="space-y-3">
+        <!-- Runs -->
+        <div class="flex flex-wrap gap-2">
+          <button mat-raised-button color="primary" class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('0')" [disabled]="matchFinished()">0</button>
+          <button mat-raised-button color="primary" class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('1')" [disabled]="matchFinished()">1</button>
+          <button mat-raised-button color="primary" class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('2')" [disabled]="matchFinished()">2</button>
+          <button mat-raised-button color="primary" class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('3')" [disabled]="matchFinished()">3</button>
+          <button mat-raised-button color="accent" class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('4')" [disabled]="matchFinished()">4</button>
+          <button mat-raised-button color="accent" class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('6')" [disabled]="matchFinished()">6</button>
+        </div>
+
+        <!-- Extras / wicket -->
+        <div class="flex flex-wrap gap-2">
+          <button mat-raised-button color="warn" class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('W')" [disabled]="matchFinished()">W</button>
+          <button mat-raised-button class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('Wd')" [disabled]="matchFinished()">Wd</button>
+          <button mat-raised-button class="!min-w-0 !px-4 !py-2 !text-sm" (click)="addBall('Nb')" [disabled]="matchFinished()">Nb</button>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Current Over -->
+    <mat-card class="!bg-slate-900 !text-white p-4 rounded-xl shadow-lg">
+      <h3 class="text-lg font-bold mb-3">Current Over</h3>
+
+      <div class="flex flex-wrap gap-2">
+        @for (b of currentBowlerBalls(); track $index) {
+          <div
+            class="w-8 h-8 rounded-full border flex items-center justify-center text-sm font-bold"
+            [ngClass]="service.ballColors[b] || 'bg-slate-700 border-slate-500'"
+          >
+            {{ b }}
+          </div>
+        }
+      </div>
+    </mat-card>
+
+    <!-- Actions -->
+    <mat-card class="!bg-slate-900 !text-white p-4 rounded-xl shadow-lg">
+      <div class="flex flex-wrap gap-3">
+  <button mat-raised-button color="primary" (click)="startSecondInnings()">
+    Start 2nd Innings
+  </button>
+
+
+  <button mat-raised-button color="accent" (click)="completeMatch()">
+    Complete Match
+  </button>
+
+
+        <button
+          mat-raised-button
+          color="accent"
+          class="!text-sm !px-4 !py-2"
+          (click)="saveLiveToDb()"
+        >
+          Save Live To DB
+        </button>
+      </div>
+    </mat-card>
+  } @else {
+    <div class="h-[60vh] flex items-center justify-center">
+      <p class="text-lg text-slate-300">Live match not loaded</p>
+    </div>
+  }
+</div>

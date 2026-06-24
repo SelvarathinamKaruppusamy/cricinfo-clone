@@ -8,6 +8,10 @@ import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
 import { Stats } from './stats/stats';
 import { Schedule } from './schedule/schedule';
+import { LiveAdmin } from './Admin/live-admin/live-admin';
+import { TossPanel } from './Admin/toss-panel/toss-panel';
+import { LiveUpdateAdmin } from './Admin/live-update-admin/live-update-admin';
+import { CompletedUpdateAdmin } from './Admin/completed-update-admin/completed-update-admin';
 
 export const routes: Routes = [
   {
@@ -91,5 +95,20 @@ export const routes: Routes = [
   {
     path:'schedule/:id',
     component:Schedule
+  },
+  {
+    path: 'admin',
+    component: LiveAdmin,
+    children: [
+      { path: '', redirectTo: 'toss', pathMatch: 'full' },
+      { path: 'toss', component:TossPanel },
+      {
+        path:'liveupdate' ,component:LiveUpdateAdmin
+      },
+      {
+        path:'completed',component:CompletedUpdateAdmin
+      }
+
+    ]
   }
 ];

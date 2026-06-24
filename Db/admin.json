@@ -4,7 +4,15 @@
       "id": "1",
       "userName": "admin",
       "passWord": "admin",
-      "firstLogin": false
+      "fname": "Rithik",
+      "lname": "T",
+      "email": "admin@gmail.com",
+      "gender": "Male",
+      "mobileNo": "8526919490",
+      "firstLogin": false,
+      "role": "Super Admin",
+      "address": "Erode, Tamil Nadu",
+      "dob": "2004-12-08"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

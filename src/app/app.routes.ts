@@ -11,6 +11,7 @@ import { Schedule } from './schedule/schedule';
 import { AdminLogin } from './admin-login/admin-login';
 import { authGuardAdminGuard } from './admin-login/auth-guard-admin-guard';
 import { Signup } from './Admin/sign-up-page/sign-up-page';
+import { Profile } from './profile/profile';
 // import { Signup } from './Admin/Sign up/sign-up-page/sign-up-page';
 
 export const routes: Routes = [
@@ -103,9 +104,14 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminLogin,
   },
-  {
-    path: 'admin/signup',
-    component: Signup,
-    canActivate: [authGuardAdminGuard],
-  },
+  // {
+  //   path: 'admin/signup',
+  //   component: Signup,
+  //   canActivate: [authGuardAdminGuard],
+  // },
+  // {
+  //   path:'profile',
+  //   component:Profile,
+  //  canActivate: [authGuardAdminGuard],
+  // }
 ];

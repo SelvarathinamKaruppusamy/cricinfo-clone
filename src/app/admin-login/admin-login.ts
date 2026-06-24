@@ -27,22 +27,26 @@ export class AdminLogin {
   ) {}
 
   login() {
-    this.authService.getAdmins().subscribe((users) => {
-      const user = users.find(
-        (x) =>
-          (x.userName === this.username || x.username === this.username) &&
-          (x.passWord === this.password || x.password === this.password),
-      );
+  this.authService.getAdmins().subscribe((users) => {
 
-      if (!user) {
-        alert('Invalid Username or Password');
-        return;
-      }
+    const user = users.find(
+      (x) =>
+        x.userName === this.username &&
+        x.passWord === this.password
+    );
 
-      this.authService.setAuthenticated(true);
-      // this.router.navigate(['/admin/signup']);
-    });
-  }
+    if (!user) {
+      alert('Invalid Username or Password');
+      return;
+    }
+
+    this.authService.setAuthenticated(true);
+
+    this.authService.setCurrentUser(user);
+
+    // this.router.navigate(['/profile']);   us the nav route
+  });
+}
 
   openResetForm() {
     this.showResetForm = true;

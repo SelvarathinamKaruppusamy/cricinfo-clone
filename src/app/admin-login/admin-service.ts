@@ -6,9 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class AdminService {
 
-  private isLoggedIn = false;
-  private currentUser: any = null;
-
   constructor(private http: HttpClient) {}
 
   getAdmins() {
@@ -24,23 +21,25 @@ export class AdminService {
   }
 
   setAuthenticated(value: boolean) {
-    this.isLoggedIn = value;
+    sessionStorage.setItem('isLoggedIn', value.toString());
   }
 
   isAuthenticated(): boolean {
-    return this.isLoggedIn;
+    return sessionStorage.getItem('isLoggedIn') === 'true';
   }
 
   setCurrentUser(user: any) {
-    this.currentUser = user;
+    sessionStorage.setItem('currentUser', JSON.stringify(user));
   }
 
   getCurrentUser() {
-    return this.currentUser;
+    const user = sessionStorage.getItem('currentUser');
+
+    return user ? JSON.parse(user) : null;
   }
 
   logout() {
-    this.isLoggedIn = false;
-    this.currentUser = null;
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('currentUser');
   }
 }

@@ -26,7 +26,7 @@ export class AdminLogin {
     private router: Router,
   ) {}
 
-  login() {
+ login() {
   this.authService.getAdmins().subscribe((users) => {
 
     const user = users.find(
@@ -44,7 +44,7 @@ export class AdminLogin {
 
     this.authService.setCurrentUser(user);
 
-    // this.router.navigate(['/profile']);   us the nav route
+    // this.router.navigate(['/profile']);
   });
 }
 

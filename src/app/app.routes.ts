@@ -104,14 +104,14 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminLogin,
   },
-  // {
-  //   path: 'admin/signup',
-  //   component: Signup,
-  //   canActivate: [authGuardAdminGuard],
-  // },
-  // {
-  //   path:'profile',
-  //   component:Profile,
-  //  canActivate: [authGuardAdminGuard],
-  // }
+  {
+    path: 'admin/signup',
+    component: Signup,
+    canActivate: [authGuardAdminGuard],
+  },
+  {
+    path:'profile',
+    component:Profile,
+   canActivate: [authGuardAdminGuard],
+  }
 ];

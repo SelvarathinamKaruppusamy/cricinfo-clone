@@ -41,6 +41,10 @@
   flex-shrink: 0;
 }
 
+.profile-info {
+  flex: 1;
+}
+
 .profile-info h1 {
   font-size: 28px;
   margin-bottom: 5px;
@@ -63,7 +67,6 @@
   font-size: 22px;
   font-weight: 600;
   color: #1f2937;
-  border-left: 5px;
   padding-left: 10px;
   margin-bottom: 20px;
 }
@@ -99,7 +102,29 @@
   grid-column: 1 / -1;
 }
 
+.logout-btn {
+  margin-left: auto;
+  background: #dd5656;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #c94848;
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
+}
+
 @media (max-width: 768px) {
+
   .profile-container {
     padding: 10px;
     margin: 10px auto;
@@ -121,5 +146,11 @@
 
   .full-width {
     grid-column: auto;
+  }
+
+  .logout-btn {
+    margin-left: 0;
+    margin-top: 15px;
+    width: 100%;
   }
 }

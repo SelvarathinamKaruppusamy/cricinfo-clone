@@ -1,6 +1,7 @@
 <div class="profile-container" *ngIf="user">
 
   <div class="profile-header">
+
     <div class="profile-avatar">
       {{ user.fname[0] }}{{ user.lname[0] }}
     </div>
@@ -10,6 +11,11 @@
       <p>{{ user.role }}</p>
       <span>{{ user.email }}</span>
     </div>
+
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+
   </div>
 
   <div class="profile-card">

@@ -8,6 +8,8 @@ import { BlogDetails } from './Completed/Components/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
 import { Stats } from './stats/stats';
 import { Schedule } from './schedule/schedule';
+import { Upcome } from './Admin/upcome/upcome';
+import { NavBar } from './Admin/nav-bar/nav-bar';
 
 export const routes: Routes = [
   {
@@ -91,5 +93,20 @@ export const routes: Routes = [
   {
     path:'schedule/:id',
     component:Schedule
+  },
+  {
+  path: 'navbarAdmin',
+  component: NavBar,
+  children: [
+    {
+     path:'upComeAdmin',
+    component: Upcome
+    }
+  ]
+},
+  {
+    path:'upComeAdmin',
+    component: Upcome
   }
+  
 ];

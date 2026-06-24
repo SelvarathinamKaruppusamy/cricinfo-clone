@@ -110,6 +110,12 @@ export const routes: Routes = [
   component: NavBar,
   children: [
     {
+      path:'',
+      redirectTo:'adminLive',
+      pathMatch:'full'
+    },
+
+    {
      path:'upComeAdmin',
     component: Upcome
     },

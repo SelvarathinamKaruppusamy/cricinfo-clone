@@ -1,5 +1,10 @@
+<<<<<<< HEAD:src/app/ad-coverup-page/ad-coverup-page.ts
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IplNews } from '../LivePages/Models/models';
+=======
+import { Component } from '@angular/core';
+import { IplNews } from '../Models/models';
+>>>>>>> feature/admin-live:src/app/LivePages/ad-coverup-page/ad-coverup-page.ts
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 

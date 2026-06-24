@@ -21,15 +21,15 @@
 
         <div class="p-4 text-center">
           <p class="text-slate-400">Need</p>
-          @if (requiredRuns > 0) {
-            <h1 class="text-2xl font-bold text-yellow-400">
-              {{ requiredRuns }}
-            </h1>
-          } @else {
-            <h1 class="text-2xl font-bold text-yellow-400">
-              {{ service.live.teams[service.tossloss()].shortName }} Won
-            </h1>
-          }
+         @if (requiredRuns > 0) {
+  <h1 class="text-2xl font-bold text-yellow-400">
+    {{ requiredRuns }}
+  </h1>
+} @else {
+  <h1 class="text-2xl font-bold text-yellow-400">
+    {{ service.live()?.teams?.[service.currentBattingTeam()]?.shortName }} Won
+  </h1>
+}
         </div>
 
         <div class="p-4 text-center">

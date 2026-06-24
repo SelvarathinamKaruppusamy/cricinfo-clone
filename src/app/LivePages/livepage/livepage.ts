@@ -2,22 +2,26 @@ import {
   ChangeDetectorRef,
   Component,
   computed,
-  effect,
   inject,
+  OnDestroy,
   OnInit,
-  signal,
 } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Scorecard } from '../scorecard/scorecard';
-import { LiveModel, Player } from '../Models/models';
-import { LiveService } from '../Services/live-service';
 import { CommonModule } from '@angular/common';
+import { interval, Subscription, switchMap, startWith } from 'rxjs';
+
+import { Scorecard } from '../scorecard/scorecard';
 import { Commentary } from '../commentary/commentary';
 import { Statistics } from '../statistics/statistics';
+
+import { LiveService } from '../Services/live-service';
+import { Player } from '../Models/models';
+
 @Component({
   selector: 'app-livepage',
+  standalone: true,
   imports: [
     MatCardModule,
     MatIconModule,
@@ -30,318 +34,126 @@ import { Statistics } from '../statistics/statistics';
   templateUrl: './livepage.html',
   styleUrl: './livepage.css',
 })
-export class Livepage implements OnInit {
-  live!: LiveModel;
+export class Livepage implements OnInit, OnDestroy {
   service = inject(LiveService);
-  changedetector = inject(ChangeDetectorRef);
-  toss!: string;
-  ball = this.service.ball;
-  previousBowlerIndex = signal(-1);
-  bowlerBallCount: Record<number, number> = {};
-  currentBowlerBalls: string[] = [];
-  striker!: Player;
-  nonStriker!: Player;
-  lastProcessedBallCount = 0;
-  target = 0;
-  requiredRuns = 0;
-  remainingBalls = 0;
-  wicket = 'W';
-  wide = 'Wd';
-  noBall = 'Nb';
-  four = 4;
-  six = 6;
-  one = 1;
-  three = 3;
-  totalBalls = 120;
-  constructor() {
-    effect(() => {
-      const balls = this.service.ball();
+  cd = inject(ChangeDetectorRef);
 
-      if (balls.length === 0 || balls.length === this.lastProcessedBallCount) {
-        return;
-      }
-      this.lastProcessedBallCount = balls?.length;
-      const latestBall = balls[balls?.length - 1];
-      this.processBall(latestBall);
-      this.requiredRun();
-    });
-  }
-  ngOnInit(): void {
-    this.service?.tosswin.update((n) => Number(prompt(`Toss Time RCB vs CSK`)));
-    this.service?.GetLiveMatches().subscribe((res) => {
-      this.live = res[0];
-      this.live.tossWinner=this.live.teams[this.service?.tosswin()].shortName
-      this.service.live = this.live;
-      this.service?.currentBattingTeam.set(this.service.tosswin());
-      this.service?.currentBowlingTeam.set(this.service.tossloss());
-      this.service?.players1.update((player) => [
-        ...player,
-        this.live.teams[this.service?.currentBattingTeam()].players[0],
-      ]);
+  pollSub?: Subscription;
 
-      this.service?.players1.update((player) => [
-        ...player,
-        this.live.teams[this.service?.currentBattingTeam()].players[1],
-      ]);
-      this.striker = this.service?.players1()[0];
+  live = computed(() => this.service.live());
 
-      this.nonStriker = this.service?.players1()[1];
-      this.live.teams[this.service?.currentBattingTeam()].players[0].status = 'Not Out';
-
-      this.live.teams[this.service?.currentBattingTeam()].players[1].status = 'Not Out';
-      this.service?.bowlers1.set(
-        this.live.teams[this.service?.currentBowlingTeam()].players
-          .filter((player) => player.role === 'Bowler' || player.role === 'All-Rounder')
-          .map((p) => ({
-            ...p,
-            overs: 0.0,
-            runsConceded: 0,
-            wickets: 0,
-            maidens: 0,
-          })),
-      );
-      this.changedetector.detectChanges();
-      this.toss = this.live.teams[this.service.currentBattingTeam()].shortName;
-      // this.calculatescoreforplayer();
-    });
-    //
-
-    console.log(this.service.completedBattingTeam);
-  }
-  currentBowler = computed(() => this.service?.bowlers1()[this.service?.currentBowlerIndex()]);
-  currentbatters = computed(() =>
-    this.service?.players1().filter((player) => player?.status === 'Not Out'),
+  currentbatters = computed<Player[]>(() =>
+    this.service.players1().filter((player) => player.status === 'Not Out')
   );
+
   currentBatter1 = computed(() => this.currentbatters()[0]);
   currentBatter2 = computed(() => this.currentbatters()[1]);
 
-  legalBalls = 0;
-  inningsBalls = 0;
-  currentOverRuns = 0;
-  bowler!:Player
+  striker = computed(() => this.service.striker);
+  nonStriker = computed(() => this.service.nonStriker);
+  currentBowler = computed(() => this.service.currentBowler);
 
-  processBall(ball: string) {
-    if (!this.striker || !this.nonStriker) {
-      return;
+  tossDecision = computed(
+    () => this.service.tossDecision() ?? this.live()?.tossDecision ?? ''
+  );
+
+  toss = computed(() => this.service.live()?.tossWinner ?? '');
+
+  currentBowlerBalls = computed(() => {
+    const balls = this.service.ball();
+    const overBalls: string[] = [];
+    let legalCount = 0;
+
+    for (let i = balls.length - 1; i >= 0; i--) {
+      overBalls.unshift(balls[i]);
+
+      if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
+        legalCount++;
+      }
+
+      if (legalCount === 6) break;
     }
 
-    this.bowler = this.service?.bowlers1()[this.service?.currentBowlerIndex()];
-    this.currentBowlerBalls.push(ball);
-    // ---------------- WIDE / NO BALL ----------------
+    return overBalls;
+  });
 
-    if (ball === this.wide || ball === this.noBall) {
-     this.BallWideAndNoBall()
-      return;
-    }
+  target = computed(() => {
+    if (this.service.innings() !== 2) return 0;
+    if (!this.service.completedBattingTeam) return 0;
 
-    // ---------------- LEGAL BALL ----------------
+    return this.service.completedBattingTeam.scores + 1;
+  });
 
-    this.legalBalls++;
-    this.inningsBalls++;
+  requiredRuns = computed(() => {
+    const live = this.service.live();
+    if (!live) return 0;
+    if (this.service.innings() !== 2) return 0;
+    if (!this.service.completedBattingTeam) return 0;
 
-    this.bowlerBallCount[this.bowler.id] = (this.bowlerBallCount[this.bowler.id] || 0) + 1;
+    const currentScore = live.teams[this.service.currentBattingTeam()].scores;
+    return Math.max(0, this.target() - currentScore);
+  });
 
-    const bowlerBalls = this.bowlerBallCount[this.bowler.id];
+  remainingBalls = computed(() => {
+    const live = this.service.live();
+    if (!live) return 0;
+    if (this.service.innings() !== 2) return 0;
 
-    this.bowler.overs = Math.floor(bowlerBalls / 6) + (bowlerBalls % 6) / 10;
-    this.updateBowlerInLive(this.bowler);
-    this.live.teams[this.service?.currentBattingTeam()].overs =
-      Math.floor(this.inningsBalls / 6) + (this.inningsBalls % 6) / 10;
+    const overs = live.teams[this.service.currentBattingTeam()].overs ?? 0;
+    const fullOvers = Math.floor(overs);
+    const ballsPart = Math.round((overs - fullOvers) * 10);
+    const ballsBowled = fullOvers * 6 + ballsPart;
 
-    // ---------------- WICKET ----------------
+    return Math.max(0, 120 - ballsBowled);
+  });
 
-    if (ball === this.wicket) {
-      this.striker.balls++;
+  matchWon = computed(() => {
+    if (this.service.innings() !== 2) return false;
+    if (!this.service.completedBattingTeam) return false;
 
-      this.striker.strikeRate = Number(
-        ((this.striker?.runs / this.striker?.balls) * 100).toFixed(2),
-      );
+    const live = this.service.live();
+    if (!live) return false;
 
-      this.bowler.wickets++;
-      this.updateBowlerInLive(this.bowler);
-      const nextPlayer = this.handleWicket();
+    const chasingTeam = live.teams[this.service.currentBattingTeam()];
+    return chasingTeam.scores >= this.target();
+  });
 
-      if (nextPlayer) {
-        this.striker = nextPlayer;
-      }
-
-      this.bowler.economy = Number((this.bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
-      this.updateBowlerInLive(this.bowler);
-    } else {
-      const run = this.playerruns(ball);
-
-      // Team Score
-
-      this.live.teams[this.service?.currentBattingTeam()].scores += run;
-
-      // Bowler Runs
-
-      this.bowler.runsConceded += run;
-      this.updateBowlerInLive(this.bowler);
-      this.currentOverRuns += run;
-
-      // Batter Stats
-
-      this.striker.balls++;
-      this.striker.runs += run;
-
-      if (run === this.four) {
-        this.striker.fours++;
-      }
-
-      if (run === this.six) {
-        this.striker.sixes++;
-      }
-
-      this.striker.strikeRate = Number(((this.striker.runs / this.striker.balls) * 100).toFixed(2));
-
-      // Rotate Strike
-
-      if (run === this.one || run === this.three) {
-        [this.striker, this.nonStriker] = [this.nonStriker, this.striker];
-      }
-
-      this.bowler.economy = Number((this.bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
-      this.updateBowlerInLive(this.bowler);
-    }
-
-    // ---------------- OVER COMPLETE ----------------
-
-    if (this.legalBalls === this.six) {
-      if (this.currentOverRuns === 0) {
-        this.bowler.maidens++;
-        this.updateBowlerInLive(this.bowler);
-      }
-      [this.striker, this.nonStriker] = [this.nonStriker, this.striker];
-      this.changeBowler();
-      this.bowler = this.service?.bowlers1()[this.service?.currentBowlerIndex()];
-      this.legalBalls = 0;
-      this.currentBowlerBalls = [];
-    }
+  ngOnInit(): void {
+    this.startLivePolling();
   }
-  BallWideAndNoBall(){
-     this.bowler.runsConceded++;
-      this.updateBowlerInLive(this.bowler);
-      this.currentOverRuns++;
 
-      this.live.teams[this.service?.currentBattingTeam()].scores++;
+  startLivePolling() {
+    this.pollSub = interval(1000)
+      .pipe(
+        startWith(0),
+        switchMap(() => this.service.GetLiveMatches())
+      )
+      .subscribe({
+        next: (res) => {
+          if (!res?.length) return;
 
-      this.live.teams[this.service?.currentBattingTeam()].extras++;
+          const latestMatch = structuredClone(res[0]);
 
-      const bowlerBalls = this.bowlerBallCount[this.bowler.id] || 0;
+          // IMPORTANT:
+          // use loadMatchIntoService instead of manually setting live + reset
+          this.service.loadMatchIntoService(latestMatch);
 
-      if (bowlerBalls > 0) {
-        this.bowler.economy = Number((this.bowler.runsConceded / (bowlerBalls / 6)).toFixed(2));
-        this.updateBowlerInLive(this.bowler);
-      }
+          this.cd.detectChanges();
+        },
+        error: (err) => console.error('Polling error:', err),
+      });
   }
-  playerruns(b: string): number {
-    switch (b) {
-      case '1':
-        return 1;
-      case '2':
-        return 2;
-      case '3':
-        return 3;
-      case '4':
-        return 4;
-      case '6':
-        return 6;
-      case '0':
-        return 0;
-      default:
-        return -1;
-    }
-    return -1;
+
+  ngOnDestroy(): void {
+    this.pollSub?.unsubscribe();
   }
-  handleWicket() {
-    const striker = this.striker;
 
-    if (!striker) {
-      return null;
-    }
-
-    striker.status = 'Out';
-
-    this.live.teams[this.service?.currentBattingTeam()].wickets++;
-
-    const nextIndex = this.service?.players1().length;
-
-    const nextPlayer = this.live.teams[this.service?.currentBattingTeam()].players[nextIndex];
-
-    if (nextPlayer) {
-      nextPlayer.status = 'Not Out';
-
-      this.service.players1.update((players) => [...players, nextPlayer]);
-
-      return nextPlayer;
-    }
-
-    return null;
-  }
-  changeBowler() {
-    const current = this.service?.currentBowlerIndex();
-
-    const availableBowlers = this.service
-      .bowlers1()
-      .map((bowler, index) => ({
-        bowler,
-        index,
-      }))
-      .filter((item) => item.index !== current && item.bowler.overs < 4);
-
-    if (!availableBowlers?.length) {
-      return;
-    }
-
-    const random = Math.floor(Math.random() * availableBowlers?.length);
-
-    this.service?.currentBowlerIndex.set(availableBowlers[random].index);
-  }
   startSecondInnings() {
-    this.service?.startSecondInnings();
-
-    this.striker = this.service?.players1()[0];
-
-    this.nonStriker = this.service?.players1()[1];
-
-    this.currentBowlerBalls = [];
-    this.bowlerBallCount = {};
-
-    // RESET INNINGS COUNTERS
-    this.legalBalls = 0;
-    this.inningsBalls = 0;
-    this.currentOverRuns = 0;
+    this.service.startSecondInnings();
   }
-  updateBowlerInLive = (bowler: any) => {
-    const index = this.live.teams[this.service?.currentBowlingTeam()].players.findIndex(
-      (p) => p.id === bowler.id,
-    );
-    if (index !== -1) {
-      this.live.teams[this.service?.currentBowlingTeam()].players[index] = {
-        ...this.live.teams[this.service?.currentBowlingTeam()].players[index],
-        overs: bowler.overs,
-        maidens: bowler.maidens,
-        wickets: bowler.wickets,
-        runsConceded: bowler.runsConceded,
-        economy: bowler.economy,
-      };
-    }
-  };
-  requiredRun() {
-    if (this.service.innings() === 2) {
-      this.target = this.service?.completedBattingTeam.scores + 1;
-      this.requiredRuns =
-        this.target - this.service.live.teams[this.service?.currentBattingTeam()].scores;
 
-      const ballsBowled =
-        Math.floor(this.live.teams[this.service?.tossloss()].overs) * this.six +
-        Math.round((this.live.teams[this.service?.tossloss()].overs % 1) * 10);
-
-      this.remainingBalls = this.totalBalls - ballsBowled;
-    }
-  }
-  addball(s: string) {
-    this.service.addBall(s);
+  addball(ball: string) {
+    if (!ball?.trim()) return;
+    this.service.processBall(ball.trim());
   }
 }

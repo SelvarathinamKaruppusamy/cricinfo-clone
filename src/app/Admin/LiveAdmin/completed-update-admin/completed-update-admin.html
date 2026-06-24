@@ -1,0 +1,156 @@
+@if (live(); as match) {
+  <div class="p-3 space-y-3 bg-sky-800 rounded-2xl">
+    <!-- Page Title -->
+    <mat-card class="px-4 py-3 !bg-slate-800 !text-white shadow-none border border-slate-700">
+      <h2 class="text-base font-semibold">Complete Match Update</h2>
+      <p class="text-slate-400 text-xs mt-0.5">
+        Move current live match to completed and promote first upcoming match to live.
+      </p>
+    </mat-card>
+
+    <!-- Current Live Match -->
+    <mat-card class="px-4 py-3 !bg-slate-800 !text-white shadow-none border border-slate-700">
+      <h3 class="text-sm font-semibold mb-3 text-slate-200">Current Live Match</h3>
+
+      <div class="grid md:grid-cols-2 gap-3">
+        <!-- Team 1 -->
+        <div
+          class="border border-slate-700 rounded-lg px-3 py-2.5 flex justify-between items-center bg-slate-900"
+        >
+          <div class="flex items-center gap-2">
+            <img [src]="match.teams[0].logo" class="w-8 h-8 object-contain" />
+            <div>
+              <p class="text-sm font-semibold leading-tight text-white">
+                {{ match.teams[0].shortName }}
+              </p>
+              <p class="text-xs text-slate-400 leading-tight">
+                {{ match.teams[0].fullName }}
+              </p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-bold text-emerald-400">
+              {{ match.teams[0].scores }}/{{ match.teams[0].wickets }}
+            </p>
+            <p class="text-xs text-slate-400">{{ match.teams[0].overs }} ov</p>
+          </div>
+        </div>
+
+        <!-- Team 2 -->
+        <div
+          class="border border-slate-700 rounded-lg px-3 py-2.5 flex justify-between items-center bg-slate-900"
+        >
+          <div class="flex items-center gap-2">
+            <img [src]="match.teams[1].logo" class="w-8 h-8 object-contain" />
+            <div>
+              <p class="text-sm font-semibold leading-tight text-white">
+                {{ match.teams[1].shortName }}
+              </p>
+              <p class="text-xs text-slate-400 leading-tight">
+                {{ match.teams[1].fullName }}
+              </p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-bold text-emerald-400">
+              {{ match.teams[1].scores }}/{{ match.teams[1].wickets }}
+            </p>
+            <p class="text-xs text-slate-400">{{ match.teams[1].overs }} ov</p>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Result + Player of Match -->
+    <mat-card class="px-4 py-3 !bg-slate-800 !text-white shadow-none border border-slate-700">
+      <h3 class="text-sm font-semibold mb-3 text-slate-200">Match Details</h3>
+
+      <div class="space-y-3">
+        <!-- Result -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Result</label>
+          <textarea
+            [(ngModel)]="resultText"
+            rows="2"
+            class="w-full border border-slate-600 rounded-lg px-3 py-2 text-sm outline-none bg-slate-900 text-white resize-none placeholder:text-slate-500"
+            placeholder="Example: CSK won by 12 runs"
+          ></textarea>
+        </div>
+
+        <!-- Auto Generate -->
+        <div>
+          <button
+            mat-stroked-button
+            class="!text-xs !h-8 !border-slate-500 !text-slate-200"
+            (click)="autoGenerateResult()"
+          >
+            Auto Generate Result
+          </button>
+        </div>
+
+        <!-- Player of Match -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1"> Player of the Match </label>
+          <select
+            [(ngModel)]="playerOfMatch"
+            class="w-full border border-slate-600 rounded-lg px-3 py-2 text-sm outline-none bg-slate-900 text-white"
+          >
+            <option value="" class="text-white">Select player</option>
+            @for (player of allPlayers(); track player.id) {
+              <option [value]="player.name" class="text-white">
+                {{ player.name }}
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Next Upcoming Match + Final Action -->
+    <div class="flex gap-3">
+      <!-- Next Upcoming Match -->
+      <mat-card
+        class="px-4 py-3 flex-1 !bg-slate-800 !text-white shadow-none border border-slate-700"
+      >
+        <h3 class="text-sm font-semibold mb-3 text-slate-200">Next Upcoming Match</h3>
+
+        @if (upcomingPreview(); as upcoming) {
+          <div class="border border-slate-700 rounded-lg px-3 py-2.5 bg-slate-900">
+            <p class="text-sm font-semibold text-white">
+              {{ upcoming.teams[0].shortName }} vs {{ upcoming.teams[1].shortName }}
+            </p>
+            <p class="text-xs text-slate-400 mt-1">Match {{ upcoming.matchNo }}</p>
+            <p class="text-xs text-slate-400">{{ upcoming.venue }}, {{ upcoming.city }}</p>
+            <p class="text-xs text-slate-400">{{ upcoming.date }}</p>
+          </div>
+        } @else {
+          <p class="text-xs text-slate-400">No upcoming match available</p>
+        }
+      </mat-card>
+
+      <!-- Final Action -->
+      <mat-card
+        class="px-4 py-3 flex-1 !bg-slate-800 !text-white shadow-none border border-slate-700"
+      >
+        <div class="flex flex-col gap-3">
+          <div>
+            <h3 class="text-sm font-semibold text-slate-200">Finalize Match</h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              This will move current live match to completed and next upcoming match to live.
+            </p>
+          </div>
+
+          <button
+            mat-stroked-button
+            class="!text-xs !h-8 !border-green-400 !text-green-400 self-start"
+            (click)="completeMatch()"
+          >
+            Complete Match
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+} @else {
+  <div class="p-4 text-center text-xs text-slate-400 bg-slate-900 rounded-xl">Loading match...</div>
+}

@@ -1,7 +1,8 @@
 import { Component, OnInit, inject, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
 import { UpcService } from '../../UpCommingPage/up-comp/upc-service';
 import { updateMatch } from '../../UpCommingPage/match/match.models/match.models-module';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +23,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   templateUrl: './upcome.html',
   styleUrl: './upcome.css',

@@ -1,117 +1,91 @@
 <div class="container">
-
   <div class="left-panel">
-
     <mat-list>
       @for (match of matches; track match.matchNo) {
-
         <mat-list-item
           class="match-item"
           [class.selected]="selectedMatchNo === match.matchNo"
-          (click)="selectMatch(match)">
-
+          (click)="selectMatch(match)"
+        >
           <div class="match-row">
-
             <div class="team-right">
-              <img [src]="match.teams[0].logo" alt=""  width="30px" height="30px">
+              <img [src]="match.teams[0].logo" alt="" width="30px" height="30px" />
               <span>{{ match.teams[0].shortName }}</span>
             </div>
 
             <span class="vs">VS</span>
 
             <div class="team-left">
-                  <span>{{ match.teams[1].shortName }}</span>
-                 <img [src]="match.teams[1].logo" alt=""width="30px" height="30px">
-               
-               
-             
-    
+              <span>{{ match.teams[1].shortName }}</span>
+              <img [src]="match.teams[1].logo" alt="" width="30px" height="30px" />
             </div>
-
           </div>
-
         </mat-list-item>
-
       }
     </mat-list>
-
   </div>
 
   <div class="right-panel">
-
-    @if(selectedMatch){
-
+    @if (selectedMatch) {
       <mat-card class="update-card">
-
         <mat-card-header>
           <mat-card-title>Update Match</mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
-
           <mat-form-field appearance="outline">
             <mat-label>Match No</mat-label>
-            <input matInput [value]="selectedMatch.matchNo" readonly>
+            <input matInput [value]="selectedMatch.matchNo" readonly />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Venue</mat-label>
-            <input matInput #venue [value]="selectedMatch.venue">
+            <input matInput #venue [value]="selectedMatch.venue" />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
-            <input matInput #city [value]="selectedMatch.city">
+            <input matInput #city [value]="selectedMatch.city" />
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Date</mat-label>
-            <input matInput type="date" #date [value]="selectedMatch.date">
-          </mat-form-field>
+          <div class="row-fields">
+            <mat-form-field appearance="outline">
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="picker" #date [value]="selectedMatch.date" />
+              <mat-datepicker-toggle matIconSuffix [for]="picker"> </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Status</mat-label>
-            <input matInput #status [value]="selectedMatch.status">
-          </mat-form-field>
-
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <input matInput #status [value]="selectedMatch.status" />
+            </mat-form-field>
+          </div>
         </mat-card-content>
 
         <mat-card-actions>
           <button
             mat-raised-button
             color="primary"
-            (click)="prepareUpdate(
-              venue.value,
-              city.value,
-              date.value,
-              status.value
-            ); saveMatch()">
-
+            (click)="prepareUpdate(venue.value, city.value, date.value, status.value); saveMatch()"
+          >
             Save
           </button>
         </mat-card-actions>
-
       </mat-card>
 
-    }
-
-    @else {
-
+    } @else {
       <mat-card class="empty-card">
         <mat-card-content>
           <h2>Select a Match</h2>
           <p>Choose a match from the left panel</p>
         </mat-card-content>
       </mat-card>
-
     }
-
   </div>
 </div>
 
-<!-- ✅ CENTER POPUP DIALOG (same component) -->
 <ng-template #confirmDialog>
-
   <h2 mat-dialog-title>Confirm Update</h2>
 
   <mat-dialog-content>
@@ -121,9 +95,6 @@
   <mat-dialog-actions align="center">
     <button mat-button (click)="dialog.closeAll()">Cancel</button>
 
-    <button mat-raised-button color="primary" (click)="confirmUpdate()">
-      Update
-    </button>
+    <button mat-raised-button color="primary" (click)="confirmUpdate()">Update</button>
   </mat-dialog-actions>
-
 </ng-template>

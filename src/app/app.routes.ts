@@ -15,6 +15,10 @@ import { CompletedUpdateAdmin } from './Admin/LiveAdmin/completed-update-admin/c
 import { NavBar } from './Admin/nav-bar/nav-bar';
 import { Upcome } from './Admin/upcome/upcome';
 import { AdminLanding } from './Admin/admin-landing/admin-landing';
+import { authGuardAdminGuard } from './admin-login/auth-guard-admin-guard';
+import { AdminLogin } from './admin-login/admin-login';
+import { Profile } from './profile/profile';
+import { Signup } from './Admin/sign-up-page/sign-up-page';
 export const routes: Routes = [
   {
     path: '',
@@ -97,48 +101,61 @@ export const routes: Routes = [
     component: PointsTable,
   },
   {
-    path:'schedule/:id',
-    component:Schedule
+    path: 'schedule/:id',
+    component: Schedule,
   },
   {
-    path:'admin',
-    component:AdminLanding
+    path: 'admin',
+    component: AdminLogin,
   },
-  
-    {
-  path: 'navbarAdmin',
-  component: NavBar,
-  children: [
-    {
-      path:'',
-      redirectTo:'adminLive',
-      pathMatch:'full'
-    },
+  {
+    path: 'adminlanding',
+    component: AdminLanding,
+  },
 
-    {
-     path:'upComeAdmin',
-    component: Upcome
-    },
-    {
-    path: 'adminLive',
-    component: LiveAdmin,
+  {
+    path: 'navbarAdmin',
+    component: NavBar,
+    canActivate: [authGuardAdminGuard],
     children: [
-      { path: '', redirectTo: 'toss', pathMatch: 'full' },
-      { path: 'toss', component:TossPanel },
       {
-        path:'liveupdate' ,component:LiveUpdateAdmin
+        path: '',
+        redirectTo: 'adminLive',
+        pathMatch: 'full',
+      },
+
+      {
+        path: 'upComeAdmin',
+        component: Upcome,
       },
       {
-        path:'completed',component:CompletedUpdateAdmin
-      }
-
-    ]},
-    
-  ]
-},
+        path: 'signup',
+        component: Signup,
+      },
+      {
+        path: 'profile',
+        component: Profile,
+      },
+      {
+        path: 'adminLive',
+        component: LiveAdmin,
+        children: [
+          { path: '', redirectTo: 'toss', pathMatch: 'full' },
+          { path: 'toss', component: TossPanel },
+          {
+            path: 'liveupdate',
+            component: LiveUpdateAdmin,
+          },
+          {
+            path: 'completed',
+            component: CompletedUpdateAdmin,
+          },
+        ],
+      },
+    ],
+  },
   {
-    path:'upComeAdmin',
-    component: Upcome
-  }
-  
+    path: 'upComeAdmin',
+    component: Upcome,
+  },
 ];

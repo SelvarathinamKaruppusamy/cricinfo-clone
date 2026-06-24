@@ -203,43 +203,47 @@ export class Stats {
   }
 
   calculatePurpleCap() {
-    const bowlers = new Map();
+  const bowlers = new Map();
 
-    this.matches.forEach((match: any) => {
-      match.teams.forEach((team: any) => {
-        team.bowling?.forEach((bowler: any) => {
-          const bowlerId = bowler.id ?? bowler.playerId;
+  this.matches.forEach((match: any) => {
+    match.teams.forEach((team: any) => {
+      team.bowling?.forEach((bowler: any) => {
+        const bowlerId = bowler.id ?? bowler.playerId;
 
-          if (!bowlers.has(bowlerId)) {
-            bowlers.set(bowlerId, {
-              name: bowler.name,
-              wickets: 0,
-              matches: 0,
-              economyRuns: 0,
-              economyBalls: 0,
-            });
-          }
+        if (!bowlers.has(bowlerId)) {
+          bowlers.set(bowlerId, {
+            name: bowler.name,
+            wickets: 0,
+            matches: 0,
+            economyRuns: 0,
+            economyBalls: 0,
+          });
+        }
 
-          const b = bowlers.get(bowlerId);
-
-          b.wickets += bowler.wickets || 0;
-          b.matches += 1;
-
-          b.economyRuns += bowler.runsConceded || bowler.runs || 0;
-
-          b.economyBalls += bowler.balls || bowler.ballsBowled || 0;
-        });
+        const b = bowlers.get(bowlerId);
+        b.wickets += bowler.wickets || 0;
+        b.matches += 1;
+        b.economyRuns += bowler.runsConceded || bowler.runs || 0;
+        b.economyBalls += bowler.balls || bowler.ballsBowled || 0;
       });
     });
+  });
 
-    this.purpleCapList = Array.from(bowlers.values())
-      .map((b: any) => ({
-        ...b,
-        economy: b.economyBalls > 0 ? Number((b.economyRuns / (b.economyBalls / 6)).toFixed(2)) : 0,
-      }))
-      .sort((a: any, b: any) => b.wickets - a.wickets)
-      .slice(0, 5);
-  }
+  this.purpleCapList = Array.from(bowlers.values())
+    .map((b: any) => ({
+      ...b,
+      economy: b.economyBalls > 0 ? Number((b.economyRuns / (b.economyBalls / 6)).toFixed(2)) : 0,
+    }))
+    .sort((a: any, b: any) => {
+      // Primary sort: wickets descending
+      if (b.wickets !== a.wickets) {
+        return b.wickets - a.wickets;
+      }
+      // Secondary sort: economy ascending (lower is better)
+      return a.economy - b.economy;
+    })
+    .slice(0, 5);
+}
   calculateOrangeCap() {
     const batters = new Map();
 

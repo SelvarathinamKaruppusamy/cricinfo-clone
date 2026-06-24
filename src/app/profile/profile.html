@@ -1,0 +1,68 @@
+<div class="profile-container" *ngIf="user">
+
+  <div class="profile-header">
+
+    <div class="profile-avatar">
+      {{ user.fname[0] }}{{ user.lname[0] }}
+    </div>
+
+    <div class="profile-info">
+      <h1>{{ user.fname }} {{ user.lname }}</h1>
+      <p>{{ user.role }}</p>
+      <span>{{ user.email }}</span>
+    </div>
+
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+
+  </div>
+
+  <div class="profile-card">
+
+    <div class="section-title">
+      Personal Information
+    </div>
+
+    <div class="info-grid">
+
+      <div class="info-item">
+        <label>First Name</label>
+        <span>{{ user.fname }}</span>
+      </div>
+
+      <div class="info-item">
+        <label>Last Name</label>
+        <span>{{ user.lname }}</span>
+      </div>
+
+      <div class="info-item">
+        <label>Email</label>
+        <span>{{ user.email }}</span>
+      </div>
+
+      <div class="info-item">
+        <label>Mobile Number</label>
+        <span>{{ user.mobileNo }}</span>
+      </div>
+
+      <div class="info-item">
+        <label>Gender</label>
+        <span>{{ user.gender }}</span>
+      </div>
+
+      <div class="info-item">
+        <label>Date of Birth</label>
+        <span>{{ user.dob }}</span>
+      </div>
+
+      <div class="info-item full-width">
+        <label>Address</label>
+        <span>{{ user.address }}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

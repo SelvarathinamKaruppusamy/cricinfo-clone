@@ -3,37 +3,32 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { routes } from '../../app.routes';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [MatToolbarModule,
-   
-    MatIcon,
-    MatButtonModule,
-    RouterLink,
-    RouterLinkActive,
-    RouterOutlet
-  ],
+  imports: [MatToolbarModule, MatIcon, MatButtonModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css',
-  standalone:true
+  standalone: true,
 })
 export class NavBar {
-rout=[
-  {label:'Live', routes:'/navbarAdmin/adminLive'},
-  {label:'UpComing', routes:'/navbarAdmin/upComeAdmin'},
-   {label:'blog',routes:'/navbarAdmin/admin/blogs' }
-];
+  rout = [
+    { label: 'Live', routes: '/navbarAdmin/adminLive' },
+    { label: 'UpComing', routes: '/navbarAdmin/upComeAdmin' },
+    { label: 'Blog', routes: '/navbarAdmin/admin/blogs' },
+    { label: 'Register', routes: '/navbarAdmin/signup' },
+    { label: 'Profile', routes: '/navbarAdmin/profile' },
+  ];
 
-router=inject(Router);
-cd=inject(ChangeDetectorRef);
-activateRoute='';
+  router = inject(Router);
+  cd = inject(ChangeDetectorRef);
+  activateRoute = '';
 
-getRoute(route:string){
-this.activateRoute=route;
-this.router.navigateByUrl(route);
-this.cd.detectChanges();
-console.log('NavbarAdmin');
-}
-
+  getRoute(route: string) {
+    this.activateRoute = route;
+    this.router.navigateByUrl(route);
+    this.cd.detectChanges();
+    console.log('NavbarAdmin');
+  }
 }

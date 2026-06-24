@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  width: 100%;
+ 
+}
+
+.left-panel {
+  width: 40%;
+}
+
+.right-panel {
+  width: 60%;
+  height: 60%;
+  margin-bottom: 100px;
+}
+
+.match-item {
+  cursor: pointer;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  padding: 20px;
+}
+
+.match-item:hover {
+  background-color: #e3f2fd;
+  transform: translateX(6px);
+}
+
+.selected {
+  background-color: #bbdefb;
+  /* border-left: 5px solid #1976d2; */
+}
+
+.match-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+.team-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+}
+ 
+.team-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+}
+ 
+
+
+
+.match-item:hover .team img {
+  transform: scale(1.15);
+}
+
+.vs {
+  text-align: center;
+  font-weight: 600;
+  color: #1976d2;
+  font-size: 15px;
+}
+
+.update-card {
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.empty-card {
+  text-align: center;
+  padding: 100px;
+  height: 350px;
+  margin-top:100px;
+  margin-left: 75px;
+  
+}
+mat-card-title{
+    margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 12px;
+}

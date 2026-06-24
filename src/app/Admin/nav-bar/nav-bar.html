@@ -1,0 +1,21 @@
+<div class="mb-16">
+    <mat-toolbar color="primary" class="!bg-sky-900 navbar">
+<mat-icon>sports_cricket</mat-icon>
+<span class="logo">Cricinfo</span>
+<span class="spacer"></span>
+
+@for(item of rout; track item.routes){
+<a
+mat-button
+(click)="getRoute(item.routes)"
+class="!text-white"
+ [class.active-link]="activateRoute === item.routes"
+>
+{{item.label}}
+</a>
+}
+
+</mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>

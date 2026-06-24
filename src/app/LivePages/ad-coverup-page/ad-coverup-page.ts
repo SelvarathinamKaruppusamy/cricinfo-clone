@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IplNews } from '../LivePages/Models/models';
+import { IplNews } from '../Models/models';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 

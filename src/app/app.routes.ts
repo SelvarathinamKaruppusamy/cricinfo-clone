@@ -1,13 +1,16 @@
 import { Routes } from '@angular/router';
-import { Squads } from './NavBar/squads/squads';
 import { UpComp } from './UpCommingPage/up-comp/up-comp';
 import { Match } from './UpCommingPage/match/match';
 import { LiveMatchCard } from './LivePages/live-match-card/live-match-card';
 import { Livepage } from './LivePages/livepage/livepage';
-import { BlogList } from './Completed/Components/blog-list/blog-list';
-import { BlogDetails } from './Completed/Components/blog-details/blog-details';
+import { BlogList } from './Blog/blog-list/blog-list';
+import { BlogDetails } from './Blog/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
-import { CompletedDetails } from './Completed/Components/completed-details/completed-details';
+import { Stats } from './stats/stats';
+import { Schedule } from './schedule/schedule';
+import { BlogManagementComponent } from './BlogManagement/blog-management/blog-management';
+import { BlogForm } from './BlogManagement/edit-blog/blog-form';
+import { AddBlog } from './BlogManagement/add-blog/add-blog';
 
 export const routes: Routes = [
   {
@@ -18,23 +21,35 @@ export const routes: Routes = [
   {
     path: 'live',
     component: LiveMatchCard,
-    children:[
-       {
-    path: 'livepage',
-    component: Livepage,
+    children: [
+      {
+        path: 'livepage',
+        component: Livepage,
+      },
+      {
+        path: 'match/:id',
+        component: Match,
+      },
+      {
+        path: 'completed/:matchNo',
+        loadComponent: () =>
+          import('./Completed/Components/completed-details/completed-details').then(
+            (c) => c.CompletedDetails,
+          ),
+      },
+      {
+        path: 'schedule/:id',
+        component: Schedule,
+      },
+      {
+        path: 'points-table/:matchNo',
+        component: PointsTable,
+      },
+    ],
   },
   {
-    path: 'match/:id',
-    component: Match,
-  },
-   {
-  path: 'completed/:matchNo',
-  loadComponent: () =>
-    import('./Completed/Components/completed-details/completed-details').then(c=>c.CompletedDetails),
-  },]},
-  {
-    path: 'squads',
-    component: Squads,
+    path: 'stats/:type',
+    component: Stats,
   },
   {
     path: 'match/:id',
@@ -43,6 +58,12 @@ export const routes: Routes = [
   {
     path: 'upcoming',
     component: UpComp,
+    children: [
+      {
+        path: 'upcomingMatchPage',
+        component: Match,
+      },
+    ],
   },
   {
     path: 'completed',
@@ -69,7 +90,61 @@ export const routes: Routes = [
     component: PointsTable,
   },
   {
-  path: 'points-table/:matchNo',
-  component: PointsTable
+    path: 'points-table/:matchNo',
+    component: PointsTable,
+  },
+  {
+    path: 'schedule/:id',
+    component: Schedule,
+  },
+
+{
+  path: 'navbarAdmin',
+  component: NavBar,
+  children: [
+    {
+      path:'',
+      redirectTo:'adminLive',
+      pathMatch:'full'
+    },
+ 
+    {
+     path:'upComeAdmin',
+    component: Upcome
+    },
+    {
+    path: 'adminLive',
+    component: LiveAdmin,
+    children: [
+      { path: '', redirectTo: 'toss', pathMatch: 'full' },
+      { path: 'toss', component:TossPanel },
+      {
+        path:'liveupdate' ,component:LiveUpdateAdmin
+      },
+      {
+        path:'completed',component:CompletedUpdateAdmin
+      }
+ 
+    ]},
+
+     {
+    path:'upComeAdmin',
+    component: Upcome
+  }
+
+  {
+  path: 'admin/blogs',
+  component: BlogManagementComponent
 },
+{
+  path: 'admin/blogs/add',
+  component: AddBlog
+},
+{
+  path: 'admin/blogs/edit/:id',
+  component: BlogForm
+}
+   
+  ]
+}
 ];

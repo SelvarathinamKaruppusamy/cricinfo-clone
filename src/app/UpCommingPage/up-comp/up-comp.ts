@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { UpcService } from './upc-service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 interface Team {
   teamId: number;
@@ -16,7 +17,7 @@ interface Match {
   matchNo: number;
   city: string;
   venue: string;
-  date: number;
+  date: string;
   teams: Team[];
 }
 
@@ -29,12 +30,12 @@ export interface matchCard {
   team1: Team;
   team2: Team;
   time: string;
-  date: number;
+  date: string;
 }
 
 @Component({
   selector: 'app-up-comp',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterOutlet,MatButtonModule],
   templateUrl: './up-comp.html',
   styleUrl: './up-comp.css',
   standalone: true,
@@ -59,12 +60,20 @@ export class UpComp {
         time: '7:30 PM ',
         date: match.date,
       }));
-      this.service.upcommingdata=this.cards[0]
+      this.service.upCommingdata=this.cards[0]
       this.cd.detectChanges();
-      console.log(this.service.upcommingdata);
+      
     });
   }
   open(id: number) {
     this.router.navigate(['/match', id]);
+  }
+formatDate(date: string): Date {
+  const [year, month, day] = date.split('-').map(Number);
+  return new Date(year, month - 1, day);
+}
+schedulepage(event: Event, id: number) {
+    event.stopPropagation();
+    this.router.navigate(['/schedule', id]);
   }
 }

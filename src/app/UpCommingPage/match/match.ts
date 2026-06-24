@@ -8,11 +8,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatchData } from './match.models/match.models-module';
-
+import { Team } from './match.models/match.models-module';
 @Component({
   selector: 'app-match',
   imports: [
@@ -26,6 +26,7 @@ import { MatchData } from './match.models/match.models-module';
     MatChipsModule,
     MatExpansionModule,
     MatButtonModule,
+    RouterOutlet
   ],
   templateUrl: './match.html',
   styleUrl: './match.css',
@@ -50,4 +51,9 @@ export class Match implements OnInit {
   redirectfun() {
     this.route.navigate(['/upcoming']);
   }
+  formatDate(date: string): string {
+  const [year, day, month] = date.split('-');
+  return `${day}-${month}-${year}`;
+}
+
 }

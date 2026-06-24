@@ -4,22 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-
-interface Blog {
-  id: number;
-  matchId: number;
-  title: string;
-  slug: string;
-  image: string;
-  shortDescription: string;
-  category: string;
-  author: string;
-  content: string[];
-  publishedDate: string;
-  readTime: string;
-  featured: boolean;
-  tags: string[];
-}
+import { Blog } from '../../Completed/Models/match-module';
 
 @Component({
   selector: 'app-blog-detail',
@@ -44,4 +29,6 @@ export class BlogDetails implements OnInit {
       }),
     );
   }
+  
+
 }

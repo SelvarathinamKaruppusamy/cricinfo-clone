@@ -28,7 +28,7 @@ export class CompletedDetails implements OnInit {
   bowlingTeam: any = null;
   relatedBlog: any = null;
 
-  // Dynamic clean delivery of absolute Cloudinary path images
+  // get Cloudinary images path 
   get blogImageUrl(): string {
     if (!this.relatedBlog || !this.relatedBlog.image) {
       return '';
@@ -91,15 +91,15 @@ export class CompletedDetails implements OnInit {
         this.relatedBlog =
           blogs.find((blog) => Number(blog.matchId) === Number(this.match?.matchNo)) || null;
 
-        // Added safe navigation (?.) to prevent app crashes if no blog matches the ID
+        // for console view 
         console.log('MATCH:', this.match?.matchNo);
         console.log('RELATED BLOG:', this.relatedBlog);
         console.log('IMAGE PATH:', this.relatedBlog?.image);
 
-        this.cd.detectChanges(); // Keeps template fully synced with async server timing
+        this.cd.detectChanges();
       },
       error: (err) => {
-        console.error('Blog Fetch Error', err);
+        console.error('Blog Fetch Error:', err);
       },
     });
   }

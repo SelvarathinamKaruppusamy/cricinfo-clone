@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, HostListener, inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { LiveModel, Player, Team } from '../Models/models';
 
@@ -62,7 +62,12 @@ export class LiveService {
     );
   }
   UpdateMatch(matchId: any, Match: Partial<LiveModel>): Observable<LiveModel> {
-    return this.http.put<LiveModel>(`http://localhost:3000/matches/${matchId}`, Match);
+    return this.http.put<LiveModel>(`http://localhost:3000/matches/${matchId}`, Match).pipe(
+      catchError((error) => {
+        console.error(error);
+        return throwError(() => error);
+      }),
+    );
   }
   // run conventor
   calculateScore(score: string): number {

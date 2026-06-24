@@ -1,0 +1,83 @@
+<div class="blog-form-container">
+  <div class="page-header">
+    <h2>Add New Blog</h2>
+    <p>Create and publish a new article</p>
+  </div>
+
+  <form [formGroup]="blogForm">
+    <div class="form-group">
+      <label>Title</label>
+      <input
+        type="text"
+        placeholder="Enter blog title"
+        formControlName="title"
+        (input)="generateSlug()"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Slug</label>
+      <input type="text" formControlName="slug" readonly />
+    </div>
+
+    <div class="form-group">
+      <label>Featured Image *</label>
+
+      <input type="file" accept="image/*" (change)="onImageSelected($event)" />
+
+      <div class="preview" *ngIf="previewUrl">
+        <img [src]="previewUrl" alt="Preview" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Short Description</label>
+
+      <textarea
+        rows="4"
+        placeholder="Short summary shown on blog cards"
+        formControlName="shortDescription"
+      >
+      </textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Content</label>
+
+      <textarea rows="18" placeholder="Write blog content here..." formControlName="content">
+      </textarea>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label>Read Time</label>
+
+        <input type="text" placeholder="4 min read" formControlName="readTime" />
+      </div>
+
+      <div class="form-group">
+        <label>Published Date</label>
+
+        <input type="date" formControlName="publishedDate" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Tags</label>
+
+      <input type="text" placeholder="Virat Kohli, RCB, IPL 2026" formControlName="tags" />
+    </div>
+
+    <div class="featured-box">
+      <input type="checkbox" formControlName="featured" />
+
+      <span>Featured Blog</span>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="cancel-btn" routerLink="/admin/blogs">Cancel</button>
+
+      <button type="button" class="save-btn" (click)="saveBlog()">Publish Blog</button>
+    </div>
+  </form>
+</div>

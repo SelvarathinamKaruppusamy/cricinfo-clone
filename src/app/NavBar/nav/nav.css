@@ -1,22 +1,24 @@
 .navbar {
-  position: sticky;
+  position:fixed;
   top: 0;
-  z-index: 1000;
-  background-color: rgba(6, 52, 133, 0.904);
+  z-index: 9999;
   color: white;
 }
-
 .logo {
   font-size: 20px;
   font-weight: bold;
 }
-
 .spacer {
   flex: 1;
 }
-
 .active-link {
   /* border-bottom: 3px solid white; */
-  background-color: rgb(10, 175, 167);
+  border-bottom: 2px solid white;
   font-weight: 600;
 }
+.filter-card {
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+}
+

@@ -1,306 +1,371 @@
+
+<div class="flex items-center gap-4 flex-wrap mt-17">
+
+  <button class="ml-5 border px-3 py-1 text-xs rounded bg-white" (click)="changebutton()">
+    <div class="flex items-center gap-2">
+<img src="ipl-logo.png" alt="IPL" class="filter-logo">
+    <span>Matches (7)</span>
+    </div>
+  </button>
+  <mat-chip-listbox class="team-filter" [multiple]="false"  hideSingleSelectionIndicator>
+    @for (team of teams; track team.teamId) {
+  <mat-chip-option
+  [selected]="selectedTeamId === team.teamId"
+  (click)="matchFilter(team.teamId)"
+  (click)="changebutton1()"
+>
+  <div class="flex items-center gap-2">
+    <img
+      [src]="team.logo"
+      [alt]="team.shortName"
+      class="w-5 h-5 object-contain"
+    />
+    <span>{{ team.shortName }}</span>
+  </div>
+</mat-chip-option>
+    }
+  </mat-chip-listbox>
+</div>
+
 <div class="relative m-1">
-  <button class=" ml-5 border p-1 text-xs rounded bg-white">Matches (7)</button>
   <button
-    class="absolute left-2 top-1/2 -translate-y-1/2 z-10
-           bg-white shadow-md rounded-full p-2
-           hover:bg-gray-100"
+    class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-100"
     (click)="scrollLeft()"
   >
     <mat-icon>chevron_left</mat-icon>
   </button>
-  <div
-  #cardContainer
-  class="flex gap-5 overflow-x-hidden scroll-smooth p-5"
->
-<!-- UpComming Card -->
-  <mat-card
-    (click)="movetoupcommingpage()"
-   class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300
-       rounded-xl p-3 shadow-md cursor-pointer
-       transition-all duration-300
-       hover:-translate-y-1 hover:shadow-lg
-       active:scale-[0.98]"
-  >
-    <!-- Header -->
-    <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
-      <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
-       <!-- <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> -->
-        {{ upcommingdata.status| uppercase}}
-      </div>
+  <div #cardContainer class="flex gap-5 overflow-x-hidden scroll-smooth p-5">
+    @if (trackflag) {
+      <!-- UpComming Card -->
+      <mat-card
+        (click)="movetoupcommingpage()"
+        class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300 rounded-xl p-3 shadow-md cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]"
+      >
+        <!-- Header -->
+        <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
+          <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
+            <!-- <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> -->
+            {{ upcommingdata?.status | uppercase }}
+          </div>
 
-      <div class="flex items-center gap-2 text-[11px] text-slate-500">
-        <span>IPL T20</span>
+          <div class="flex items-center gap-2 text-[11px] text-slate-500">
+            <span>IPL T20</span>
 
-        <div class="flex items-center gap-0.5">
-          <mat-icon class="!text-[12px] !w-[12px] !h-[12px]">
-            location_on
-          </mat-icon>
-          {{ upcommingdata.city }}
+            <div class="flex items-center gap-0.5">
+              <mat-icon class="!text-[12px] !w-[12px] !h-[12px]"> location_on </mat-icon>
+              {{ upcommingdata?.city }}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Team 1 -->
-  <div class="flex justify-between">
-     <div>
-     <div >
-  <div class="flex items-center gap-2">
-    <img
-      [src]="upteam1?.logo"
-      [alt]="upteam1?.shortName"
-      class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
-    />
+        <!-- Team 1 -->
+        <div class="flex justify-between">
+          <div>
+            <div>
+              <div class="flex items-center gap-2">
+                <img
+                  [src]="upteam1?.logo"
+                  [alt]="upteam1?.shortName"
+                  class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+                />
 
-    <span class="text-sm font-semibold text-slate-900">
-      {{ upteam1?.shortName }}
-    </span>
-  </div>
-</div>
-    <!-- Team 2 -->
-    <div class="flex justify-between items-center py-1">
-      <div class="flex items-center gap-2">
-        <img
-          [src]="upteam2?.logo"
-          [alt]="upteam2.shortName"
-          class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
-        />
-        <span class="text-sm font-semibold text-slate-900">
-          {{ upteam2.shortName }}
-        </span>
-      </div>
-    </div>
-   </div>
-   <div class="mt-3">
-  <div >
-    <span>Tomorrow</span>
-  </div>
-  <div>
-    <span>7.30 Pm</span>
-  </div>
-</div>
-  </div>
-  <!-- Match Status -->
-    <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
-      <span>Match Start in 7.30Pm</span>
-    </div>
-    <!-- Footer -->
-   <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-      <div>
-        Schedule
-      </div>
-      <div class="pl-5" (click)="table(live.matchNo)">
-        Table
-      </div>
-    </div>
-
-  </mat-card>
-<!-- Live Card -->
-  <mat-card
-    (click)="movetolivepage()"
-    class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300
-       rounded-xl p-3 shadow-md cursor-pointer
-       transition-all duration-300
-       hover:-translate-y-1 hover:shadow-lg
-       active:scale-[0.98]"
-  >
-   
-    <!-- Header -->
-    <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
-      <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
-        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-        {{ live.status }}
-      </div>
-
-      <div class="flex items-center gap-2 text-[11px] text-slate-500">
-        <span>IPL T20</span>
-
-        <div class="flex items-center gap-0.5">
-          <mat-icon class="!text-[12px] !w-[12px] !h-[12px]">
-            location_on
-          </mat-icon>
-          {{ live.city }}
+                <span class="text-sm font-semibold text-slate-900">
+                  {{ upteam1?.shortName }}
+                </span>
+              </div>
+            </div>
+            <!-- Team 2 -->
+            <div class="flex justify-between items-center py-1">
+              <div class="flex items-center gap-2">
+                <img
+                  [src]="upteam2?.logo"
+                  [alt]="upteam2?.shortName"
+                  class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+                />
+                <span class="text-sm font-semibold text-slate-900">
+                  {{ upteam2?.shortName }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3">
+            <div>
+              <span>Tomorrow</span>
+            </div>
+            <div>
+              <span>7:30 PM</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Team 1 -->
-    <div class="flex justify-between items-center py-1">
-      <div class="flex items-center gap-2">
-        <img
-          [src]="team1.logo"
-          [alt]="team1.shortName"
-          class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
-        />
-
-        <span class="text-sm font-semibold text-slate-900">
-          {{ team1.shortName }}
-        </span>
-      </div>
-
-      @if (team1.scores > 0) {
-        <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          {{ team1.overs }} (ovs)
-          {{ team1.scores }}/{{ team1.wickets }}
+        <!-- Match Status -->
+        <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
+          <span>Match Start in 7:30 PM</span>
         </div>
-      } @else {
-        <span class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          Yet to Play
-        </span>
+        <!-- Footer -->
+        <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
+                      <button (click)="schedulepage($event,upcommingdata.matchNo)">Schedule</button>
+
+          <div class="pl-5" (click)="table($event,upcommingdata.matchNo)">Table</div>
+        </div>
+      </mat-card>
+      <!-- Live Card -->
+      <mat-card
+        (click)="movetolivepage()"
+        class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300 rounded-xl p-3 shadow-md cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]"
+      >
+        <!-- Header -->
+        <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
+          <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            {{ live?.status }}
+          </div>
+
+          <div class="flex items-center gap-2 text-[11px] text-slate-500">
+            <span>IPL T20</span>
+
+            <div class="flex items-center gap-0.5">
+              <mat-icon class="!text-[12px] !w-[12px] !h-[12px]"> location_on </mat-icon>
+              {{ live?.city }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Team 1 -->
+        <div class="flex justify-between items-center py-1">
+          <div class="flex items-center gap-2">
+            <img
+              [src]="team1?.logo"
+              [alt]="team1?.shortName"
+              class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+            />
+
+            <span class="text-sm font-semibold text-slate-900">
+              {{ team1.shortName }}
+            </span>
+          </div>
+
+          @if (team1.scores > 0) {
+            <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              {{ team1.overs }} (ovs) {{ team1.scores }}/{{ team1.wickets }}
+            </div>
+          } @else {
+            <span class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              Yet to Play
+            </span>
+          }
+        </div>
+
+        <!-- Team 2 -->
+        <div class="flex justify-between items-center py-1">
+          <div class="flex items-center gap-2">
+            <img
+              [src]="team2.logo"
+              [alt]="team2.shortName"
+              class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+            />
+
+            <span class="text-sm font-semibold text-slate-900">
+              {{ team2.shortName }}
+            </span>
+          </div>
+
+          @if (team2.scores > 0) {
+            <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              {{ team2.overs }} (ovs) {{ team2.scores }}/{{ team2.wickets }}
+            </div>
+          } @else {
+            <span class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              Yet to Play
+            </span>
+          }
+        </div>
+
+        <!-- Match Status -->
+        <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
+          @if (service.innings() === 2) {
+            @if (requiredRuns > 0) {
+              <h1>
+                {{ service.live.teams[service.tossloss()].shortName }}
+                needs {{ requiredRuns }} runs in {{ remainingBalls }} balls
+              </h1>
+            } @else if (requiredRuns < 0) {
+              <h1>
+                {{ service.live.teams[service.tossloss()].shortName }}
+                won by {{ remainingBalls }} balls
+              </h1>
+            }
+          } @else {
+            <h1>{{ service.live.tossWinner }} chose to bat</h1>
+          }
+        </div>
+
+        <!-- Footer -->
+        <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
+                      <button (click)="schedulepage($event,live.matchNo)">Schedule</button>
+
+          <div class="pl-5" (click)="table($event,live.matchNo)">Table</div>
+        </div>
+      </mat-card>
+      <!-- Compled Card -->
+      @for (completed of completeddata; track $index) {
+        <mat-card
+          (click)="completedpage(completed.matchNo)"
+          class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300 rounded-xl p-3 shadow-md cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]"
+        >
+          <!-- Header -->
+          <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
+            <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
+              {{ completed.status }}
+            </div>
+
+            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+              <span>IPL T20</span>
+
+              <div class="flex items-center gap-0.5">
+                <mat-icon class="!text-[12px] !w-[12px] !h-[12px]"> location_on </mat-icon>
+                {{ completed.city }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 1 -->
+          <div class="flex justify-between items-center py-1">
+            <div class="flex items-center gap-2">
+              <img
+                [src]="completed.teams[0].logo"
+                [alt]="completed.teams[0].shortName"
+                class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+              />
+
+              <span class="text-sm font-semibold text-slate-900">
+                {{ completed.teams[0].shortName }}
+              </span>
+            </div>
+
+            <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              {{ completed.teams[0].overs }} (ovs)
+              {{ completed.teams[0].scores }}
+            </div>
+          </div>
+
+          <!-- Team 2 -->
+          <div class="flex justify-between items-center py-1">
+            <div class="flex items-center gap-2">
+              <img
+                [src]="completed.teams[1].logo"
+                [alt]="completed.teams[1].shortName"
+                class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+              />
+
+              <span class="text-sm font-semibold text-slate-900">
+                {{ completed.teams[1].shortName }}
+              </span>
+            </div>
+
+            <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              {{ completed.teams[1].overs }} (ovs)
+              {{ completed.teams[1].scores }}
+            </div>
+          </div>
+          <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
+            <span>{{ completed.result }}</span>
+          </div>
+
+          <!-- Footer -->
+          <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
+            <button (click)="schedulepage($event,completed.matchNo)">Schedule</button>
+            <div class="pl-5" (click)="table($event,completed.matchNo)">Table</div>
+          </div>
+        </mat-card>
       }
-    </div>
+    }
+    @if (!trackflag) {
+      @for (match of filteredMatches; track match.matchNo) {
+        <mat-card
+          (click)="completedpage(match.matchNo)"
+          class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300 rounded-xl p-3 shadow-md cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]"
+        >
+          <!-- Header -->
+          <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
+            <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
+              {{ match.status }}
+            </div>
 
-    <!-- Team 2 -->
-    <div class="flex justify-between items-center py-1">
-      <div class="flex items-center gap-2">
-        <img
-          [src]="team2.logo"
-          [alt]="team2.shortName"
-          class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
-        />
+            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+              <span>IPL T20</span>
 
-        <span class="text-sm font-semibold text-slate-900">
-          {{ team2.shortName }}
-        </span>
-      </div>
+              <div class="flex items-center gap-0.5">
+                <mat-icon class="!text-[12px] !w-[12px] !h-[12px]"> location_on </mat-icon>
+                {{ match.city }}
+              </div>
+            </div>
+          </div>
 
-      @if (team2.scores > 0) {
-        <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          {{ team2.overs }} (ovs)
-          {{ team2.scores }}/{{ team2.wickets }}
-        </div>
-      } @else {
-        <span class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          Yet to Play
-        </span>
+          <!-- Team 1 -->
+          <div class="flex justify-between items-center py-1">
+            <div class="flex items-center gap-2">
+              <img
+                [src]="match.teams[0].logo"
+                [alt]="match.teams[0].shortName"
+                class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+              />
+
+              <span class="text-sm font-semibold text-slate-900">
+                {{ match.teams[0].shortName }}
+              </span>
+            </div>
+
+            <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              {{ match.teams[0].overs }} (ovs)
+              {{ match.teams[0].scores }}
+            </div>
+          </div>
+
+          <!-- Team 2 -->
+          <div class="flex justify-between items-center py-1">
+            <div class="flex items-center gap-2">
+              <img
+                [src]="match.teams[1].logo"
+                [alt]="match.teams[1].shortName"
+                class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+              />
+
+              <span class="text-sm font-semibold text-slate-900">
+                {{ match.teams[1].shortName }}
+              </span>
+            </div>
+            <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
+              {{ match.teams[1].overs }} (ovs)
+              {{ match.teams[1].scores }}
+            </div>
+          </div>
+          <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
+            <span>{{ match.result }}</span>
+          </div>
+
+          <!-- Footer -->
+          <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
+                        <button (click)="schedulepage($event,match.matchNo)">Schedule</button>
+
+            <div class="pl-5" (click)="table($event,match.matchNo)">Table</div>
+          </div>
+        </mat-card>
       }
-    </div>
-
-    <!-- Match Status -->
-    <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
-      @if (service.innings() === 2) {
-        @if (requiredRuns > 0) {
-          <h1>
-            {{ service.live.teams[service.tossloss()].shortName }}
-            needs {{ requiredRuns }} runs in {{ remainingBalls }} balls
-          </h1>
-        } @else if (requiredRuns < 0) {
-          <h1>
-            {{ service.live.teams[service.tossloss()].shortName }}
-            won by {{ remainingBalls }} balls
-          </h1>
-        }
-      } @else {
-        <h1>
-          {{ service.live.tossWinner }} chose to bat
-        </h1>
-      }
-    </div>
-
-    <!-- Footer -->
-    <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-      <div>
-        Schedule
-      </div>
-      <div class="pl-5" (click)="table(live.matchNo)">
-        Table
-      </div>
-    </div>
-
-  </mat-card>
-  <!-- Compled Card -->
- @for (completed of completeddata; track $index) {
-<mat-card
-    (click)="completedpage(completed.matchNo)"
-    class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300
-       rounded-xl p-3 shadow-md cursor-pointer
-       transition-all duration-300
-       hover:-translate-y-1 hover:shadow-lg
-       active:scale-[0.98]"
-  >
-   
-    <!-- Header -->
-    <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
-      <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500">
-        {{ completed.status }}
-      </div>
-
-      <div class="flex items-center gap-2 text-[11px] text-slate-500">
-        <span>IPL T20</span>
-
-        <div class="flex items-center gap-0.5">
-          <mat-icon class="!text-[12px] !w-[12px] !h-[12px]">
-            location_on
-          </mat-icon>
-          {{ completed.city }}
-        </div>
-      </div>
-    </div>
-
-    <!-- Team 1 -->
-    <div class="flex justify-between items-center py-1">
-      <div class="flex items-center gap-2">
-        <img
-          [src]="completed.teams[0].logo"
-          [alt]="completed.teams[0].shortName"
-          class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
-        />
-
-        <span class="text-sm font-semibold text-slate-900">
-          {{ completed.teams[0].shortName }}
-        </span>
-      </div>
-
-        <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          {{ completed.teams[0].overs }} (ovs)
-          {{ completed.teams[0].scores }}/{{ completed.teams[0].wickets }}
-        </div>
-    </div>
-
-    <!-- Team 2 -->
-    <div class="flex justify-between items-center py-1">
-      <div class="flex items-center gap-2">
-        <img
-          [src]="completed.teams[1].logo"
-          [alt]="completed.teams[1].shortName"
-          class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
-        />
-
-        <span class="text-sm font-semibold text-slate-900">
-          {{ completed.teams[1].shortName }}
-        </span>
-      </div>
-
-      
-        <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          {{ completed.teams[1].overs }} (ovs)
-          {{ completed.teams[1].scores }}/{{ completed.teams[1].wickets }}
-        </div>
-    </div>
-    <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
-      <span>{{completed.result}}</span>
-    </div>
-
-    <!-- Footer -->
-    <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">
-      <div>
-        Schedule
-      </div>
-      <div class="pl-5" (click)="table(completed.matchNo)">
-        Table
-      </div>
-    </div>
-
-  </mat-card>
-}
-</div>
-<button
-    class="absolute right-2 top-1/2 -translate-y-1/2 z-10
-           bg-white shadow-md rounded-full p-2
-           hover:bg-gray-100"
+    }
+  </div>
+  <button
+    class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-100"
     (click)="scrollRight()"
   >
     <mat-icon>chevron_right</mat-icon>
   </button>
 </div>
+
+@if(trackflag1){
+  <app-ad-coverup-page></app-ad-coverup-page>
+}
+@else{
 <router-outlet></router-outlet>
-<app-ad-coverup-page></app-ad-coverup-page>
+}
+  
+

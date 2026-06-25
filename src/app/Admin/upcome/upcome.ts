@@ -1,4 +1,11 @@
-import { Component, OnInit, inject, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectorRef,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { UpcService } from '../../UpCommingPage/up-comp/upc-service';
 import { updateMatch } from '../../UpCommingPage/match/match.models/match.models-module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -25,13 +32,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatSnackBarModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   templateUrl: './upcome.html',
   styleUrl: './upcome.css',
 })
 export class Upcome implements OnInit {
-
   service = inject(UpcService);
   cd = inject(ChangeDetectorRef);
   snackBar = inject(MatSnackBar);
@@ -54,7 +60,7 @@ export class Upcome implements OnInit {
         this.matches = data;
         this.cd.detectChanges();
       },
-      error: (error) => console.error(error)
+      error: (error) => console.error(error),
     });
   }
 
@@ -78,38 +84,28 @@ export class Upcome implements OnInit {
     this.dialog.open(this.confirmDialog, {
       width: '360px',
       disableClose: true,
-      position: { top: '20%' }
+      position: { top: '20%' },
     });
-
   }
 
   confirmUpdate(): void {
     if (!this.selectedMatch) return;
 
-    this.service.updateMatch(this.selectedMatch.id, this.selectedMatch)
-      .subscribe({
-        next: () => {
-          this.dialog.closeAll();
+    this.service.updateMatch(this.selectedMatch.id, this.selectedMatch).subscribe({
+      next: () => {
+        this.dialog.closeAll();
 
-          this.snackBar.open(
-            'Match Updated Successfully',
-            'Close',
-            { duration: 3000 }
-          );
+        this.snackBar.open('Match Updated Successfully', 'Close', { duration: 3000 });
 
-          this.loadMatches();
-           this.selectedMatch = null;
-  this.selectedMatchNo = null;
-        },
-        error: () => {
-          this.dialog.closeAll();
+        this.loadMatches();
+        this.selectedMatch = null;
+        this.selectedMatchNo = null;
+      },
+      error: () => {
+        this.dialog.closeAll();
 
-          this.snackBar.open(
-            'Update Failed',
-            'Close',
-            { duration: 3000 }
-          );
-        }
-      });
+        this.snackBar.open('Update Failed', 'Close', { duration: 3000 });
+      },
+    });
   }
 }

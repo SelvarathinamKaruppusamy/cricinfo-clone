@@ -1,26 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
-
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-
 import { HttpClient } from '@angular/common/http';
-
-import { Observable, combineLatest, map, BehaviorSubject } from 'rxjs';
-
+import { Observable, combineLatest, map, BehaviorSubject, timer, switchMap } from 'rxjs';
 import { RouterModule } from '@angular/router';
-
 import { FormsModule } from '@angular/forms';
 
 import { HighlightPipe } from './highlight.pipe';
 
 @Component({
   selector: 'app-blog-list',
-
   standalone: true,
-
   imports: [CommonModule, NgOptimizedImage, RouterModule, FormsModule, HighlightPipe],
-
   templateUrl: './blog-list.html',
-
   styleUrls: ['./blog-list.css'],
 })
 export class BlogList implements OnInit {
@@ -35,7 +26,10 @@ export class BlogList implements OnInit {
   blogs$!: Observable<any[]>;
 
   ngOnInit(): void {
-    const blogsData$ = this.http.get<any[]>(this.apiUrl).pipe(map((blogs) => [...blogs].reverse()));
+    const blogsData$ = timer(0, 1000).pipe(
+      switchMap(() => this.http.get<any[]>(this.apiUrl)),
+      map((blogs) => [...blogs].reverse()),
+    );
 
     this.blogs$ = combineLatest([blogsData$, this.searchSubject]).pipe(
       map(([blogs, search]) => {
@@ -62,9 +56,8 @@ export class BlogList implements OnInit {
     );
   }
 
-  onSearch(event: Event) {
+  onSearch(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-
     this.searchSubject.next(value);
   }
 }

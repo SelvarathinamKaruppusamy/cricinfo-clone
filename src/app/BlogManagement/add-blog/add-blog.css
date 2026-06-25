@@ -87,12 +87,6 @@ textarea {
   border: 1px solid #ddd;
 }
 
-.featured-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .actions {
   display: flex;
   justify-content: flex-end;

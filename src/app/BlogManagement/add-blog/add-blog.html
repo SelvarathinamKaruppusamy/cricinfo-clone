@@ -68,15 +68,8 @@
       <input type="text" placeholder="Virat Kohli, RCB, IPL 2026" formControlName="tags" />
     </div>
 
-    <div class="featured-box">
-      <input type="checkbox" formControlName="featured" />
-
-      <span>Featured Blog</span>
-    </div>
-
     <div class="actions">
-      <button type="button" class="cancel-btn" routerLink="/admin/blogs">Cancel</button>
-
+      <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
       <button type="button" class="save-btn" (click)="saveBlog()">Publish Blog</button>
     </div>
   </form>

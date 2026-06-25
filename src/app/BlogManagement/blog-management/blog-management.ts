@@ -4,11 +4,14 @@ import { Router } from '@angular/router';
 
 import { BlogManagementService } from '../services/blog-management';
 import { Blog } from '../model/blog.model';
+import { FormsModule } from '@angular/forms';
+
+import { HighlightPipe } from '../../Blog/blog-list/highlight.pipe';
 
 @Component({
   selector: 'app-blog-management',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, FormsModule, HighlightPipe],
   templateUrl: './blog-management.html',
   styleUrl: './blog-management.css',
 })
@@ -20,6 +23,9 @@ export class BlogManagementComponent implements OnInit {
   blogs: Blog[] = [];
   loading = true;
 
+  searchText = '';
+  filteredBlogs: Blog[] = [];
+
   ngOnInit(): void {
     this.loadBlogs();
   }
@@ -29,17 +35,12 @@ export class BlogManagementComponent implements OnInit {
   }
 
   loadBlogs(): void {
-    console.log('loadBlogs called');
-
     this.blogService.getBlogs().subscribe({
       next: (blogs) => {
-        console.log('Blogs received:', blogs);
-        this.blogs = blogs.reverse();
-
-        console.log('After assignment:', this.blogs);
+        this.blogs = [...blogs].reverse();
+        this.filteredBlogs = [...this.blogs];
 
         this.loading = false;
-
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -50,11 +51,11 @@ export class BlogManagementComponent implements OnInit {
   }
 
   addBlog(): void {
-    this.router.navigate(['/admin/blogs/add']);
+    this.router.navigate(['/navbarAdmin/blogs/add']);
   }
 
   editBlog(matchId: number): void {
-    this.router.navigate(['/admin/blogs/edit', matchId]);
+    this.router.navigate(['/navbarAdmin/blogs/edit', matchId]);
   }
 
   deleteBlog(id: string): void {
@@ -64,10 +65,18 @@ export class BlogManagementComponent implements OnInit {
 
     this.blogService.deleteBlog(id).subscribe({
       next: () => {
-        this.blogs = this.blogs.filter((blog) => blog.id !== id);
+        this.loadBlogs(); // Reload blogs from json-server
       },
 
-      error: (err) => console.error(err),
+      error: (err) => {
+        console.error('Delete Error:', err);
+      },
     });
+  }
+
+  onSearch(): void {
+    const search = this.searchText.toLowerCase().trim();
+
+    this.filteredBlogs = this.blogs.filter((blog) => blog.title.toLowerCase().includes(search));
   }
 }

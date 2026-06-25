@@ -84,6 +84,11 @@ export class BlogForm implements OnInit {
     });
   }
 
+  cancel(): void {
+    console.log('clicked');
+    this.router.navigate(['/navbarAdmin/blogs']);
+  }
+
   generateSlug(title: string): string {
     return title
       .toLowerCase()
@@ -105,19 +110,12 @@ export class BlogForm implements OnInit {
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
-    if (!input.files?.length) {
-      return;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+
+      // Instant preview
+      this.previewUrl = URL.createObjectURL(this.selectedFile);
     }
-
-    this.selectedFile = input.files[0];
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      this.previewUrl = reader.result as string;
-    };
-
-    reader.readAsDataURL(this.selectedFile);
   }
 
   saveBlog(): void {
@@ -193,7 +191,7 @@ export class BlogForm implements OnInit {
       next: () => {
         alert('Blog Updated Successfully');
 
-        this.router.navigate(['/admin/blogs']);
+        this.router.navigate(['/navbarAdmin/blogs']);
       },
 
       error: (err) => {
@@ -202,9 +200,5 @@ export class BlogForm implements OnInit {
         alert('Failed To Update Blog');
       },
     });
-  }
-
-  cancel(): void {
-    this.router.navigate(['/admin/blogs']);
   }
 }

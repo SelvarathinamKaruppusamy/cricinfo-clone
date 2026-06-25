@@ -30,6 +30,11 @@ export class AddBlog {
     featured: [false],
   });
 
+  cancel(): void {
+    console.log('clicked');
+    this.router.navigate(['/navbarAdmin/blogs']);
+  }
+
   saveBlog(): void {
     if (this.blogForm.invalid) {
       alert('Please fill all required fields');
@@ -57,7 +62,7 @@ export class AddBlog {
           this.blogService.getBlogs().subscribe((blogs: any[]) => {
             const numericIds = blogs.map((blog) => Number(blog.id)).filter((id) => !isNaN(id));
 
-            const nextId = numericIds.length > 0 ? Math.max(...numericIds) + 1 : 1;
+            const nextId = Math.max(...blogs.map((blog) => blog.matchId || 0)) + 1;
 
             console.log('Next ID:', nextId);
 
@@ -84,7 +89,7 @@ export class AddBlog {
 
               readTime: formValue.readTime,
 
-              featured: formValue.featured,
+              featured: false,
 
               tags: formValue.tags
                 ? formValue.tags
@@ -99,7 +104,7 @@ export class AddBlog {
               next: () => {
                 alert('Blog Added Successfully');
 
-                this.router.navigate(['/admin/blogs']);
+                this.router.navigate(['/navbarAdmin/blogs']);
               },
 
               error: (err) => {
@@ -132,13 +137,7 @@ export class AddBlog {
 
     this.selectedFile = input.files[0];
 
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      this.previewUrl = reader.result as string;
-    };
-
-    reader.readAsDataURL(this.selectedFile);
+    this.previewUrl = URL.createObjectURL(this.selectedFile);
   }
 
   generateSlug(): void {

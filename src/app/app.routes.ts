@@ -139,15 +139,15 @@ export const routes: Routes = [
         ],
       },
       {
-        path: 'admin/blogs',
+        path: 'blogs',
         component: BlogManagementComponent,
       },
       {
-        path: 'admin/blogs/add',
+        path: 'blogs/add',
         component: AddBlog,
       },
       {
-        path: 'admin/blogs/edit/:id',
+        path: 'blogs/edit/:id',
         component: BlogForm,
       },
     ],

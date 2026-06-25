@@ -46,7 +46,7 @@ export class LiveMatchCard implements OnInit {
   requiredRuns = 0;
   remainingBalls = 120;
   six = 6;
-  totalBalls = 0;
+  totalBalls = 120;
   upcommingdata!: LiveModel;
   completeddata: Match[] = [];
   comservice = inject(CompletedService);
@@ -145,22 +145,33 @@ this.team2 = this.live.teams[1];
       behavior: 'smooth',
     });
   }
- requiredRun() {
+ requiredRun(){
   const live = this.service.live();
   if (!live) return;
-  
-  if (this.service.innings() === 2) {
-    this.target = (this.service.completedBattingTeam?.scores ?? 0) + 1;
 
-    this.requiredRuns =
-      this.target - live.teams[this.service.currentBattingTeam()].scores;
-
-    const ballsBowled =
-      Math.floor(this.live.teams[this.service.tossloss()].overs) * this.six +
-      Math.round((this.live.teams[this.service.tossloss()].overs % 1) * 10);
-
-    this.remainingBalls = this.totalBalls - ballsBowled;
+  if (this.service.innings() !== 2) {
+    this.target = 0;
+    this.requiredRuns = 0;
+    this.remainingBalls = 0;
+    return;
   }
+
+  // target = first innings score + 1
+  this.target = (this.service.completedBattingTeam?.scores ?? 0) + 1;
+
+  const battingIndex = this.service.currentBattingTeam();
+  const battingTeam = live.teams[battingIndex];
+
+  // required runs
+  this.requiredRuns = this.target - battingTeam.scores;
+
+  // convert overs to balls
+  const overs = battingTeam.overs ?? 0;
+  const fullOvers = Math.floor(overs);
+  const ballsPart = Math.round((overs % 1) * 10);
+  const ballsBowled = fullOvers * 6 + ballsPart;
+
+  this.remainingBalls = this.totalBalls - ballsBowled;
 }
   movetolivepage() {
     // console.log(this.team1)

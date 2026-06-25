@@ -44,6 +44,9 @@ export class LiveService {
   firstInningsBalls = signal<string[]>([]);
   secondInningsBalls = signal<string[]>([]);
 
+  isSaving=false;
+  currentOverBalls = signal<string[]>([]);
+
   ball = computed(() =>
     this.innings() === 1 ? this.firstInningsBalls() : this.secondInningsBalls(),
   );
@@ -55,15 +58,15 @@ export class LiveService {
   completedBowlingTeam?: Team;
 
   ballColors: Record<string, string> = {
-    '0': 'bg-slate-700 border-slate-400',
-    '1': 'bg-sky-700 border-sky-300',
-    '2': 'bg-cyan-700 border-cyan-300',
-    '3': 'bg-violet-600 border-violet-300',
-    '4': 'bg-indigo-600 border-indigo-300',
-    '6': 'bg-emerald-600 border-emerald-300',
-    W: 'bg-rose-600 border-rose-300',
-    Nb: 'bg-amber-500 border-amber-200',
-    Wd: 'bg-zinc-800 border-zinc-400',
+    '0': 'bg-slate-700 border-slate-400 text-white',
+    '1': 'bg-sky-700 border-sky-300 text-white',
+    '2': 'bg-cyan-700 border-cyan-300 text-white',
+    '3': 'bg-violet-600 border-violet-300 text-white',
+    '4': 'bg-indigo-600 border-indigo-300 text-white',
+    '6': 'bg-emerald-600 border-emerald-300 text-white',
+    W: 'bg-rose-600 border-rose-300 text-white',
+    Nb: 'bg-amber-500 border-amber-200 text-white',
+    Wd: 'bg-zinc-800 border-zinc-400 text-white',
   };
 
   // =========================
@@ -132,6 +135,7 @@ export class LiveService {
     this.inningsBalls.set(0);
     this.currentOverRuns.set(0);
     this.bowlerBallCount.set({});
+    // this.currentOverBalls.set([]); 
 
     // restore innings / batting / bowling side from DB
     const savedInnings = live.innings ?? 1;
@@ -434,6 +438,8 @@ export class LiveService {
 
     this.addBallToArray(ball);
 
+    this.currentOverBalls.update((balls) => [...balls, ball]);
+
     // Wd / Nb
     if (ball === 'Wd' || ball === 'Nb') {
       this.handleWideNoBall(ball, bowler);
@@ -502,6 +508,7 @@ export class LiveService {
 
       this.legalBalls.set(0);
       this.currentOverRuns.set(0);
+      this.currentOverBalls.set([]);
     }
 
     this.syncCurrentPlayersToLive();
@@ -677,6 +684,7 @@ export class LiveService {
     this.currentOverRuns.set(0);
     this.bowlerBallCount.set({});
     this.secondInningsBalls.set([]);
+    this.currentOverBalls.set([]);
 
     const updatedLive = structuredClone(live);
 

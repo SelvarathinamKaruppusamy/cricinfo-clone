@@ -18,7 +18,10 @@ import { LiveUpdateAdmin } from './Admin/LiveAdmin/live-update-admin/live-update
 import { CompletedUpdateAdmin } from './Admin/LiveAdmin/completed-update-admin/completed-update-admin';
 import { NavBar } from './Admin/nav-bar/nav-bar';
 import { Upcome } from './Admin/upcome/upcome';
-import { AdminLanding } from './Admin/admin-landing/admin-landing';
+import { authGuardAdminGuard } from './admin-login/auth-guard-admin-guard';
+import { AdminLogin } from './admin-login/admin-login';
+import { Profile } from './profile/profile';
+import { Signup } from './Admin/sign-up-page/sign-up-page';
 export const routes: Routes = [
   {
     path: '',
@@ -106,21 +109,30 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminLanding,
+    component: AdminLogin,
   },
-
   {
     path: 'navbarAdmin',
     component: NavBar,
+    canActivate: [authGuardAdminGuard],
     children: [
       {
         path: '',
         redirectTo: 'adminLive',
         pathMatch: 'full',
       },
+
       {
         path: 'upComeAdmin',
         component: Upcome,
+      },
+      {
+        path: 'signup',
+        component: Signup,
+      },
+      {
+        path: 'profile',
+        component: Profile,
       },
       {
         path: 'adminLive',

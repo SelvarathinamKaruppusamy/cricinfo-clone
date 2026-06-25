@@ -7,8 +7,8 @@
 @for(item of rout; track item.routes){
 <a
 mat-button
+class="!text-white !rounded-none"
 (click)="getRoute(item.routes)"
-class="!text-white"
  [class.active-link]="activateRoute === item.routes"
 >
 {{item.label}}

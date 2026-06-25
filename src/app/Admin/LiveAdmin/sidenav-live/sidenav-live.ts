@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LiveService } from '../../../LivePages/Services/live-service';
 
 @Component({
   selector: 'app-sidenav-live',
@@ -10,4 +11,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './sidenav-live.html',
   styleUrl: './sidenav-live.css',
 })
-export class SidenavLive {}
+export class SidenavLive {
+  service=inject(LiveService)
+  innings=computed(()=>this.service.innings())
+}

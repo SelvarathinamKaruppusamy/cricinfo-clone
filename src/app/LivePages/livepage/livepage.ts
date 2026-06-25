@@ -1,7 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
-  computed,
+ computed,
   inject,
   OnDestroy,
   OnInit,
@@ -59,23 +59,43 @@ export class Livepage implements OnInit, OnDestroy {
 
   toss = computed(() => this.service.live()?.tossWinner ?? '');
 
-  currentBowlerBalls = computed(() => {
-    const balls = this.service.ball();
-    const overBalls: string[] = [];
-    let legalCount = 0;
+  // ✅ USE CURRENT OVER BALLS SIGNAL DIRECTLY
+ currentBowlerBalls = computed(() => {
+  const live = this.service.live();
+  if (!live) return [];
 
-    for (let i = balls.length - 1; i >= 0; i--) {
-      overBalls.unshift(balls[i]);
+  const battingTeam = live.teams[this.service.currentBattingTeam()];
+  if (!battingTeam) return [];
 
-      if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
-        legalCount++;
-      }
+  const overs = battingTeam.overs ?? 0;
 
-      if (legalCount === 6) break;
+  // current over legal balls count from overs
+  // 2.3 => 3 balls in current over
+  // 5.0 => 0 balls in current over
+  const legalBallsInCurrentOver = Math.round((overs % 1) * 10);
+
+  // if over just completed, show empty
+  if (legalBallsInCurrentOver === 0) return [];
+
+  const inningsBalls = this.service.ball();
+  const result: string[] = [];
+
+  let legalCount = 0;
+
+  for (let i = inningsBalls.length - 1; i >= 0; i--) {
+    result.unshift(inningsBalls[i]);
+
+    if (inningsBalls[i] !== 'Wd' && inningsBalls[i] !== 'Nb') {
+      legalCount++;
     }
 
-    return overBalls;
-  });
+    if (legalCount === legalBallsInCurrentOver) {
+      break;
+    }
+  }
+
+  return result;
+});
 
   target = computed(() => {
     if (this.service.innings() !== 2) return 0;
@@ -134,8 +154,7 @@ export class Livepage implements OnInit, OnDestroy {
 
           const latestMatch = structuredClone(res[0]);
 
-          // IMPORTANT:
-          // use loadMatchIntoService instead of manually setting live + reset
+          // reload live + rebuild runtime state from DB
           this.service.loadMatchIntoService(latestMatch);
 
           this.cd.detectChanges();

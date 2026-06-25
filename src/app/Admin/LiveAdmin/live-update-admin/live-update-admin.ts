@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Player, Team } from '../../../LivePages/Models/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-live-update-admin',
@@ -16,7 +17,7 @@ import { Player, Team } from '../../../LivePages/Models/models';
 export class LiveUpdateAdmin implements OnInit {
   service = inject(LiveService);
   cd = inject(ChangeDetectorRef);
-
+  router=inject(Router)
   live = computed(() => this.service.live());
 
   currentBattingTeam = computed<Team | undefined>(() => {
@@ -42,24 +43,27 @@ export class LiveUpdateAdmin implements OnInit {
 
   striker = computed<Player | undefined>(() => this.service.striker);
 
-  currentBowlerBalls = computed(() => {
-    const balls = this.service.ball();
-    const result: string[] = [];
-    let legalCount = 0;
+  // currentBowlerBalls = computed(() => {
+  //   const balls = this.service.ball();
+  //   const result: string[] = [];
+  //   let legalCount = 0;
 
-    for (let i = balls.length - 1; i >= 0; i--) {
-      result.unshift(balls[i]);
+  //   for (let i = balls.length - 1; i >= 0; i--) {
+  //     result.unshift(balls[i]);
 
-      if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
-        legalCount++;
-      }
+  //     if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
+  //       legalCount++;
+  //     }
 
-      if (legalCount === 6) break;
-    }
+  //     if (legalCount === 6) 
+  //       {
+  //         break;
+  //       }
+  //   }
 
-    return result;
-  });
-
+  //   return result;
+  // });
+ currentBowlerBalls = computed(() => this.service.currentOverBalls());
   target = computed(() => {
     if (this.service.innings() !== 2) return 0;
     if (!this.service.completedBattingTeam) return 0;
@@ -135,7 +139,6 @@ export class LiveUpdateAdmin implements OnInit {
   winnerText = computed(() => {
     const live = this.service.live();
     if (!live) return '';
-
     // if already completed and result stored in DB
     if (live.status === 'COMPLETED' && live.result) {
       return live.result;

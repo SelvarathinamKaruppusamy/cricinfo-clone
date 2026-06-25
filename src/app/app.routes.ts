@@ -104,7 +104,6 @@ export const routes: Routes = [
     path:'admin',
     component:AdminLanding
   },
-  
     {
   path: 'navbarAdmin',
   component: NavBar,

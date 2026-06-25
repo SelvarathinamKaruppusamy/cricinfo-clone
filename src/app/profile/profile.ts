@@ -11,12 +11,11 @@ import { AdminService } from '../admin-login/admin-service';
   styleUrl: './profile.css',
 })
 export class Profile implements OnInit {
-
   user: any;
 
   constructor(
     private adminService: AdminService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -24,9 +23,11 @@ export class Profile implements OnInit {
   }
 
   logout(): void {
-
     this.adminService.logout();
 
     this.router.navigate(['/admin']);
+  }
+  addadmin() {
+    this.router.navigate(['/navbarAdmin/signup']);
   }
 }

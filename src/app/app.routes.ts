@@ -8,6 +8,10 @@ import { BlogDetails } from './Blog/blog-details/blog-details';
 import { PointsTable } from './points-table/points-table';
 import { Stats } from './stats/stats';
 import { Schedule } from './schedule/schedule';
+import { BlogManagementComponent } from './BlogManagement/blog-management/blog-management';
+import { BlogForm } from './BlogManagement/edit-blog/blog-form';
+import { AddBlog } from './BlogManagement/add-blog/add-blog';
+
 import { LiveAdmin } from './Admin/LiveAdmin/live-admin/live-admin';
 import { TossPanel } from './Admin/LiveAdmin/toss-panel/toss-panel';
 import { LiveUpdateAdmin } from './Admin/LiveAdmin/live-update-admin/live-update-admin';
@@ -145,6 +149,18 @@ export const routes: Routes = [
             component: CompletedUpdateAdmin,
           },
         ],
+      },
+      {
+        path: 'blogs',
+        component: BlogManagementComponent,
+      },
+      {
+        path: 'blogs/add',
+        component: AddBlog,
+      },
+      {
+        path: 'blogs/edit/:id',
+        component: BlogForm,
       },
     ],
   },

@@ -1,13 +1,6 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ChangeDetectorRef,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { UpcService } from '../../UpCommingPage/up-comp/upc-service';
-import { updateMatch } from '../../UpCommingPage/match/match.models/match.models-module';
+import { Component, OnInit, inject, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
+import { UpcService } from '../../User/UpCommingPage/up-comp/upc-service';
+import { updateMatch } from '../../User/UpCommingPage/match/match.models/match.models-module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';

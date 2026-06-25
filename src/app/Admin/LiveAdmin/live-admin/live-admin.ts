@@ -8,7 +8,7 @@ import { NavBar } from '../../nav-bar/nav-bar';
 
 @Component({
   selector: 'app-live-admin',
-  imports: [RouterOutlet, SidenavLive,NavBar],
+  imports: [RouterOutlet, SidenavLive, NavBar],
   templateUrl: './live-admin.html',
   styleUrl: './live-admin.css',
 })

@@ -1,0 +1,62 @@
+<div class="blog-management-container">
+  <div class="header">
+    <h2>Blog Management</h2>
+
+    <div class="header-actions">
+      <div class="search-box">
+        <span class="material-symbols-outlined">search</span>
+
+        <input
+          type="text"
+          placeholder="Search blogs..."
+          [(ngModel)]="searchText"
+          (input)="onSearch()"
+        />
+      </div>
+
+      <button class="add-btn" (click)="addBlog()">
+        <span class="material-symbols-outlined">add_circle</span>
+        Add Blog
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading">
+    <p>Loading blogs...</p>
+  </div>
+
+  <table class="blog-table" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Author</th>
+        <th>Published</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let blog of filteredBlogs">
+        <td>
+          <img [ngSrc]="blog.image" width="100" height="60" [alt]="blog.title" class="blog-image" />
+        </td>
+
+        <td [innerHTML]="blog.title | highlight: searchText"></td>
+
+        <td>{{ blog.category }}</td>
+
+        <td>{{ blog.author }}</td>
+
+        <td>{{ blog.publishedDate }}</td>
+
+        <td>
+          <button class="edit-btn" (click)="editBlog(blog.matchId)">Edit</button>
+
+          <button class="delete-btn" (click)="deleteBlog(blog.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

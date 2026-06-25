@@ -238,6 +238,7 @@
           mat-raised-button
           class="!bg-[#f9fafb] !text-[#374151] !border !border-[#e5e7eb] !rounded-lg !text-sm !font-semibold !shadow-none hover:!bg-[#f3f4f6]"
           (click)="completeMatch()"
+          [disabled]="!service.canCompleteMatch()"
         >
           Complete Match
         </button>

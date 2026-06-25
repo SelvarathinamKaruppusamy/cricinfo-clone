@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
-import { LiveService } from '../../../LivePages/Services/live-service';
-import { LiveModel, Team } from '../../../LivePages/Models/models';
+import { LiveService } from '../../../User/LivePages/Services/live-service';
+import { LiveModel, Team } from '../../../User/LivePages/Models/models';
 
 @Component({
   selector: 'app-toss-panel',

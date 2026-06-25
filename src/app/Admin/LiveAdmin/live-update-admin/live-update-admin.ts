@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LiveService } from '../../../LivePages/Services/live-service';
+import { LiveService } from '../../../User/LivePages/Services/live-service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Player, Team } from '../../../LivePages/Models/models';
+import { Player, Team } from '../../../User/LivePages/Models/models';
 import { Router } from '@angular/router';
 
 @Component({

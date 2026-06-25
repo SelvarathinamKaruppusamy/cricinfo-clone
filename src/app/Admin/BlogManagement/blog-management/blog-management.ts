@@ -6,7 +6,7 @@ import { BlogManagementService } from '../services/blog-management';
 import { Blog } from '../model/blog.model';
 import { FormsModule } from '@angular/forms';
 
-import { HighlightPipe } from '../../Blog/blog-list/highlight.pipe';
+import { HighlightPipe } from './highlight.pipe';
 
 @Component({
   selector: 'app-blog-management',

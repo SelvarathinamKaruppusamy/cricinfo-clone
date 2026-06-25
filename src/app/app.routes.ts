@@ -1,26 +1,25 @@
 import { Routes } from '@angular/router';
-import { UpComp } from './UpCommingPage/up-comp/up-comp';
-import { Match } from './UpCommingPage/match/match';
-import { LiveMatchCard } from './LivePages/live-match-card/live-match-card';
-import { Livepage } from './LivePages/livepage/livepage';
-import { BlogList } from './Blog/blog-list/blog-list';
-import { BlogDetails } from './Blog/blog-details/blog-details';
-import { PointsTable } from './points-table/points-table';
-import { Stats } from './stats/stats';
-import { Schedule } from './schedule/schedule';
-import { BlogManagementComponent } from './BlogManagement/blog-management/blog-management';
-import { BlogForm } from './BlogManagement/edit-blog/blog-form';
-import { AddBlog } from './BlogManagement/add-blog/add-blog';
-
+import { UpComp } from './User/UpCommingPage/up-comp/up-comp';
+import { Match } from './User/UpCommingPage/match/match';
+import { LiveMatchCard } from './User/LivePages/live-match-card/live-match-card';
+import { Livepage } from './User/LivePages/livepage/livepage';
+import { BlogList } from './User/Blog/blog-list/blog-list';
+import { BlogDetails } from './User/Blog/blog-details/blog-details';
+import { PointsTable } from './User/points-table/points-table';
+import { Stats } from './User/stats/stats';
+import { Schedule } from './User/schedule/schedule';
+import { BlogManagementComponent } from './Admin/BlogManagement/blog-management/blog-management';
+import { BlogForm } from './Admin/BlogManagement/edit-blog/blog-form';
+import { AddBlog } from './Admin/BlogManagement/add-blog/add-blog';
 import { LiveAdmin } from './Admin/LiveAdmin/live-admin/live-admin';
 import { TossPanel } from './Admin/LiveAdmin/toss-panel/toss-panel';
 import { LiveUpdateAdmin } from './Admin/LiveAdmin/live-update-admin/live-update-admin';
 import { CompletedUpdateAdmin } from './Admin/LiveAdmin/completed-update-admin/completed-update-admin';
 import { NavBar } from './Admin/nav-bar/nav-bar';
 import { Upcome } from './Admin/upcome/upcome';
-import { authGuardAdminGuard } from './admin-login/auth-guard-admin-guard';
-import { AdminLogin } from './admin-login/admin-login';
-import { Profile } from './profile/profile';
+import { authGuardAdminGuard } from './Admin/admin-login/auth-guard-admin-guard';
+import { AdminLogin } from './Admin/admin-login/admin-login';
+import { Profile } from './Admin/profile/profile';
 import { Signup } from './Admin/sign-up-page/sign-up-page';
 export const routes: Routes = [
   {
@@ -43,7 +42,7 @@ export const routes: Routes = [
       {
         path: 'completed/:matchNo',
         loadComponent: () =>
-          import('./Completed/Components/completed-details/completed-details').then(
+          import('./User/Completed/Components/completed-details/completed-details').then(
             (c) => c.CompletedDetails,
           ),
       },
@@ -78,12 +77,12 @@ export const routes: Routes = [
   {
     path: 'completed',
     loadComponent: () =>
-      import('./Completed/Components/completed-list/completed-list').then((c) => c.CompletedList),
+      import('./User/Completed/Components/completed-list/completed-list').then((c) => c.CompletedList),
   },
   {
     path: 'completed/:matchNo',
     loadComponent: () =>
-      import('./Completed/Components/completed-details/completed-details').then(
+      import('./User/Completed/Components/completed-details/completed-details').then(
         (c) => c.CompletedDetails,
       ),
   },

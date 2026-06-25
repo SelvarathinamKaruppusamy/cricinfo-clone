@@ -195,7 +195,12 @@
               </h1>
             }
           } @else {
-            <h1>{{ service.live()?.tossWinner }} chose to {{service.live()?.tossDecision}}</h1>
+            @if(service.live()?.tossWinner===null){
+               <h1>yet to start</h1>
+            }
+            @else {
+              <h1>{{ service.live()?.tossWinner }} chose to {{service.live()?.tossDecision}}</h1>
+            }
           }
         </div>
 

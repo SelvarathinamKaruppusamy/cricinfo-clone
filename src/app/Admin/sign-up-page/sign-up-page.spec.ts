@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of } from 'rxjs';
 
 import { Signup } from './sign-up-page';
-import { AdminService } from '../../admin-login/admin-service';
+import { AdminService } from '../admin-login/admin-service';
 
 describe('Signup', () => {
   let component: Signup;

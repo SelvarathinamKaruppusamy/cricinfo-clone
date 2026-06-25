@@ -16,7 +16,7 @@ export class NavBar {
   rout = [
     { label: 'Live', routes: '/navbarAdmin/adminLive' },
     { label: 'UpComing', routes: '/navbarAdmin/upComeAdmin' },
-    { label: 'Blog', routes: '/navbarAdmin/admin/blogs' },
+    { label: 'Blog', routes: '/navbarAdmin/blogs' },
     { label: 'Profile', routes: '/navbarAdmin/profile' },
   ];
 

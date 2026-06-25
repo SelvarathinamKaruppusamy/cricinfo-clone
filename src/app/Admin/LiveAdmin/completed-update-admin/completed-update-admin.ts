@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
-import { LiveService } from '../../../LivePages/Services/live-service';
-import { LiveModel, Player } from '../../../LivePages/Models/models';
+import { LiveService } from '../../../User/LivePages/Services/live-service';
+import { LiveModel, Player } from '../../../User/LivePages/Models/models';
 import { AdminService } from '../admin-service';
 
 @Component({

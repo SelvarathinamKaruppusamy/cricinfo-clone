@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, computed, inject, OnInit } from '@angular
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LiveService } from '../../../LivePages/Services/live-service';
+import { LiveService } from '../../../User/LivePages/Services/live-service';
 
 @Component({
   selector: 'app-sidenav-live',

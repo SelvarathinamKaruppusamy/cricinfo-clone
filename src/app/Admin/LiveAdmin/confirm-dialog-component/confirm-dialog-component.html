@@ -1,0 +1,37 @@
+<div class="bg-slate-300 text-white rounded-xl min-w-[320px] max-w-[420px] border border-white">
+  <!-- Header -->
+  <div class="px-5 py-4">
+    <h2 class="text-lg font-semibold text-black">{{ data.title }}</h2>
+  </div>
+
+  <!-- Content -->
+  <div class="px-5 py-5">
+    <p class="text-sm text-black leading-6">
+      {{ data.message }}
+    </p>
+  </div>
+
+  <!-- Actions -->
+  <div class="px-5 py-4 flex justify-end gap-2">
+    <button
+      mat-stroked-button
+      class="!border-slate-500"
+      (click)="cancel()"
+    >
+      {{ data.cancelText || 'Cancel' }}
+    </button>
+
+    <button
+  mat-raised-button
+  [ngClass]="{
+    '!bg-red-600': data.type === 'warn',
+    '!bg-green-600': data.type === 'success',
+    '!bg-sky-600': !data.type || data.type === 'primary'
+  }"
+  class="!text-white"
+  (click)="confirm()"
+>
+  {{ data.confirmText || 'Confirm' }}
+</button>
+  </div>
+</div>

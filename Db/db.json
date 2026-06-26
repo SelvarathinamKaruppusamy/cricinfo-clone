@@ -23,13 +23,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -209,13 +203,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,

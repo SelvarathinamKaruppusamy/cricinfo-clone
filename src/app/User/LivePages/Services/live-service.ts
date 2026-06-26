@@ -43,6 +43,7 @@ export class LiveService {
 
   firstInningsBalls = signal<string[]>([]);
   secondInningsBalls = signal<string[]>([]);
+  
 
   isSaving=false;
   currentOverBalls = signal<string[]>([]);
@@ -378,6 +379,9 @@ export class LiveService {
     }
   }
 
+  private isLegalBall(ball: string): boolean {
+  return ball !== 'Wd' && ball !== 'Nb';
+}
   playerruns(ball: string): number {
     switch (ball) {
       case '1':
@@ -515,6 +519,299 @@ export class LiveService {
     this.saveLiveToDb();
   }
 
+  editLastBall(newBall: string) {
+  const live = this.live();
+  if (!live) return;
+
+  let striker = this.striker;
+  let nonstriker = this.nonStriker;
+  const bowler = this.currentBowler;
+
+  if (!striker || !nonstriker || !bowler) return;
+
+  const inningsBalls =
+    this.innings() === 1
+      ? [...this.firstInningsBalls()]
+      : [...this.secondInningsBalls()];
+
+  if (!inningsBalls.length) return;
+
+  const oldBall = inningsBalls[inningsBalls.length - 1];
+
+  if (oldBall === newBall) return;
+
+  const battingTeam = live.teams[this.currentBattingTeam()];
+  const players = [...this.players1()];
+
+  // =========================================================
+  // 1) REMOVE OLD BALL EFFECT
+  // =========================================================
+  const oldRuns = this.calculateScore(oldBall);
+
+  battingTeam.scores = Math.max(0, battingTeam.scores - oldRuns);
+
+  // ---------- OLD BALL = WIDE / NO BALL ----------
+  if (oldBall === 'Wd' || oldBall === 'Nb') {
+    battingTeam.extras = Math.max(0, battingTeam.extras - 1);
+    bowler.runsConceded = Math.max(0, bowler.runsConceded - 1);
+  }
+
+  // ---------- OLD BALL = WICKET ----------
+  else if (oldBall === 'W') {
+    battingTeam.wickets = Math.max(0, battingTeam.wickets - 1);
+    bowler.wickets = Math.max(0, bowler.wickets - 1);
+
+    // after wicket, current striker is usually the NEW batter
+    // dismissed batter is the player with status === 'Out'
+    const outIndex = players.findIndex((p) => p.status === 'Out');
+    const currentStrikerIndex = this.strikerIndex();
+
+    if (outIndex !== -1) {
+      // restore dismissed batter
+      players[outIndex] = {
+        ...players[outIndex],
+        status: 'Not Out',
+        balls: Math.max(0, (players[outIndex].balls ?? 0) - 1),
+      };
+
+      // if current striker is replacement batter, remove him
+      if (currentStrikerIndex !== outIndex) {
+        const replacement = players[currentStrikerIndex];
+
+        if (
+          replacement &&
+          replacement.status === 'Not Out' &&
+          (replacement.runs ?? 0) === 0 &&
+          (replacement.balls ?? 0) === 0
+        ) {
+          players[currentStrikerIndex] = {
+            ...replacement,
+            status: '',
+          };
+        }
+      }
+
+      striker = players[outIndex];
+    }
+  }
+
+  // ---------- OLD BALL = NORMAL LEGAL BALL ----------
+  else {
+    // IMPORTANT:
+    // if old ball was 1 or 3, strike already swapped after that ball.
+    // So first revert strike to get the actual batter who played old ball.
+    if (oldBall === '1' || oldBall === '3') {
+      const temp = striker;
+      striker = nonstriker;
+      nonstriker = temp;
+    }
+
+    const strikerIndex = players.findIndex((p) => p.id === striker?.id);
+    if (strikerIndex !== -1) {
+      players[strikerIndex] = {
+        ...players[strikerIndex],
+        balls: Math.max(0, (players[strikerIndex].balls ?? 0) - 1),
+        runs: Math.max(0, (players[strikerIndex].runs ?? 0) - oldRuns),
+        fours:
+          oldBall === '4'
+            ? Math.max(0, (players[strikerIndex].fours ?? 0) - 1)
+            : players[strikerIndex].fours ?? 0,
+        sixes:
+          oldBall === '6'
+            ? Math.max(0, (players[strikerIndex].sixes ?? 0) - 1)
+            : players[strikerIndex].sixes ?? 0,
+      };
+
+      striker = players[strikerIndex];
+    }
+
+    bowler.runsConceded = Math.max(0, bowler.runsConceded - oldRuns);
+  }
+
+  // ---------- REMOVE LEGAL BALL COUNT OF OLD BALL ----------
+  if (this.isLegalBall(oldBall)) {
+    this.legalBalls.update((v) => Math.max(0, v - 1));
+    this.inningsBalls.update((v) => Math.max(0, v - 1));
+
+    const bowlerCount = { ...this.bowlerBallCount() };
+    bowlerCount[bowler.id] = Math.max(0, (bowlerCount[bowler.id] || 0) - 1);
+    this.bowlerBallCount.set(bowlerCount);
+
+    const bowlerBalls = bowlerCount[bowler.id] || 0;
+    bowler.overs = Math.floor(bowlerBalls / 6) + (bowlerBalls % 6) / 10;
+  }
+
+  // =========================================================
+  // 2) APPLY NEW BALL EFFECT
+  // =========================================================
+  const newRuns = this.calculateScore(newBall);
+
+  battingTeam.scores += newRuns;
+
+  // ---------- NEW BALL = WIDE / NO BALL ----------
+  if (newBall === 'Wd' || newBall === 'Nb') {
+    battingTeam.extras += 1;
+    bowler.runsConceded += 1;
+  }
+
+  // ---------- NEW BALL = WICKET ----------
+  else if (newBall === 'W') {
+    const strikerIndex = players.findIndex((p) => p.id === striker?.id);
+    if (strikerIndex === -1) return;
+
+    // mark striker out
+    players[strikerIndex] = {
+      ...players[strikerIndex],
+      balls: (players[strikerIndex].balls ?? 0) + 1,
+      status: 'Out',
+    };
+
+    battingTeam.wickets += 1;
+    bowler.wickets += 1;
+
+    this.legalBalls.update((v) => v + 1);
+    this.inningsBalls.update((v) => v + 1);
+
+    const bowlerCount = { ...this.bowlerBallCount() };
+    bowlerCount[bowler.id] = (bowlerCount[bowler.id] || 0) + 1;
+    this.bowlerBallCount.set(bowlerCount);
+
+    const bowlerBalls = bowlerCount[bowler.id];
+    bowler.overs = Math.floor(bowlerBalls / 6) + (bowlerBalls % 6) / 10;
+
+    // bring next batter
+    const nextIndex = players.findIndex(
+      (p, index) =>
+        index !== strikerIndex &&
+        index !== this.nonStrikerIndex() &&
+        p.status !== 'Out' &&
+        p.status !== 'Not Out'
+    );
+
+    if (nextIndex !== -1) {
+      players[nextIndex] = {
+        ...players[nextIndex],
+        status: 'Not Out',
+      };
+
+      striker = players[nextIndex];
+    } else {
+      striker = players[strikerIndex];
+    }
+  }
+
+  // ---------- NEW BALL = NORMAL LEGAL BALL ----------
+  else {
+    const strikerIndex = players.findIndex((p) => p.id === striker?.id);
+    if (strikerIndex === -1) return;
+
+    players[strikerIndex] = {
+      ...players[strikerIndex],
+      balls: (players[strikerIndex].balls ?? 0) + 1,
+      runs: (players[strikerIndex].runs ?? 0) + newRuns,
+      fours:
+        newBall === '4'
+          ? (players[strikerIndex].fours ?? 0) + 1
+          : players[strikerIndex].fours ?? 0,
+      sixes:
+        newBall === '6'
+          ? (players[strikerIndex].sixes ?? 0) + 1
+          : players[strikerIndex].sixes ?? 0,
+    };
+
+    striker = players[strikerIndex];
+    bowler.runsConceded += newRuns;
+
+    this.legalBalls.update((v) => v + 1);
+    this.inningsBalls.update((v) => v + 1);
+
+    const bowlerCount = { ...this.bowlerBallCount() };
+    bowlerCount[bowler.id] = (bowlerCount[bowler.id] || 0) + 1;
+    this.bowlerBallCount.set(bowlerCount);
+
+    const bowlerBalls = bowlerCount[bowler.id];
+    bowler.overs = Math.floor(bowlerBalls / 6) + (bowlerBalls % 6) / 10;
+
+    // swap strike after applying 1 or 3
+    if (newBall === '1' || newBall === '3') {
+      const temp = striker;
+      striker = nonstriker;
+      nonstriker = temp;
+    }
+  }
+
+  // =========================================================
+  // 3) SAVE UPDATED PLAYERS BACK INTO SIGNAL
+  // =========================================================
+  this.players1.set(players);
+
+  // =========================================================
+  // 4) UPDATE STRIKER / NON STRIKER INDEX
+  // =========================================================
+  const strikerIdx = players.findIndex((p) => p.id === striker?.id);
+  const nonStrikerIdx = players.findIndex((p) => p.id === nonstriker?.id);
+
+  if (strikerIdx !== -1) this.strikerIndex.set(strikerIdx);
+  if (nonStrikerIdx !== -1) this.nonStrikerIndex.set(nonStrikerIdx);
+
+  // =========================================================
+  // 5) RECALCULATE STRIKE RATE / ECONOMY / TEAM OVERS
+  // =========================================================
+  const updatedPlayers = [...this.players1()].map((player) => ({
+    ...player,
+    strikeRate:
+      (player.balls ?? 0) > 0
+        ? Number((((player.runs ?? 0) / (player.balls ?? 1)) * 100).toFixed(2))
+        : 0,
+  }));
+
+  this.players1.set(updatedPlayers);
+
+  const bowlerBalls = this.bowlerBallCount()[bowler.id] || 0;
+  bowler.economy =
+    bowlerBalls > 0
+      ? Number((bowler.runsConceded / (bowlerBalls / 6)).toFixed(2))
+      : 0;
+
+  battingTeam.overs =
+    Math.floor(this.inningsBalls() / 6) + (this.inningsBalls() % 6) / 10;
+
+  // =========================================================
+  // 6) REPLACE LAST BALL IN BALL ARRAY
+  // =========================================================
+  inningsBalls[inningsBalls.length - 1] = newBall;
+
+  if (this.innings() === 1) {
+    this.firstInningsBalls.set(inningsBalls);
+  } else {
+    this.secondInningsBalls.set(inningsBalls);
+  }
+
+  // =========================================================
+  // 7) REBUILD CURRENT OVER BALLS
+  // =========================================================
+  const rebuiltCurrentOver: string[] = [];
+  let legalCount = 0;
+
+  for (let i = inningsBalls.length - 1; i >= 0; i--) {
+    rebuiltCurrentOver.unshift(inningsBalls[i]);
+
+    if (inningsBalls[i] !== 'Wd' && inningsBalls[i] !== 'Nb') {
+      legalCount++;
+    }
+
+    if (legalCount === this.legalBalls()) break;
+  }
+
+  this.currentOverBalls.set(rebuiltCurrentOver);
+
+  // =========================================================
+  // 8) SYNC TO LIVE + SAVE
+  // =========================================================
+  this.syncCurrentPlayersToLive();
+  this.saveLiveToDb();
+}
+
   handleWideNoBall(ball: string, bowler: Player) {
     const live = this.live();
     if (!live) return;
@@ -634,6 +931,8 @@ export class LiveService {
     live.firstInningsCompletedBatters = structuredClone(this.completedBatters());
     live.firstInningsCompletedBowlers = structuredClone(this.completedBowlers());
 
+    live.firstInningsBalls = structuredClone(this.firstInningsBalls());
+live.secondInningsBalls = structuredClone(this.secondInningsBalls());
     this.live.set(structuredClone(live));
   }
 

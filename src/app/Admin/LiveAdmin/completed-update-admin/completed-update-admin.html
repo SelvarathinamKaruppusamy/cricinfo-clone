@@ -138,13 +138,14 @@
             </p>
           </div>
 
-          <button
-            mat-stroked-button
-            class="!text-xs !h-8 !border-[#16a34a] !text-[#16a34a] self-start hover:!bg-[#f0fdf4]"
-            (click)="completeMatch()"
-          >
-            Complete Match
-          </button>
+         <button
+  mat-stroked-button
+  class="!text-xs !h-8 !border-[#16a34a] !text-[#16a34a] self-start hover:!bg-[#f0fdf4]"
+  (click)="completeMatch()"
+  [disabled]="!liveService.canCompleteMatch()"
+>
+  Complete Match
+</button>
         </div>
       </mat-card>
 

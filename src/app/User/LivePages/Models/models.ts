@@ -129,3 +129,12 @@ export const commentary = {
     "🚨 That's a huge wicket at this stage of the game.",
   ],
 };
+export interface EditBallDialogData {
+  currentBallValue: string | null;
+}
+
+export interface EditBallDialogResult {
+  over: number;
+  ball: number;
+  newBall: string;
+}

@@ -8,6 +8,7 @@ import { Player, Team } from '../../../User/LivePages/Models/models';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-component/confirm-dialog-component';
+import { EditLastBallDialogComponent, EditLastBallDialogData } from '../edit-last-ball-dialog-component/edit-last-ball-dialog-component';
 
 @Component({
   selector: 'app-live-update-admin',
@@ -21,6 +22,30 @@ export class LiveUpdateAdmin implements OnInit {
   cd = inject(ChangeDetectorRef);
   router=inject(Router)
   live = computed(() => this.service.live());
+
+  openEditLastBallDialog() {
+  const balls = this.service.currentOverBalls();
+  if (!balls.length) {
+    return;
+  }
+
+  const currentBall = balls[balls.length - 1];
+
+  const dialogRef = this.dialog.open(EditLastBallDialogComponent, {
+    width: '380px',
+    disableClose: true,
+    data: {
+      currentBall,
+    } as EditLastBallDialogData,
+    panelClass: 'custom-dialog-container',
+  });
+
+  dialogRef.afterClosed().subscribe((newBall: string | undefined) => {
+    if (!newBall || newBall === currentBall) return;
+
+    this.service.editLastBall(newBall);
+  });
+}
 
   private dialog = inject(MatDialog);
   openConfirmDialog(data: ConfirmDialogData, action: () => void) {

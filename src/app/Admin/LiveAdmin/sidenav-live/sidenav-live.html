@@ -32,19 +32,19 @@
 
       <!-- Live Update -->
       <a
-  [routerLink]="service.isSaving ? '/navbarAdmin/adminLive/liveupdate' : null"
-  routerLinkActive="bg-violet-600 text-white shadow-md"
-  class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 text-slate-700"
-  [ngClass]="{
-    'hover:bg-slate-100 cursor-pointer': service.isSaving,
-    'opacity-50 cursor-not-allowed pointer-events-none bg-slate-100': !service.isSaving
-  }"
->
-  <div class="flex items-center gap-4">
-    <mat-icon class="group-[.bg-violet-600]:!text-white">monitoring</mat-icon>
-    <span class="text-lg font-medium">Live Update</span>
-  </div>
-</a>
+        [routerLink]="service.isSaving ? '/navbarAdmin/adminLive/liveupdate' : null"
+        routerLinkActive="bg-violet-600 text-white shadow-md"
+        class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 text-slate-700"
+        [ngClass]="{
+          'hover:bg-slate-100 cursor-pointer': service.isSaving,
+          'opacity-50 cursor-not-allowed pointer-events-none bg-slate-100': !service.isSaving,
+        }"
+      >
+        <div class="flex items-center gap-4">
+          <mat-icon class="group-[.bg-violet-600]:!text-white">monitoring</mat-icon>
+          <span class="text-lg font-medium">Live Update</span>
+        </div>
+      </a>
 
       <!-- Completed Update -->
       <a
@@ -67,35 +67,64 @@
       </button> -->
     </nav>
     <div class="p-4 border-t border-slate-200">
-    <mat-card class="!bg-slate-50 !text-slate-900 !rounded-2xl border border-slate-200 shadow-sm">
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-lg font-semibold">Match Status</h3>
-          <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
-            LIVE
-          </span>
-        </div>
+      <mat-card class="!bg-slate-50 !text-slate-900 !rounded-2xl border border-slate-200 shadow-sm">
+        <div class="p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-lg font-semibold">Match Status</h3>
+            <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
+              LIVE
+            </span>
+          </div>
 
-        <div class="space-y-2 text-sm text-slate-600">
-          @if(innings()==1){
-            <p class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
-            1st Innings
-          </p>
-          }
-          @else{
-            <p class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
-            2st Innings
-          </p>
-          }
-          <p class="ml-4 text-slate-500">Started</p>
+          <div class="space-y-2 text-sm text-slate-600">
+            @if (innings() == 1) {
+              <p class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                1st Innings
+              </p>
+            } @else {
+              <p class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                2st Innings
+              </p>
+            }
+            @if (service.isSaving) {
+              <p class="ml-4 text-slate-500">Started</p>
+            } @else {
+              <p class="ml-4 text-slate-500">Yet to start</p>
+            }
+          </div>
         </div>
-      </div>
-    </mat-card>
+      </mat-card>
+      <div class="mt-25 flex p-2">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="profileMenu"
+    class="!w-14 !h-14"
+  >
+    <mat-icon class="!text-4xl !w-12 !h-12">
+      account_circle
+    </mat-icon>
+  </button>
+  <div class="leading-tight">
+    <p class="text-base font-semibold text-gray-800">{{ user.fname }}{{ user.lname }}</p>
+    <p class="text-sm text-gray-500">{{user.role}}</p>
   </div>
+</div>
+
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item routerLink="/navbarAdmin/profile">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
   </div>
 
   <!-- Bottom Match Status -->
-  
 </div>

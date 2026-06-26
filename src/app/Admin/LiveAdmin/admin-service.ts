@@ -226,7 +226,6 @@ export class AdminService {
                   next: () => {
                     this.liveService.live.set(structuredClone(updatedLive));
                     this.liveService.resetRuntimeState();
-                    alert('Match moved to Completed and next Upcoming moved to Live.');
                   },
                   error: (err) => console.error('Delete upcoming failed', err),
                 });

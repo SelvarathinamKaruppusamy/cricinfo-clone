@@ -3,13 +3,14 @@
     {
       "matchNo": 27,
       "venue": "Eden Gardens",
-      "city": "Kolakata",
-      "date": "2026-06-27",
+      "city": "Kolkata",
+      "date": "2026-03-27",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
+
       "teams": [
         {
           "teamId": 10,
@@ -23,13 +24,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -197,13 +192,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -363,19 +352,20 @@
             }
           ]
         }
-      ],
-      "id": "Yyxu1sIB4tU"
+      ]
     },
+
     {
       "matchNo": 28,
       "venue": "M.Chinnaswamy Stadium",
       "city": "Bengaluru",
-      "date": "2026-06-28",
+      "date": "2026-03-28",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
+
       "teams": [
         {
           "teamId": 2,
@@ -389,13 +379,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,
@@ -568,13 +552,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -729,14 +707,14 @@
             }
           ]
         }
-      ],
-      "id": "iU3WDgzRiqo"
+      ]
     },
+
     {
       "matchNo": 29,
       "venue": "Narendra Modi Stadium",
       "city": "Ahmedabad",
-      "date": "2026-06-29",
+      "date": "2026-03-29",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -751,13 +729,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -812,6 +784,7 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
+
               "status": "Yet To Play"
             },
             {
@@ -920,13 +893,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -1091,14 +1058,14 @@
             }
           ]
         }
-      ],
-      "id": "UD8wYimt39I"
+      ]
     },
+
     {
       "matchNo": 30,
       "venue": "M.A.Chidhambaram Stadium",
       "city": "Chennai",
-      "date": "2026-06-30",
+      "date": "2026-03-30",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -1117,13 +1084,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -1295,13 +1256,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,
@@ -1466,19 +1421,20 @@
             }
           ]
         }
-      ],
-      "id": "OKLhDRyD5t8"
+      ]
     },
+
     {
       "matchNo": 31,
       "venue": "Maharaja Yadavindra Singh",
       "city": "Mullanppur",
-      "date": "2026-07-01",
+      "date": "2026-03-31",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
+
       "teams": [
         {
           "teamId": 6,
@@ -1488,13 +1444,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -1662,13 +1612,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -1833,19 +1777,20 @@
             }
           ]
         }
-      ],
-      "id": "hPVUnjBju1k"
+      ]
     },
+
     {
       "matchNo": 32,
       "venue": "Eden Gardens",
       "city": "Kolkata",
-      "date": "7/2/2026",
+      "date": "2026-04-01",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
+
       "teams": [
         {
           "teamId": 10,
@@ -1859,13 +1804,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -2037,13 +1976,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,
@@ -2208,19 +2141,20 @@
             }
           ]
         }
-      ],
-      "id": "f5JdYGK8mGU"
+      ]
     },
+
     {
       "matchNo": 33,
       "venue": "Arun Jaitley Stadium",
       "city": "Delhi",
-      "date": "2026-07-03",
+      "date": "2026-04-02",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
+
       "teams": [
         {
           "teamId": 9,
@@ -2234,13 +2168,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -2412,13 +2340,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,
@@ -2583,14 +2505,14 @@
             }
           ]
         }
-      ],
-      "id": "maieG7kz1Es"
+      ]
     },
+
     {
       "matchNo": 34,
       "venue": "M.A.Chidhambaram Stadium",
       "city": "Chennai",
-      "date": "2026-07-04",
+      "date": "2026-04-03",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -2609,13 +2531,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -2787,13 +2703,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -2953,14 +2863,14 @@
             }
           ]
         }
-      ],
-      "id": "Z5NvlEVfScE"
+      ]
     },
+
     {
       "matchNo": 35,
       "venue": "Narendra Modi Stadium",
       "city": "Ahmedabad",
-      "date": "2026-07-05",
+      "date": "2026-04-04",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -2975,13 +2885,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -3036,6 +2940,7 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
+
               "status": "Yet To Play"
             },
             {
@@ -3144,13 +3049,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -3310,14 +3209,14 @@
             }
           ]
         }
-      ],
-      "id": "Hc8bMC_A0xs"
+      ]
     },
+
     {
       "matchNo": 36,
       "venue": "Wankhede Stadium",
       "city": "Mumbai",
-      "date": "2026-07-06",
+      "date": "2026-04-05",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -3336,13 +3235,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -3510,13 +3403,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -3671,14 +3558,14 @@
             }
           ]
         }
-      ],
-      "id": "gfthb_j6H6A"
+      ]
     },
+
     {
       "matchNo": 37,
       "venue": "Narendra Modi Stadium",
       "city": "Ahmedabad",
-      "date": "2026-07-07",
+      "date": "2026-04-06",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -3693,13 +3580,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -3754,6 +3635,7 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
+
               "status": "Yet To Play"
             },
             {
@@ -3862,13 +3744,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -4033,19 +3909,19 @@
             }
           ]
         }
-      ],
-      "id": "9YWNEhEAKZo"
+      ]
     },
     {
       "matchNo": 38,
       "venue": "Eden Gardens",
       "city": "Kolkata",
-      "date": "2026-07-08",
+      "date": "2026-04-07",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
+
       "teams": [
         {
           "teamId": 10,
@@ -4059,13 +3935,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -4237,13 +4107,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -4403,14 +4267,13 @@
             }
           ]
         }
-      ],
-      "id": "4vTxxpHqOFQ"
+      ]
     },
     {
       "matchNo": 39,
       "venue": "Sawai Mansingh Stadium",
       "city": "Jaipur",
-      "date": "2026-07-09",
+      "date": "2026-04-08",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -4425,13 +4288,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -4594,13 +4451,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -4765,14 +4616,13 @@
             }
           ]
         }
-      ],
-      "id": "QlPFcNVqEY4"
+      ]
     },
     {
       "matchNo": 40,
       "venue": "Arun Jaitley Stadium",
       "city": "Delhi",
-      "date": "2026-07-10",
+      "date": "2026-04-09",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -4791,13 +4641,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -4965,13 +4809,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -5026,6 +4864,7 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
+
               "status": "Yet To Play"
             },
             {
@@ -5126,14 +4965,13 @@
             }
           ]
         }
-      ],
-      "id": "nXaB8g_ycR4"
+      ]
     },
     {
       "matchNo": 41,
       "venue": "Maharaja Yadavindra Singh",
       "city": "Mullanppur",
-      "date": "2026-07-11",
+      "date": "2026-04-10",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -5148,13 +4986,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -5322,13 +5154,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -5483,14 +5309,13 @@
             }
           ]
         }
-      ],
-      "id": "qGgAnf4yRTk"
+      ]
     },
     {
       "matchNo": 42,
       "venue": "M.A.Chidambaram Stadium",
       "city": "Chennai",
-      "date": "2026-07-12",
+      "date": "2026-04-11",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -5509,13 +5334,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -5687,13 +5506,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -5853,14 +5666,13 @@
             }
           ]
         }
-      ],
-      "id": "Xg4lNehEu5g"
+      ]
     },
     {
       "matchNo": 43,
       "venue": "BRASABV Ekana Cricket Stadium",
       "city": "Lucknow",
-      "date": "2026-07-13",
+      "date": "2026-04-12",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -5879,13 +5691,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,
@@ -6062,13 +5868,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -6228,14 +6028,13 @@
             }
           ]
         }
-      ],
-      "id": "gstRYCZnrRI"
+      ]
     },
     {
       "matchNo": 44,
       "venue": "M.Chinnaswamy Stadium",
       "city": "Bengaluru",
-      "date": "2026-07-14",
+      "date": "2026-04-13",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -6254,13 +6053,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,
@@ -6433,13 +6226,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -6604,14 +6391,13 @@
             }
           ]
         }
-      ],
-      "id": "j54oHl9Hcts"
+      ]
     },
     {
       "matchNo": 45,
       "venue": "Arun Jaitley Stadium",
       "city": "Jaipur",
-      "date": "2026-07-15",
+      "date": "2026-04-14",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -6630,13 +6416,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -6808,13 +6588,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,
@@ -6979,9 +6753,7 @@
             }
           ]
         }
-      ],
-      "id": "eeb8IPVJpzk"
+      ]
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

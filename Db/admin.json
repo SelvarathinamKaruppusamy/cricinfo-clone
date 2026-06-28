@@ -14,8 +14,23 @@
       "address": "Erode, Tamil Nadu",
       "dob": "2004-12-08"
     },
-      {
+    {
       "id": "2",
+      "userName": "pradeep",
+      "passWord": "pradeep",
+      "fname": "Pradeep",
+      "lname": "Thirumurugan",
+      "email": "pradeepthirumurugann@gmail.com",
+      "gender": "Male",
+      "mobileNo": "8072550475",
+      "role": "Super Admin",
+      "address": "Gobichettipalayam, Erode, TN",
+      "dob": "2005-08-15",
+      "firstLogin": false,
+      "password": "pradeep"
+    },
+      {
+      "id": "3",
       "userName": "Zucian",
       "passWord": "Zucian",
       "fname": "Zucian",

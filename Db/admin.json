@@ -13,6 +13,21 @@
       "role": "Super Admin",
       "address": "Erode, Tamil Nadu",
       "dob": "2004-12-08"
+    },
+    {
+      "id": "yHmsf1g6n10",
+      "userName": "pradeep",
+      "passWord": "pradeep",
+      "fname": "Pradeep",
+      "lname": "Thirumurugan",
+      "email": "pradeepthirumurugann@gmail.com",
+      "gender": "Male",
+      "mobileNo": "8072550475",
+      "role": "Super Admin",
+      "address": "Gobichettipalayam, Erode, TN",
+      "dob": "2005-08-15",
+      "firstLogin": false,
+      "password": "pradeep"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

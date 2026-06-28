@@ -22,6 +22,14 @@ export class LiveUpdateAdmin implements OnInit {
   cd = inject(ChangeDetectorRef);
   router=inject(Router)
   live = computed(() => this.service.live());
+  selectedTossWinner: 0 | 1 | null = null;
+  selectedCall: 'Head' | 'Tail' | null = null;
+  selectedDecision: 'Bat' | 'Bowl' | null = null;
+  toastVisible = false;
+toastType: 'success' | 'error' = 'success';
+toastMessage = '';
+
+private toastTimer: any;
 
   openEditLastBallDialog() {
   const balls = this.service.currentOverBalls();
@@ -86,26 +94,6 @@ export class LiveUpdateAdmin implements OnInit {
 
   striker = computed<Player | undefined>(() => this.service.striker);
 
-  // currentBowlerBalls = computed(() => {
-  //   const balls = this.service.ball();
-  //   const result: string[] = [];
-  //   let legalCount = 0;
-
-  //   for (let i = balls.length - 1; i >= 0; i--) {
-  //     result.unshift(balls[i]);
-
-  //     if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
-  //       legalCount++;
-  //     }
-
-  //     if (legalCount === 6) 
-  //       {
-  //         break;
-  //       }
-  //   }
-
-  //   return result;
-  // });
  currentBowlerBalls = computed(() => this.service.currentOverBalls());
   target = computed(() => {
     if (this.service.innings() !== 2) return 0;
@@ -254,6 +242,10 @@ export class LiveUpdateAdmin implements OnInit {
         // console.log('Toss saved');
         if (this.matchFinished()) return;
     this.service.startSecondInnings();
+     this.showToast(
+  'Second Innings Started...',
+  'success'
+);
       }
     );
     
@@ -270,6 +262,10 @@ export class LiveUpdateAdmin implements OnInit {
     },
     () => {
       this.service.saveLiveToDb();
+       this.showToast(
+  'Scores Updated Successfully.',
+  'success'
+);
     }
   );
   }
@@ -285,9 +281,33 @@ export class LiveUpdateAdmin implements OnInit {
     },
     () => {
       if (!this.showCompleteMatch()) return;
+
     this.service.completeMatch();
+     this.showToast(
+  'Completed saved successfully.',
+  'success'
+);
     }
   );
     
   }
+   showToast(message: string, type: 'success' | 'error') {
+  this.toastMessage = message;
+  this.toastType = type;
+  this.toastVisible = true;
+
+  this.cd.detectChanges();
+
+  clearTimeout(this.toastTimer);
+
+  this.toastTimer = setTimeout(() => {
+    this.toastVisible = false;
+    this.cd.detectChanges();
+  }, 1200);
+}
+
+closeToast() {
+  this.toastVisible = false;
+  clearTimeout(this.toastTimer);
+}
 }

@@ -3,7 +3,6 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { LiveService } from '../../../User/LivePages/Services/live-service';
@@ -14,14 +13,13 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-com
 @Component({
   selector: 'app-toss-panel',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatSnackBarModule],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule],
   templateUrl: './toss-panel.html',
   styleUrl: './toss-panel.css',
 })
 export class TossPanel implements OnInit {
   service = inject(LiveService);
   changedetector = inject(ChangeDetectorRef);
-  snackBar = inject(MatSnackBar);
   router = inject(Router);
 
   live!: LiveModel;
@@ -30,6 +28,11 @@ export class TossPanel implements OnInit {
   selectedTossWinner: 0 | 1 | null = null;
   selectedCall: 'Head' | 'Tail' | null = null;
   selectedDecision: 'Bat' | 'Bowl' | null = null;
+  toastVisible = false;
+toastType: 'success' | 'error' = 'success';
+toastMessage = '';
+
+private toastTimer: any;
 
    private dialog = inject(MatDialog);
   openConfirmDialog(data: ConfirmDialogData, action: () => void) {
@@ -46,26 +49,24 @@ export class TossPanel implements OnInit {
       }
     });
   }
+ngOnInit(): void {
+  this.service.GetLiveMatches().subscribe({
+    next: (res) => {
+      if (!res?.length) return;
 
+      this.live = structuredClone(res[0]);
+      this.teams = this.live?.teams ?? [];
 
-  ngOnInit(): void {
-    this.service.GetLiveMatches().subscribe({
-      next: (res) => {
-        if (!res?.length) return;
+      this.service.loadMatchIntoService(this.live);
 
-        this.live = structuredClone(res[0]);
-        this.teams = this.live?.teams ?? [];
+      this.changedetector.detectChanges();
 
-        // load into service
-        this.service.loadMatchIntoService(this.live);
-
-        this.changedetector.detectChanges();
-        console.log('Toss panel loaded live match:', this.service.live());
-      },
-      error: (err) => console.error(err),
-    });
-  }
-
+      // Test Toast
+      
+    },
+    error: (err) => console.error(err),
+  });
+}
   get tossSummary(): string {
     if (this.selectedTossWinner === null || !this.selectedCall || !this.selectedDecision) {
       return '';
@@ -159,16 +160,14 @@ export class TossPanel implements OnInit {
         this.service.loadMatchIntoService(updated);
 
         // confirmation message
-        this.snackBar.open('Toss saved successfully. Redirecting to Live Update...', 'OK', {
-          duration: 2000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
-
-        // auto redirect after short delay
+       this.showToast(
+  'Toss saved successfully. Redirecting to Live Update...',
+  'success'
+);
+        //auto redirect after short delay
         setTimeout(() => {
           this.router.navigate(['/navbarAdmin/adminLive/liveupdate']);
-        }, 1200);
+        }, 2000);
 
         
       },
@@ -176,14 +175,29 @@ export class TossPanel implements OnInit {
         console.error(err);
         this.service.isSaving = false;
 
-        this.snackBar.open('Failed to save toss', 'Close', {
-          duration: 2500,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
+       this.showToast('Failed to save toss', 'error');
       },
     });
     }
   );
   }
+  showToast(message: string, type: 'success' | 'error') {
+  this.toastMessage = message;
+  this.toastType = type;
+  this.toastVisible = true;
+
+  this.changedetector.detectChanges();
+
+  clearTimeout(this.toastTimer);
+
+  this.toastTimer = setTimeout(() => {
+    this.toastVisible = false;
+    this.changedetector.detectChanges();
+  }, 1200);
+}
+
+closeToast() {
+  this.toastVisible = false;
+  clearTimeout(this.toastTimer);
+}
 }

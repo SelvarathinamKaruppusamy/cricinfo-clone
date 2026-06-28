@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './blog-form.html',
   styleUrl: './blog-form.css',
 })
-export class BlogForm implements OnInit {
+export class BlogForm implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private blogService = inject(BlogManagementService);
   private router = inject(Router);
@@ -23,18 +23,16 @@ export class BlogForm implements OnInit {
   private http = inject(HttpClient);
 
   blogForm!: FormGroup;
-
   isEditMode = false;
-
-  // Route param (matchId)
   blogId = '';
-
-  // Actual JSON Server id
   actualId = '';
-
   previewUrl: string | null = null;
-
   selectedFile: File | null = null;
+
+  toastVisible = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
+  private toastTimeout: any;
 
   ngOnInit(): void {
     this.blogForm = this.fb.group({
@@ -60,6 +58,37 @@ export class BlogForm implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+  }
+
+  showToast(message: string, type: 'success' | 'error'): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+
+    this.toastMessage = message;
+    this.toastType = type;
+    this.toastVisible = true;
+
+    this.toastTimeout = setTimeout(() => {
+      this.toastVisible = false;
+      this.toastTimeout = null;
+    }, 3000);
+  }
+
+  closeToast(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+    this.toastVisible = false;
+  }
+
   loadBlog(): void {
     const matchId = Number(this.blogId);
 
@@ -68,10 +97,10 @@ export class BlogForm implements OnInit {
 
       if (!blog) {
         console.error('Blog not found');
+        this.showToast('Blog not found. Please try again.', 'error');
         return;
       }
 
-      // Store actual JSON Server id
       this.actualId = blog.id;
 
       this.previewUrl = `https://res.cloudinary.com/dde7fld9d/image/upload/${blog.image}`;
@@ -113,7 +142,6 @@ export class BlogForm implements OnInit {
     if (input.files && input.files[0]) {
       this.selectedFile = input.files[0];
 
-      // Instant preview
       this.previewUrl = URL.createObjectURL(this.selectedFile);
     }
   }
@@ -121,14 +149,16 @@ export class BlogForm implements OnInit {
   saveBlog(): void {
     if (this.blogForm.invalid) {
       this.blogForm.markAllAsTouched();
+      this.showToast('Please fill all required fields.', 'error');
       return;
     }
+
+    const blogTitle = this.blogForm.get('title')?.value;
 
     if (this.selectedFile) {
       const formData = new FormData();
 
       formData.append('file', this.selectedFile);
-
       formData.append('upload_preset', 'cricinfo_blog_upload');
 
       this.http
@@ -136,51 +166,36 @@ export class BlogForm implements OnInit {
         .subscribe({
           next: (response) => {
             const imagePath = `f_auto/v${response.version}/${response.public_id}.jpg`;
-
-            this.updateBlog(imagePath);
+            this.updateBlog(imagePath, blogTitle);
           },
 
           error: (err) => {
             console.error(err);
-
-            alert('Image Upload Failed');
+            this.showToast('Image upload failed. Please try again.', 'error');
           },
         });
     } else {
       const currentImage = this.blogForm.get('image')?.value;
-
-      this.updateBlog(currentImage);
+      this.updateBlog(currentImage, blogTitle);
     }
   }
 
-  private updateBlog(imagePath: string): void {
+  private updateBlog(imagePath: string, blogTitle: string): void {
     const formValue = this.blogForm.value;
 
     const blog: Blog = {
       id: this.actualId,
-
       matchId: Number(formValue.matchId),
-
       title: formValue.title,
-
       slug: formValue.slug,
-
       image: imagePath,
-
       shortDescription: formValue.shortDescription,
-
       category: formValue.category,
-
       author: formValue.author,
-
       content: formValue.content.split('\n').filter((p: string) => p.trim()),
-
       publishedDate: formValue.publishedDate,
-
       readTime: formValue.readTime,
-
       featured: formValue.featured,
-
       tags: formValue.tags
         .split(',')
         .map((tag: string) => tag.trim())
@@ -189,15 +204,15 @@ export class BlogForm implements OnInit {
 
     this.blogService.updateBlog(this.actualId, blog).subscribe({
       next: () => {
-        alert('Blog Updated Successfully');
+        localStorage.setItem('toastMessage', `"${blogTitle || blog.title}" updated successfully!`);
+        localStorage.setItem('toastType', 'success');
 
         this.router.navigate(['/navbarAdmin/blogs']);
       },
 
       error: (err) => {
         console.error(err);
-
-        alert('Failed To Update Blog');
+        this.showToast('Failed to update blog. Please try again.', 'error');
       },
     });
   }

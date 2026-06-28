@@ -108,7 +108,6 @@ export class Upcome implements OnInit {
       }
     });
   }
-
   saveMatch(): void {
     if (!this.selectedMatch || this.matchForm.invalid) {
       this.matchForm.markAllAsTouched();
@@ -130,7 +129,6 @@ export class Upcome implements OnInit {
       },
     );
   }
-
   confirmUpdate(): void {
     if (!this.selectedMatch) return;
 

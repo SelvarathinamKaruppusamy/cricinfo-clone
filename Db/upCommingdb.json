@@ -4,13 +4,12 @@
       "matchNo": 27,
       "venue": "Eden Gardens",
       "city": "Kolkata",
-      "date": "2026-03-27",
+      "date": "",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
-
       "teams": [
         {
           "teamId": 10,
@@ -24,7 +23,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [true, false, true, false, true],
+          "matchStatus": [
+            true,
+            false,
+            true,
+            false,
+            true
+          ],
           "players": [
             {
               "id": 1001,
@@ -192,7 +197,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [true, false, false, true, false],
+          "matchStatus": [
+            true,
+            false,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 601,
@@ -352,9 +363,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "nqcpb8xP1vs"
     },
-
     {
       "matchNo": 28,
       "venue": "M.Chinnaswamy Stadium",
@@ -365,7 +376,6 @@
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
-
       "teams": [
         {
           "teamId": 2,
@@ -379,7 +389,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [true, true, false, false, true],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            false,
+            true
+          ],
           "players": [
             {
               "id": 1,
@@ -552,7 +568,13 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [false, true, false, false, false],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 401,
@@ -707,14 +729,14 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "ZBmUatBSpvs"
     },
-
     {
       "matchNo": 29,
       "venue": "Narendra Modi Stadium",
       "city": "Ahmedabad",
-      "date": "2026-03-29",
+      "date": "3/29/2026",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
@@ -729,7 +751,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [false, true, false, true, true],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
           "players": [
             {
               "id": 701,
@@ -784,7 +812,6 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
-
               "status": "Yet To Play"
             },
             {
@@ -893,7 +920,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [true, false, true, false, true],
+          "matchStatus": [
+            true,
+            false,
+            true,
+            false,
+            true
+          ],
           "players": [
             {
               "id": 1001,
@@ -1058,9 +1091,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "z7rUoRbDIBA"
     },
-
     {
       "matchNo": 30,
       "venue": "M.A.Chidhambaram Stadium",
@@ -1084,7 +1117,13 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [true, true, true, true, true],
+          "matchStatus": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
           "players": [
             {
               "id": 101,
@@ -1256,7 +1295,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 801,
@@ -1421,9 +1466,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "MWlFqZz9Oys"
     },
-
     {
       "matchNo": 31,
       "venue": "Maharaja Yadavindra Singh",
@@ -1434,7 +1479,6 @@
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
-
       "teams": [
         {
           "teamId": 6,
@@ -1444,7 +1488,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [true, false, false, true, false],
+          "matchStatus": [
+            true,
+            false,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 601,
@@ -1612,7 +1662,13 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [false, false, false, false, false],
+          "matchStatus": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 301,
@@ -1777,9 +1833,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "yds4hbv_uzI"
     },
-
     {
       "matchNo": 32,
       "venue": "Eden Gardens",
@@ -1790,7 +1846,6 @@
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
-
       "teams": [
         {
           "teamId": 10,
@@ -1804,7 +1859,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [true, false, true, false, true],
+          "matchStatus": [
+            true,
+            false,
+            true,
+            false,
+            true
+          ],
           "players": [
             {
               "id": 1001,
@@ -1976,7 +2037,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 801,
@@ -2141,9 +2208,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "GUw-bElU64s"
     },
-
     {
       "matchNo": 33,
       "venue": "Arun Jaitley Stadium",
@@ -2154,7 +2221,6 @@
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
-
       "teams": [
         {
           "teamId": 9,
@@ -2168,7 +2234,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [false, true, true, false, false],
+          "matchStatus": [
+            false,
+            true,
+            true,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 901,
@@ -2340,7 +2412,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [true, true, false, false, true],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            false,
+            true
+          ],
           "players": [
             {
               "id": 1,
@@ -2505,9 +2583,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "ego4kV2mKe8"
     },
-
     {
       "matchNo": 34,
       "venue": "M.A.Chidhambaram Stadium",
@@ -2531,7 +2609,13 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [true, true, true, true, true],
+          "matchStatus": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
           "players": [
             {
               "id": 101,
@@ -2703,7 +2787,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 501,
@@ -2863,9 +2953,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "858fMzGe4Dc"
     },
-
     {
       "matchNo": 35,
       "venue": "Narendra Modi Stadium",
@@ -2885,7 +2975,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [false, true, false, true, true],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
           "players": [
             {
               "id": 701,
@@ -2940,7 +3036,6 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
-
               "status": "Yet To Play"
             },
             {
@@ -3049,7 +3144,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [true, false, false, true, false],
+          "matchStatus": [
+            true,
+            false,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 601,
@@ -3209,9 +3310,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "fm_m7i7ORuA"
     },
-
     {
       "matchNo": 36,
       "venue": "Wankhede Stadium",
@@ -3235,7 +3336,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 501,
@@ -3403,7 +3510,13 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [false, true, false, false, false],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 401,
@@ -3558,9 +3671,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "UQRBbiYWzbA"
     },
-
     {
       "matchNo": 37,
       "venue": "Narendra Modi Stadium",
@@ -3580,7 +3693,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [false, true, false, true, true],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
           "players": [
             {
               "id": 701,
@@ -3635,7 +3754,6 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
-
               "status": "Yet To Play"
             },
             {
@@ -3744,7 +3862,13 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [false, false, false, false, false],
+          "matchStatus": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 301,
@@ -3909,7 +4033,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "m9oTRbl-FN4"
     },
     {
       "matchNo": 38,
@@ -3921,7 +4046,6 @@
       "result": null,
       "playerOfTheMatch": null,
       "status": "Upcoming",
-
       "teams": [
         {
           "teamId": 10,
@@ -3935,7 +4059,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [true, false, true, false, true],
+          "matchStatus": [
+            true,
+            false,
+            true,
+            false,
+            true
+          ],
           "players": [
             {
               "id": 1001,
@@ -4107,7 +4237,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 501,
@@ -4267,7 +4403,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "b9Lj0FXf2EU"
     },
     {
       "matchNo": 39,
@@ -4288,7 +4425,13 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [false, true, false, false, false],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 401,
@@ -4451,7 +4594,13 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [false, false, false, false, false],
+          "matchStatus": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 301,
@@ -4616,7 +4765,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "dh8BHlIPvqo"
     },
     {
       "matchNo": 40,
@@ -4641,7 +4791,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [false, true, true, false, false],
+          "matchStatus": [
+            false,
+            true,
+            true,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 901,
@@ -4809,7 +4965,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [false, true, false, true, true],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
           "players": [
             {
               "id": 701,
@@ -4864,7 +5026,6 @@
               "fours": null,
               "sixes": null,
               "strikeRate": null,
-
               "status": "Yet To Play"
             },
             {
@@ -4965,7 +5126,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "OfL3X0SCAhQ"
     },
     {
       "matchNo": 41,
@@ -4986,7 +5148,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [true, false, false, true, false],
+          "matchStatus": [
+            true,
+            false,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 601,
@@ -5154,7 +5322,13 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [false, true, false, false, false],
+          "matchStatus": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 401,
@@ -5309,7 +5483,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "QI3kJdrrlDM"
     },
     {
       "matchNo": 42,
@@ -5334,7 +5509,13 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [true, true, true, true, true],
+          "matchStatus": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
           "players": [
             {
               "id": 101,
@@ -5506,7 +5687,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [false, true, true, false, false],
+          "matchStatus": [
+            false,
+            true,
+            true,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 901,
@@ -5666,7 +5853,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "LeJemLGDlcQ"
     },
     {
       "matchNo": 43,
@@ -5691,7 +5879,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 801,
@@ -5868,7 +6062,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 501,
@@ -6028,7 +6228,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "HJ-IiA_QKjw"
     },
     {
       "matchNo": 44,
@@ -6053,7 +6254,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [true, true, false, false, true],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            false,
+            true
+          ],
           "players": [
             {
               "id": 1,
@@ -6226,7 +6433,13 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [false, false, false, false, false],
+          "matchStatus": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 301,
@@ -6391,7 +6604,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "JgDqouNrp18"
     },
     {
       "matchNo": 45,
@@ -6416,7 +6630,13 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [false, true, true, false, false],
+          "matchStatus": [
+            false,
+            true,
+            true,
+            false,
+            false
+          ],
           "players": [
             {
               "id": 901,
@@ -6588,7 +6808,13 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [true, true, false, true, false],
+          "matchStatus": [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
           "players": [
             {
               "id": 801,
@@ -6753,7 +6979,9 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "NnL5G1bggII"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

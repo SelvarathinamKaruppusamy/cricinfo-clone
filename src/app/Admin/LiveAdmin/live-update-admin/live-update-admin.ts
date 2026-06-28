@@ -86,26 +86,6 @@ export class LiveUpdateAdmin implements OnInit {
 
   striker = computed<Player | undefined>(() => this.service.striker);
 
-  // currentBowlerBalls = computed(() => {
-  //   const balls = this.service.ball();
-  //   const result: string[] = [];
-  //   let legalCount = 0;
-
-  //   for (let i = balls.length - 1; i >= 0; i--) {
-  //     result.unshift(balls[i]);
-
-  //     if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
-  //       legalCount++;
-  //     }
-
-  //     if (legalCount === 6) 
-  //       {
-  //         break;
-  //       }
-  //   }
-
-  //   return result;
-  // });
  currentBowlerBalls = computed(() => this.service.currentOverBalls());
   target = computed(() => {
     if (this.service.innings() !== 2) return 0;

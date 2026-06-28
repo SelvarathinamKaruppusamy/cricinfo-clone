@@ -56,11 +56,11 @@ export class TossPanel implements OnInit {
         this.live = structuredClone(res[0]);
         this.teams = this.live?.teams ?? [];
 
-        // load into service
+        // load live into service
         this.service.loadMatchIntoService(this.live);
 
         this.changedetector.detectChanges();
-        console.log('Toss panel loaded live match:', this.service.live());
+        
       },
       error: (err) => console.error(err),
     });

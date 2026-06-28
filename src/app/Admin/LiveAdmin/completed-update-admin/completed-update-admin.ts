@@ -19,11 +19,13 @@ import {
   ConfirmDialogData,
 } from '../confirm-dialog-component/confirm-dialog-component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-completed-update-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, MatCardModule, MatButtonModule,MatFormFieldModule,MatSelectModule],
   templateUrl: './completed-update-admin.html',
   styleUrl: './completed-update-admin.css',
 })

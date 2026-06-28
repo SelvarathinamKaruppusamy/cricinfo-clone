@@ -40,7 +40,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Not Out",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -53,7 +53,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Not Out",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -66,7 +66,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -79,7 +79,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -97,7 +97,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 106,
@@ -113,7 +113,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 107,
@@ -129,7 +129,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 108,
@@ -145,7 +145,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 109,
@@ -161,7 +161,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 110,
@@ -177,7 +177,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 111,
@@ -193,7 +193,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             }
           ]
         },
@@ -278,11 +278,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -294,11 +294,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -310,11 +310,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -326,11 +326,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -342,11 +342,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -358,11 +358,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -374,29 +374,17 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             }
           ]
         }
       ],
-      "id": "-9pPnt0J80c",
-      "innings": 1,
-      "currentBattingTeamIndex": 0,
-      "currentBowlingTeamIndex": 1,
-      "strikerPlayerId": 101,
-      "nonStrikerPlayerId": 102,
-      "currentBowlerPlayerId": 5,
-      "firstInningsCompletedBattingTeam": null,
-      "firstInningsCompletedBowlingTeam": null,
-      "firstInningsCompletedBatters": [],
-      "firstInningsCompletedBowlers": [],
-      "firstInningsBalls": [],
-      "secondInningsBalls": []
+      "id": "-9pPnt0J80c"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

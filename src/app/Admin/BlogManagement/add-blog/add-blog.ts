@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { BlogManagementService } from '../services/blog-management';
   templateUrl: './add-blog.html',
   styleUrl: './add-blog.css',
 })
-export class AddBlog {
+export class AddBlog implements OnDestroy {
   private fb = inject(FormBuilder);
   private blogService = inject(BlogManagementService);
   private router = inject(Router);
@@ -30,24 +30,66 @@ export class AddBlog {
     featured: [false],
   });
 
+  previewUrl: string | null = null;
+  selectedFile: File | null = null;
+  isSaving = false;
+
+  toastVisible = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
+  private toastTimeout: any;
+
   cancel(): void {
-    console.log('clicked');
     this.router.navigate(['/navbarAdmin/blogs']);
   }
 
+  showToast(message: string, type: 'success' | 'error'): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+
+    this.toastMessage = message;
+    this.toastType = type;
+    this.toastVisible = true;
+
+    this.toastTimeout = setTimeout(() => {
+      this.toastVisible = false;
+      this.toastTimeout = null;
+    }, 3000);
+  }
+
+  closeToast(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+    this.toastVisible = false;
+  }
+
+  ngOnDestroy(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+  }
+
   saveBlog(): void {
+    if (this.isSaving) return;
+
     if (this.blogForm.invalid) {
-      alert('Please fill all required fields');
+      this.showToast('Please fill all required fields.', 'error');
       return;
     }
 
     if (!this.selectedFile) {
-      alert('Please select an image');
+      this.showToast('Please select an image.', 'error');
       return;
     }
 
-    const formData = new FormData();
+    this.isSaving = true;
 
+    const formData = new FormData();
     formData.append('file', this.selectedFile);
     formData.append('upload_preset', 'cricinfo_blog_upload');
 
@@ -56,93 +98,78 @@ export class AddBlog {
       .subscribe({
         next: (cloudinaryResponse) => {
           const imagePath = `f_auto/v${cloudinaryResponse.version}/${cloudinaryResponse.public_id}.jpg`;
-
           const formValue = this.blogForm.value;
 
-          this.blogService.getBlogs().subscribe((blogs: any[]) => {
-            const numericIds = blogs.map((blog) => Number(blog.id)).filter((id) => !isNaN(id));
+          this.blogService.getBlogs().subscribe({
+            next: (blogs: any[]) => {
+              const nextId = Math.max(...blogs.map((blog) => blog.matchId || 0)) + 1;
 
-            const nextId = Math.max(...blogs.map((blog) => blog.matchId || 0)) + 1;
+              const blog = {
+                id: nextId.toString(),
+                matchId: nextId,
+                title: formValue.title,
+                slug: formValue.slug,
+                image: imagePath,
+                shortDescription: formValue.shortDescription,
+                category: 'Match Report',
+                author: 'CrickInfo Team',
+                content: formValue.content!.split('\n').filter((p) => p.trim()),
+                publishedDate: formValue.publishedDate,
+                readTime: formValue.readTime,
+                featured: false,
+                tags: formValue.tags
+                  ? formValue.tags
+                      .split(',')
+                      .map((tag) => tag.trim())
+                      .filter(Boolean)
+                  : [],
+              };
 
-            console.log('Next ID:', nextId);
+              this.blogService.addBlog(blog as any).subscribe({
+                next: () => {
+                  this.isSaving = false;
 
-            const blog = {
-              id: nextId,
+                  // Store toast message in localStorage before navigation
+                  localStorage.setItem('toastMessage', `"${blog.title}" published successfully!`);
+                  localStorage.setItem('toastType', 'success');
 
-              matchId: nextId,
-
-              title: formValue.title,
-
-              slug: formValue.slug,
-
-              image: imagePath,
-
-              shortDescription: formValue.shortDescription,
-
-              category: 'Match Report',
-
-              author: 'CrickInfo Team',
-
-              content: formValue.content!.split('\n').filter((p) => p.trim()),
-
-              publishedDate: formValue.publishedDate,
-
-              readTime: formValue.readTime,
-
-              featured: false,
-
-              tags: formValue.tags
-                ? formValue.tags
-                    .split(',')
-                    .map((tag) => tag.trim())
-                    .filter(Boolean)
-                : [],
-            };
-
-            console.log('Saving Blog:', blog);
-            this.blogService.addBlog(blog as any).subscribe({
-              next: () => {
-                alert('Blog Added Successfully');
-
-                this.router.navigate(['/navbarAdmin/blogs']);
-              },
-
-              error: (err) => {
-                console.error('Blog Save Error', err);
-
-                alert('Failed to save blog');
-              },
-            });
+                  // Navigate to blogs page
+                  this.router.navigate(['/navbarAdmin/blogs']);
+                },
+                error: (err) => {
+                  console.error('Blog Save Error', err);
+                  this.isSaving = false;
+                  this.showToast('Failed to publish blog. Please try again.', 'error');
+                },
+              });
+            },
+            error: (err) => {
+              console.error('Error fetching blogs', err);
+              this.isSaving = false;
+              this.showToast('Failed to save blog. Please try again.', 'error');
+            },
           });
         },
-
         error: (err) => {
           console.error('Cloudinary Upload Error', err);
-
-          alert('Image upload failed');
+          this.isSaving = false;
+          this.showToast('Image upload failed. Please try again.', 'error');
         },
       });
   }
 
-  previewUrl: string | null = null;
-
-  selectedFile: File | null = null;
-
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-
     if (!input.files?.length) {
       return;
     }
 
     this.selectedFile = input.files[0];
-
     this.previewUrl = URL.createObjectURL(this.selectedFile);
   }
 
   generateSlug(): void {
     const title = this.blogForm.get('title')?.value;
-
     if (!title) return;
 
     const slug = title

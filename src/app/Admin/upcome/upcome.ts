@@ -65,27 +65,21 @@ export class Upcome implements OnInit {
 
   prepareUpdate(venue: string, city: string, date: string, status: string): void {
     if (!this.selectedMatch) return;
-
     this.selectedMatch.venue = venue;
     this.selectedMatch.city = city;
     this.selectedMatch.date = date;
     this.selectedMatch.status = status;
   }
-
   saveMatch(): void {
     if (!this.selectedMatch) return;
-
     this.dialog.open(this.confirmDialog, {
       width: '360px',
       disableClose: true,
       position: { top: '20%' }
     });
-
   }
-
   confirmUpdate(): void {
     if (!this.selectedMatch) return;
-
     this.service.updateMatch(this.selectedMatch.id, this.selectedMatch)
       .subscribe({
         next: () => {
@@ -96,14 +90,12 @@ export class Upcome implements OnInit {
             'Close',
             { duration: 3000 }
           );
-
           this.loadMatches();
            this.selectedMatch = null;
   this.selectedMatchNo = null;
         },
         error: () => {
           this.dialog.closeAll();
-
           this.snackBar.open(
             'Update Failed',
             'Close',

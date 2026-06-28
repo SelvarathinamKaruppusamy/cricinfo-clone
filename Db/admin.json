@@ -10,12 +10,12 @@
       "gender": "Male",
       "mobileNo": "8526919490",
       "firstLogin": false,
-      "role": "Super Admin",
+      "role": "Admin",
       "address": "Erode, Tamil Nadu",
       "dob": "2004-12-08"
     },
     {
-      "id": "yHmsf1g6n10",
+      "id": "2",
       "userName": "pradeep",
       "passWord": "pradeep",
       "fname": "Pradeep",
@@ -28,7 +28,22 @@
       "dob": "2005-08-15",
       "firstLogin": false,
       "password": "pradeep"
+    },
+      {
+      "id": "3",
+      "userName": "Zucian",
+      "passWord": "Zucian",
+      "fname": "Zucian",
+      "lname": "",
+      "email": "Zucian@gmail.com",
+      "gender": "People",
+      "mobileNo": "044 6917 8900",
+      "firstLogin": false,
+      "role": "Super Admin",
+      "address": "Chennai, Tamil Nadu",
+      "dob": "2016-6-28"
     }
+    
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,44 +1,48 @@
 <div
-  class="h-screen w-[280px] bg-slate-300 text-slate-900 border-r border-slate-200 flex flex-col shadow-sm"
+  class="h-[665px] w-[280px] bg-slate-300 text-slate-900 border-r border-slate-200 flex flex-col shadow-sm overflow-hidden"
 >
-  <!-- Logo -->
-  <div class="px-6 py-5 border-b border-slate-200">
+  <!-- Logo - Fixed at top -->
+  <div class="px-6 py-4 border-b border-slate-200 flex-shrink-0">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center">
         <mat-icon class="!text-violet-600">sports_cricket</mat-icon>
       </div>
 
       <div>
-        <h2 class="text-2xl font-bold text-slate-900">CricInfo Admin</h2>
-        <p class="text-sm text-slate-500">Match Control Panel</p>
+        <h2 class="text-xl font-bold text-slate-900">CricInfo Admin</h2>
+        <p class="text-xs text-slate-500">Match Control Panel</p>
       </div>
     </div>
   </div>
 
-  <!-- Nav -->
-  <div class="flex-1 px-4 py-5">
-    <nav class="space-y-3">
+  <!-- Nav - Scrollable middle section -->
+  <div class="flex-1 overflow-y-auto px-4 py-3">
+    <nav class="space-y-2">
       <!-- Toss Panel -->
       <a
         routerLink="/navbarAdmin/adminLive/toss"
         routerLinkActive="bg-violet-600 text-white shadow-md"
-        class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-slate-100 text-slate-700"
+        class="group w-full flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-200 hover:bg-slate-100 text-slate-700"
       >
-        <div class="flex items-center gap-4">
-          <mat-icon class="group-[.bg-violet-600]:!text-white">sports_cricket</mat-icon>
-          <span class="text-lg font-medium">Toss Panel</span>
+        <div class="flex items-center gap-3">
+          <mat-icon class="text-xl group-[.bg-violet-600]:!text-white">sports_cricket</mat-icon>
+          <span class="text-base font-medium">Toss Panel</span>
         </div>
       </a>
 
       <!-- Live Update -->
       <a
-        routerLink="/navbarAdmin/adminLive/liveupdate"
+        [routerLink]="service.isSaving ? '/navbarAdmin/adminLive/liveupdate' : null"
         routerLinkActive="bg-violet-600 text-white shadow-md"
-        class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-slate-100 text-slate-700"
+        class="group w-full flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-200 text-slate-700"
+        [ngClass]="{
+          'hover:bg-slate-100 cursor-pointer': service.isSaving,
+          'opacity-50 cursor-not-allowed pointer-events-none bg-slate-100': !service.isSaving,
+        }"
       >
-        <div class="flex items-center gap-4">
-          <mat-icon class="group-[.bg-violet-600]:!text-white">monitoring</mat-icon>
-          <span class="text-lg font-medium">Live Update</span>
+        <div class="flex items-center gap-3">
+          <mat-icon class="text-xl group-[.bg-violet-600]:!text-white">monitoring</mat-icon>
+          <span class="text-base font-medium">Live Update</span>
         </div>
       </a>
 
@@ -46,52 +50,100 @@
       <a
         routerLink="/navbarAdmin/adminLive/completed"
         routerLinkActive="bg-violet-600 text-white shadow-md"
-        class="group w-full flex items-center justify-between rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-slate-100 text-slate-700"
+        class="group w-full flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-200 hover:bg-slate-100 text-slate-700"
       >
-        <div class="flex items-center gap-4">
-          <mat-icon class="group-[.bg-violet-600]:!text-white">task_alt</mat-icon>
-          <span class="text-lg font-medium">Completed Update</span>
+        <div class="flex items-center gap-3">
+          <mat-icon class="text-xl group-[.bg-violet-600]:!text-white">task_alt</mat-icon>
+          <span class="text-base font-medium">Completed Update</span>
         </div>
       </a>
-      <!-- Logout -->
-      <!-- <button
-        type="button"
-        class="w-full flex items-center gap-4 rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-red-50 text-slate-700"
-      >
-        <mat-icon>logout</mat-icon>
-        <span class="text-lg font-medium">Logout</span>
-      </button> -->
     </nav>
-    <div class="p-4 border-t border-slate-200">
-    <mat-card class="!bg-slate-50 !text-slate-900 !rounded-2xl border border-slate-200 shadow-sm">
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-lg font-semibold">Match Status</h3>
-          <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
-            LIVE
+
+    <!-- Match Status Card -->
+    <div class="mt-4">
+      <mat-card class="!bg-slate-50 !text-slate-900 !rounded-2xl border border-slate-200 shadow-sm">
+        <div class="p-3">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-semibold">Match Status</h3>
+            <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+              LIVE
+            </span>
+          </div>
+
+          <div class="space-y-1 text-xs text-slate-600">
+            @if (innings() == 1) {
+              <p class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+                1st Innings
+              </p>
+            } @else {
+              <p class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+                2nd Innings
+              </p>
+            }
+            @if (service.isSaving) {
+              <p class="ml-4 text-slate-500">Started</p>
+            } @else {
+              <p class="ml-4 text-slate-500">Yet to start</p>
+            }
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    
+    <!-- Spacer to push content up if needed -->
+    <div class="h-4"></div>
+  </div>
+
+  <!-- Profile Section - Fixed at bottom -->
+  <div class="border-t border-slate-200 bg-slate-200/50 p-3 flex-shrink-0">
+    <div 
+      class="flex items-center gap-3 p-2 rounded-2xl bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-all duration-300 cursor-pointer group"
+      [matMenuTriggerFor]="profileMenu"
+    >
+      <!-- Avatar with Status Indicator -->
+      <div class="relative flex-shrink-0">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-sm font-semibold shadow-md">
+          {{ user?.fname?.[0] }}{{ user?.lname?.[0] }}
+        </div>
+        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+      </div>
+
+      <!-- User Info -->
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-semibold text-slate-900 truncate">
+          {{ user?.fname }} {{ user?.lname }}
+        </p>
+        <div class="flex items-center gap-1.5">
+          <span class="text-xs text-slate-500">{{ user?.role || 'User' }}</span>
+          <span class="w-0.5 h-0.5 rounded-full bg-slate-300"></span>
+          <span class="text-xs text-green-600 font-medium flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>
+            Online
           </span>
         </div>
-
-        <div class="space-y-2 text-sm text-slate-600">
-          @if(innings()==1){
-            <p class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
-            1st Innings
-          </p>
-          }
-          @else{
-            <p class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
-            2st Innings
-          </p>
-          }
-          <p class="ml-4 text-slate-500">Started</p>
-        </div>
       </div>
-    </mat-card>
-  </div>
+
+      <!-- Chevron Icon -->
+      <mat-icon class="text-slate-400 group-hover:text-violet-600 transition-colors duration-300 flex-shrink-0 text-lg">
+        expand_more
+      </mat-icon>
+    </div>
   </div>
 
-  <!-- Bottom Match Status -->
-  
+  <!-- Profile Menu -->
+  <mat-menu #profileMenu="matMenu" class="!mt-2">
+    <button mat-menu-item routerLink="/navbarAdmin/profile" class="!flex !items-center !gap-3">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item (click)="logout()" class="!flex !items-center !gap-3 !text-red-600">
+      <mat-icon class="!text-red-600">logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
 </div>

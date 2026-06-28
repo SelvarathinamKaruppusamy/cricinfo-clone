@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 
 import { LiveService } from '../../../User/LivePages/Services/live-service';
 import { LiveModel, Team } from '../../../User/LivePages/Models/models';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-component/confirm-dialog-component';
 
 @Component({
   selector: 'app-toss-panel',
@@ -29,6 +31,22 @@ export class TossPanel implements OnInit {
   selectedCall: 'Head' | 'Tail' | null = null;
   selectedDecision: 'Bat' | 'Bowl' | null = null;
 
+   private dialog = inject(MatDialog);
+  openConfirmDialog(data: ConfirmDialogData, action: () => void) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '420px',
+      disableClose: true,
+      data,
+      panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        action();
+      }
+    });
+  }
+
 
   ngOnInit(): void {
     this.service.GetLiveMatches().subscribe({
@@ -38,11 +56,11 @@ export class TossPanel implements OnInit {
         this.live = structuredClone(res[0]);
         this.teams = this.live?.teams ?? [];
 
-        // load into service
+        // load live into service
         this.service.loadMatchIntoService(this.live);
 
         this.changedetector.detectChanges();
-        console.log('Toss panel loaded live match:', this.service.live());
+        
       },
       error: (err) => console.error(err),
     });
@@ -81,6 +99,16 @@ export class TossPanel implements OnInit {
   }
 
   saveToss() {
+     this.openConfirmDialog(
+    {
+      title: 'Save Toss',
+      message: 'Do you want to save the current live match toss status?',
+      confirmText: 'save',
+      cancelText: 'Cancel',
+      type: 'success'
+    },
+    () => {
+    
     if (!this.canSaveToss() || !this.live) return;
 
     this.service.isSaving = true;
@@ -155,5 +183,7 @@ export class TossPanel implements OnInit {
         });
       },
     });
+    }
+  );
   }
 }

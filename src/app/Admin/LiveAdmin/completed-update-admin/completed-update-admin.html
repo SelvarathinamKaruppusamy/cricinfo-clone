@@ -89,20 +89,21 @@
         </div>
 
         <!-- Player of Match -->
-        <div>
-          <label class="block text-xs font-medium text-[#374151] mb-1">Player of the Match</label>
-          <select
-            [(ngModel)]="playerOfMatch"
-            class="w-full border border-[#e5e7eb] rounded-lg px-3 py-2 text-sm outline-none bg-[#f9fafb] text-[#1a202c] focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed] transition"
-          >
-            <option value="" class="text-[#9ca3af]">Select player</option>
-            @for (player of allPlayers(); track player.id) {
-              <option [value]="player.name" class="text-[#1a202c]">
-                {{ player.name }}
-              </option>
-            }
-          </select>
-        </div>
+       <div>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Player of the Match</mat-label>
+
+    <mat-select [(ngModel)]="playerOfMatch">
+      <mat-option value="">Select player</mat-option>
+
+      @for (player of allPlayers(); track player.id) {
+        <mat-option [value]="player.name">
+          {{ player.name }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
 
       </div>
     </mat-card>
@@ -138,13 +139,14 @@
             </p>
           </div>
 
-          <button
-            mat-stroked-button
-            class="!text-xs !h-8 !border-[#16a34a] !text-[#16a34a] self-start hover:!bg-[#f0fdf4]"
-            (click)="completeMatch()"
-          >
-            Complete Match
-          </button>
+         <button
+  mat-stroked-button
+  class="!text-xs !h-8 !border-[#16a34a] !text-[#16a34a] self-start hover:!bg-[#f0fdf4]"
+  (click)="completeMatch()"
+  [disabled]="!liveService.canCompleteMatch()"
+>
+  Complete Match
+</button>
         </div>
       </mat-card>
 

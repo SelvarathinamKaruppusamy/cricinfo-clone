@@ -1,0 +1,22 @@
+<div class="p-4 min-w-[320px] bg-slate-300 text-white rounded-xl">
+  <h2 class="text-lg font-bold mb-3 text-slate-600">Edit Latest Ball</h2>
+
+  <p class="text-sm text-slate-600 mb-4">
+    Current latest ball:
+    <span class=" font-bold text-blue-400">{{ data.currentBall }}</span>
+  </p>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Choose new ball</mat-label>
+    <mat-select [(ngModel)]="selectedBall">
+      @for (ball of ballOptions; track ball) {
+        <mat-option [value]="ball">{{ ball }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <div class="flex justify-end gap-2 mt-4">
+    <button mat-stroked-button (click)="close()">Cancel</button>
+    <button mat-raised-button class="!bg-green-400"  (click)="save()">Save</button>
+  </div>
+</div>

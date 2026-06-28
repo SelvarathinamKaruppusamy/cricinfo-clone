@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { LiveModel } from '../../LivePages/Models/models';
+import { LiveModel } from '../../User/LivePages/Models/models';
 import { HttpClient } from '@angular/common/http';
-import { LiveService } from '../../LivePages/Services/live-service';
+import { LiveService } from '../../User/LivePages/Services/live-service';
 
 @Injectable({
   providedIn: 'root',
@@ -226,7 +226,6 @@ export class AdminService {
                   next: () => {
                     this.liveService.live.set(structuredClone(updatedLive));
                     this.liveService.resetRuntimeState();
-                    alert('Match moved to Completed and next Upcoming moved to Live.');
                   },
                   error: (err) => console.error('Delete upcoming failed', err),
                 });

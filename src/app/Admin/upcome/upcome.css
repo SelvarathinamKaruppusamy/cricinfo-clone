@@ -1,20 +1,22 @@
 .container {
   display: flex;
-  gap: 20px;
+  gap: 40px;
   padding: 20px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 100%;
- 
+  align-items: flex-start;
 }
 
 .left-panel {
-  width: 40%;
+  width: 30%;
 }
 
 .right-panel {
   width: 60%;
-  height: 60%;
-  margin-bottom: 100px;
+  position: sticky;
+  top: 80px; 
+  align-self: flex-start;
+  margin-left: 90px;
 }
 
 .match-item {
@@ -32,7 +34,7 @@
 
 .selected {
   background-color: #bbdefb;
-  /* border-left: 5px solid #1976d2; */
+ 
 }
 
 .match-row {
@@ -73,14 +75,17 @@
 .update-card {
   padding: 15px;
   border-radius: 12px;
+  background: ghostwhite;
+  
 }
 
 .empty-card {
   text-align: center;
-  padding: 100px;
+  padding: 120px;
   height: 350px;
   margin-top:100px;
   margin-left: 75px;
+   /* background: ghostwhite; */
   
 }
 mat-card-title{
@@ -90,4 +95,26 @@ mat-card-title{
 mat-form-field {
   width: 100%;
   margin-bottom: 12px;
+}
+.row-fields {
+  display: flex;
+  gap: 16px;
+}
+
+.row-fields mat-form-field {
+  flex: 1;
+}
+
+.date-status-row {
+  display: flex;
+  gap: 16px;
+}
+
+.date-status-row mat-form-field {
+  flex: 1;
+}
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }

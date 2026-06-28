@@ -1,10 +1,14 @@
 import { ChangeDetectorRef, Component, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LiveService } from '../../../LivePages/Services/live-service';
+import { LiveService } from '../../../User/LivePages/Services/live-service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Player, Team } from '../../../LivePages/Models/models';
+import { Player, Team } from '../../../User/LivePages/Models/models';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-component/confirm-dialog-component';
+import { EditLastBallDialogComponent, EditLastBallDialogData } from '../edit-last-ball-dialog-component/edit-last-ball-dialog-component';
 
 @Component({
   selector: 'app-live-update-admin',
@@ -16,8 +20,48 @@ import { Player, Team } from '../../../LivePages/Models/models';
 export class LiveUpdateAdmin implements OnInit {
   service = inject(LiveService);
   cd = inject(ChangeDetectorRef);
-
+  router=inject(Router)
   live = computed(() => this.service.live());
+
+  openEditLastBallDialog() {
+  const balls = this.service.currentOverBalls();
+  if (!balls.length) {
+    return;
+  }
+
+  const currentBall = balls[balls.length - 1];
+
+  const dialogRef = this.dialog.open(EditLastBallDialogComponent, {
+    width: '380px',
+    disableClose: true,
+    data: {
+      currentBall,
+    } as EditLastBallDialogData,
+    panelClass: 'custom-dialog-container',
+  });
+
+  dialogRef.afterClosed().subscribe((newBall: string | undefined) => {
+    if (!newBall || newBall === currentBall) return;
+
+    this.service.editLastBall(newBall);
+  });
+}
+
+  private dialog = inject(MatDialog);
+  openConfirmDialog(data: ConfirmDialogData, action: () => void) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '420px',
+      disableClose: true,
+      data,
+      panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        action();
+      }
+    });
+  }
 
   currentBattingTeam = computed<Team | undefined>(() => {
     const live = this.service.live();
@@ -42,24 +86,7 @@ export class LiveUpdateAdmin implements OnInit {
 
   striker = computed<Player | undefined>(() => this.service.striker);
 
-  currentBowlerBalls = computed(() => {
-    const balls = this.service.ball();
-    const result: string[] = [];
-    let legalCount = 0;
-
-    for (let i = balls.length - 1; i >= 0; i--) {
-      result.unshift(balls[i]);
-
-      if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
-        legalCount++;
-      }
-
-      if (legalCount === 6) break;
-    }
-
-    return result;
-  });
-
+ currentBowlerBalls = computed(() => this.service.currentOverBalls());
   target = computed(() => {
     if (this.service.innings() !== 2) return 0;
     if (!this.service.completedBattingTeam) return 0;
@@ -135,7 +162,6 @@ export class LiveUpdateAdmin implements OnInit {
   winnerText = computed(() => {
     const live = this.service.live();
     if (!live) return '';
-
     // if already completed and result stored in DB
     if (live.status === 'COMPLETED' && live.result) {
       return live.result;
@@ -196,16 +222,52 @@ export class LiveUpdateAdmin implements OnInit {
   }
 
   startSecondInnings() {
-    if (this.matchFinished()) return;
+    this.openConfirmDialog(
+      {
+        title: 'Start Second Innings',
+        message: 'Are you sure you want to change the innings?',
+        confirmText: 'Change',
+        cancelText: 'Cancel',
+        type: 'primary'
+      },
+      () => {
+        // console.log('Toss saved');
+        if (this.matchFinished()) return;
     this.service.startSecondInnings();
+      }
+    );
+    
   }
 
   saveLiveToDb() {
-    this.service.saveLiveToDb();
+     this.openConfirmDialog(
+    {
+      title: 'Save Match Update',
+      message: 'Do you want to save the current live match changes?',
+      confirmText: 'Save',
+      cancelText: 'Cancel',
+      type: 'success'
+    },
+    () => {
+      this.service.saveLiveToDb();
+    }
+  );
   }
 
   completeMatch() {
-    if (!this.showCompleteMatch()) return;
+     this.openConfirmDialog(
+    {
+      title: 'Completed Status Update',
+      message: 'Do you want to change the current live match status as completed?',
+      confirmText: 'Complete',
+      cancelText: 'Cancel',
+      type: 'success'
+    },
+    () => {
+      if (!this.showCompleteMatch()) return;
     this.service.completeMatch();
+    }
+  );
+    
   }
 }

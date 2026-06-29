@@ -66,6 +66,15 @@ export class LiveService {
       }),
     );
   }
+  DeleteMatch(id: string | number): Observable<void> {
+  return this.http.delete<void>(`http://localhost:3000/matches/${id}`);
+}
+AddMatch(match: LiveModel): Observable<LiveModel> {
+  return this.http.post<LiveModel>(
+    'http://localhost:3000/matches',
+    match
+  );
+}
   // LOAD MATCH
   loadMatchIntoService(match: LiveModel) {
     const cloned = structuredClone(match);
@@ -352,7 +361,7 @@ export class LiveService {
       this.handleWicket();
       bowler.economy =
         bowlerBalls > 0 ? Number((bowler.runsConceded / (bowlerBalls / 6)).toFixed(2)) : 0;
-        if(this.currentinningswickets===10){
+        if(this.currentinningswickets===10&&this.innings()!=2){
           this.startSecondInnings();
         }
     } else {
@@ -526,7 +535,7 @@ export class LiveService {
       } else {
         striker = players[strikerIndex];
       }
-      if(this.currentinningswickets===10){
+      if(this.currentinningswickets===10 && this.innings()!==2){
         this.startSecondInnings()
       }
     }

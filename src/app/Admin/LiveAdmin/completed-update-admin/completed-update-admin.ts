@@ -41,6 +41,15 @@ export class CompletedUpdateAdmin implements OnInit {
   resultText = '';
   playerOfMatch = '';
 
+   selectedTossWinner: 0 | 1 | null = null;
+  selectedCall: 'Head' | 'Tail' | null = null;
+  selectedDecision: 'Bat' | 'Bowl' | null = null;
+  toastVisible = false;
+toastType: 'success' | 'error' = 'success';
+toastMessage = '';
+
+private toastTimer: any;
+
   allPlayers = computed<Player[]>(() => {
     const live = this.live();
     if (!live) return [];
@@ -136,7 +145,7 @@ export class CompletedUpdateAdmin implements OnInit {
           {
             title: 'Confirm Match Completion',
             message: `Result: ${this.resultText?.trim() || 'Auto-generated result'}
-Player of the Match: ${this.playerOfMatch.trim()}`,
+            Player of the Match: ${this.playerOfMatch.trim()}`,
             confirmText: 'Yes, Complete',
             cancelText: 'No',
             type: 'success',
@@ -147,6 +156,10 @@ Player of the Match: ${this.playerOfMatch.trim()}`,
               this.resultText.trim()
             );
 
+            this.showToast(
+  'Completed saved successfully. Redirecting to Live Update...',
+  'success'
+);
             // reload upcoming after promotion
             setTimeout(() => {
               this.loadUpcomingPreview();
@@ -157,4 +170,21 @@ Player of the Match: ${this.playerOfMatch.trim()}`,
       }
     );
   }
+  showToast(message: string, type: 'success' | 'error') {
+  this.toastMessage = message;
+  this.toastType = type;
+  this.toastVisible = true;
+
+  this.changedetection.detectChanges();
+  clearTimeout(this.toastTimer);
+
+  this.toastTimer = setTimeout(() => {
+    this.toastVisible = false;
+    this.changedetection.detectChanges();
+  }, 1200);
+}
+closeToast() {
+  this.toastVisible = false;
+  clearTimeout(this.toastTimer);
+}
 }

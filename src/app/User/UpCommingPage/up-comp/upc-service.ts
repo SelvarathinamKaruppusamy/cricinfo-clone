@@ -8,8 +8,9 @@ import { matchCard } from './up-comp';
 })
 export class UpcService {
   http = inject(HttpClient);
-  upcommingdata!:matchCard
-  upCommingdata!:matchCard
+  upcommingdata!: matchCard;
+  upCommingdata!: matchCard;
+
   getMatch() {
     return this.http.get<any[]>('http://localhost:5000/matches');
   }
@@ -17,8 +18,7 @@ export class UpcService {
     return this.http.get<MatchData>(`http://localhost:5000/matches/${id}`);
   }
 
-  updateMatch(id:string,match:updateMatch){
-    return this.http.put<updateMatch>(`http://localhost:5000/matches/${id}`,match);
+  updateMatch(id: string, match: updateMatch) {
+    return this.http.put<updateMatch>(`http://localhost:5000/matches/${id}`, match);
   }
-
 }

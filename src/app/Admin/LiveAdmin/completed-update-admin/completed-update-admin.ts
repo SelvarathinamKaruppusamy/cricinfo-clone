@@ -55,9 +55,9 @@ private toastTimer: any;
     if (!live) return [];
     const winner=this.findwinner();
     if(winner===live.teams[0].shortName){
-      return[...live.teams[0].players]
+      return[...live.teams[0].players,...live.teams[1].players]
     }
-    return [...live.teams[1].players];
+    return [...live.teams[1].players,...live.teams[0].players];
   });
   findwinner(): string {
   const live = this.live();

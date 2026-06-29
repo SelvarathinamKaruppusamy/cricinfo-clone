@@ -5,8 +5,8 @@
       "venue": "Chepauk Stadium",
       "city": "Chennai",
       "date": "2026-06-02",
-      "tossWinner": null,
-      "tossDecision": null,
+      "tossWinner": "CSK",
+      "tossDecision": "Bat",
       "result": null,
       "playerOfTheMatch": null,
       "status": "LIVE",
@@ -40,7 +40,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "Not Out",
               "overs": 0,
               "wickets": 0
             },
@@ -53,7 +53,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "Not Out",
               "overs": 0,
               "wickets": 0
             },
@@ -66,7 +66,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "",
               "overs": 0,
               "wickets": 0
             },
@@ -79,7 +79,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "",
               "overs": 0,
               "wickets": 0
             },
@@ -97,7 +97,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": "Yet To Play"
+              "status": ""
             },
             {
               "id": 106,
@@ -113,7 +113,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": "Yet To Play"
+              "status": ""
             },
             {
               "id": 107,
@@ -129,7 +129,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": "Yet To Play"
+              "status": ""
             },
             {
               "id": 108,
@@ -145,7 +145,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": "Yet To Play"
+              "status": ""
             },
             {
               "id": 109,
@@ -161,7 +161,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": "Yet To Play"
+              "status": ""
             },
             {
               "id": 110,
@@ -177,7 +177,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": "Yet To Play"
+              "status": ""
             },
             {
               "id": 111,
@@ -193,7 +193,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": "Yet To Play"
+              "status": ""
             }
           ]
         },
@@ -278,11 +278,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -294,11 +294,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -310,11 +310,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -326,11 +326,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -342,11 +342,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -358,11 +358,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -374,17 +374,29 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             }
           ]
         }
       ],
-      "id": "-9pPnt0J80c"
+      "id": "-9pPnt0J80c",
+      "innings": 1,
+      "currentBattingTeamIndex": 0,
+      "currentBowlingTeamIndex": 1,
+      "strikerPlayerId": 101,
+      "nonStrikerPlayerId": 102,
+      "currentBowlerPlayerId": 5,
+      "firstInningsCompletedBattingTeam": null,
+      "firstInningsCompletedBowlingTeam": null,
+      "firstInningsCompletedBatters": [],
+      "firstInningsCompletedBowlers": [],
+      "firstInningsBalls": [],
+      "secondInningsBalls": []
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

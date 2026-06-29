@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "json-server": "concurrently \"npx json-server --watch Db/blog.json --port 3001\" \"npx json-server --watch Db/completed.json --port 7000\" \"npx json-server --watch Db/upCommingdb.json --port 5000\" \"npx json-server --watch Db/db.json --port 3000\" \"npx json-server --watch Db/admin.json --port 9999\""
   },
   "private": true,
   "packageManager": "npm@11.11.0",
@@ -36,6 +37,7 @@
     "@types/crypto-js": "^4.2.2",
     "@types/jasmine": "^6.0.0",
     "@vitest/ui": "^4.1.9",
+    "concurrently": "^10.0.3",
     "jsdom": "^28.0.0",
     "postcss": "^8.5.3",
     "prettier": "^3.8.1",

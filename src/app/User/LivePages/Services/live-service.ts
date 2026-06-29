@@ -30,6 +30,7 @@ export class LiveService {
   secondInningsBalls = signal<string[]>([]);
   isSaving = false;
   currentOverBalls = signal<string[]>([]);
+  currentinningswickets=0
 
   ball = computed(() =>
     this.innings() === 1 ? this.firstInningsBalls() : this.secondInningsBalls(),
@@ -343,6 +344,7 @@ export class LiveService {
     live.teams[this.currentBattingTeam()].overs =
       Math.floor(this.inningsBalls() / 6) + (this.inningsBalls() % 6) / 10;
     if (ball === 'W') {
+      this.currentinningswickets++;
       striker.balls++;
       striker.strikeRate =
         striker.balls > 0 ? Number(((striker.runs / striker.balls) * 100).toFixed(2)) : 0;
@@ -350,6 +352,9 @@ export class LiveService {
       this.handleWicket();
       bowler.economy =
         bowlerBalls > 0 ? Number((bowler.runsConceded / (bowlerBalls / 6)).toFixed(2)) : 0;
+        if(this.currentinningswickets===10){
+          this.startSecondInnings();
+        }
     } else {
       const run = this.calculateScore(ball);
       live.teams[this.currentBattingTeam()].scores += run;
@@ -368,16 +373,18 @@ export class LiveService {
       }
     }
     // over complete
-    if (this.legalBalls() === 6) {
-      if (this.currentOverRuns() === 0) {
+   if (this.legalBalls() === 6) {
+
+    if (this.currentOverRuns() === 0) {
         bowler.maidens++;
-      }
-      this.swapStrike();
-      this.changeBowler();
-      this.legalBalls.set(0);
-      this.currentOverRuns.set(0);
-      this.currentOverBalls.set([]);
     }
+
+    this.swapStrike();
+
+    this.legalBalls.set(0);
+    this.currentOverRuns.set(0);
+    this.currentOverBalls.set([]);
+}
     this.syncCurrentPlayersToLive();
     this.saveLiveToDb();
   }
@@ -407,6 +414,7 @@ export class LiveService {
     else if (oldBall === 'W') {
       battingTeam.wickets = Math.max(0, battingTeam.wickets - 1);
       bowler.wickets = Math.max(0, bowler.wickets - 1);
+      this.currentinningswickets--;
       // after wicket, current striker is usually the NEW batter
       // dismissed batter is the player with status === 'Out'
       const outIndex = players.findIndex((p) => p.status === 'Out');
@@ -483,6 +491,7 @@ export class LiveService {
     }
     // ---------- NEW BALL = WICKET ----------
     else if (newBall === 'W') {
+      this.currentinningswickets++;
       const strikerIndex = players.findIndex((p) => p.id === striker?.id);
       if (strikerIndex === -1) return;
       // mark striker out
@@ -516,6 +525,9 @@ export class LiveService {
         striker = players[nextIndex];
       } else {
         striker = players[strikerIndex];
+      }
+      if(this.currentinningswickets===10){
+        this.startSecondInnings()
       }
     }
     // ---------- NEW BALL = NORMAL LEGAL BALL ----------
@@ -632,15 +644,9 @@ export class LiveService {
     this.strikerIndex.set(nonStriker);
     this.nonStrikerIndex.set(striker);
   }
-  changeBowler() {
-    const current = this.currentBowlerIndex();
-    const availableBowlers = this.bowlers1()
-      .map((bowler, index) => ({ bowler, index }))
-      .filter((item) => item.index !== current && (item.bowler.overs ?? 0) < 4);
-    if (!availableBowlers.length) return;
-    const random = Math.floor(Math.random() * availableBowlers.length);
-    this.currentBowlerIndex.set(availableBowlers[random].index);
-  }
+ changeBowler(index: number) {
+  this.currentBowlerIndex.set(index);
+}
   // SYNC TO LIVE SIGNAL
   syncCurrentPlayersToLive() {
     const live = this.live();

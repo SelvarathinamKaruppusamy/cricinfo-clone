@@ -1,5 +1,6 @@
 <div class="profile-container" *ngIf="user">
 
+  <!-- HEADER -->
   <div class="profile-header">
 
     <div class="profile-avatar">
@@ -11,61 +12,195 @@
       <p>{{ user.role }}</p>
       <span>{{ user.email }}</span>
     </div>
-    <button class="logout-btnn" (click)="addadmin()">
-      Add Admin
-    </button>
 
-    <button class="logout-btn" (click)="logout()">
-      Logout
-    </button>
+    <div class="action-buttons">
+
+      <button
+        class="edit-btn"
+        *ngIf="!editMode"
+        (click)="enableEdit()">
+        Edit
+      </button>
+
+      <button
+        class="logout-btnn"
+        *ngIf="isSuperAdmin"
+        (click)="addadmin()">
+        Add Admin
+      </button>
+
+      <button
+        class="logout-btn"
+        (click)="logout()">
+        Logout
+      </button>
+
+    </div>
 
   </div>
 
+  <!-- PROFILE CARD -->
   <div class="profile-card">
 
     <div class="section-title">
       Personal Information
     </div>
 
-    <div class="info-grid">
+    <form #profileForm="ngForm">
 
-      <div class="info-item">
-        <label>First Name</label>
-        <span>{{ user.fname }}</span>
+      <div class="info-grid">
+
+        <!-- First Name -->
+        <div class="info-item">
+          <label>First Name</label>
+          <span *ngIf="!editMode">{{ user.fname }}</span>
+          <input
+            *ngIf="editMode"
+            type="text"
+            name="fname"
+            required
+            minlength="3"
+            [(ngModel)]="editUser.fname">
+        </div>
+
+        <!-- Last Name -->
+        <div class="info-item">
+          <label>Last Name</label>
+          <span *ngIf="!editMode">{{ user.lname }}</span>
+          <input
+            *ngIf="editMode"
+            type="text"
+            name="lname"
+            required
+            minlength="1"
+            [(ngModel)]="editUser.lname">
+        </div>
+
+        <!-- Email -->
+        <div class="info-item">
+          <label>Email</label>
+          <span *ngIf="!editMode">{{ user.email }}</span>
+          <input
+            *ngIf="editMode"
+            type="email"
+            name="email"
+            required
+            email
+            [(ngModel)]="editUser.email">
+        </div>
+
+        <!-- Mobile -->
+        <div class="info-item">
+          <label>Mobile Number</label>
+          <span *ngIf="!editMode">{{ user.mobileNo }}</span>
+          <input
+            *ngIf="editMode"
+            type="text"
+            name="mobileNo"
+            required
+            pattern="[0-9]{10}"
+            maxlength="10"
+            [(ngModel)]="editUser.mobileNo">
+        </div>
+
+        <!-- Gender -->
+        <div class="info-item">
+          <label>Gender</label>
+          <span *ngIf="!editMode">{{ user.gender }}</span>
+          <select
+            *ngIf="editMode"
+            name="gender"
+            required
+            [(ngModel)]="editUser.gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- DOB -->
+        <div class="info-item">
+          <label>Date of Birth</label>
+          <span *ngIf="!editMode">{{ user.dob }}</span>
+          <input
+            *ngIf="editMode"
+            type="date"
+            name="dob"
+            required
+            [(ngModel)]="editUser.dob">
+        </div>
+
+        <!-- Address -->
+        <div class="info-item full-width">
+          <label>Address</label>
+          <span *ngIf="!editMode">{{ user.address }}</span>
+          <textarea
+            *ngIf="editMode"
+            rows="4"
+            name="address"
+            required
+            minlength="10"
+            [(ngModel)]="editUser.address">
+          </textarea>
+        </div>
+
       </div>
 
-      <div class="info-item">
-        <label>Last Name</label>
-        <span>{{ user.lname }}</span>
+      <div class="form-buttons" *ngIf="editMode">
+        <button
+          type="button"
+          class="save-btn"
+          [disabled]="profileForm.invalid"
+          (click)="saveProfile()">
+          Save Changes
+        </button>
+        <button
+          type="button"
+          class="cancel-btn"
+          (click)="cancelEdit()">
+          Cancel
+        </button>
       </div>
 
-      <div class="info-item">
-        <label>Email</label>
-        <span>{{ user.email }}</span>
-      </div>
-
-      <div class="info-item">
-        <label>Mobile Number</label>
-        <span>{{ user.mobileNo }}</span>
-      </div>
-
-      <div class="info-item">
-        <label>Gender</label>
-        <span>{{ user.gender }}</span>
-      </div>
-
-      <div class="info-item">
-        <label>Date of Birth</label>
-        <span>{{ user.dob }}</span>
-      </div>
-
-      <div class="info-item full-width">
-        <label>Address</label>
-        <span>{{ user.address }}</span>
-      </div>
-
-    </div>
+    </form>
 
   </div>
 
+</div>
+
+<!-- ========== CONFIRMATION DIALOG ========== -->
+<div class="confirm-overlay" *ngIf="showConfirmDialog">
+  <div class="confirm-dialog">
+    <div class="confirm-header">
+      <span class="confirm-title">Confirm Save</span>
+      <button class="confirm-close" (click)="cancelSave()">×</button>
+    </div>
+    <div class="confirm-body">
+      <p>Are you sure you want to save these changes?</p>
+    </div>
+    <div class="confirm-footer">
+      <button class="confirm-btn confirm-yes" (click)="confirmSave()">Yes</button>
+      <button class="confirm-btn confirm-no" (click)="cancelSave()">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOAST – MOVED OUTSIDE THE OVERLAY ========== -->
+<div class="toast" *ngIf="toastVisible" [ngClass]="toastType">
+  <div class="toast-icon">
+    <span *ngIf="toastType === 'success'">✓</span>
+    <span *ngIf="toastType === 'error'">✕</span>
+  </div>
+
+  <div class="toast-content">
+    <div class="toast-title">
+      {{ toastType === 'success' ? 'Success' : 'Error' }}
+    </div>
+    <div class="toast-message">{{ toastMessage }}</div>
+  </div>
+
+  <button class="toast-close" (click)="closeToast()">×</button>
+
+  <div class="toast-progress"></div>
 </div>

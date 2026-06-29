@@ -5,8 +5,8 @@
       "venue": "Chepauk Stadium",
       "city": "Chennai",
       "date": "2026-06-02",
-      "tossWinner": "CSK",
-      "tossDecision": "Bat",
+      "tossWinner": null,
+      "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
       "status": "LIVE",
@@ -23,13 +23,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -40,7 +34,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Not Out",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -53,7 +47,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Not Out",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -66,7 +60,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -79,7 +73,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "",
+              "status": "Yet To Play",
               "overs": 0,
               "wickets": 0
             },
@@ -97,7 +91,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 106,
@@ -113,7 +107,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 107,
@@ -129,7 +123,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 108,
@@ -145,7 +139,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 109,
@@ -161,7 +155,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 110,
@@ -177,7 +171,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             },
             {
               "id": 111,
@@ -193,7 +187,7 @@
               "wickets": 0,
               "overs": 0,
               "economy": null,
-              "status": ""
+              "status": "Yet To Play"
             }
           ]
         },
@@ -209,13 +203,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,
@@ -278,11 +266,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -294,11 +282,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -310,11 +298,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -326,11 +314,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -342,11 +330,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -358,11 +346,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             },
             {
@@ -374,29 +362,17 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": 0,
-              "runsConceded": 0,
+              "maidens": null,
+              "runsConceded": null,
               "wickets": 0,
               "overs": 0,
-              "economy": 0,
+              "economy": null,
               "status": "Yet To Play"
             }
           ]
         }
       ],
-      "id": "-9pPnt0J80c",
-      "innings": 1,
-      "currentBattingTeamIndex": 0,
-      "currentBowlingTeamIndex": 1,
-      "strikerPlayerId": 101,
-      "nonStrikerPlayerId": 102,
-      "currentBowlerPlayerId": 5,
-      "firstInningsCompletedBattingTeam": null,
-      "firstInningsCompletedBowlingTeam": null,
-      "firstInningsCompletedBatters": [],
-      "firstInningsCompletedBowlers": [],
-      "firstInningsBalls": [],
-      "secondInningsBalls": []
+      "id": "-9pPnt0J80c"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

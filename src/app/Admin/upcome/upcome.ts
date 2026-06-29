@@ -1,4 +1,12 @@
-import { Component, OnInit, inject, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectorRef,
+  TemplateRef,
+  ViewChild,
+  OnDestroy,
+} from '@angular/core';
 import { UpcService } from '../../User/UpCommingPage/up-comp/upc-service';
 import { updateMatch } from '../../User/UpCommingPage/match/match.models/match.models-module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -11,11 +19,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-upcome',
   standalone: true,
   imports: [
+    CommonModule,
     MatListModule,
     MatCardModule,
     MatButtonModule,
@@ -25,13 +35,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatSnackBarModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   templateUrl: './upcome.html',
   styleUrl: './upcome.css',
 })
-export class Upcome implements OnInit {
-
+export class Upcome implements OnInit, OnDestroy {
   service = inject(UpcService);
   cd = inject(ChangeDetectorRef);
   snackBar = inject(MatSnackBar);
@@ -42,10 +51,49 @@ export class Upcome implements OnInit {
   selectedMatch: updateMatch | null = null;
   selectedMatchNo: number | null = null;
 
+  toastVisible = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
+  private toastTimeout: any;
+
   @ViewChild('confirmDialog') confirmDialog!: TemplateRef<any>;
 
   ngOnInit(): void {
     this.loadMatches();
+  }
+
+  ngOnDestroy(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+  }
+
+  showToast(message: string, type: 'success' | 'error'): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+
+    this.toastMessage = message;
+    this.toastType = type;
+    this.toastVisible = true;
+    this.cd.detectChanges();
+
+    this.toastTimeout = setTimeout(() => {
+      this.toastVisible = false;
+      this.cd.detectChanges();
+      this.toastTimeout = null;
+    }, 3000);
+  }
+
+  closeToast(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+    this.toastVisible = false;
+    this.cd.detectChanges();
   }
 
   loadMatches(): void {
@@ -54,7 +102,7 @@ export class Upcome implements OnInit {
         this.matches = data;
         this.cd.detectChanges();
       },
-      error: (error) => console.error(error)
+      error: (error) => console.error(error),
     });
   }
 
@@ -78,38 +126,28 @@ export class Upcome implements OnInit {
     this.dialog.open(this.confirmDialog, {
       width: '360px',
       disableClose: true,
-      position: { top: '20%' }
+      position: { top: '20%' },
     });
-
   }
 
   confirmUpdate(): void {
     if (!this.selectedMatch) return;
 
-    this.service.updateMatch(this.selectedMatch.id, this.selectedMatch)
-      .subscribe({
-        next: () => {
-          this.dialog.closeAll();
+    this.service.updateMatch(this.selectedMatch.id, this.selectedMatch).subscribe({
+      next: () => {
+        this.dialog.closeAll();
 
-          this.snackBar.open(
-            'Match Updated Successfully',
-            'Close',
-            { duration: 3000 }
-          );
+        this.showToast('Match Updated Successfully', 'success');
 
-          this.loadMatches();
-           this.selectedMatch = null;
-  this.selectedMatchNo = null;
-        },
-        error: () => {
-          this.dialog.closeAll();
+        this.loadMatches();
+        this.selectedMatch = null;
+        this.selectedMatchNo = null;
+      },
+      error: () => {
+        this.dialog.closeAll();
 
-          this.snackBar.open(
-            'Update Failed',
-            'Close',
-            { duration: 3000 }
-          );
-        }
-      });
+        this.showToast('Update Failed', 'error');
+      },
+    });
   }
 }

@@ -9,7 +9,6 @@
   margin: 25 auto;
 }
 
-/* Modernized Back Button Action Link */
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -57,7 +56,6 @@
   letter-spacing: -0.5px;
 }
 
-/* Modern Flexbox Row layout for Metadata Chips */
 .blog-meta-wrapper {
   display: flex;
   align-items: center;
@@ -83,13 +81,11 @@
   color: #1d4ed8;
 }
 
-/* Align Google Material Icons cleanly with texts */
 .icon-v {
   font-size: 1.15rem !important;
   vertical-align: middle;
 }
 
-/* Image Aspect Ratio Contain Guard Box */
 .blog-banner {
   position: relative;
   width: 100%;
@@ -108,7 +104,6 @@
   display: block;
 }
 
-/* Editorial Article Formatting */
 .blog-main-content {
   font-size: 1.15rem;
   line-height: 1.85;
@@ -120,7 +115,6 @@
   text-align: justify;
 }
 
-/* Modern Tag Badges Section */
 .blog-footer {
   margin-top: 3.5rem;
   padding-top: 2rem;
@@ -156,7 +150,6 @@
   font-size: 0.95rem !important;
 }
 
-/* Loading Layout Style Rules */
 .loading-state {
   text-align: center;
   padding: 5rem 2rem;

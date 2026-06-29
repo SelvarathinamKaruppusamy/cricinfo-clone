@@ -73,7 +73,6 @@
   gap: 1.75rem;
 }
 
-/* Horizontal Split-Card Layout */
 .blog-card {
   display: flex;
   background: #ffffff;
@@ -84,10 +83,6 @@
     0 2px 4px -2px rgba(15, 23, 42, 0.05);
   border: 1px solid #f1f5f9;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* ALTERATION: Changed from default 'stretch' to 'center'.
-     This keeps your box size rigid and stops the right-side text height
-     from stretching your left-side image vertically! */
   align-items: center;
 }
 
@@ -97,12 +92,10 @@
   border-color: #e2e8f0;
 }
 
-/* ALTERATION: Locked this down to a pristine 16:9 box container.
-   No matter how short or long the description text is, the image wrapper size remains constant. */
 .blog-image-wrapper {
   position: relative;
-  flex: 0 0 320px; /* Hard lock the width to 320px */
-  height: 180px; /* Hard lock the height to 180px (Perfect 16:9 ratio) */
+  flex: 0 0 320px; 
+  height: 180px;
   background-color: #f1f5f9;
   display: flex;
   align-items: center;
@@ -112,8 +105,6 @@
 .blog-img {
   width: 100%;
   height: 100%;
-  /* ALTERATION: Swapped back to 'cover' so it spans seamlessly to the edges
-     of the locked 320x180 box without empty padding spaces */
   object-fit: cover;
   display: block;
 }
@@ -168,18 +159,15 @@
   font-size: 2.5rem !important;
 }
 
-/* ALTERATION: Set flex to '1' so it seamlessly expands to occupy the
-   remaining space of the card without pushing or altering the overall box limits. */
 .blog-content {
   flex: 1;
   padding: 1.5rem 1.75rem;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow: hidden; /* Safely limits rogue content bounds */
+  overflow: hidden; 
 }
 
-/* Metadata Chips Row Layout */
 .blog-meta-wrapper {
   display: flex;
   align-items: center;
@@ -225,12 +213,11 @@
   margin: 0 0 1.5rem 0;
 }
 
-/* Footer Layout Alignments */
 .blog-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto; /* Securely anchors the button row to the bottom line */
+  margin-top: auto;
 }
 
 .read-time-wrapper {
@@ -245,7 +232,6 @@
   font-weight: 500;
 }
 
-/* Premium Navigation Action Button Layout */
 .read-btn {
   display: inline-flex;
   align-items: center;
@@ -275,7 +261,6 @@
   transform: translateX(4px);
 }
 
-/* Empty State Styles */
 .loading-container {
   text-align: center;
   padding: 4rem 0;
@@ -295,16 +280,15 @@
   }
 }
 
-/* Smart Responsive System Media Triggers */
 @media (max-width: 768px) {
   .blog-card {
     flex-direction: column;
-    align-items: stretch; /* Snaps back to stretch for mobile layout stacking */
+    align-items: stretch; 
   }
   .blog-image-wrapper {
     flex: 0 0 auto;
     width: 100%;
-    height: 200px; /* Slightly taller box footprint for phone viewports */
+    height: 200px;
   }
   .blog-content {
     flex: 0 0 auto;
@@ -314,9 +298,6 @@
     font-size: 1.2rem;
   }
 }
-
-/* 
-highlight styles */
 
 mark.search-highlight {
   background-color: #ffeb3b;

@@ -21,7 +21,6 @@ export class BlogDetails implements OnInit {
   blog$!: Observable<Blog>;
 
   ngOnInit(): void {
-    // Listen to route parameters changes, then immediately fetch the specific blog
     this.blog$ = this.route.paramMap.pipe(
       switchMap((params) => {
         const id = params.get('id');

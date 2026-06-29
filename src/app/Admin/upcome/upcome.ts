@@ -18,6 +18,7 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogData,
 } from '../LiveAdmin/confirm-dialog-component/confirm-dialog-component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-upcome',
@@ -36,6 +37,7 @@ import {
     ReactiveFormsModule,
     MatOption,
     MatIcon,
+    CommonModule
   ],
   templateUrl: './upcome.html',
   styleUrl: './upcome.css',
@@ -49,6 +51,11 @@ export class Upcome implements OnInit {
 
   selectedMatch: updateMatch | null = null;
   selectedMatchNo: number | null = null;
+
+  toastVisible = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
+  private toastTimeout: any;
 
   matchForm = new FormGroup({
     venue: new FormControl('', Validators.required),
@@ -131,23 +138,59 @@ export class Upcome implements OnInit {
   }
   confirmUpdate(): void {
     if (!this.selectedMatch) return;
-
+ 
     this.service.updateMatch(this.selectedMatch.id, this.selectedMatch).subscribe({
       next: () => {
         this.dialog.closeAll();
-
-        this.snackBar.open('Match Updated Successfully', 'Close', { duration: 3000 });
-
+ 
+        this.showToast('Match Updated Successfully', 'success');
+ 
         this.loadMatches();
-
         this.selectedMatch = null;
         this.selectedMatchNo = null;
       },
       error: () => {
         this.dialog.closeAll();
-
-        this.snackBar.open('Update Failed', 'Close', { duration: 3000 });
+ 
+        this.showToast('Update Failed', 'error');
       },
     });
   }
+
+
+    ngOnDestroy(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+  }
+ 
+  showToast(message: string, type: 'success' | 'error'): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+ 
+    this.toastMessage = message;
+    this.toastType = type;
+    this.toastVisible = true;
+    this.cd.detectChanges();
+ 
+    this.toastTimeout = setTimeout(() => {
+      this.toastVisible = false;
+      this.cd.detectChanges();
+      this.toastTimeout = null;
+    }, 3000);
+  }
+ 
+  closeToast(): void {
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+    this.toastVisible = false;
+    this.cd.detectChanges();
+  }
+
+
 }

@@ -94,6 +94,8 @@
           </mat-card-content>
         </form>
       </mat-card>
+
+      
     } @else {
       <mat-card class="empty-card">
         <mat-card-content>
@@ -104,3 +106,22 @@
     }
   </div>
 </div>
+
+
+  <div class="toast" *ngIf="toastVisible" [ngClass]="toastType">
+    <div class="toast-icon">
+      <span *ngIf="toastType === 'success'">✓</span>
+      <span *ngIf="toastType === 'error'">✕</span>
+    </div>
+
+    <div class="toast-content">
+      <div class="toast-title">
+        {{ toastType === 'success' ? 'Success' : 'Error' }}
+      </div>
+      <div class="toast-message">{{ toastMessage }}</div>
+    </div>
+
+    <button class="toast-close" (click)="closeToast()">×</button>
+
+    <div class="toast-progress"></div>
+  </div>

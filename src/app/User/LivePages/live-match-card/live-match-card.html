@@ -109,6 +109,7 @@
         </div>
       </mat-card>
       <!-- Live Card -->
+      @if(live){
       <mat-card
         (click)="movetolivepage()"
         class="min-w-[350px] flex-shrink-0 !bg-white border border-slate-300 rounded-xl p-3 shadow-md cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]"
@@ -210,7 +211,7 @@
 
           <div class="pl-5" (click)="table($event,live.matchNo)">Table</div>
         </div>
-      </mat-card>
+      </mat-card>}
       <!-- Compled Card -->
       @for (completed of completeddata; track $index) {
         <mat-card

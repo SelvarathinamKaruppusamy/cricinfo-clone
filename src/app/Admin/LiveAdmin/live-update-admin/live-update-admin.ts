@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-component/confirm-dialog-component';
 import { EditLastBallDialogComponent, EditLastBallDialogData } from '../edit-last-ball-dialog-component/edit-last-ball-dialog-component';
+import { SelectBowlerDialogComponent } from '../select-bowler-dialog-component/select-bowler-dialog-component';
 
 @Component({
   selector: 'app-live-update-admin',
@@ -71,6 +72,28 @@ private toastTimer: any;
     });
   }
 
+  openBowlerDialog() {
+
+  const dialogRef=this.dialog.open(
+    SelectBowlerDialogComponent,
+    {
+      width:'400px',
+      disableClose:true,
+      data:{
+        bowlers:this.availableBowlers()
+      }
+    }
+  );
+
+  dialogRef.afterClosed().subscribe(index=>{
+
+    if(index==null) return;
+
+    this.service.changeBowler(index);
+
+  });
+
+}
   currentBattingTeam = computed<Team | undefined>(() => {
     const live = this.service.live();
     if (!live) return undefined;
@@ -221,13 +244,19 @@ private toastTimer: any;
     this.cd.detectChanges();
   }
 
-  addBall(ball: string) {
-    // stop admin from adding balls after match finished
-    if (this.matchFinished()) return;
+ addBall(ball:string){
 
-    if (!ball?.trim()) return;
-    this.service.processBall(ball.trim());
-  }
+    if(this.matchFinished()) return;
+
+    this.service.processBall(ball);
+
+    if(this.service.legalBalls()===0){
+
+        this.openBowlerDialog();
+
+    }
+
+}
 
   startSecondInnings() {
     this.openConfirmDialog(
@@ -239,7 +268,6 @@ private toastTimer: any;
         type: 'primary'
       },
       () => {
-        // console.log('Toss saved');
         if (this.matchFinished()) return;
     this.service.startSecondInnings();
      this.showToast(
@@ -310,4 +338,14 @@ closeToast() {
   this.toastVisible = false;
   clearTimeout(this.toastTimer);
 }
+availableBowlers = computed(() =>
+  this.service
+    .bowlers1()
+    .map((b, index) => ({ ...b, index }))
+    .filter(
+      b =>
+        b.index !== this.service.currentBowlerIndex() &&
+        (b.overs ?? 0) < 4
+    )
+);
 }

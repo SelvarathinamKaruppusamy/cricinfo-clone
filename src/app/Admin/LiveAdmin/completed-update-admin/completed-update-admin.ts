@@ -55,9 +55,9 @@ private toastTimer: any;
     if (!live) return [];
     const winner=this.findwinner();
     if(winner===live.teams[0].shortName){
-      return[...live.teams[0].players]
+      return[...live.teams[0].players,...live.teams[1].players]
     }
-    return [...live.teams[1].players];
+    return [...live.teams[1].players,...live.teams[0].players];
   });
   findwinner(): string {
   const live = this.live();
@@ -145,7 +145,7 @@ private toastTimer: any;
           {
             title: 'Confirm Match Completion',
             message: `Result: ${this.resultText?.trim() || 'Auto-generated result'}
-Player of the Match: ${this.playerOfMatch.trim()}`,
+            Player of the Match: ${this.playerOfMatch.trim()}`,
             confirmText: 'Yes, Complete',
             cancelText: 'No',
             type: 'success',
@@ -176,7 +176,6 @@ Player of the Match: ${this.playerOfMatch.trim()}`,
   this.toastVisible = true;
 
   this.changedetection.detectChanges();
-
   clearTimeout(this.toastTimer);
 
   this.toastTimer = setTimeout(() => {
@@ -184,7 +183,6 @@ Player of the Match: ${this.playerOfMatch.trim()}`,
     this.changedetection.detectChanges();
   }, 1200);
 }
-
 closeToast() {
   this.toastVisible = false;
   clearTimeout(this.toastTimer);

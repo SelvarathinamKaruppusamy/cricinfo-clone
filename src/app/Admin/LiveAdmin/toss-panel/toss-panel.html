@@ -1,266 +1,318 @@
-<div class="min-h-screen bg-slate-300 p-3 md:p-4">
-
-  <!-- Match Header -->
-  <mat-card class="!bg-white-500 !text-[#1a202c] !rounded-xl !border !border-[#dde1e7] !shadow-sm !mb-2">
-    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between p-3 md:p-4">
-      <div class="flex items-center gap-3">
-        <span class="px-3 py-1 rounded-full bg-[#16a34a] text-white text-[9px] font-bold tracking-widest flex-shrink-0">
-          LIVE
-        </span>
-        <div>
-          <h2 class="text-base md:text-lg font-bold text-[#1a202c]">
-            {{ live?.teams?.[0]?.shortName || 'CSK' }} vs {{ live?.teams?.[1]?.shortName || 'MI' }}
-          </h2>
-          <p class="text-[#6b7280] text-[11px] mt-0.5">Toss setup for the current live match</p>
-        </div>
-      </div>
-      <div class="text-[11px] text-[#9ca3af]">Match Admin Panel</div>
-    </div>
-  </mat-card>
-
-  <!-- Toss Panel Card -->
-  <mat-card class="!bg-white-500 !text-[#1a202c] !rounded-xl !border !border-[#dde1e7] !shadow-sm !p-0 overflow-hidden">
-
-    <!-- Panel Header -->
-    <div class="flex items-center gap-3 px-4 py-3 bg-[#f9fafb] border-b border-[#e5e7eb]">
-      <div class="w-7 h-7 rounded-full bg-[#ede9fe] flex items-center justify-center flex-shrink-0">
-        <mat-icon class="!text-[#7c3aed] !text-[14px] !w-4 !h-4 !leading-none !m-0 !p-0">
-          sports_cricket
-        </mat-icon>
-      </div>
-      <div>
-        <h1 class="text-[13px] font-bold text-[#374151] tracking-[0.5px]">TOSS PANEL</h1>
-        <p class="text-[10px] text-[#9ca3af] mt-0.5">Update toss details and match decision</p>
-      </div>
-    </div>
-
-    <!-- Body -->
-    <div class="p-4 md:p-5 flex flex-col gap-2">
-
-      <!-- Step 1: Toss Winner -->
-      <section>
-        <div class="flex items-center gap-2 mb-1">
-          <div class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0">
-            1
+@if (live) {
+  <div class="min-h-screen bg-slate-300 p-3 md:p-4">
+    <!-- Match Header -->
+    <mat-card
+      class="!bg-white-500 !text-[#1a202c] !rounded-xl !border !border-[#dde1e7] !shadow-sm !mb-2"
+    >
+      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between p-3 md:p-4">
+        <div class="flex items-center gap-3">
+          <span
+            class="px-3 py-1 rounded-full bg-[#16a34a] text-white text-[9px] font-bold tracking-widest flex-shrink-0"
+          >
+            LIVE
+          </span>
+          <div>
+            <h2 class="text-base md:text-lg font-bold text-[#1a202c]">
+              {{ live?.teams?.[0]?.shortName || 'CSK' }} vs
+              {{ live?.teams?.[1]?.shortName || 'MI' }}
+            </h2>
+            <p class="text-[#6b7280] text-[11px] mt-0.5">Toss setup for the current live match</p>
           </div>
-          <h2 class="text-[13px] font-semibold text-[#374151]">Select Toss Winner</h2>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-          <!-- Team 1 -->
-          <button
-            type="button"
-            (click)="selectTossWinner(0)"
-            class="w-full rounded-xl border p-3.5 text-left transition-all duration-200 bg-[#f9fafb] flex items-center justify-between"
-            [ngClass]="selectedTossWinner === 0
-              ? 'border-[#f59e0b] shadow-[0_0_0_3px_rgba(245,158,11,0.15)]'
-              : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'"
-          >
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-lg bg-[#ede9fe] flex items-center justify-center flex-shrink-0">
-                <img
-                  [src]="live?.teams?.[0]?.logo || 'assets/team1.png'"
-                  alt="team1"
-                  class="w-8 h-8 object-contain"
-                />
-              </div>
-              <div>
-                <p class="text-[17px] font-extrabold text-[#d97706]">
-                  {{ live?.teams?.[0]?.shortName || 'CSK' }}
-                </p>
-                <p class="text-[11px] text-[#6b7280] mt-0.5">
-                  {{ live?.teams?.[0]?.fullName || 'Chennai Super Kings' }}
-                </p>
-              </div>
-            </div>
-            @if (selectedTossWinner === 0) {
-              <div class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center flex-shrink-0">
-                <mat-icon class="!text-white !text-[11px] !w-3 !h-3 !leading-none !m-0 !p-0">check</mat-icon>
-              </div>
-            }
-          </button>
-
-          <!-- Team 2 -->
-          <button
-            type="button"
-            (click)="selectTossWinner(1)"
-            class="w-full rounded-xl border p-3.5 text-left transition-all duration-200 bg-[#f9fafb] flex items-center justify-between"
-            [ngClass]="selectedTossWinner === 1
-              ? 'border-[#60a5fa] shadow-[0_0_0_3px_rgba(96,165,250,0.15)]'
-              : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'"
-          >
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-lg bg-[#ede9fe] flex items-center justify-center flex-shrink-0">
-                <img
-                  [src]="live?.teams?.[1]?.logo || 'assets/team2.png'"
-                  alt="team2"
-                  class="w-8 h-8 object-contain"
-                />
-              </div>
-              <div>
-                <p class="text-[17px] font-extrabold text-[#2563eb]">
-                  {{ live?.teams?.[1]?.shortName }}
-                </p>
-                <p class="text-[11px] text-[#6b7280] mt-0.5">
-                  {{ live?.teams?.[1]?.fullName }}
-                </p>
-              </div>
-            </div>
-            @if (selectedTossWinner === 1) {
-              <div class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center flex-shrink-0">
-                <mat-icon class="!text-white !text-[11px] !w-3 !h-3 !leading-none !m-0 !p-0">check</mat-icon>
-              </div>
-            }
-          </button>
-
-        </div>
-      </section>
-
-      <!-- Step 2: Head / Tail -->
-      <section>
-        <div class="flex items-center gap-2 mb-1">
-          <div class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0">
-            2
-          </div>
-          <h2 class="text-[13px] font-semibold text-[#374151]">Select the Call</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-          <button
-            type="button"
-            (click)="selectCall('Head')"
-            class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
-            [ngClass]="selectedCall === 'Head'
-              ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
-              : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'"
-          >
-            <span class="text-lg">🪙</span> HEAD
-          </button>
-
-          <button
-            type="button"
-            (click)="selectCall('Tail')"
-            class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
-            [ngClass]="selectedCall === 'Tail'
-              ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
-              : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'"
-          >
-            <span class="text-lg">🪙</span> TAIL
-          </button>
-
-        </div>
-      </section>
-
-      <!-- Step 3: Bat / Bowl -->
-      <section>
-        <div class="flex items-center gap-2 mb-1">
-          <div class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0">
-            3
-          </div>
-          <h2 class="text-[13px] font-semibold text-[#374151]">Select Decision</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-          <button
-            type="button"
-            (click)="selectDecision('Bat')"
-            class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
-            [ngClass]="selectedDecision === 'Bat'
-              ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
-              : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'"
-          >
-            <mat-icon class="!text-[18px]">sports_cricket</mat-icon> BAT FIRST
-          </button>
-
-          <button
-            type="button"
-            (click)="selectDecision('Bowl')"
-            class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
-            [ngClass]="selectedDecision === 'Bowl'
-              ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
-              : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'"
-          >
-            <mat-icon class="!text-[18px]">sports_baseball</mat-icon> BOWL FIRST
-          </button>
-
-        </div>
-      </section>
-
-      <!-- Toss Result -->
-      <div class="flex items-start gap-3 border border-[#bbf7d0] bg-green-200 rounded-xl p-4">
-        <div class="w-8 h-8 rounded-full bg-[#dcfce7] border border-[#bbf7d0] flex items-center justify-center flex-shrink-0">
-          <mat-icon class="!text-[#ca8a04] !text-[18px] !w-[18px] !h-[18px] !leading-none">emoji_events</mat-icon>
-        </div>
-        <div class="flex-1">
-          <p class="text-[10px] font-bold text-[#16a34a] tracking-[0.9px] uppercase">Toss Result</p>
-          @if (tossSummary) {
-            <p class="mt-1.5 text-[15px] font-semibold text-[#1a202c] leading-relaxed">
-              {{ tossSummary }}
-            </p>
-          } @else {
-            <p class="mt-1.5 text-[12px] text-[#6b7280]">
-              Select toss winner, call, and decision to preview the toss result.
-            </p>
-          }
-        </div>
+        <div class="text-[11px] text-[#9ca3af]">Match Admin Panel</div>
       </div>
+    </mat-card>
 
-      <!-- Save Button -->
-      <div class="flex justify-center pt-1">
-        <button
-          mat-raised-button
-          class="!bg-[#7c3aed] hover:!bg-[#6d28d9] !text-white !rounded-lg !px-6 !h-10 !text-[13px]  !shadow-none disabled:!bg-[#d1d5db] disabled:!text-[#9ca3af]"
-          [disabled]="!canSaveToss()"
-          (click)="saveToss()"
+    <!-- Toss Panel Card -->
+    <mat-card
+      class="!bg-white-500 !text-[#1a202c] !rounded-xl !border !border-[#dde1e7] !shadow-sm !p-0 overflow-hidden"
+    >
+      <!-- Panel Header -->
+      <div class="flex items-center gap-3 px-4 py-3 bg-[#f9fafb] border-b border-[#e5e7eb]">
+        <div
+          class="w-7 h-7 rounded-full bg-[#ede9fe] flex items-center justify-center flex-shrink-0"
         >
-          <mat-icon class="!text-[17px] mr-1.5">save</mat-icon>
-          Save Toss
-        </button>
+          <mat-icon class="!text-[#7c3aed] !text-[14px] !w-4 !h-4 !leading-none !m-0 !p-0">
+            sports_cricket
+          </mat-icon>
+        </div>
+        <div>
+          <h1 class="text-[13px] font-bold text-[#374151] tracking-[0.5px]">TOSS PANEL</h1>
+          <p class="text-[10px] text-[#9ca3af] mt-0.5">Update toss details and match decision</p>
+        </div>
       </div>
 
+      <!-- Body -->
+      <div class="p-4 md:p-5 flex flex-col gap-2">
+        <!-- Step 1: Toss Winner -->
+        <section>
+          <div class="flex items-center gap-2 mb-1">
+            <div
+              class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0"
+            >
+              1
+            </div>
+            <h2 class="text-[13px] font-semibold text-[#374151]">Select Toss Winner</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Team 1 -->
+            <button
+              type="button"
+              (click)="selectTossWinner(0)"
+              class="w-full rounded-xl border p-3.5 text-left transition-all duration-200 bg-[#f9fafb] flex items-center justify-between"
+              [ngClass]="
+                selectedTossWinner === 0
+                  ? 'border-[#f59e0b] shadow-[0_0_0_3px_rgba(245,158,11,0.15)]'
+                  : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'
+              "
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-11 h-11 rounded-lg bg-[#ede9fe] flex items-center justify-center flex-shrink-0"
+                >
+                  <img
+                    [src]="live?.teams?.[0]?.logo || 'assets/team1.png'"
+                    alt="team1"
+                    class="w-8 h-8 object-contain"
+                  />
+                </div>
+                <div>
+                  <p class="text-[17px] font-extrabold text-[#d97706]">
+                    {{ live?.teams?.[0]?.shortName || 'CSK' }}
+                  </p>
+                  <p class="text-[11px] text-[#6b7280] mt-0.5">
+                    {{ live?.teams?.[0]?.fullName || 'Chennai Super Kings' }}
+                  </p>
+                </div>
+              </div>
+              @if (selectedTossWinner === 0) {
+                <div
+                  class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center flex-shrink-0"
+                >
+                  <mat-icon class="!text-white !text-[11px] !w-3 !h-3 !leading-none !m-0 !p-0"
+                    >check</mat-icon
+                  >
+                </div>
+              }
+            </button>
+
+            <!-- Team 2 -->
+            <button
+              type="button"
+              (click)="selectTossWinner(1)"
+              class="w-full rounded-xl border p-3.5 text-left transition-all duration-200 bg-[#f9fafb] flex items-center justify-between"
+              [ngClass]="
+                selectedTossWinner === 1
+                  ? 'border-[#60a5fa] shadow-[0_0_0_3px_rgba(96,165,250,0.15)]'
+                  : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'
+              "
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-11 h-11 rounded-lg bg-[#ede9fe] flex items-center justify-center flex-shrink-0"
+                >
+                  <img
+                    [src]="live?.teams?.[1]?.logo || 'assets/team2.png'"
+                    alt="team2"
+                    class="w-8 h-8 object-contain"
+                  />
+                </div>
+                <div>
+                  <p class="text-[17px] font-extrabold text-[#2563eb]">
+                    {{ live?.teams?.[1]?.shortName }}
+                  </p>
+                  <p class="text-[11px] text-[#6b7280] mt-0.5">
+                    {{ live?.teams?.[1]?.fullName }}
+                  </p>
+                </div>
+              </div>
+              @if (selectedTossWinner === 1) {
+                <div
+                  class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center flex-shrink-0"
+                >
+                  <mat-icon class="!text-white !text-[11px] !w-3 !h-3 !leading-none !m-0 !p-0"
+                    >check</mat-icon
+                  >
+                </div>
+              }
+            </button>
+          </div>
+        </section>
+
+        <!-- Step 2: Head / Tail -->
+        <section>
+          <div class="flex items-center gap-2 mb-1">
+            <div
+              class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0"
+            >
+              2
+            </div>
+            <h2 class="text-[13px] font-semibold text-[#374151]">Select the Call</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button
+              type="button"
+              (click)="selectCall('Head')"
+              class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
+              [ngClass]="
+                selectedCall === 'Head'
+                  ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
+                  : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'
+              "
+            >
+              <span class="text-lg">🪙</span> HEAD
+            </button>
+
+            <button
+              type="button"
+              (click)="selectCall('Tail')"
+              class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
+              [ngClass]="
+                selectedCall === 'Tail'
+                  ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
+                  : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'
+              "
+            >
+              <span class="text-lg">🪙</span> TAIL
+            </button>
+          </div>
+        </section>
+
+        <!-- Step 3: Bat / Bowl -->
+        <section>
+          <div class="flex items-center gap-2 mb-1">
+            <div
+              class="w-5 h-5 rounded-full bg-[#7c3aed] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0"
+            >
+              3
+            </div>
+            <h2 class="text-[13px] font-semibold text-[#374151]">Select Decision</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button
+              type="button"
+              (click)="selectDecision('Bat')"
+              class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
+              [ngClass]="
+                selectedDecision === 'Bat'
+                  ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
+                  : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'
+              "
+            >
+              <mat-icon class="!text-[18px]">sports_cricket</mat-icon> BAT FIRST
+            </button>
+
+            <button
+              type="button"
+              (click)="selectDecision('Bowl')"
+              class="rounded-xl border px-4 py-3.5 text-[13px] font-bold text-[#374151] tracking-[0.4px] bg-[#f9fafb] transition-all duration-200 flex items-center justify-center gap-2"
+              [ngClass]="
+                selectedDecision === 'Bowl'
+                  ? 'border-[#a78bfa] bg-[#7c3aed]/[0.06] shadow-[0_0_0_3px_rgba(167,139,250,0.2)]'
+                  : 'border-[#e5e7eb] hover:border-[#a78bfa] hover:bg-[#faf7ff]'
+              "
+            >
+              <mat-icon class="!text-[18px]">sports_baseball</mat-icon> BOWL FIRST
+            </button>
+          </div>
+        </section>
+
+        <!-- Toss Result -->
+        <div class="flex items-start gap-3 border border-[#bbf7d0] bg-green-200 rounded-xl p-4">
+          <div
+            class="w-8 h-8 rounded-full bg-[#dcfce7] border border-[#bbf7d0] flex items-center justify-center flex-shrink-0"
+          >
+            <mat-icon class="!text-[#ca8a04] !text-[18px] !w-[18px] !h-[18px] !leading-none"
+              >emoji_events</mat-icon
+            >
+          </div>
+          <div class="flex-1">
+            <p class="text-[10px] font-bold text-[#16a34a] tracking-[0.9px] uppercase">
+              Toss Result
+            </p>
+            @if (tossSummary) {
+              <p class="mt-1.5 text-[15px] font-semibold text-[#1a202c] leading-relaxed">
+                {{ tossSummary }}
+              </p>
+            } @else {
+              <p class="mt-1.5 text-[12px] text-[#6b7280]">
+                Select toss winner, call, and decision to preview the toss result.
+              </p>
+            }
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="flex justify-center pt-1">
+          <button
+            mat-raised-button
+            class="!bg-[#7c3aed] hover:!bg-[#6d28d9] !text-white !rounded-lg !px-6 !h-10 !text-[13px] !shadow-none disabled:!bg-[#d1d5db] disabled:!text-[#9ca3af]"
+            [disabled]="!canSaveToss()"
+            (click)="saveToss()"
+          >
+            <mat-icon class="!text-[17px] mr-1.5">save</mat-icon>
+            Save Toss
+          </button>
+        </div>
+      </div>
+    </mat-card>
+    <div
+      *ngIf="toastVisible"
+      [ngClass]="
+        toastType === 'success'
+          ? 'bg-gradient-to-r from-green-500 to-green-700'
+          : 'bg-gradient-to-r from-red-500 to-red-700'
+      "
+      class="fixed top-6 right-6 z-[99999] flex items-center gap-4 min-w-[180px] max-w-[480px] rounded-2xl px-5 py-3 text-white shadow-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] animate-toastSlide"
+    >
+      <!-- Icon -->
+      <div
+        class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-xl font-bold shrink-0"
+      >
+        <span *ngIf="toastType === 'success'">✓</span>
+        <span *ngIf="toastType === 'error'">✕</span>
+      </div>
+
+      <!-- Content -->
+      <div class="flex-1 min-w-0">
+        <h4 class="text-base font-bold mb-0.5">
+          {{ toastType === 'success' ? 'Success' : 'Error' }}
+        </h4>
+
+        <p class="text-sm leading-5 opacity-95 break-words">
+          {{ toastMessage }}
+        </p>
+      </div>
+
+      <!-- Close -->
+      <button
+        (click)="closeToast()"
+        class="w-8 h-8 rounded-full flex items-center justify-center text-2xl leading-none opacity-80 transition-all duration-200 hover:opacity-100 hover:rotate-90 hover:bg-white/20"
+      >
+        ×
+      </button>
+
+      <!-- Progress -->
+      <div class="absolute bottom-0 left-0 h-1 w-full bg-white/35 animate-progress"></div>
     </div>
-  </mat-card>
-  <div
-  *ngIf="toastVisible"
-  [ngClass]="toastType === 'success'
-    ? 'bg-gradient-to-r from-green-500 to-green-700'
-    : 'bg-gradient-to-r from-red-500 to-red-700'"
-  class="fixed top-6 right-6 z-[99999] flex items-center gap-4 min-w-[180px] max-w-[480px] rounded-2xl px-5 py-3 text-white shadow-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] animate-toastSlide"
->
-  <!-- Icon -->
-  <div
-    class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-xl font-bold shrink-0"
-  >
-    <span *ngIf="toastType === 'success'">✓</span>
-    <span *ngIf="toastType === 'error'">✕</span>
   </div>
+} @else {
+  <div class="min-h-screen flex items-center justify-center px-4">
+    <div class="flex flex-col items-center text-center">
+      <mat-icon class="!text-7xl !w-20 !h-20 text-red-500 animate-pulse mb-5">
+        sports_cricket
+      </mat-icon>
 
-  <!-- Content -->
-  <div class="flex-1 min-w-0">
-    <h4 class="text-base font-bold mb-0.5">
-      {{ toastType === 'success' ? 'Success' : 'Error' }}
-    </h4>
+      <h2 class="text-3xl font-bold text-gray-800 mb-3">No Live Match Available</h2>
 
-    <p class="text-sm leading-5 opacity-95 break-words">
-      {{ toastMessage }}
-    </p>
+      <p class="text-gray-500 text-lg">
+        There are no live matches at this time.
+        <br />
+        Please check back later.
+      </p>
+    </div>
   </div>
-
-  <!-- Close -->
-  <button
-    (click)="closeToast()"
-    class="w-8 h-8 rounded-full flex items-center justify-center text-2xl leading-none opacity-80 transition-all duration-200 hover:opacity-100 hover:rotate-90 hover:bg-white/20"
-  >
-    ×
-  </button>
-
-  <!-- Progress -->
-  <div
-    class="absolute bottom-0 left-0 h-1 w-full bg-white/35 animate-progress"
-  ></div>
-</div>
-
-</div>
+}

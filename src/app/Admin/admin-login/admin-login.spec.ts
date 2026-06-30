@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { vi } from 'vitest';
 
 import { AdminLogin } from './admin-login';
 import { AdminService } from './admin-service';
@@ -9,36 +9,85 @@ import { AdminService } from './admin-service';
 describe('AdminLogin', () => {
   let component: AdminLogin;
   let fixture: ComponentFixture<AdminLogin>;
-  let adminServiceSpy: any;
-  let router: Router;
+
+  const mockRouter = {
+    navigate: vi.fn(),
+  };
+
+  const mockAdminService = {
+    getAdmins: vi.fn(),
+    setAuthenticated: vi.fn(),
+    setCurrentUser: vi.fn(),
+    updateAdmin: vi.fn(),
+  };
 
   beforeEach(async () => {
-    adminServiceSpy = {
-      getAdmins: vi.fn(),
-      updateAdmin: vi.fn(),
-      setAuthenticated: vi.fn(),
-    };
+    vi.spyOn(window, 'alert').mockImplementation(() => {});
 
     await TestBed.configureTestingModule({
       imports: [AdminLogin],
       providers: [
-        provideRouter([]),
         {
           provide: AdminService,
-          useValue: adminServiceSpy,
+          useValue: mockAdminService,
+        },
+        {
+          provide: Router,
+          useValue: mockRouter,
         },
       ],
-    }).compileComponents();
+    })
+      .overrideComponent(AdminLogin, {
+        set: {
+          template: '<div>Admin Login</div>',
+          styles: [''],
+        },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(AdminLogin);
     component = fixture.componentInstance;
-    router = TestBed.inject(Router);
 
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should login successfully', () => {
+    component.username = 'admin';
+    component.password = '1234';
+
+    const user = {
+      id: '1',
+      userName: 'admin',
+      passWord: '1234',
+      firstLogin: true,
+    };
+
+    mockAdminService.getAdmins.mockReturnValue(of([user]));
+
+    component.login();
+
+    expect(mockAdminService.setAuthenticated).toHaveBeenCalledWith(true);
+    expect(mockAdminService.setCurrentUser).toHaveBeenCalledWith(user);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/navbarAdmin']);
+  });
+
+  it('should show alert for invalid login', () => {
+    component.username = 'wrong';
+    component.password = 'wrong';
+
+    mockAdminService.getAdmins.mockReturnValue(of([]));
+
+    component.login();
+
+    expect(window.alert).toHaveBeenCalledWith('Invalid Username or Password');
   });
 
   it('should open reset form', () => {
@@ -47,9 +96,9 @@ describe('AdminLogin', () => {
     expect(component.showResetForm).toBe(true);
   });
 
-  it('should cancel reset form and clear fields', () => {
+  it('should cancel reset form', () => {
     component.showResetForm = true;
-    component.resetUsername = 'bharath';
+    component.resetUsername = 'admin';
     component.currentPassword = '123';
     component.newPassword = '456';
 
@@ -61,111 +110,61 @@ describe('AdminLogin', () => {
     expect(component.newPassword).toBe('');
   });
 
-  it('should show alert for invalid login', () => {
-    adminServiceSpy.getAdmins.mockReturnValue(of([]));
-
-    const alertSpy = vi
-      .spyOn(window, 'alert')
-      .mockImplementation(() => {});
-
-    component.username = 'bharath';
-    component.password = '123';
-
-    component.login();
-
-    expect(alertSpy).toHaveBeenCalledWith(
-      'Invalid Username or Password'
-    );
-  });
-
-  it('should login successfully', () => {
-    const users = [
-      {
-        id: 1,
-        userName: 'bharath',
-        passWord: '123',
-      },
-    ];
-
-    adminServiceSpy.getAdmins.mockReturnValue(of(users));
-
-    component.username = 'bharath';
-    component.password = '123';
-
-    component.login();
-
-    expect(adminServiceSpy.setAuthenticated).toHaveBeenCalledWith(
-      true
-    );
-  });
-
-  it('should show alert when reset credentials are invalid', () => {
-    adminServiceSpy.getAdmins.mockReturnValue(of([]));
-
-    const alertSpy = vi
-      .spyOn(window, 'alert')
-      .mockImplementation(() => {});
-
-    component.resetUsername = 'bharath';
-    component.currentPassword = '123';
-
-    component.updatePassword();
-
-    expect(alertSpy).toHaveBeenCalledWith(
-      'Invalid Username or Current Password'
-    );
-  });
-
-  it('should show alert when password change is not allowed', () => {
-    const users = [
-      {
-        id: 1,
-        userName: 'bharath',
-        passWord: '123',
-        firstLogin: false,
-      },
-    ];
-
-    adminServiceSpy.getAdmins.mockReturnValue(of(users));
-
-    const alertSpy = vi
-      .spyOn(window, 'alert')
-      .mockImplementation(() => {});
-
-    component.resetUsername = 'bharath';
-    component.currentPassword = '123';
-
-    component.updatePassword();
-
-    expect(alertSpy).toHaveBeenCalledWith(
-      'Password change not allowed'
-    );
-  });
-
   it('should update password successfully', () => {
+    component.resetUsername = 'admin';
+    component.currentPassword = '1234';
+    component.newPassword = '5678';
+
     const user = {
-      id: 1,
-      userName: 'bharath',
-      passWord: '123',
+      id: '1',
+      userName: 'admin',
+      passWord: '1234',
       firstLogin: true,
     };
 
-    adminServiceSpy.getAdmins.mockReturnValue(of([user]));
-    adminServiceSpy.updateAdmin.mockReturnValue(of({}));
-
-    const alertSpy = vi
-      .spyOn(window, 'alert')
-      .mockImplementation(() => {});
-
-    component.resetUsername = 'bharath';
-    component.currentPassword = '123';
-    component.newPassword = '456';
+    mockAdminService.getAdmins.mockReturnValue(of([user]));
+    mockAdminService.updateAdmin.mockReturnValue(of({}));
 
     component.updatePassword();
 
-    expect(adminServiceSpy.updateAdmin).toHaveBeenCalled();
-    expect(alertSpy).toHaveBeenCalledWith(
-      'Password Updated Successfully'
+    expect(mockAdminService.updateAdmin).toHaveBeenCalledWith(
+      '1',
+      expect.objectContaining({
+        passWord: '5678',
+        password: '5678',
+        firstLogin: false,
+      }),
     );
+
+    expect(window.alert).toHaveBeenCalledWith('Password Updated Successfully');
+  });
+
+  it('should show alert for invalid username or current password', () => {
+    component.resetUsername = 'admin';
+    component.currentPassword = 'wrong';
+
+    mockAdminService.getAdmins.mockReturnValue(of([]));
+
+    component.updatePassword();
+
+    expect(window.alert).toHaveBeenCalledWith('Invalid Username or Current Password');
+  });
+
+  it('should not allow password change when first login is false', () => {
+    component.resetUsername = 'admin';
+    component.currentPassword = '1234';
+
+    const user = {
+      id: '1',
+      userName: 'admin',
+      passWord: '1234',
+      firstLogin: false,
+    };
+
+    mockAdminService.getAdmins.mockReturnValue(of([user]));
+
+    component.updatePassword();
+
+    expect(window.alert).toHaveBeenCalledWith('Password change not allowed');
   });
 });

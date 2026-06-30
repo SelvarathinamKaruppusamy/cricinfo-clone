@@ -19,9 +19,18 @@ import { AdCoverupPage } from '../ad-coverup-page/ad-coverup-page';
 import { Teams } from '../../UpCommingPage/match/match.models/match.models-module';
 import { MatDivider } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
-import { catchError, EMPTY, filter } from 'rxjs';
 import { AdminService } from '../../../Admin/LiveAdmin/admin-service';
-
+import {
+  catchError,
+  EMPTY,
+  filter,
+  timer,
+  switchMap,
+  Subject,
+  takeUntil,
+  forkJoin,
+  of,
+} from 'rxjs';
 @Component({
   selector: 'app-live-match-card',
   imports: [
@@ -40,7 +49,7 @@ import { AdminService } from '../../../Admin/LiveAdmin/admin-service';
 export class LiveMatchCard implements OnInit {
   @ViewChild('cardContainer')
   cardContainer!: ElementRef<HTMLDivElement>;
-
+private destroy$ = new Subject<void>();
   live!: LiveModel;
   service = inject(LiveService);
   changedetector = inject(ChangeDetectorRef);
@@ -86,108 +95,83 @@ export class LiveMatchCard implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  this.intervalId = setInterval(() => {
-    this.reloadLandingData();
+ ngOnInit(): void {
+  // Poll Live Match every second
+ timer(0, 1000)
+  .pipe(
+    switchMap(() =>
+      forkJoin({
+        live: this.service.GetLiveMatches().pipe(
+          catchError(() => of([]))
+        ),
+        upcoming: this.upservice.getMatch().pipe(
+          catchError(() => of([]))
+        ),
+        completed: this.comservice.getCompletedMatches().pipe(
+          catchError(() => of([]))
+        )
+      })
+    ),
+    takeUntil(this.destroy$)
+  )
+  .subscribe(({ live, upcoming, completed }) => {
 
-    // stop interval if live match is completed
-    if (this.live?.status === 'COMPLETED') {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-      console.log('Polling stopped - match completed');
+    // ---------------- LIVE ----------------
+
+    if (live.length) {
+
+      this.live = live[0];
+      this.team1 = this.live.teams[0];
+      this.team2 = this.live.teams[1];
+
+      this.service.live.set(this.live);
+      this.requiredRun();
+
+    } else {
+
+      this.live = null as any;
+      this.team1 = null as any;
+      this.team2 = null as any;
+
+      this.service.live.set(null);
     }
-  }, 1000);
 
-  this.route.events
-    .pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe(() => {
-      this.reloadLandingData();
-    });
+    // ---------------- UPCOMING ----------------
+
+    if (upcoming.length) {
+
+      this.upcommingdata = upcoming[0];
+      this.upteam1 = this.upcommingdata.teams[0];
+      this.upteam2 = this.upcommingdata.teams[1];
+
+    } else {
+
+      this.upcommingdata = null as any;
+      this.upteam1 = null as any;
+      this.upteam2 = null as any;
+    }
+
+    // ---------------- COMPLETED ----------------
+this.completeddata = completed.slice(-5).reverse();
+
+this.matchs = [...completed].reverse();
+
+const uniqueTeams: Teams[] = [];
+
+for (const match of this.matchs) {
+  for (const team of match.teams) {
+    if (!uniqueTeams.find(t => t.teamId === team.teamId)) {
+      uniqueTeams.push(team);
+    }
+  }
 }
 
-  reloadLandingData() {
-    this.loadLiveMatch();
-    this.loadUpcomingMatch();
-    this.loadCompletedMatches();
-  }
+this.teams = uniqueTeams;
 
-  loadLiveMatch() {
-    this.service
-      .GetLiveMatches()
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          return EMPTY;
-        })
-      )
-      .subscribe((res) => {
-        if (!res?.length) return;
+    this.changedetector.detectChanges();
 
-        this.live = res[0];
-        this.service.live.set(this.live);
-        this.team1 = this.live.teams[0];
-        this.team2 = this.live.teams[1];
-
-        this.changedetector.detectChanges();
-      });
-  }
-
-  loadUpcomingMatch() {
-    this.upservice
-      .getMatch()
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          return EMPTY;
-        })
-      )
-      .subscribe((res) => {
-        if (!res?.length) {
-          return;
-        }
-
-        this.upcommingdata = res[0];
-        this.upteam1 = this.upcommingdata.teams[0];
-        this.upteam2 = this.upcommingdata.teams[1];
-
-        this.changedetector.detectChanges();
-      });
-  }
-
-  loadCompletedMatches() {
-    this.comservice
-      .getCompletedMatches()
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          return EMPTY;
-        })
-      )
-      .subscribe((res) => {
-        // Landing page last 5 completed
-        this.completeddata = res.slice(-5).reverse();
-
-        // Full reversed list for filter cards
-        this.matchs = [...res].reverse();
-
-        const uniqueTeams: Teams[] = [];
-        this.matchs.forEach((match) => {
-          match.teams.forEach((team) => {
-            const exists = uniqueTeams.some((t) => t.teamId === team.teamId);
-            if (!exists) {
-              uniqueTeams.push(team);
-              this.changedetector.detectChanges()
-            }
-          });
-        });
-
-        this.teams = uniqueTeams;
-        console.log(this.teams)
-        this.changedetector.detectChanges();
-        console.log(this.teams)
-      });
-  }
-
+  });
+}
   requiredRun() {
     const live = this.service.live();
     if (!live) return;
@@ -273,4 +257,10 @@ export class LiveMatchCard implements OnInit {
     this.route.navigate(['/live/schedule', id]);
     this.changedetector.detectChanges();
   }
+  ngOnDestroy(): void {
+
+  this.destroy$.next();
+  this.destroy$.complete();
+
+}
 }

@@ -28,7 +28,6 @@ export class CompletedDetails implements OnInit {
   bowlingTeam: any = null;
   relatedBlog: any = null;
 
-  // get Cloudinary images path 
   get blogImageUrl(): string {
     if (!this.relatedBlog || !this.relatedBlog.image) {
       return '';
@@ -90,8 +89,7 @@ export class CompletedDetails implements OnInit {
       next: (blogs) => {
         this.relatedBlog =
           blogs.find((blog) => Number(blog.matchId) === Number(this.match?.matchNo)) || null;
-
-        // for console view 
+ 
         console.log('MATCH:', this.match?.matchNo);
         console.log('RELATED BLOG:', this.relatedBlog);
         console.log('IMAGE PATH:', this.relatedBlog?.image);

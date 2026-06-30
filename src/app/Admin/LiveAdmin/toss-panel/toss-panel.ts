@@ -9,6 +9,8 @@ import { LiveService } from '../../../User/LivePages/Services/live-service';
 import { LiveModel, Team } from '../../../User/LivePages/Models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-component/confirm-dialog-component';
+import { AdminService } from '../admin-service';
+import { PromoteMatchDialogComponent } from '../promote-match-dialog-component/promote-match-dialog-component';
 
 @Component({
   selector: 'app-toss-panel',
@@ -21,7 +23,7 @@ export class TossPanel implements OnInit {
   service = inject(LiveService);
   changedetector = inject(ChangeDetectorRef);
   router = inject(Router);
-
+  adminService=inject(AdminService)
   live!: LiveModel;
   teams: Team[] = [];
 
@@ -50,22 +52,101 @@ private toastTimer: any;
     });
   }
 ngOnInit(): void {
+
   this.service.GetLiveMatches().subscribe({
+
     next: (res) => {
-      if (!res?.length) return;
 
-      this.live = structuredClone(res[0]);
-      this.teams = this.live?.teams ?? [];
+      if (res.length) {
 
-      this.service.loadMatchIntoService(this.live);
+        this.loadLiveMatch(res[0]);
 
-      this.changedetector.detectChanges();
+      } else {
 
-      // Test Toast
-      
+        this.openPromoteDialog();
+
+      }
+
     },
-    error: (err) => console.error(err),
+
+    error: err => console.error(err)
+
   });
+
+}
+loadLiveMatch(match: LiveModel) {
+
+  this.live = structuredClone(match);
+
+  this.teams = this.live.teams;
+
+  this.service.loadMatchIntoService(this.live);
+
+  this.changedetector.detectChanges();
+
+}
+openPromoteDialog() {
+
+  this.adminService.GetUpcomingMatches().subscribe({
+
+    next: (matches) => {
+
+      if (!matches.length) {
+
+        alert("No Upcoming Matches");
+
+        return;
+
+      }
+
+      const nextMatch = matches[0];
+
+      const dialogRef = this.dialog.open(
+        PromoteMatchDialogComponent,
+        {
+          width: '500px',
+          disableClose: true,
+          data: nextMatch
+        }
+      );
+
+      dialogRef.afterClosed().subscribe(result => {
+
+        if (result) {
+
+          this.promoteMatch();
+
+        }
+
+      });
+
+    }
+
+  });
+
+}
+promoteMatch() {
+
+  this.adminService.promoteUpcomingToLive();
+
+  setTimeout(() => {
+
+    this.service.GetLiveMatches().subscribe({
+
+      next: res => {
+
+        if(res.length){
+
+          this.loadLiveMatch(res[0]);
+
+        }
+
+      }
+
+    });
+
+  },300);
+
 }
   get tossSummary(): string {
     if (this.selectedTossWinner === null || !this.selectedCall || !this.selectedDecision) {

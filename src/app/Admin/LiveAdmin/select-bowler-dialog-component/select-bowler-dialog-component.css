@@ -1,0 +1,87 @@
+:host {
+  display: block;
+}
+
+/* Dialog Title */
+
+.mat-mdc-dialog-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  padding: 20px 24px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Dialog Content */
+
+.mat-mdc-dialog-content {
+  padding: 20px 24px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+/* Bowler Card */
+
+.bowler-card {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.bowler-card:hover {
+  background: #dcfce7;
+  border-color: #22c55e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.bowler-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.bowler-overs {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Scrollbar */
+
+.mat-mdc-dialog-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mat-mdc-dialog-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+
+.mat-mdc-dialog-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .mat-mdc-dialog-title {
+    font-size: 18px;
+  }
+
+  .bowler-card {
+    padding: 12px;
+  }
+
+  .bowler-name {
+    font-size: 15px;
+  }
+
+  .bowler-overs {
+    font-size: 12px;
+  }
+}

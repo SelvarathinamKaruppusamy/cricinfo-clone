@@ -11,7 +11,7 @@
 }
 
 .match-detail-container {
-  max-width: 650px; 
+  max-width: 650px;
   margin: 20px auto;
   background: var(--primary-bg);
   border: 1px solid var(--border-color);
@@ -54,7 +54,6 @@
     transform: translateY(0);
   }
 }
-
 
 .sticky-header-wrapper {
   background: var(--primary-bg);
@@ -132,21 +131,21 @@
 }
 
 .match-status-text {
-  width: 100%; 
+  width: 100%;
   text-align: center;
   font-size: 15px;
   font-weight: 500;
-  color:blue;
-  margin-top: 16px; 
+  color: blue;
+  margin-top: 16px;
   margin-bottom: 4px;
 }
 
 .match-sub-text {
-  width: 100%; 
-  text-align: center; 
+  width: 100%;
+  text-align: center;
   font-size: 13px;
   color: #70757a;
-  margin-bottom: 16px; 
+  margin-bottom: 16px;
 }
 
 .navigation-tabs {
@@ -176,8 +175,6 @@
   border-bottom-color: var(--accent-color);
 }
 
-
-  
 .potm-simple-card {
   display: flex;
   align-items: center;
@@ -270,20 +267,20 @@
 
 .performer-meta-group {
   display: flex;
-  align-items: flex-start; 
+  align-items: flex-start;
   gap: 10px;
 }
 
 .performer-meta-group.layout-reverse {
-  flex-direction: row !important; 
+  flex-direction: row !important;
   justify-content: flex-start;
-  width: auto; 
+  width: auto;
 }
 
 .performer-identity-text {
   display: flex;
   flex-direction: column;
-  text-align: left; 
+  text-align: left;
 }
 
 .perf-name {
@@ -304,7 +301,7 @@
   height: 6px;
   background-color: #a1a4a8;
   border-radius: 50%;
-  margin-top: 5px; 
+  margin-top: 5px;
   flex-shrink: 0;
 }
 
@@ -343,20 +340,20 @@
   background-color: #fcfcfc;
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 16px;
-  padding: 0; 
+  padding: 0;
 }
 
 .innings-bar button {
-  flex: 1; 
+  flex: 1;
   background: none;
   border: none;
-  padding: 14px 8px; 
+  padding: 14px 8px;
   font-size: 15px;
   font-weight: 500;
   color: #757575;
   cursor: pointer;
   text-align: center;
-  border-bottom: 2px solid transparent; 
+  border-bottom: 2px solid transparent;
   transition: all var(--transition-speed) ease;
 
   text-transform: none;
@@ -371,8 +368,8 @@
 .innings-bar button.active {
   color: var(--text-main);
   font-weight: 600;
-  background-color: #ffffff; 
-  border-bottom: 3px solid #000000; 
+  background-color: #ffffff;
+  border-bottom: 3px solid #000000;
 }
 
 .card-section {
@@ -560,4 +557,205 @@
 }
 .font-normal-size {
   font-size: 12px;
+}
+/* =========================
+   Responsive Design
+========================= */
+
+/* Tablet */
+@media screen and (max-width: 992px) {
+  .match-detail-container {
+    width: 95%;
+    max-width: 100%;
+    margin: 15px auto;
+  }
+
+  .scrollable-content {
+    height: auto;
+    max-height: 75vh;
+    padding: 16px;
+  }
+
+  .team-name {
+    font-size: 16px;
+  }
+
+  .runs {
+    font-size: 20px;
+  }
+
+  .performers-flex-row {
+    gap: 15px;
+  }
+
+  .blog-top-image {
+    height: 220px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .match-detail-container {
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .sticky-header-wrapper {
+    padding: 15px;
+  }
+
+  .scrollable-content {
+    height: auto;
+    max-height: none;
+    padding: 15px;
+  }
+
+  .scoreboard-main {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .team-info {
+    justify-content: center;
+  }
+
+  .team-info.right {
+    justify-content: center;
+  }
+
+  .scores-display {
+    gap: 8px;
+  }
+
+  .team-name {
+    font-size: 15px;
+  }
+
+  .team-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .runs {
+    font-size: 18px;
+  }
+
+  .overs,
+  .match-sub-text,
+  .top-meta {
+    font-size: 12px;
+  }
+
+  .navigation-tabs button {
+    font-size: 13px;
+    padding: 10px 4px;
+  }
+
+  .innings-bar button {
+    font-size: 13px;
+    padding: 12px 4px;
+  }
+
+  .performers-flex-row {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .performers-column-side,
+  .performers-column-side.text-right-align {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .performer-meta-group.layout-reverse {
+    flex-direction: row !important;
+  }
+
+  .summary-team-header {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .card-section {
+    overflow-x: auto;
+  }
+
+  .cricket-table {
+    min-width: 600px;
+  }
+
+  .blog-top-image {
+    height: 180px;
+  }
+
+  .related-blog-content h3 {
+    font-size: 15px;
+  }
+
+  .related-blog-content p {
+    font-size: 12px;
+  }
+}
+
+/* Small Mobile */
+@media screen and (max-width: 480px) {
+  .sticky-header-wrapper {
+    padding: 12px;
+  }
+
+  .scrollable-content {
+    padding: 12px;
+  }
+
+  .team-name {
+    font-size: 14px;
+  }
+
+  .team-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .runs {
+    font-size: 16px;
+  }
+
+  .match-status-text {
+    font-size: 14px;
+  }
+
+  .navigation-tabs button,
+  .innings-bar button {
+    font-size: 12px;
+    padding: 10px 2px;
+  }
+
+  .potm-simple-card,
+  .summary-team-block,
+  .summary-match-footer,
+  .card-section {
+    padding: 10px;
+  }
+
+  .related-blog-content {
+    padding: 12px;
+  }
+
+  .blog-top-image {
+    height: 150px;
+  }
+
+  .cricket-table {
+    font-size: 12px;
+  }
+
+  .cricket-table th,
+  .cricket-table td {
+    padding: 8px 6px;
+  }
 }

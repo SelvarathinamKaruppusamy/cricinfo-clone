@@ -2,128 +2,122 @@
   <div class="left-panel">
     <mat-list>
       @for (match of matches; track match.matchNo) {
-        <mat-list-item
-          class="match-item"
-          [class.selected]="selectedMatchNo === match.matchNo"
-          (click)="selectMatch(match)"
-        >
-          <div class="match-row">
-            <div class="team-right">
-              <img [src]="match.teams[0].logo" alt="" width="30px" height="30px" />
-              <span>{{ match.teams[0].shortName }}</span>
-            </div>
-
-            <span class="vs">VS</span>
-
-            <div class="team-left">
-              <span>{{ match.teams[1].shortName }}</span>
-              <img [src]="match.teams[1].logo" alt="" width="30px" height="30px" />
-            </div>
+      <mat-list-item class="match-item" [class.selected]="selectedMatchNo === match.matchNo"
+        (click)="selectMatch(match)">
+        <div class="match-row">
+          <div class="team-right">
+            <img [src]="match.teams[0].logo" alt="" width="30px" height="30px" />
+            <span>{{ match.teams[0].shortName }}</span>
           </div>
-        </mat-list-item>
+
+          <span class="vs">VS</span>
+
+          <div class="team-left">
+            <span>{{ match.teams[1].shortName }}</span>
+            <img [src]="match.teams[1].logo" alt="" width="30px" height="30px" />
+          </div>
+        </div>
+      </mat-list-item>
       }
     </mat-list>
   </div>
 
   <div class="right-panel">
     @if (selectedMatch) {
-      <mat-card class="update-card">
-        <form [formGroup]="matchForm">
-          <mat-card-header>
-            <mat-card-title>UPDATE MATCH</mat-card-title>
-            <mat-card-subtitle>Match No : {{ selectedMatch.matchNo }}</mat-card-subtitle>
-          </mat-card-header>
+    <mat-card class="update-card">
+      <form [formGroup]="matchForm">
+        <mat-card-header>
+          <mat-card-title>UPDATE MATCH</mat-card-title>
+          <mat-card-subtitle>Match No : {{ selectedMatch.matchNo }}</mat-card-subtitle>
+        </mat-card-header>
 
-          <mat-card-content>
+        <mat-card-content>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Stadium</mat-label>
+            <mat-icon matPrefix class="prefix-icon">stadium</mat-icon> <input matInput formControlName="venue" />
+
+            @if (
+            matchForm.get('venue')?.hasError('required') && matchForm.get('venue')?.touched
+            ) {
+            <mat-error>venue is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>City</mat-label>
+            <mat-icon matPrefix class="prefix-icon">place</mat-icon> <input matInput formControlName="city" />
+
+            @if (matchForm.get('city')?.hasError('required') && matchForm.get('city')?.touched) {
+            <mat-error>city is required</mat-error>
+            }
+          </mat-form-field>
+
+          <div class="row">
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Stadium</mat-label>
-              <mat-icon matPrefix>stadium</mat-icon>
-              <input matInput formControlName="venue" />
+              <mat-label>Date</mat-label>
+
+              <input matInput [matDatepicker]="picker" formControlName="date" />
+
+              <mat-datepicker-toggle matPrefix [for]="picker"> </mat-datepicker-toggle>
+
+              <mat-datepicker #picker></mat-datepicker>
 
               @if (
-                matchForm.get('venue')?.hasError('required') && matchForm.get('venue')?.touched
+              matchForm.get('date')?.hasError('required') && matchForm.get('date')?.touched
               ) {
-                <mat-error>venue is required</mat-error>
+              <mat-error>Date is required</mat-error>
               }
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>City</mat-label>
-              <mat-icon matPrefix>place</mat-icon>
-              <input matInput formControlName="city" />
+              <mat-label>Status</mat-label>
+              <input matInput formControlName="status" />
 
-              @if (matchForm.get('city')?.hasError('required') && matchForm.get('city')?.touched) {
-                <mat-error>city is required</mat-error>
+              @if (
+              matchForm.get('status')?.hasError('required') && matchForm.get('status')?.touched
+              ) {
+              <mat-error>Status is required</mat-error>
               }
             </mat-form-field>
+          </div>
 
-            <div class="row">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Date</mat-label>
-
-                <input matInput [matDatepicker]="picker" formControlName="date" />
-
-                <mat-datepicker-toggle matPrefix [for]="picker"> </mat-datepicker-toggle>
-
-                <mat-datepicker #picker></mat-datepicker>
-
-                @if (
-                  matchForm.get('date')?.hasError('required') && matchForm.get('date')?.touched
-                ) {
-                  <mat-error>Date is required</mat-error>
-                }
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Status</mat-label>
-                <input matInput formControlName="status" />
-
-                @if (
-                  matchForm.get('status')?.hasError('required') && matchForm.get('status')?.touched
-                ) {
-                  <mat-error>Status is required</mat-error>
-                }
-              </mat-form-field>
-            </div>
-
-            <mat-card-actions>
-              <button mat-raised-button color="accent"
-              class="!h-12 !w-30 !text-lg font-semibold !bg-blue-300"
+          <mat-card-actions>
+            <button mat-raised-button color="accent" class="!h-12 !w-30 !text-lg font-semibold !bg-blue-300"
               (click)="prepareUpdate(); saveMatch()">
-                Save
-              </button>
-            </mat-card-actions>
-          </mat-card-content>
-        </form>
-      </mat-card>
-
-      
-    } @else {
-      <mat-card class="empty-card">
-        <mat-card-content>
-          <h2>Select a Match</h2>
-          <p>Choose a match from the left panel</p>
+              Save
+            </button>
+          </mat-card-actions>
         </mat-card-content>
-      </mat-card>
+      </form>
+    </mat-card>
+
+
+    } @else {
+    <mat-card class="empty-card">
+      <mat-card-content>
+        <h2>Select a Match</h2>
+        <p>Choose a match from the left panel</p>
+      </mat-card-content>
+    </mat-card>
     }
   </div>
 </div>
 
 
-  <div class="toast" *ngIf="toastVisible" [ngClass]="toastType">
-    <div class="toast-icon">
-      <span *ngIf="toastType === 'success'">✓</span>
-      <span *ngIf="toastType === 'error'">✕</span>
-    </div>
-
-    <div class="toast-content">
-      <div class="toast-title">
-        {{ toastType === 'success' ? 'Success' : 'Error' }}
-      </div>
-      <div class="toast-message">{{ toastMessage }}</div>
-    </div>
-
-    <button class="toast-close" (click)="closeToast()">×</button>
-
-    <div class="toast-progress"></div>
+<div class="toast" *ngIf="toastVisible" [ngClass]="toastType">
+  <div class="toast-icon">
+    <span *ngIf="toastType === 'success'">✓</span>
+    <span *ngIf="toastType === 'error'">✕</span>
   </div>
+
+  <div class="toast-content">
+    <div class="toast-title">
+      {{ toastType === 'success' ? 'Success' : 'Error' }}
+    </div>
+    <div class="toast-message">{{ toastMessage }}</div>
+  </div>
+
+  <button class="toast-close" (click)="closeToast()">×</button>
+
+  <div class="toast-progress"></div>
+</div>

@@ -1,200 +1,266 @@
 @if (live(); as match) {
-  <div class="p-3 space-y-3 bg-slate-300">
+<div class="p-3 space-y-3 bg-slate-300">
 
-    <!-- Page Title -->
-    <mat-card class="px-4 py-3 !bg-white-500 !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
-      <h2 class="text-base font-semibold text-[#1a202c]">Complete Match Update</h2>
-      <p class="text-[#6b7280] text-xs mt-0.5">
-        Move current live match to completed and promote first upcoming match to live.
-      </p>
-    </mat-card>
+  <!-- Page Title -->
+  <mat-card class="px-4 py-3 !bg-white !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
+    <h2 class="text-base font-semibold text-[#1a202c]">
+      Complete Match Update
+    </h2>
 
-    <!-- Current Live Match -->
-    <mat-card class="px-4 py-3 !bg-white-500 !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
-      <h3 class="text-sm font-semibold mb-3 text-[#374151]">Current Live Match</h3>
+    <p class="text-[#6b7280] text-xs mt-0.5">
+      Move current live match to completed and promote first upcoming match to live.
+    </p>
+  </mat-card>
 
-      <div class="grid md:grid-cols-2 gap-3">
+  <!-- Current Live Match -->
+  <mat-card class="px-4 py-3 !bg-white !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
 
-        <!-- Team 1 -->
-        <div class="border border-[#e5e7eb] rounded-lg px-3 py-2.5 flex justify-between items-center bg-[#f9fafb]">
-          <div class="flex items-center gap-2">
-            <img [src]="match.teams[0].logo" class="w-8 h-8 object-contain" />
-            <div>
-              <p class="text-sm font-semibold leading-tight text-[#1a202c]">
-                {{ match.teams[0].shortName }}
-              </p>
-              <p class="text-xs text-[#6b7280] leading-tight">
-                {{ match.teams[0].fullName }}
-              </p>
-            </div>
-          </div>
-          <div class="text-right">
-            <p class="text-sm font-bold text-[#16a34a]">
-              {{ match.teams[0].scores }}/{{ match.teams[0].wickets }}
-            </p>
-            <p class="text-xs text-[#9ca3af]">{{ match.teams[0].overs }} ov</p>
-          </div>
-        </div>
+    <h3 class="text-sm font-semibold mb-3 text-[#374151]">
+      Current Live Match
+    </h3>
 
-        <!-- Team 2 -->
-        <div class="border border-[#e5e7eb] rounded-lg px-3 py-2.5 flex justify-between items-center bg-[#f9fafb]">
-          <div class="flex items-center gap-2">
-            <img [src]="match.teams[1].logo" class="w-8 h-8 object-contain" />
-            <div>
-              <p class="text-sm font-semibold leading-tight text-[#1a202c]">
-                {{ match.teams[1].shortName }}
-              </p>
-              <p class="text-xs text-[#6b7280] leading-tight">
-                {{ match.teams[1].fullName }}
-              </p>
-            </div>
-          </div>
-          <div class="text-right">
-            <p class="text-sm font-bold text-[#16a34a]">
-              {{ match.teams[1].scores }}/{{ match.teams[1].wickets }}
-            </p>
-            <p class="text-xs text-[#9ca3af]">{{ match.teams[1].overs }} ov</p>
-          </div>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-      </div>
-    </mat-card>
+      <!-- Team 1 -->
+      <div class="border border-[#e5e7eb] rounded-lg px-3 py-2.5 bg-[#f9fafb]
+        flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
 
-    <!-- Result + Player of Match -->
-    <mat-card class="px-4 py-3 !bg-white-500 !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
-      <h3 class="text-sm font-semibold mb-3 text-[#374151]">Match Details</h3>
+        <div class="flex items-center gap-2">
+          <img [src]="match.teams[0].logo" class="w-8 h-8 object-contain" />
 
-      <div class="space-y-3">
-
-        <!-- Result -->
-        <div>
-          <label class="block text-xs font-medium text-[#374151] mb-1">Result</label>
-          <textarea
-            [(ngModel)]="resultText"
-            rows="2"
-            class="w-full border border-[#e5e7eb] rounded-lg px-3 py-2 text-sm outline-none bg-[#f9fafb] text-[#1a202c] resize-none placeholder:text-[#9ca3af] focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed] transition"
-            placeholder="Example: CSK won by 12 runs"
-          >
-        </textarea>
-        </div>
-
-        <!-- Auto Generate -->
-        <div>
-          <button
-            mat-stroked-button
-            class="!text-xs !h-8 !border-[#dde1e7] !text-[#374151] !bg-green-200 hover:!bg-green-300"
-            (click)="autoGenerateResult()"
-          >
-            Auto Generate Result
-          </button>
-        </div>
-
-        <!-- Player of Match -->
-       <div>
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Player of the Match</mat-label>
-
-    <mat-select [(ngModel)]="playerOfMatch">
-      <mat-option value="">Select player</mat-option>
-
-      @for (player of allPlayers(); track player.id) {
-        <mat-option [value]="player.name">
-          {{ player.name }}
-        </mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-</div>
-
-      </div>
-    </mat-card>
-
-    <!-- Next Upcoming Match + Final Action -->
-    <div class="flex gap-3">
-
-      <!-- Next Upcoming Match -->
-      <mat-card class="px-4 py-3 flex-1 !bg-white-500 !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
-        <h3 class="text-sm font-semibold mb-3 text-[#374151]">Next Upcoming Match</h3>
-
-        @if (upcomingPreview(); as upcoming) {
-          <div class="border border-[#e5e7eb] rounded-lg px-3 py-2.5 bg-green-200">
-            <p class="text-sm font-semibold text-[#1a202c]">
-              {{ upcoming.teams[0].shortName }} vs {{ upcoming.teams[1].shortName }}
-            </p>
-            <p class="text-xs text-[#6b7280] mt-1">Match {{ upcoming.matchNo }}</p>
-            <p class="text-xs text-[#6b7280]">{{ upcoming.venue }}, {{ upcoming.city }}</p>
-            <p class="text-xs text-[#6b7280]">{{ upcoming.date }}</p>
-          </div>
-        } @else {
-          <p class="text-xs text-[#9ca3af]">No upcoming match available</p>
-        }
-      </mat-card>
-
-      <!-- Final Action -->
-      <mat-card class="px-4 py-3 flex-1 !bg-white-500 !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
-        <div class="flex flex-col gap-3">
           <div>
-            <h3 class="text-sm font-semibold text-[#374151]">Finalize Match</h3>
-            <p class="text-xs text-[#6b7280] mt-0.5">
-              This will move current live match to completed and next upcoming match to live.
+            <p class="text-sm font-semibold text-[#1a202c] leading-tight">
+              {{ match.teams[0].shortName }}
+            </p>
+
+            <p class="text-xs text-[#6b7280] leading-tight">
+              {{ match.teams[0].fullName }}
             </p>
           </div>
-
-         <button
-  mat-stroked-button
-  class="!text-xs !h-8 !border-[#16a34a] !text-[#16a34a] self-start hover:!bg-[#f0fdf4]"
-  (click)="completeMatch()"
-  [disabled]="!liveService.canCompleteMatch()"
->
-  Complete Match
-</button>
         </div>
-      </mat-card>
+
+        <div class="text-right">
+          <p class="text-sm font-bold text-[#16a34a]">
+            {{ match.teams[0].scores }}/{{ match.teams[0].wickets }}
+          </p>
+
+          <p class="text-xs text-[#9ca3af]">
+            {{ match.teams[0].overs }} ov
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Team 2 -->
+      <div class="border border-[#e5e7eb] rounded-lg px-3 py-2.5 bg-[#f9fafb]
+        flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+
+        <div class="flex items-center gap-2">
+          <img [src]="match.teams[1].logo" class="w-8 h-8 object-contain" />
+
+          <div>
+            <p class="text-sm font-semibold text-[#1a202c] leading-tight">
+              {{ match.teams[1].shortName }}
+            </p>
+
+            <p class="text-xs text-[#6b7280] leading-tight">
+              {{ match.teams[1].fullName }}
+            </p>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <p class="text-sm font-bold text-[#16a34a]">
+            {{ match.teams[1].scores }}/{{ match.teams[1].wickets }}
+          </p>
+
+          <p class="text-xs text-[#9ca3af]">
+            {{ match.teams[1].overs }} ov
+          </p>
+        </div>
+
+      </div>
 
     </div>
-    <div
-  *ngIf="toastVisible"
-  [ngClass]="toastType === 'success'
-    ? 'bg-gradient-to-r from-green-500 to-green-700'
-    : 'bg-gradient-to-r from-red-500 to-red-700'"
-  class="fixed top-6 right-6 z-[99999] flex items-center gap-4 min-w-[180px] max-w-[480px] rounded-2xl px-5 py-3 text-white shadow-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] animate-toastSlide"
->
-  <!-- Icon -->
-  <div
-    class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-xl font-bold shrink-0"
-  >
-    <span *ngIf="toastType === 'success'">✓</span>
-    <span *ngIf="toastType === 'error'">✕</span>
+
+  </mat-card>
+
+  <!-- Match Details -->
+  <mat-card class="px-4 py-3 !bg-white !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
+
+    <h3 class="text-sm font-semibold mb-3 text-[#374151]">
+      Match Details
+    </h3>
+
+    <div class="space-y-4">
+
+      <div>
+        <label class="block text-xs font-medium text-[#374151] mb-1">
+          Result
+        </label>
+
+        <textarea [(ngModel)]="resultText" rows="2" class="w-full border border-[#e5e7eb] rounded-lg px-3 py-2 text-sm bg-[#f9fafb]
+          outline-none resize-none placeholder:text-[#9ca3af]
+          focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed]" placeholder="Example: CSK won by 12 runs">
+        </textarea>
+      </div>
+
+      <div>
+        <button mat-stroked-button
+          class="w-full sm:w-auto !text-xs !h-9 !border-[#dde1e7] !text-[#374151] !bg-green-200 hover:!bg-green-300"
+          (click)="autoGenerateResult()">
+
+          Auto Generate Result
+
+        </button>
+      </div>
+
+      <div>
+
+        <mat-form-field appearance="outline" class="w-full">
+
+          <mat-label>Player of the Match</mat-label>
+
+          <mat-select [(ngModel)]="playerOfMatch">
+
+            <mat-option value="">
+              Select player
+            </mat-option>
+
+            @for (player of allPlayers(); track player.id) {
+            <mat-option [value]="player.name">
+              {{ player.name }}
+            </mat-option>
+            }
+
+          </mat-select>
+
+        </mat-form-field>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+  <!-- Bottom Section -->
+  <div class="flex flex-col md:flex-row gap-3">
+
+    <!-- Upcoming Match -->
+    <mat-card class="flex-1 px-4 py-3 !bg-white !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
+
+      <h3 class="text-sm font-semibold mb-3 text-[#374151]">
+        Next Upcoming Match
+      </h3>
+
+      @if (upcomingPreview(); as upcoming) {
+
+      <div class="border border-[#e5e7eb] rounded-lg px-3 py-2.5 bg-green-200">
+
+        <p class="text-sm font-semibold text-[#1a202c]">
+          {{ upcoming.teams[0].shortName }}
+          vs
+          {{ upcoming.teams[1].shortName }}
+        </p>
+
+        <p class="text-xs text-[#6b7280] mt-1">
+          Match {{ upcoming.matchNo }}
+        </p>
+
+        <p class="text-xs text-[#6b7280]">
+          {{ upcoming.venue }}, {{ upcoming.city }}
+        </p>
+
+        <p class="text-xs text-[#6b7280]">
+          {{ upcoming.date }}
+        </p>
+
+      </div>
+
+      } @else {
+
+      <p class="text-xs text-[#9ca3af]">
+        No upcoming match available
+      </p>
+
+      }
+
+    </mat-card>
+
+    <!-- Final Action -->
+    <mat-card class="flex-1 px-4 py-3 !bg-white !text-[#1a202c] !shadow-sm !border !border-[#dde1e7] !rounded-xl">
+
+      <div class="flex flex-col gap-3">
+
+        <div>
+
+          <h3 class="text-sm font-semibold text-[#374151]">
+            Finalize Match
+          </h3>
+
+          <p class="text-xs text-[#6b7280] mt-0.5">
+            This will move current live match to completed and next upcoming match to live.
+          </p>
+
+        </div>
+
+        <button mat-stroked-button
+          class="w-full sm:w-auto !text-xs !h-9 !border-[#16a34a] !text-[#16a34a] hover:!bg-[#f0fdf4]"
+          (click)="completeMatch()" [disabled]="!liveService.canCompleteMatch()">
+
+          Complete Match
+
+        </button>
+
+      </div>
+
+    </mat-card>
+
   </div>
 
-  <!-- Content -->
-  <div class="flex-1 min-w-0">
-    <h4 class="text-base font-bold mb-0.5">
-      {{ toastType === 'success' ? 'Success' : 'Error' }}
-    </h4>
+  <!-- Toast -->
+  <div *ngIf="toastVisible" [ngClass]="toastType === 'success'
+      ? 'bg-gradient-to-r from-green-500 to-green-700'
+      : 'bg-gradient-to-r from-red-500 to-red-700'" class="fixed top-4 left-4 right-4 sm:left-auto sm:right-6 sm:w-auto
+    z-[99999] flex items-center gap-4 rounded-2xl px-5 py-3
+    text-white shadow-2xl overflow-hidden animate-toastSlide">
 
-    <p class="text-sm leading-5 opacity-95 break-words">
-      {{ toastMessage }}
-    </p>
+    <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-xl font-bold shrink-0">
+
+      <span *ngIf="toastType === 'success'">✓</span>
+      <span *ngIf="toastType === 'error'">✕</span>
+
+    </div>
+
+    <div class="flex-1">
+
+      <h4 class="text-base font-bold">
+        {{ toastType === 'success' ? 'Success' : 'Error' }}
+      </h4>
+
+      <p class="text-sm">
+        {{ toastMessage }}
+      </p>
+
+    </div>
+
+    <button (click)="closeToast()" class="w-8 h-8 rounded-full flex items-center justify-center
+      text-2xl hover:bg-white/20 transition">
+
+      ×
+
+    </button>
+
+    <div class="absolute bottom-0 left-0 h-1 w-full bg-white/35 animate-progress"></div>
+
   </div>
 
-  <!-- Close -->
-  <button
-    (click)="closeToast()"
-    class="w-8 h-8 rounded-full flex items-center justify-center text-2xl leading-none opacity-80 transition-all duration-200 hover:opacity-100 hover:rotate-90 hover:bg-white/20"
-  >
-    ×
-  </button>
-
-  <!-- Progress -->
-  <div
-    class="absolute bottom-0 left-0 h-1 w-full bg-white/35 animate-progress"
-  ></div>
 </div>
 
-  </div>
 } @else {
-  <div class="p-4 text-center text-xs text-[#9ca3af] bg-white border border-[#dde1e7] rounded-xl">
-    Loading match...
-  </div>
+
+<div class="p-4 text-center text-xs text-[#9ca3af] bg-white border border-[#dde1e7] rounded-xl">
+  Loading match...
+</div>
+
 }

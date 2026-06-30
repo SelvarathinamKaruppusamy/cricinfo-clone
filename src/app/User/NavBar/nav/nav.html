@@ -1,61 +1,73 @@
-<mat-toolbar color="primary" class="!bg-sky-900 navbar">
-  <mat-icon>sports_cricket</mat-icon>
+<mat-toolbar color="primary" class="navbar">
 
-  <span class="logo"> CricInfo</span>
+  <div class="nav-left">
+    <mat-icon>sports_cricket</mat-icon>
+    <span class="logo">CricInfo</span>
+  </div>
 
   <span class="spacer"></span>
 
-  @for (item of items; track item.route) {
-    <a
-      mat-button
-      class="!text-white !rounded-none"
-      (click)="getMethod(item.route)"
-      [class.active-link]="activateRoute === item.route">
+  <!-- Desktop Menu -->
+  <div class="desktop-menu">
+
+    @for (item of items; track item.route) {
+    <a mat-button class="nav-link" (click)="getMethod(item.route)" [class.active-link]="activateRoute === item.route">
+
       {{ item.label }}
+
     </a>
-  }
+    }
 
-  <!-- STATS DROPDOWN -->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="statsMenu">
 
-  <button
-    mat-button
-    class="!text-white"
-    [matMenuTriggerFor]="statsMenu">
+      Stats
+      <mat-icon>arrow_drop_down</mat-icon>
 
-    Stats
+    </button>
 
-    <mat-icon>arrow_drop_down</mat-icon>
+  </div>
+
+  <!-- Mobile Menu -->
+  <button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu">
+
+    <mat-icon>menu</mat-icon>
 
   </button>
 
-  <mat-menu #statsMenu="matMenu">
-
-    <button
-      mat-menu-item
-      (click)="getMethod('/stats/overall')">
-
-      Overall Stats
-
-    </button>
-
-    <button
-      mat-menu-item
-      (click)="getMethod('/stats/purple')">
-
-      Purple Cap
-
-    </button>
-
-    <button
-      mat-menu-item
-      (click)="getMethod('/stats/orange')">
-
-      Orange Cap
-
-    </button>
-
-  </mat-menu>
-
 </mat-toolbar>
 
+<mat-menu #statsMenu="matMenu">
 
+  <button mat-menu-item (click)="getMethod('/stats/overall')">
+    Overall Stats
+  </button>
+
+  <button mat-menu-item (click)="getMethod('/stats/purple')">
+    Purple Cap
+  </button>
+
+  <button mat-menu-item (click)="getMethod('/stats/orange')">
+    Orange Cap
+  </button>
+
+</mat-menu>
+
+<mat-menu #mobileMenu="matMenu">
+
+  @for (item of items; track item.route) {
+
+  <button mat-menu-item (click)="getMethod(item.route)">
+
+    {{ item.label }}
+
+  </button>
+
+  }
+
+  <button mat-menu-item [matMenuTriggerFor]="statsMenu">
+
+    Stats
+
+  </button>
+
+</mat-menu>

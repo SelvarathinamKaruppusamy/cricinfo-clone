@@ -363,3 +363,181 @@ mat-expansion-panel-header {
   font-weight: 500;
   color: #f3f4f6;
 }
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+/* Tablet */
+@media screen and (max-width: 992px) {
+  .stats-container {
+    padding: 15px;
+  }
+
+  .overall-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .team-section,
+  .stats-section {
+    width: 100%;
+  }
+
+  .stats-section {
+    position: static;
+  }
+
+  .team-section {
+    max-height: none;
+  }
+
+  .player-card {
+    margin-top: 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .leader-header,
+  .stats-table-container,
+  .section-title {
+    width: 95%;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .stats-container {
+    padding: 10px;
+  }
+
+  .overall-layout {
+    flex-direction: column;
+  }
+
+  .team-section,
+  .stats-section {
+    width: 100%;
+  }
+
+  .stats-section {
+    position: static;
+  }
+
+  .team-section {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .player-card {
+    margin-top: 15px;
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-box {
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+  }
+
+  .highest-label {
+    font-size: 18px;
+  }
+
+  .highest-value {
+    font-size: 15px;
+  }
+
+  .leader-header {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+
+  .leader-header h2 {
+    font-size: 22px;
+  }
+
+  .stats-table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .stats-table {
+    min-width: 650px;
+  }
+
+  .stats-table th,
+  .stats-table td {
+    white-space: nowrap;
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile */
+@media screen and (max-width: 480px) {
+  .stats-container {
+    padding: 8px;
+  }
+
+  .team-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .player-card {
+    padding: 10px;
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+
+  .highest-label {
+    font-size: 16px;
+  }
+
+  .highest-value {
+    font-size: 14px;
+  }
+
+  .leader-header h2 {
+    font-size: 18px;
+  }
+
+  .title-badge {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .stats-table {
+    min-width: 600px;
+  }
+
+  .stats-table th,
+  .stats-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+}

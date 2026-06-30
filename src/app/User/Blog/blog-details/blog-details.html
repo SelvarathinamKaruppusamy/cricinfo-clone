@@ -1,0 +1,70 @@
+<div class="mt-17 flex justify-center items-center">
+  <div class="blog-detail-container ">
+    <!-- async subscribe and unsubscribe automatically without writing ("nest: ") in .ts file
+     we directly access the data  -->
+  @if (blog$ | async; as blog) {
+    <a routerLink="/blog" class="back-link">
+      <span class="material-symbols-outlined">arrow_back</span>
+      <span>View more blogs</span>
+    </a>
+
+    <header class="blog-header">
+      <span class="blog-category-badge">{{ blog.category }}</span>
+      <h1 class="blog-title">{{ blog.title }}</h1>
+
+      <div class="blog-meta-wrapper">
+        <div class="meta-chip author-chip">
+          <span class="material-symbols-outlined icon-v">account_circle</span>
+          <span
+            >By <strong>{{ blog.author }}</strong></span
+          >
+        </div>
+
+        <div class="meta-chip">
+          <span class="material-symbols-outlined icon-v">calendar_month</span>
+          <span>{{ blog.publishedDate | date: 'longDate' }}</span>
+        </div>
+
+        <div class="meta-chip">
+          <span class="material-symbols-outlined icon-v">schedule</span>
+          <span>{{ blog.readTime }}</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="blog-banner">
+      @if (blog.image) {
+        <img [ngSrc]="blog.image" fill priority [alt]="blog.title" class="banner-img" />
+      } @else {
+        <div class="placeholder-banner">
+          <span class="material-symbols-outlined banner-icon">sports_cricket</span>
+          <p>CrickInfo Match Day Coverage</p>
+        </div>
+      }
+    </div>
+
+    <main class="blog-main-content">
+      @for (paragraph of blog.content; track $index) {
+        <p class="content-paragraph">{{ paragraph }}</p>
+      }
+    </main>
+
+    <footer class="blog-footer">
+      <div class="tags-container">
+        @for (tag of blog.tags; track tag) {
+          <span class="tag-badge">
+            <span class="material-symbols-outlined tag-icon">sell</span>
+            {{ tag }}
+          </span>
+        }
+      </div>
+    </footer>
+  } @else {
+    <div class="loading-state">
+      <span class="material-symbols-outlined spinning-icon">progress_activity</span>
+      <p>Loading full report summary details...</p>
+    </div>
+  }
+</div>
+
+</div>

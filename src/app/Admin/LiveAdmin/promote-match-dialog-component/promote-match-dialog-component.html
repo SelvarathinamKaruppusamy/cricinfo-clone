@@ -1,0 +1,67 @@
+<h2
+  mat-dialog-title
+  class="text-lg font-semibold text-black px-5 pt-5 pb-2"
+>
+  No Live Match Available
+</h2>
+
+<mat-dialog-content class="px-5 py-3">
+
+  <div class="flex items-center justify-center gap-5">
+
+    <img
+      [src]="data.teams[0].logo"
+      class="w-14 h-14 object-contain rounded-full border border-slate-300 bg-white p-1">
+
+    <div class="text-center">
+      <h2 class="font-semibold text-lg text-slate-800">
+        {{ data.teams[0].shortName }}
+      </h2>
+    </div>
+
+    <span class="font-bold text-slate-500 text-lg">
+      VS
+    </span>
+
+    <div class="text-center">
+      <h2 class="font-semibold text-lg text-slate-800">
+        {{ data.teams[1].shortName }}
+      </h2>
+    </div>
+
+    <img
+      [src]="data.teams[1].logo"
+      class="w-14 h-14 object-contain rounded-full border border-slate-300 bg-white p-1">
+
+  </div>
+
+  <p class="mt-6 text-sm text-slate-700 leading-6 text-center">
+    Do you want to promote this match to
+    <span class="font-semibold text-green-700">Live</span>?
+  </p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions
+  align="end"
+  class="px-5 py-4 flex justify-end gap-2 border-t border-slate-200"
+>
+
+  <button
+    mat-button
+    [mat-dialog-close]="false"
+    class="!bg-transparent !text-gray-700 !border !border-slate-400 hover:!bg-slate-100 !rounded-lg !px-6 !py-2 !font-semibold"
+  >
+    Cancel
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    class="!bg-green-600 hover:!bg-green-700 !text-white !rounded-lg !px-6 !py-2 !font-semibold !shadow-sm hover:!shadow-md"
+  >
+    Go Live
+  </button>
+
+</mat-dialog-actions>

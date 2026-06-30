@@ -1,0 +1,296 @@
+@keyframes toastSlide {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-toastSlide {
+  animation: toastSlide 0.35s ease;
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+.animate-progress {
+  animation: progress 3s linear forwards;
+}
+
+/* Layout */
+
+.page-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.content-wrapper {
+  flex: 1;
+  padding: 16px;
+}
+
+.page-title-card,
+.live-card,
+.details-card,
+.upcoming-card,
+.action-card {
+  border-radius: 12px;
+  border: 1px solid #dde1e7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+}
+
+.page-title-card h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.page-title-card p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Team Cards */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.team-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.team-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.team-fullname {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.team-score {
+  text-align: right;
+}
+
+.score {
+  font-size: 18px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.overs {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Form */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.result-box {
+  width: 100%;
+  min-height: 80px;
+  resize: none;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.result-box:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+}
+
+/* Bottom Cards */
+
+.bottom-grid {
+  display: flex;
+  gap: 16px;
+}
+
+.upcoming-card,
+.action-card {
+  flex: 1;
+}
+
+.upcoming-preview {
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.upcoming-preview p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.action-card p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Buttons */
+
+.auto-btn {
+  margin-top: 8px;
+}
+
+.complete-btn {
+  margin-top: 12px;
+}
+
+/* Toast */
+
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  color: white;
+  z-index: 99999;
+  overflow: hidden;
+  min-width: 220px;
+  max-width: 450px;
+  animation: toastSlide 0.35s ease;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+.toast-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.toast-content {
+  flex: 1;
+}
+
+.toast-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.toast-message {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toast-close:hover {
+  transform: rotate(90deg);
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: progress 3s linear forwards;
+}
+
+/* Loading */
+
+.loading-card {
+  text-align: center;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid #dde1e7;
+  background: white;
+  color: #6b7280;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .team-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .toast {
+    left: 16px;
+    right: 16px;
+    min-width: auto;
+  }
+}

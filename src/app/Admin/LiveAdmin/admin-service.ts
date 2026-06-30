@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { LiveModel } from '../../LivePages/Models/models';
+import { LiveModel } from '../../User/LivePages/Models/models';
 import { HttpClient } from '@angular/common/http';
-import { LiveService } from '../../LivePages/Services/live-service';
+import { LiveService } from '../../User/LivePages/Services/live-service';
 
 @Injectable({
   providedIn: 'root',
@@ -195,49 +195,60 @@ export class AdminService {
   // =========================
   completeMatchAndPromoteUpcoming(playerOfMatch: string, resultText?: string) {
     const liveMatch = this.liveService.live();
-    if (!liveMatch) return;
+  if (!liveMatch) return;
 
-    const finalResult = resultText?.trim()
-      ? resultText.trim()
-      : this.generateResultFromScores(liveMatch);
+  const finalResult = resultText?.trim()
+    ? resultText.trim()
+    : this.generateResultFromScores(liveMatch);
 
-    this.GetUpcomingMatches().subscribe({
-      next: (upcomingMatches) => {
-        if (!upcomingMatches?.length) {
-          alert('No upcoming matches available');
-          return;
-        }
+  const completedPayload = this.buildCompletedMatchFromLive(
+    structuredClone(liveMatch),
+    finalResult,
+    playerOfMatch
+  );
 
-        const nextUpcoming = structuredClone(upcomingMatches[0]);
-
-        const completedPayload = this.buildCompletedMatchFromLive(
-          structuredClone(liveMatch),
-          finalResult,
-          playerOfMatch,
-        );
-
-        const nextLivePayload = this.buildLiveMatchFromUpcoming(nextUpcoming);
-
-        this.AddCompletedMatch(completedPayload).subscribe({
-          next: () => {
-            this.liveService.UpdateMatch(liveMatch.id, nextLivePayload).subscribe({
-              next: (updatedLive) => {
-                this.DeleteUpcomingMatch(nextUpcoming.id).subscribe({
-                  next: () => {
-                    this.liveService.live.set(structuredClone(updatedLive));
-                    this.liveService.resetRuntimeState();
-                    alert('Match moved to Completed and next Upcoming moved to Live.');
-                  },
-                  error: (err) => console.error('Delete upcoming failed', err),
-                });
-              },
-              error: (err) => console.error('Update live failed', err),
-            });
-          },
-          error: (err) => console.error('Add completed failed', err),
-        });
-      },
-      error: (err) => console.error('Fetch upcoming failed', err),
-    });
+  this.AddCompletedMatch(completedPayload).subscribe({
+    next: () => {
+      this.liveService.DeleteMatch(liveMatch.id).subscribe({
+        next: () => {
+          this.liveService.live.set(null);
+          this.liveService.resetRuntimeState();
+        },
+        error: err => console.error('Delete live match failed', err)
+      });
+    },
+    error: err => console.error('Add completed failed', err)
+  });
   }
+  promoteUpcomingToLive() {
+  this.GetUpcomingMatches().subscribe({
+    next: (matches) => {
+
+      if (!matches.length) {
+        alert('No upcoming matches available');
+        return;
+      }
+
+      const nextUpcoming = structuredClone(matches[0]);
+
+      const livePayload = this.buildLiveMatchFromUpcoming(nextUpcoming);
+
+      this.liveService.AddMatch(livePayload).subscribe({
+        next: (newLiveMatch) => {
+
+          this.DeleteUpcomingMatch(nextUpcoming.id).subscribe({
+            next: () => {
+              this.liveService.live.set(structuredClone(newLiveMatch));
+            },
+            error: err => console.error('Delete upcoming failed', err)
+          });
+
+        },
+        error: err => console.error('Add live match failed', err)
+      });
+
+    },
+    error: err => console.error('Fetch upcoming failed', err)
+  });
+}
 }

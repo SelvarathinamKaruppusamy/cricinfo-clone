@@ -1,0 +1,227 @@
+.table-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 90px; /* Navbar height */
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+thead {
+  background: #111;
+  color: #fff;
+}
+
+th {
+  padding: 14px;
+  text-align: center;
+  font-weight: 600;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.team-column {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team-column img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.positive {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.negative {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.form-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.win {
+  background: #22c55e;
+}
+
+.loss {
+  background: #ef4444;
+}
+
+.not-available {
+  color: #9ca3af;
+}
+
+/* Legend */
+
+.legend-box {
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.legend-box h5 {
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.legend-win {
+  background: #37b24d;
+}
+
+.legend-loss {
+  background: #ef4444;
+}
+
+.legend-text {
+  font-size: 15px;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width:992px){
+
+.table-container{
+    width:95%;
+    padding-top:85px;
+}
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width:768px){
+
+.table-container{
+    width:100%;
+    padding:75px 10px 20px;
+    overflow-x:auto;
+}
+
+table{
+    min-width:760px;
+}
+
+th,
+td{
+    white-space:nowrap;
+    font-size:13px;
+    padding:10px 8px;
+}
+
+.team-column img{
+    width:28px;
+    height:28px;
+}
+
+.form-circle{
+    width:20px;
+    height:20px;
+    font-size:10px;
+}
+
+.legend-box{
+    min-width:760px;
+}
+
+.legend-grid{
+    grid-template-columns:repeat(3,max-content);
+    column-gap:30px;
+}
+
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media (max-width:480px){
+
+.table-container{
+    padding-top:70px;
+}
+
+.team-column img{
+    width:24px;
+    height:24px;
+}
+
+th,
+td{
+    font-size:12px;
+}
+
+}

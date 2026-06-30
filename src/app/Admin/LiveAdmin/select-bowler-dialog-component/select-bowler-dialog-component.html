@@ -1,0 +1,9 @@
+<div *ngFor="let bowler of data.bowlers" class="bowler-card" (click)="select(bowler.index)">
+  <div class="bowler-name">
+    {{ bowler.name }}
+  </div>
+
+  <div class="bowler-overs">
+    {{ bowler.overs }} Overs
+  </div>
+</div>

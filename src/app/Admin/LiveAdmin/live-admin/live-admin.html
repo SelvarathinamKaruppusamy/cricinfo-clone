@@ -1,9 +1,9 @@
-<div class="min-h-screen flex">
-  <!-- Left sidebar -->
-  <app-sidenav-live></app-sidenav-live>
+<div class="main-layout">
+  <div class="sidebar">
+    <app-sidenav-live></app-sidenav-live>
+  </div>
 
-  <!-- Right content -->
-  <div class="flex-1 overflow-auto">
+  <div class="content-area">
     <router-outlet></router-outlet>
   </div>
 </div>

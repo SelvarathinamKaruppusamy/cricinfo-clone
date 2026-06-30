@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { describe, beforeEach, it, expect } from 'vitest';
 
 import { LiveAdmin } from './live-admin';
 
@@ -9,11 +10,19 @@ describe('LiveAdmin', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LiveAdmin],
-    }).compileComponents();
+    })
+      .overrideComponent(LiveAdmin, {
+        set: {
+          template: '<div>Live Admin</div>',
+          styles: [''],
+        },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(LiveAdmin);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

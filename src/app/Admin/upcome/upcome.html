@@ -2,37 +2,34 @@
   <div class="left-panel">
     <mat-list>
       @for (match of matches; track match.matchNo) {
-        <mat-list-item
-          class="match-item"
-          [class.selected]="selectedMatchNo === match.matchNo"
-          (click)="selectMatch(match)"
-        >
-          <div class="match-row">
-            <div class="team-right">
-              <img [src]="match.teams[0].logo" alt="" width="30px" height="30px" />
-              <span>{{ match.teams[0].shortName }}</span>
-            </div>
-
-            <span class="vs">VS</span>
-
-            <div class="team-left">
-              <span>{{ match.teams[1].shortName }}</span>
-              <img [src]="match.teams[1].logo" alt="" width="30px" height="30px" />
-            </div>
+      <mat-list-item class="match-item" [class.selected]="selectedMatchNo === match.matchNo"
+        (click)="selectMatch(match)">
+        <div class="match-row">
+          <div class="team-right">
+            <img [src]="match.teams[0].logo" alt="" width="30px" height="30px" />
+            <span>{{ match.teams[0].shortName }}</span>
           </div>
-        </mat-list-item>
+
+          <span class="vs">VS</span>
+
+          <div class="team-left">
+            <span>{{ match.teams[1].shortName }}</span>
+            <img [src]="match.teams[1].logo" alt="" width="30px" height="30px" />
+          </div>
+        </div>
+      </mat-list-item>
       }
     </mat-list>
   </div>
 
   <div class="right-panel">
     @if (selectedMatch) {
-      <mat-card class="update-card">
-        <form [formGroup]="matchForm">
-          <mat-card-header>
-            <mat-card-title>UPDATE MATCH</mat-card-title>
-            <mat-card-subtitle>Match No : {{ selectedMatch.matchNo }}</mat-card-subtitle>
-          </mat-card-header>
+    <mat-card class="update-card">
+      <form [formGroup]="matchForm">
+        <mat-card-header>
+          <mat-card-title>UPDATE MATCH</mat-card-title>
+          <mat-card-subtitle>Match No : {{ selectedMatch.matchNo }}</mat-card-subtitle>
+        </mat-card-header>
 
           <mat-card-content>
             <div class="row">
@@ -87,7 +84,7 @@
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Status</mat-label>
                 <mat-icon matPrefix>schedule</mat-icon>
-                <input input matInput [value]="matchForm.get('status')?.value" disabled />
+                <input matInput [value]="matchForm.get('status')?.value" disabled />
 
                 @if (
                   matchForm.get('status')?.hasError('required') && matchForm.get('status')?.touched
@@ -114,10 +111,13 @@
       <mat-card class="empty-card">
         <mat-card-content>
           <h2>Select a Match</h2>
-          <p>Choose a match from the left panel</p>
+          <p>To update the details</p>
         </mat-card-content>
-      </mat-card>
-    }
+      <!-- </form> -->
+    </mat-card>
+
+
+    } 
   </div>
 </div>
 

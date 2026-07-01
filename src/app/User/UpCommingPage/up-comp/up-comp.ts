@@ -35,9 +35,11 @@ export interface matchCard {
 
 @Component({
   selector: 'app-up-comp',
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     //  RouterOutlet,
-      MatButtonModule],
+    MatButtonModule,
+  ],
   templateUrl: './up-comp.html',
   styleUrl: './up-comp.css',
   standalone: true,

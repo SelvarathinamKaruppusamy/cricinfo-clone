@@ -1,0 +1,145 @@
+/* Dialog Container */
+
+:host {
+  display: block;
+}
+
+/* Title */
+
+.mat-mdc-dialog-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  padding: 20px 24px 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Content */
+
+.mat-mdc-dialog-content {
+  padding: 24px;
+  color: #374151;
+}
+
+/* Teams Section */
+
+.teams-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  padding: 6px;
+}
+
+.team-name {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.vs-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+/* Message */
+
+.dialog-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.live-text {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+/* Actions */
+
+.mat-mdc-dialog-actions {
+  padding: 16px 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Buttons */
+
+.cancel-btn {
+  background: transparent;
+  border: 1px solid #94a3b8;
+  color: #374151;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.cancel-btn:hover {
+  background: #f1f5f9;
+}
+
+.live-btn {
+  background: #16a34a;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s ease;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25);
+}
+
+.live-btn:hover {
+  background: #15803d;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .teams-container {
+    gap: 14px;
+  }
+
+  .team-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .team-name {
+    font-size: 15px;
+  }
+
+  .mat-mdc-dialog-actions {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .live-btn {
+    width: 100%;
+  }
+}

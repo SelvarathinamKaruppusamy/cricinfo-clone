@@ -163,9 +163,10 @@ export class Upcome implements OnInit {
 
         this.showToast('Match Updated Successfully', 'success');
 
-        this.loadMatches();
         this.selectedMatch = null;
         this.selectedMatchNo = null;
+        this.matchForm.reset();
+        this.loadMatches();
       },
       error: () => {
         this.dialog.closeAll();

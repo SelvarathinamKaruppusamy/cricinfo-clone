@@ -35,27 +35,37 @@
           </mat-card-header>
 
           <mat-card-content>
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Stadium</mat-label>
-              <mat-icon matPrefix>stadium</mat-icon>
-              <input matInput formControlName="venue" />
+            <div class="row">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Stadium</mat-label>
+                <mat-icon matPrefix>stadium</mat-icon>
+                <mat-select formControlName="venue" (selectionChange)="venueChanges($event.value)">
+                  @for (stadium of Stadiums; track stadium.venue) {
+                    <mat-option [value]="stadium.venue">
+                      {{ stadium.venue }}
+                    </mat-option>
+                  }
+                </mat-select>
 
-              @if (
-                matchForm.get('venue')?.hasError('required') && matchForm.get('venue')?.touched
-              ) {
-                <mat-error>venue is required</mat-error>
-              }
-            </mat-form-field>
+                @if (
+                  matchForm.get('venue')?.hasError('required') && matchForm.get('venue')?.touched
+                ) {
+                  <mat-error>venue is required</mat-error>
+                }
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>City</mat-label>
-              <mat-icon matPrefix>place</mat-icon>
-              <input matInput formControlName="city" />
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>City</mat-label>
+                <mat-icon matPrefix>place</mat-icon>
+                <input matInput [value]="matchForm.get('city')?.value" disabled />
 
-              @if (matchForm.get('city')?.hasError('required') && matchForm.get('city')?.touched) {
-                <mat-error>city is required</mat-error>
-              }
-            </mat-form-field>
+                @if (
+                  matchForm.get('city')?.hasError('required') && matchForm.get('city')?.touched
+                ) {
+                  <mat-error>city is required</mat-error>
+                }
+              </mat-form-field>
+            </div>
 
             <div class="row">
               <mat-form-field appearance="outline" class="full-width">
@@ -76,7 +86,8 @@
 
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Status</mat-label>
-                <input matInput formControlName="status" />
+                <mat-icon matPrefix>schedule</mat-icon>
+                <input input matInput [value]="matchForm.get('status')?.value" disabled />
 
                 @if (
                   matchForm.get('status')?.hasError('required') && matchForm.get('status')?.touched
@@ -87,17 +98,18 @@
             </div>
 
             <mat-card-actions>
-              <button mat-raised-button color="accent"
-              class="!h-12 !w-30 !text-lg font-semibold !bg-blue-300"
-              (click)="prepareUpdate(); saveMatch()">
+              <button
+                mat-raised-button
+                color="accent"
+                class="!h-12 !w-30 !text-lg font-semibold !bg-blue-300"
+                (click)="prepareUpdate(); saveMatch()"
+              >
                 Save
               </button>
             </mat-card-actions>
           </mat-card-content>
         </form>
       </mat-card>
-
-      
     } @else {
       <mat-card class="empty-card">
         <mat-card-content>
@@ -109,21 +121,20 @@
   </div>
 </div>
 
-
-  <div class="toast" *ngIf="toastVisible" [ngClass]="toastType">
-    <div class="toast-icon">
-      <span *ngIf="toastType === 'success'">✓</span>
-      <span *ngIf="toastType === 'error'">✕</span>
-    </div>
-
-    <div class="toast-content">
-      <div class="toast-title">
-        {{ toastType === 'success' ? 'Success' : 'Error' }}
-      </div>
-      <div class="toast-message">{{ toastMessage }}</div>
-    </div>
-
-    <button class="toast-close" (click)="closeToast()">×</button>
-
-    <div class="toast-progress"></div>
+<div class="toast" *ngIf="toastVisible" [ngClass]="toastType">
+  <div class="toast-icon">
+    <span *ngIf="toastType === 'success'">✓</span>
+    <span *ngIf="toastType === 'error'">✕</span>
   </div>
+
+  <div class="toast-content">
+    <div class="toast-title">
+      {{ toastType === 'success' ? 'Success' : 'Error' }}
+    </div>
+    <div class="toast-message">{{ toastMessage }}</div>
+  </div>
+
+  <button class="toast-close" (click)="closeToast()">×</button>
+
+  <div class="toast-progress"></div>
+</div>

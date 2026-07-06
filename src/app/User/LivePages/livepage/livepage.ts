@@ -18,6 +18,8 @@ import { Statistics } from '../statistics/statistics';
 
 import { LiveService } from '../Services/live-service';
 import { Player } from '../Models/models';
+import { LiveAnimation } from '../live-animation/live-animation';
+import { Animation } from '../Services/animation';
 
 @Component({
   selector: 'app-livepage',
@@ -30,6 +32,7 @@ import { Player } from '../Models/models';
     CommonModule,
     Commentary,
     Statistics,
+    LiveAnimation
   ],
   templateUrl: './livepage.html',
   styleUrl: './livepage.css',
@@ -37,10 +40,12 @@ import { Player } from '../Models/models';
 export class Livepage implements OnInit, OnDestroy {
   service = inject(LiveService);
   cd = inject(ChangeDetectorRef);
-
+animation = inject(Animation);
   pollSub?: Subscription;
-
+private previousBallCount = 0;
+private previousInnings = 1;
   live = computed(() => this.service.live());
+  private winnerAnimationPlayed = false;
 
   currentbatters = computed<Player[]>(() =>
     this.service.players1().filter((player) => player.status === 'Not Out')
@@ -54,6 +59,7 @@ export class Livepage implements OnInit, OnDestroy {
   currentBowler = computed(() => this.service.currentBowler);
 
   tossDecision = computed(
+
     () => this.service.tossDecision() ?? this.live()?.tossDecision ?? ''
   );
 
@@ -68,23 +74,13 @@ export class Livepage implements OnInit, OnDestroy {
   if (!battingTeam) return [];
 
   const overs = battingTeam.overs ?? 0;
-
-  // current over legal balls count from overs
-  // 2.3 => 3 balls in current over
-  // 5.0 => 0 balls in current over
   const legalBallsInCurrentOver = Math.round((overs % 1) * 10);
-
-  // if over just completed, show empty
   if (legalBallsInCurrentOver === 0) return [];
-
   const inningsBalls = this.service.ball();
   const result: string[] = [];
-
   let legalCount = 0;
-
   for (let i = inningsBalls.length - 1; i >= 0; i--) {
     result.unshift(inningsBalls[i]);
-
     if (inningsBalls[i] !== 'Wd' && inningsBalls[i] !== 'Nb') {
       legalCount++;
     }
@@ -143,26 +139,45 @@ export class Livepage implements OnInit, OnDestroy {
   }
 
   startLivePolling() {
-    this.pollSub = interval(1000)
-      .pipe(
-        startWith(0),
-        switchMap(() => this.service.GetLiveMatches())
-      )
-      .subscribe({
-        next: (res) => {
-          if (!res?.length) return;
+  this.pollSub = interval(1000)
+    .pipe(
+      startWith(0),
+      switchMap(() => this.service.GetLiveMatches())
+    )
+    .subscribe({
+      next: (res) => {
+        if (!res?.length) return;
+        const latestMatch = structuredClone(res[0]);
+        this.service.loadMatchIntoService(latestMatch);
 
-          const latestMatch = structuredClone(res[0]);
-
-          // reload live + rebuild runtime state from DB
-          this.service.loadMatchIntoService(latestMatch);
-
-          this.cd.detectChanges();
-        },
-        error: (err) => console.error('Polling error:', err),
-      });
-  }
-
+       if (
+  !this.winnerAnimationPlayed &&
+  this.service.innings() === 2 &&
+  (
+    this.matchWon() ||
+    this.remainingBalls() === 0 ||
+    latestMatch.teams[this.service.currentBattingTeam()].wickets >= 10
+  )
+) {
+  this.winnerAnimationPlayed = true;
+  this.animation.showWinner();
+}
+        const currentInnings = this.service.innings();
+        if (currentInnings !== this.previousInnings) {
+          this.previousInnings = currentInnings;
+          this.previousBallCount = 0;
+        }
+        const balls = this.service.ball();
+        if (balls.length > this.previousBallCount) {
+          this.previousBallCount = balls.length;
+          const latestBall = balls.at(-1)!;
+          this.animation.show(latestBall);
+        }
+        this.cd.detectChanges();
+      },
+      error: (err) => console.error(err),
+    });
+}
   ngOnDestroy(): void {
     this.pollSub?.unsubscribe();
   }

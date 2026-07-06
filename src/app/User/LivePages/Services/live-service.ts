@@ -828,38 +828,49 @@ AddMatch(match: LiveModel): Observable<LiveModel> {
       error: (err) => console.error('DB update failed', err),
     });
   }
-  completeMatch() {
-    const live = this.live();
-    if (!live) return;
-    if (!this.completedBattingTeam) return;
-    const secondBatting = live.teams[this.currentBattingTeam()];
-    const firstBatting = this.completedBattingTeam;
-    const target = firstBatting.scores + 1;
-    let result = '';
-    // chasing team won
-    if (secondBatting.scores >= target) {
-      const wicketsLeft = 10 - secondBatting.wickets;
-      result = `${secondBatting.shortName} won by ${wicketsLeft} wickets`;
-    }
-    // innings ended and chasing team failed
-    else if (secondBatting.overs >= 20 || secondBatting.wickets >= 10) {
-      if (secondBatting.scores === firstBatting.scores) {
-        result = 'Match Tied';
-      } else {
-        const margin = firstBatting.scores - secondBatting.scores;
-        result = `${firstBatting.shortName} won by ${margin} runs`;
-      }
-    } else {
-      return;
-    }
-    this.live.update((match) => {
-      if (!match) return match;
-      return {
-        ...match,
-        result,
-        status: 'COMPLETED',
-      };
-    });
-    this.saveLiveToDb();
+ completeMatch() {
+  const live = this.live();
+  if (!live) return;
+  if (!this.completedBattingTeam) return;
+
+  const secondBatting = live.teams[this.currentBattingTeam()];
+  const firstBatting = this.completedBattingTeam;
+
+  const target = firstBatting.scores + 1;
+
+  let result = '';
+
+  // Chasing team won
+  if (secondBatting.scores >= target) {
+    const wicketsLeft = 10 - secondBatting.wickets;
+    result = `${secondBatting.shortName} won by ${wicketsLeft} wickets`;
   }
+  // First innings team won or Tie
+  else if (secondBatting.overs >= 20 || secondBatting.wickets >= 10) {
+
+    if (secondBatting.scores === firstBatting.scores) {
+      result = 'Match Tied';
+    } else {
+      const margin = firstBatting.scores - secondBatting.scores;
+      result = `${firstBatting.shortName} won by ${margin} runs`;
+    }
+
+  } else {
+    return;
+  }
+
+  this.live.update(match => {
+    if (!match) return match;
+
+    return {
+      ...match,
+      result,
+      status: 'COMPLETED'
+    };
+  });
+
+  console.log('Before Save:', structuredClone(this.live()));
+
+  this.saveLiveToDb();
+}
 }

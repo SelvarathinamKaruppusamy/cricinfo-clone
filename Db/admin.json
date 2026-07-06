@@ -27,6 +27,20 @@
       "role": "Super Admin",
       "address": "Chennai, Tamil Nadu",
       "dob": "2016-06-28"
+    },
+    {
+      "id": "gMf4WFPj8FQ",
+      "userName": "rithik",
+      "passWord": "9IyEWUtzm$",
+      "fname": "ritthik",
+      "lname": "t",
+      "email": "admin2@gmail.com",
+      "gender": "Male",
+      "mobileNo": "9967565680",
+      "role": "Admin",
+      "address": "chennai,tamil nadu",
+      "dob": "2004-02-18",
+      "firstLogin": true
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

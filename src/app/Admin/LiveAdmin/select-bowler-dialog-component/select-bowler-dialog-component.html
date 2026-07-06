@@ -1,9 +1,19 @@
-<div *ngFor="let bowler of data.bowlers" class="bowler-card" (click)="select(bowler.index)">
-  <div class="bowler-name">
-    {{ bowler.name }}
-  </div>
+<div class="grid gap-3">
+  <mat-card
+  *ngFor="let bowler of data.bowlers"
+  (click)="select(bowler.index)"
+  class="cursor-pointer border border-slate-200 transition-all duration-200 hover:!bg-slate-200 hover:border-blue-500 hover:shadow-xl"
+>
+    <mat-card-content class="flex items-center justify-between p-4">
+      <div>
+        <h3 class="text-base font-semibold text-slate-800">
+          {{ bowler.name }}
+        </h3>
 
-  <div class="bowler-overs">
-    {{ bowler.overs }} Overs
-  </div>
+        <p class="text-sm text-slate-500">
+          {{ bowler.overs }} Overs
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

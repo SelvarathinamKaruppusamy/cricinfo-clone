@@ -828,39 +828,33 @@ AddMatch(match: LiveModel): Observable<LiveModel> {
       error: (err) => console.error('DB update failed', err),
     });
   }
-  completeMatch() {
+ completeMatch() {
   const live = this.live();
   if (!live) return;
   if (!this.completedBattingTeam) return;
 
-  const secondBattingIndex = this.currentBattingTeam();
-  const firstBattingIndex = this.currentBowlingTeam();
-
-  const secondBatting = live.teams[secondBattingIndex];
-  const firstBatting = live.teams[firstBattingIndex];
+  const secondBatting = live.teams[this.currentBattingTeam()];
+  const firstBatting = this.completedBattingTeam;
 
   const target = firstBatting.scores + 1;
 
   let result = '';
-  let winner = -1; // -1 = tie, 0 = first batting won, 1 = second batting won
 
-  // Chasing team wins
+  // Chasing team won
   if (secondBatting.scores >= target) {
     const wicketsLeft = 10 - secondBatting.wickets;
     result = `${secondBatting.shortName} won by ${wicketsLeft} wickets`;
-    winner = 1;
   }
-
-  // Chase failed
+  // First innings team won or Tie
   else if (secondBatting.overs >= 20 || secondBatting.wickets >= 10) {
+
     if (secondBatting.scores === firstBatting.scores) {
       result = 'Match Tied';
-      winner = -1;
     } else {
       const margin = firstBatting.scores - secondBatting.scores;
       result = `${firstBatting.shortName} won by ${margin} runs`;
-      winner = 0;
     }
+
   } else {
     return;
   }
@@ -868,44 +862,15 @@ AddMatch(match: LiveModel): Observable<LiveModel> {
   this.live.update(match => {
     if (!match) return match;
 
-    const first = match.teams[firstBattingIndex];
-    const second = match.teams[secondBattingIndex];
-
-    if (winner === 0) {
-      // First innings team won
-      first.winCount++;
-      first.totalMatch++;
-      first.matchStatus.push(true);
-
-      second.lossCount++;
-      second.totalMatch++;
-      second.matchStatus.push(false);
-    }
-
-    else if (winner === 1) {
-      // Second innings team won
-      second.winCount++;
-      second.totalMatch++;
-      second.matchStatus.push(true);
-
-      first.lossCount++;
-      first.totalMatch++;
-      first.matchStatus.push(false);
-    }
-
-    else {
-      // Tie
-      first.totalMatch++;
-      second.totalMatch++;
-    }
-
     return {
       ...match,
       result,
-      status: 'COMPLETED',
+      status: 'COMPLETED'
     };
   });
-console.log('Before Save:', structuredClone(this.live()));
+
+  console.log('Before Save:', structuredClone(this.live()));
+
   this.saveLiveToDb();
 }
 }

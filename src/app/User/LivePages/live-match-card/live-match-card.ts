@@ -10,7 +10,7 @@ import { LiveModel, Team } from '../Models/models';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UpcService } from '../../UpCommingPage/up-comp/upc-service';
 import { CompletedService } from '../../Completed/Services/completed-service';
 import { Match } from '../../Completed/Models/match-module';
@@ -22,8 +22,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { AdminService } from '../../../Admin/LiveAdmin/admin-service';
 import {
   catchError,
-  EMPTY,
-  filter,
   timer,
   switchMap,
   Subject,

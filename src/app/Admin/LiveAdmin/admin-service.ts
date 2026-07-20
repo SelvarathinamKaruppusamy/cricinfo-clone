@@ -79,6 +79,47 @@ export class AdminService {
     return 'Match tied';
   }
 
+  updateTeamStats(match: LiveModel): LiveModel {
+
+  const updated = structuredClone(match);
+
+  const team1 = updated.teams[0];
+  const team2 = updated.teams[1];
+
+  if (team1.scores > team2.scores) {
+
+    team1.winCount++;
+    team1.totalMatch++;
+    team1.matchStatus.push(true);
+
+    team2.lossCount++;
+    team2.totalMatch++;
+    team2.matchStatus.push(false);
+
+  }
+  else if (team2.scores > team1.scores) {
+
+    team2.winCount++;
+    team2.totalMatch++;
+    team2.matchStatus.push(true);
+
+    team1.lossCount++;
+    team1.totalMatch++;
+    team1.matchStatus.push(false);
+
+  }
+  else {
+
+    // Match tied
+
+    team1.totalMatch++;
+    team2.totalMatch++;
+
+  }
+
+  return updated;
+}
+
   // =========================
   // LIVE -> COMPLETED
   // =========================
@@ -201,11 +242,13 @@ export class AdminService {
     ? resultText.trim()
     : this.generateResultFromScores(liveMatch);
 
-  const completedPayload = this.buildCompletedMatchFromLive(
-    structuredClone(liveMatch),
-    finalResult,
-    playerOfMatch
-  );
+  const updatedLive = this.updateTeamStats(liveMatch);
+
+const completedPayload = this.buildCompletedMatchFromLive(
+  updatedLive,
+  finalResult,
+  playerOfMatch
+);
 
   this.AddCompletedMatch(completedPayload).subscribe({
     next: () => {

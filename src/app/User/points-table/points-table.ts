@@ -31,9 +31,9 @@ export class PointsTable implements OnInit {
     this.completedService.getCompletedMatches().subscribe({
       next: (matches: any[]) => {
         let filteredMatches = matches;
-
         if (selectedMatchNo) {
           filteredMatches = matches.filter((match) => match.matchNo <= selectedMatchNo);
+          console.log(filteredMatches)
         }
 
         const teamMap = new Map<number, any>();
@@ -111,6 +111,7 @@ export class PointsTable implements OnInit {
           return b.nrr - a.nrr;
         });
 
+        console.log(this.pointsTable)
         this.cdr.detectChanges();
       },
 

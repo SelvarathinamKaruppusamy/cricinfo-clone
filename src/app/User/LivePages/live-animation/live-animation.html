@@ -1,0 +1,41 @@
+@if (defaultVisible()) {
+
+<div class="animation-container">
+
+    <ng-lottie
+        [options]="{
+          path:'/animations/batball.json',
+          loop:true
+        }">
+    </ng-lottie>
+
+</div>
+
+}
+
+@if (visible()) {
+
+<div class="animation-container">
+
+    <ng-lottie
+        [options]="options()">
+    </ng-lottie>
+
+</div>
+
+}
+
+@if (winnerVisible()) {
+
+<div class="animation-container">
+
+    <ng-lottie
+        [options]="{
+          path:'/animations/winner.json',
+          loop:true
+        }">
+    </ng-lottie>
+
+</div>
+
+}

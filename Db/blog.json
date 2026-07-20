@@ -718,36 +718,6 @@
         "Rohit Sharma",
         "Match Report"
       ]
-    },
-    {
-      "id": "25",
-      "matchId": 25,
-      "title": "Kohli's Unbeaten 82 Powers RCB to Clinical Win Over Lucknow",
-      "slug": "kohli-unbeaten-82-powers-rcb-to-clinical-win-over-lucknow",
-      "image": "f_auto/v1781204558/images_yoiqft.jpg",
-      "shortDescription": "Virat Kohli remained unbeaten on 82 as Royal Challengers Bengaluru chased down 185 to defeat Lucknow Super Giants by six wickets at Ekana Stadium.",
-      "category": "Match Report",
-      "author": "CrickInfo Team",
-      "content": [
-        "Royal Challengers Bengaluru produced a professional all-round performance to defeat Lucknow Super Giants by six wickets at the BRSABV Ekana Cricket Stadium. Chasing 185 for victory, RCB reached 185 for 3 with ten balls to spare and secured an important win away from home.",
-        "Lucknow Super Giants posted a competitive total of 184 for 7 after being put in to bat. Captain Rishabh Pant once again led from the front with a well-crafted 49, while Nicholas Pooran entertained with a quick-fire 41. Aiden Markram and Mitchell Marsh also made useful contributions, helping LSG build a strong platform throughout the innings.",
-        "RCB's bowlers delivered when it mattered most. Josh Hazlewood was outstanding with three wickets, repeatedly breaking key partnerships and slowing Lucknow's momentum. Bhuvneshwar Kumar supported him brilliantly with two wickets, while Suyash Sharma and Yash Dayal maintained control through the middle overs.",
-        "The chase was anchored by Virat Kohli, who continued his outstanding form in IPL 2026. The veteran batter remained unbeaten on 82 from 51 deliveries, combining elegance and authority throughout his innings. Kohli's ability to rotate the strike and accelerate when required ensured RCB remained ahead of the asking rate from start to finish.",
-        "Phil Salt provided an explosive start with 31, while Rajat Patidar and Devdutt Padikkal chipped in with valuable contributions. Even after Lucknow managed a few breakthroughs through Avesh Khan and Mohammad Shami, Bengaluru's batting unit never lost control of the chase.",
-        "Kohli eventually guided RCB across the finish line alongside Venkatesh Iyer, completing another successful run chase for his side. For his unbeaten match-winning knock, Virat Kohli was deservedly named Player of the Match. The victory boosted Bengaluru's campaign significantly, while Lucknow Super Giants suffered a setback despite posting a competitive total."
-      ],
-      "publishedDate": "2026-03-25",
-      "readTime": "5 min read",
-      "featured": false,
-      "tags": [
-        "Virat Kohli",
-        "RCB",
-        "LSG",
-        "IPL 2026",
-        "Josh Hazlewood",
-        "Rishabh Pant",
-        "Match Report"
-      ]
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

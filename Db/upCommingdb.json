@@ -735,13 +735,11 @@
     {
       "matchNo": 29,
       "venue": "Narendra Modi Stadium",
-      "city": "Ahmedabad",
       "date": "2026-06-29",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,
       "playerOfTheMatch": null,
-      "status": "Upcoming",
       "teams": [
         {
           "teamId": 7,
@@ -1092,7 +1090,9 @@
           ]
         }
       ],
-      "id": "UD8wYimt39I"
+      "id": "UD8wYimt39I",
+      "city": "Ahmedabad",
+      "status": "Upcoming"
     },
     {
       "matchNo": 30,
@@ -1840,7 +1840,7 @@
       "matchNo": 32,
       "venue": "Eden Gardens",
       "city": "Kolkata",
-      "date": "7/2/2026",
+      "date": "2026-07-02",
       "tossWinner": null,
       "tossDecision": null,
       "result": null,

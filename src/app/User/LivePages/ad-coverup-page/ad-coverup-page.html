@@ -1,0 +1,21 @@
+<section class="flex flex-col md:flex-row gap-4 p-4">
+  <mat-card
+    *ngFor="let news of iplNews"
+    class="flex-1 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 !p-0">
+      <img
+        [src]="news.image"
+        [alt]="news.title"
+        class="max-w-full h-60 object-cover" />
+
+    <mat-card-content class="p-3 bg-gradient-to-b from-gray-50 to-white">
+      <h3 class="text-base font-semibold text-blue-600 mb-1 truncate">
+        {{ news.title }}
+      </h3>
+
+      <p class="text-gray-500 text-xs leading-relaxed line-clamp-2">
+        {{ news.description }}
+      </p>
+    </mat-card-content>
+
+  </mat-card>
+</section>

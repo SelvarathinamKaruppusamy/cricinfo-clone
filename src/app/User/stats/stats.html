@@ -1,0 +1,224 @@
+<div class="mt-17">
+  <div class="stats-container">
+  <!-- OVERALL STATS -->
+  @if (statType === 'overall') {
+    <div class="overall-layout">
+      <!-- LEFT SIDE -->
+      <div class="team-section">
+        <mat-accordion>
+          @for (team of teams; track team.teamId) {
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <img [src]="team.logo" class="team-logo" />
+                {{ team.fullName }}
+              </mat-expansion-panel-header>
+              <mat-list>
+                @for (player of getPlayersForTeam(team.teamId); track player.id) {
+                  <mat-list-item class="player-item" (click)="selectPlayer(player, team)">
+                    <mat-icon matListItemIcon> person </mat-icon>
+                    <span matListItemTitle>
+                      {{ player.name }}
+                    </span>
+                    <span matListItemLine>
+                      {{ player.role }}
+                    </span>
+                  </mat-list-item>
+                }
+              </mat-list>
+            </mat-expansion-panel>
+          }
+        </mat-accordion>
+      </div>
+      <!-- RIGHT SIDE -->
+      <div class="stats-section">
+        @if (playerStats) {
+          <mat-card class="player-card">
+            <mat-card-header>
+              <mat-card-title>
+                {{ playerStats.name }}
+              </mat-card-title>
+
+              <mat-card-subtitle>
+                {{ playerStats.team }}
+                •
+                {{ playerStats.role }}
+              </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="stats-grid">
+                <div class="stat-box">
+                  <div class="stat-value">
+                    {{ playerStats.matches }}
+                  </div>
+                  <div class="stat-label">Matches</div>
+                </div>
+
+                <div class="stat-box">
+                  <div class="stat-value">
+                    {{ playerStats.runs }}
+                  </div>
+                  <div class="stat-label">Runs</div>
+                </div>
+
+                <div class="stat-box">
+                  <div class="stat-value">
+                    {{ playerStats.fours }}
+                  </div>
+                  <div class="stat-label">Fours</div>
+                </div>
+
+                <div class="stat-box">
+                  <div class="stat-value">
+                    {{ playerStats.sixes }}
+                  </div>
+                  <div class="stat-label">Sixes</div>
+                </div>
+
+                <div class="stat-box">
+                  <div class="stat-value">
+                    {{ playerStats.strikeRate }}
+                  </div>
+                  <div class="stat-label">Strike Rate</div>
+                </div>
+
+                <div class="stat-box">
+                  <div class="stat-value">
+                    {{ playerStats.potmAwards }}
+                  </div>
+                  <div class="stat-label">POTM Awards</div>
+                </div>
+
+                @if (playerStats.role === 'All-Rounder' || playerStats.role === 'Bowler') {
+                  <div class="stat-box bowling-box">
+                    <div class="stat-value">
+                      {{ playerStats.wickets }}
+                    </div>
+                    <div class="stat-label">Wickets</div>
+                  </div>
+
+                  <div class="stat-box bowling-box">
+                    <div class="stat-value">
+                      {{ playerStats.economy }}
+                    </div>
+                    <div class="stat-label">Economy</div>
+                  </div>
+                }
+              </div>
+
+              <div class="highest-score-row">
+                <div class="highest-label">Highest Score</div>
+
+                <div class="highest-value">
+                  {{ playerStats.highestScore }}
+
+                  vs
+
+                  {{ playerStats.highestScoreAgainst }}
+
+                  (Match {{ playerStats.highestScoreMatch }})
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        } @else {
+          <mat-card class="player-card empty-card">
+            <mat-card-content>
+              <h2>Select a Player</h2>
+
+              <p>Choose a player from the left panel to view statistics.</p>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- PURPLE CAP -->
+
+  @if (statType === 'purple') {
+    <div class="leader-header">
+      <div class="title-badge purple-badge">PURPLE CAP</div>
+
+      <div class="title-content">
+        <h2>Purple Cap Leaderboard</h2>
+      </div>
+    </div>
+    <div class="stats-table-container">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>Economy</th>
+            <th>Wickets</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (player of purpleCapList; track player.name) {
+            <tr [class.purple-leader]="$index === 0">
+              <td>{{ $index + 1 }}</td>
+
+              <td>
+                {{ player.name }}
+              </td>
+
+              <td>{{ player.matches }}</td>
+
+              <td>{{ player.economy }}</td>
+
+              <td>{{ player.wickets }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  <!-- ORANGE CAP -->
+
+  @if (statType === 'orange') {
+    <div class="leader-header orange-header">
+      <div class="title-badge orange-badge">ORANGE CAP</div>
+
+      <div>
+        <h2>Orange Cap Leaderboard</h2>
+      </div>
+    </div>
+
+    <div class="stats-table-container">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>Strike Rate</th>
+            <th>Runs</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (player of orangeCapList; track player.name) {
+            <tr [class.orange-leader]="$index === 0">
+              <td>{{ $index + 1 }}</td>
+
+              <td>
+                {{ player.name }}
+              </td>
+
+              <td>{{ player.matches }}</td>
+
+              <td>{{ player.strikeRate }}</td>
+
+              <td>{{ player.runs }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+</div>

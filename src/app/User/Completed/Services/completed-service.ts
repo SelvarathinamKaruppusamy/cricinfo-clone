@@ -1,20 +1,22 @@
-import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Match } from '../Models/match-module';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CompletedService {
+
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:7000/completed';
+  private apiUrl = 'https://localhost:7144/api/completed';
 
-  getCompletedMatches() {
+  getCompletedMatches(): Observable<Match[]> {
     return this.http.get<Match[]>(this.apiUrl);
   }
 
-  getMatch(matchNo: number) {
-    return this.http.get<Match[]>(`${this.apiUrl}?matchNo=${matchNo}`);
+  getMatch(matchNo: number): Observable<Match> {
+    return this.http.get<Match>(`${this.apiUrl}/${matchNo}`);
   }
 }

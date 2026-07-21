@@ -44,37 +44,34 @@ export class CompletedDetails implements OnInit {
 
   this.route.params.subscribe(params => {
 
-    const matchNo = Number(params['matchNo']);
+  const matchNo = Number(params['matchNo']);
 
-    console.log('MATCH CHANGED:', matchNo);
+  console.log('MATCH CHANGED:', matchNo);
 
-    this.service.getCompletedMatches().subscribe({
-      next: (data) => {
+  this.service.getMatch(matchNo).subscribe({
+    next: (data) => {
 
-        this.matches = data;
+      this.match = data;
 
-        const selectedMatch = this.matches.find(
-          match => Number(match.matchNo) === matchNo
-        );
-
-        if (selectedMatch) {
-          this.selectMatch(selectedMatch);
-        }
-
-        this.cd.detectChanges();
-      },
-      error: (err) => {
-        console.error('Failed to load completed matches:', err);
+      if (this.match?.teams && this.match.teams.length > 0) {
+        this.selectInnings(this.match.teams[0].teamId);
       }
-    });
 
+      this.fetchRelatedBlog();
+
+      this.cd.detectChanges();
+    },
+    error: (err) => {
+      console.error('Failed to load completed match:', err);
+    }
   });
+
+});
 
 }
 
   selectMatch(selectedMatch: Match): void {
     this.match = selectedMatch;
-
     if (this.match?.teams && this.match.teams.length > 0) {
       this.selectInnings(this.match.teams[0].teamId);
     }

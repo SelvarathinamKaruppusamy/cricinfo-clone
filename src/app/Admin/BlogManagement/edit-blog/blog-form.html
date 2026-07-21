@@ -1,0 +1,63 @@
+<div class="blog-form-container">
+  <h2>
+    {{ isEditMode ? 'Edit Blog' : 'Add Blog' }}
+  </h2>
+
+  <form [formGroup]="blogForm">
+    <div class="form-group">
+      <label>Match Id</label>
+      <input type="number" formControlName="matchId" />
+    </div>
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" formControlName="title" (input)="onTitleChange()" />
+    </div>
+
+    <div class="form-group">
+      <label>Slug</label>
+      <input type="text" formControlName="slug" readonly />
+    </div>
+
+    <h3>Current Image</h3>
+
+    <img [src]="previewUrl" class="preview-image" />
+
+    <input type="file" accept="image/*" (change)="onImageSelected($event)" />
+
+    <small style="color: red"> <b>Leave empty to keep existing image</b> </small>
+
+    <div class="form-group">
+      <label>Short Description</label>
+      <textarea rows="3" formControlName="shortDescription"> </textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Content</label>
+      <textarea rows="18" formControlName="content"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Published Date</label>
+      <input type="date" formControlName="publishedDate" />
+    </div>
+
+    <div class="form-group">
+      <label>Read Time</label>
+      <input type="text" formControlName="readTime" />
+    </div>
+
+    <div class="form-group">
+      <label>Tags</label>
+      <input type="text" formControlName="tags" placeholder="IPL 2026, RCB, Virat Kohli" />
+    </div>
+
+    <div class="actions">
+      <button type="button" class="save-btn" (click)="saveBlog()">
+        {{ isEditMode ? 'Update Blog' : 'Save Blog' }}
+      </button>
+
+      <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

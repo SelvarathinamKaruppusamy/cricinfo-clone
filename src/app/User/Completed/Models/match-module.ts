@@ -1,5 +1,7 @@
 export interface Batting {
-  id: number;
+  id: number;          // SQL Identity
+  playerId: number;    // Cricket Player ID
+
   name: string;
   role: string;
   runs: number;
@@ -9,9 +11,9 @@ export interface Batting {
   strikeRate: number;
   status: string;
 }
-
 export interface Bowling {
-  id: number;
+  id: number;          
+  playerId: number;    
   name: string;
   role: string;
   overs: string;

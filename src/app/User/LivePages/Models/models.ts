@@ -1,32 +1,36 @@
 export interface LiveModel {
-  id: string | number;
+
   matchNo: number;
+
   venue: string;
+
   city: string;
+
   date: string;
 
   tossWinner: string | null;
+
   tossDecision: 'Bat' | 'Bowl' | null;
 
   result: string | null;
+
   playerOfTheMatch: string | null;
+
   status: string;
 
+  currentInnings: 1 | 2;
+
+  currentBattingTeamIndex: number;
+
+  currentBowlingTeamIndex: number;
+
+  strikerPlayerId: number;
+
+  nonStrikerPlayerId: number;
+
+  currentBowlerPlayerId: number;
+
   teams: Team[];
-
-  innings?: 1 | 2;
-  currentBattingTeamIndex?: number | null;
-  currentBowlingTeamIndex?: number | null;
-  strikerPlayerId?: number | null;
-  nonStrikerPlayerId?: number | null;
-  currentBowlerPlayerId?: number | null;
-
-  firstInningsCompletedBattingTeam?: Team | null;
-  firstInningsCompletedBowlingTeam?: Team | null;
-  firstInningsCompletedBatters?: Player[];
-  firstInningsCompletedBowlers?: Player[];
-  firstInningsBalls?: string[];
-secondInningsBalls?: string[];
 }
 export interface Team {
   teamId: number;

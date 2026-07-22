@@ -85,13 +85,17 @@ private toastTimer: any;
     }
   );
 
-  dialogRef.afterClosed().subscribe(index=>{
+  dialogRef.afterClosed().subscribe(index => {
 
-    if(index==null) return;
+  if (index == null) return;
 
-    this.service.changeBowler(index);
+  const bowler = this.availableBowlers()[index];
 
-  });
+  if (!bowler) return;
+
+  this.service.changeBowler(bowler.id);
+
+});
 
 }
   currentBattingTeam = computed<Team | undefined>(() => {
@@ -244,17 +248,50 @@ private toastTimer: any;
     this.cd.detectChanges();
   }
 
- addBall(ball:string){
+addBall(ball: string) {
 
-    if(this.matchFinished()) return;
+  if (this.matchFinished()) return;
 
-    this.service.processBall(ball);
+  const body = {
 
-    if(this.service.legalBalls()===0){
+    matchNo: this.live()?.matchNo,
 
-        this.openBowlerDialog();
+    ballResult: ball
 
-    }
+  };
+
+  this.service.ProcessBall(body).subscribe({
+
+    next: () => {
+
+      this.reloadMatch();
+
+    },
+
+    error: (err: any) => console.error(err)
+
+  });
+
+}
+reloadMatch() {
+
+  const matchNo = this.live()?.matchNo;
+
+  if (!matchNo) return;
+
+  this.service.GetLiveMatch(matchNo).subscribe({
+
+    next: (match) => {
+
+      this.service.loadMatchIntoService(match);
+
+      this.cd.detectChanges();
+
+    },
+
+    error: (err: any) => console.error(err)
+
+  });
 
 }
 

@@ -53,25 +53,22 @@ private toastTimer: any;
   }
 ngOnInit(): void {
 
-  this.service.GetLiveMatches().subscribe({
+ // Temporary while only one live match exists
+this.service.GetLiveMatch(26).subscribe({
 
-    next: (res) => {
+  next: (match) => {
 
-      if (res.length) {
+    this.loadLiveMatch(match);
 
-        this.loadLiveMatch(res[0]);
+  },
 
-      } else {
+  error: (err: any) => {
 
-        this.openPromoteDialog();
+    console.error(err);
 
-      }
+  }
 
-    },
-
-    error: err => console.error(err)
-
-  });
+});
 
 }
 loadLiveMatch(match: LiveModel) {
@@ -131,17 +128,12 @@ promoteMatch() {
 
   setTimeout(() => {
 
-    this.service.GetLiveMatches().subscribe({
+    this.service.GetLiveMatch(26).subscribe({
+     next: (match) => {
 
-      next: res => {
+  this.loadLiveMatch(match);
 
-        if(res.length){
-
-          this.loadLiveMatch(res[0]);
-
-        }
-
-      }
+}
 
     });
 
@@ -172,96 +164,93 @@ promoteMatch() {
   }
 
   canSaveToss(): boolean {
-    return (
-      this.selectedTossWinner !== null &&
-      !!this.selectedCall &&
-      !!this.selectedDecision &&
-      !this.service.isSaving
-    );
-  }
+
+  return this.selectedTossWinner !== null &&
+         this.selectedDecision !== null;
+
+}
 
   saveToss() {
-     this.openConfirmDialog(
+
+  this.openConfirmDialog(
     {
       title: 'Save Toss',
-      message: 'Do you want to save the current live match toss status?',
-      confirmText: 'save',
+      message: 'Do you want to save the toss?',
+      confirmText: 'Save',
       cancelText: 'Cancel',
       type: 'success'
     },
     () => {
-    
-    if (!this.canSaveToss() || !this.live) return;
 
-    this.service.isSaving = true;
+      if (!this.live) return;
 
-    const tossWinnerIndex = this.selectedTossWinner!;
-    const tossLoserIndex = tossWinnerIndex === 0 ? 1 : 0;
+      const body = {
 
-    // set service toss + batting/bowling state
-    this.service.tossWinner.set(tossWinnerIndex);
-    this.service.tossCall.set(this.selectedCall!);
-    this.service.tossDecision.set(this.selectedDecision!);
-    this.service.tosswin.set(tossWinnerIndex);
+        tossWinner:
+          this.live.teams[this.selectedTossWinner!].shortName,
 
-    if (this.selectedDecision === 'Bat') {
-      this.service.currentBattingTeam.set(tossWinnerIndex);
-      this.service.currentBowlingTeam.set(tossLoserIndex);
-    } else {
-      this.service.currentBattingTeam.set(tossLoserIndex);
-      this.service.currentBowlingTeam.set(tossWinnerIndex);
-    }
+        tossDecision:
+          this.selectedDecision
 
-    // update service.live with toss + innings runtime info
-    this.service.live.update((live) => {
-      if (!live) return live;
-
-      return {
-        ...live,
-        tossWinner: live.teams[tossWinnerIndex]?.shortName ?? null,
-        tossDecision: this.selectedDecision!,
-        innings: 1,
-        currentBattingTeamIndex: this.service.currentBattingTeam(),
-        currentBowlingTeamIndex: this.service.currentBowlingTeam(),
       };
-    });
 
-    // initialize players/bowlers for innings 1 before saving
-    this.service.initCurrentInningsPlayers();
-    this.service.syncCurrentPlayersToLive();
+      this.service.UpdateToss(
+        this.live.matchNo,
+        body
+      ).subscribe({
 
-    const updatedLive = this.service.live();
-    if (!updatedLive) {
-      this.service.isSaving = false;
-      return;
-    }
+        next: () => {
 
-    this.service.UpdateMatch(updatedLive.id, updatedLive).subscribe({
-      next: (updated) => {
-        this.service.loadMatchIntoService(updated);
+          this.service.GetLiveMatch(
+            this.live.matchNo
+          ).subscribe({
 
-        // confirmation message
-       this.showToast(
-  'Toss saved successfully. Redirecting to Live Update...',
-  'success'
-);
-        //auto redirect after short delay
-        setTimeout(() => {
-          this.router.navigate(['/navbarAdmin/adminLive/liveupdate']);
-        }, 2000);
+            next: (updatedMatch) => {
 
-        
-      },
-      error: (err) => {
-        console.error(err);
-        this.service.isSaving = false;
+              this.loadLiveMatch(updatedMatch);
 
-       this.showToast('Failed to save toss', 'error');
-      },
-    });
+              this.showToast(
+                'Toss Saved Successfully',
+                'success'
+              );
+
+              setTimeout(() => {
+
+                this.router.navigate([
+                  '/navbarAdmin/adminLive/liveupdate'
+                ]);
+
+              }, 1500);
+
+            },
+
+            error: (err: any) => {
+
+              console.error(err);
+
+            }
+
+          });
+
+        },
+
+        error: (err: any) => {
+
+          console.error(err);
+
+          this.showToast(
+            'Failed to save toss',
+            'error'
+          );
+
+        }
+
+      });
+
     }
   );
-  }
+
+}
   showToast(message: string, type: 'success' | 'error') {
   this.toastMessage = message;
   this.toastType = type;

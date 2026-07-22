@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CompletedService } from '../Completed/Services/completed-service';
 
@@ -7,6 +7,9 @@ import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+
+import { timer, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 interface PlayerStats {
   name: string;
@@ -43,6 +46,7 @@ interface PlayerStats {
 export class Stats {
   private route = inject(ActivatedRoute);
   private completedService = inject(CompletedService);
+  private pollingSubscription?: Subscription;
 
   statType = '';
   matches: any[] = [];
@@ -52,14 +56,36 @@ export class Stats {
   playerStats!: PlayerStats;
   purpleCapList: any[] = [];
   orangeCapList: any[] = [];
+  private cdr = inject(ChangeDetectorRef);
 
-  ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.statType = params['type'];
+ ngOnInit() {
+  this.route.params.subscribe((params) => {
+    this.statType = params['type'];
+  });
+
+  this.startPolling();
+}
+startPolling() {
+  this.pollingSubscription = timer(0, 10000) // every 10 seconds
+    .pipe(
+      switchMap(() => this.completedService.getCompletedMatches())
+    )
+    .subscribe({
+      next: (data: any) => {
+        this.matches = data;
+        
+        this.loadTeams();
+        this.calculatePurpleCap();
+        this.calculateOrangeCap();
+        this.cdr.detectChanges();
+
+        if (this.selectedPlayer) {
+          this.calculatePlayerStats();
+        }
+      },
+      error: (err) => console.error(err),
     });
-
-    this.loadCompletedMatches();
-  }
+}
 
   loadCompletedMatches() {
     this.completedService.getCompletedMatches().subscribe({
@@ -97,7 +123,7 @@ export class Stats {
       match.teams.forEach((team: any) => {
         if (team.teamId === teamId) {
           team.batting?.forEach((player: any) => {
-            const playerKey = player.id ?? player.playerId;
+            const playerKey = player.playerId;
 
             if (!uniquePlayers.has(playerKey)) {
               uniquePlayers.set(playerKey, player);
@@ -118,7 +144,7 @@ export class Stats {
   }
 
   calculatePlayerStats() {
-    const selectedPlayerId = this.selectedPlayer.id ?? this.selectedPlayer.playerId;
+    const selectedPlayerId = this.selectedPlayer.playerId;
 
     const stats: PlayerStats = {
       name: this.selectedPlayer.name,
@@ -153,7 +179,7 @@ export class Stats {
         // BATTING
 
         team.batting?.forEach((player: any) => {
-          const playerId = player.id ?? player.playerId;
+          const playerId = player.playerId;
 
           if (playerId === selectedPlayerId) {
             stats.matches++;
@@ -182,7 +208,7 @@ export class Stats {
         // BOWLING
 
         team.bowling?.forEach((bowler: any) => {
-          const bowlerId = bowler.id ?? bowler.playerId;
+          const bowlerId = bowler.playerId;
 
           if (bowlerId === selectedPlayerId) {
             stats.wickets += bowler.wickets || 0;
@@ -208,7 +234,7 @@ export class Stats {
   this.matches.forEach((match: any) => {
     match.teams.forEach((team: any) => {
       team.bowling?.forEach((bowler: any) => {
-        const bowlerId = bowler.id ?? bowler.playerId;
+        const bowlerId = bowler.playerId;
 
         if (!bowlers.has(bowlerId)) {
           bowlers.set(bowlerId, {
@@ -250,7 +276,7 @@ export class Stats {
     this.matches.forEach((match: any) => {
       match.teams.forEach((team: any) => {
         team.batting?.forEach((player: any) => {
-          const playerId = player.id ?? player.playerId;
+          const playerId =player.playerId;
 
           if (!batters.has(playerId)) {
             batters.set(playerId, {
@@ -278,4 +304,7 @@ export class Stats {
       .sort((a: any, b: any) => b.runs - a.runs)
       .slice(0, 5);
   }
+  ngOnDestroy() {
+  this.pollingSubscription?.unsubscribe();
+}
 }

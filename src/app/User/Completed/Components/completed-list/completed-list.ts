@@ -6,6 +6,9 @@ import { Match } from '../../Models/match-module';
 import { CompletedService } from '../../Services/completed-service';
 import { Schedule } from '../../../schedule/schedule';
  
+import { timer, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-completed-list',
   standalone: true,

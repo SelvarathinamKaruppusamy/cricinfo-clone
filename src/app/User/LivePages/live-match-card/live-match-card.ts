@@ -102,7 +102,7 @@ private destroy$ = new Subject<void>();
         live: this.service.GetLiveMatches().pipe(
           catchError(() => of([]))
         ),
-        upcoming: this.upservice.getMatch().pipe(
+        upcoming: this.upservice.getUpcomingMatches().pipe(
           catchError(() => of([]))
         ),
         completed: this.comservice.getCompletedMatches().pipe(

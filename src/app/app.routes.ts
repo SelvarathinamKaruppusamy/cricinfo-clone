@@ -36,7 +36,7 @@ export const routes: Routes = [
         component: Livepage,
       },
       {
-        path: 'match/:id',
+        path: 'match/:matchNo',
         component: Match,
       },
       {
@@ -61,7 +61,7 @@ export const routes: Routes = [
     component: Stats,
   },
   {
-    path: 'match/:id',
+    path: 'match/:matchNo',
     component: Match,
   },
   {

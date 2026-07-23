@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -14,6 +15,18 @@ export class AdminService {
 
   resetPassword(data: any) {
     return this.http.post(`${this.apiUrl}/reset-password`, data);
+  }
+
+  createAdmin(admin: any) {
+    return this.http.post(`${this.apiUrl}/register`, admin);
+  }
+
+  getProfile(userName: string) {
+    return this.http.get<any>(`${this.apiUrl}/profile/${userName}`);
+  }
+
+  updateProfile(id: number, data: any) {
+    return this.http.put(`${this.apiUrl}/profile/${id}`, data);
   }
 
   setToken(token: string) {
@@ -34,24 +47,13 @@ export class AdminService {
     return user ? JSON.parse(user) : null;
   }
 
-  isAuthenticated(): boolean {
+  isAuthenticated() {
     return !!this.getToken();
   }
 
   logout() {
     localStorage.removeItem('token');
+
     localStorage.removeItem('currentUser');
   }
-  getProfile(username: string) {
-  return this.http.get(
-    `https://localhost:7014/api/auth/profile/${username}`
-  );
-}
-
-updateProfile(id: number, data: any) {
-  return this.http.put(
-    `https://localhost:7014/api/auth/profile/${id}`,
-    data
-  );
-}
 }

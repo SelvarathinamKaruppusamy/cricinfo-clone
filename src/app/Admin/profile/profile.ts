@@ -60,27 +60,27 @@ export class Profile implements OnInit {
     this.showConfirmDialog = true;
   }
 
-  confirmSave(): void {
-    this.showConfirmDialog = false;
+  // confirmSave(): void {
+  //   this.showConfirmDialog = false;
 
-    const updatedUser = { ...this.editUser };
+  //   const updatedUser = { ...this.editUser };
 
-    this.adminService.updateAdmin(this.user.id, updatedUser).subscribe({
-      next: (response: any) => {
-        this.user = { ...updatedUser };
-        this.editUser = { ...updatedUser };
-        this.adminService.setCurrentUser(updatedUser);
-        this.editMode = false;
-        this.cdr.markForCheck();
+  //   this.adminService.updateAdmin(this.user.id, updatedUser).subscribe({
+  //     next: (response: any) => {
+  //       this.user = { ...updatedUser };
+  //       this.editUser = { ...updatedUser };
+  //       this.adminService.setCurrentUser(updatedUser);
+  //       this.editMode = false;
+  //       this.cdr.markForCheck();
 
-        this.showToast('Profile Updated Successfully', 'success');
-      },
-      error: (err) => {
-        console.error(err);
-        this.showToast('Update failed. Please try again.', 'error');
-      },
-    });
-  }
+  //       this.showToast('Profile Updated Successfully', 'success');
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //       this.showToast('Update failed. Please try again.', 'error');
+  //     },
+  //   });
+  // }
 
   cancelSave(): void {
     this.showConfirmDialog = false;

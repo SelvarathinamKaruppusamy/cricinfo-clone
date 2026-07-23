@@ -76,40 +76,40 @@ export class Signup {
       return;
     }
 
-    this.adminService.getAdmins().subscribe({
-      next: (admins: any[]) => {
-        const nextId =
-          admins.length === 0 ? 1 : Math.max(...admins.map((admin) => Number(admin.id) || 0)) + 1;
+  //   this.adminService.getAdmins().subscribe({
+  //     next: (admins: any[]) => {
+  //       const nextId =
+  //         admins.length === 0 ? 1 : Math.max(...admins.map((admin) => Number(admin.id) || 0)) + 1;
 
-        const admin = {
-          id: String(nextId),
-          userName: this.adminForm.value.username,
-          passWord: this.adminForm.value.password,
+  //       const admin = {
+  //         id: String(nextId),
+  //         userName: this.adminForm.value.username,
+  //         passWord: this.adminForm.value.password,
 
-          fname: this.adminForm.value.fname,
-          lname: this.adminForm.value.lname,
-          email: this.adminForm.value.email,
-          gender: this.adminForm.value.gender,
-          mobileNo: this.adminForm.value.mobileNo,
-          role: this.adminForm.value.role,
-          address: this.adminForm.value.address,
-          dob: this.adminForm.value.dob,
+  //         fname: this.adminForm.value.fname,
+  //         lname: this.adminForm.value.lname,
+  //         email: this.adminForm.value.email,
+  //         gender: this.adminForm.value.gender,
+  //         mobileNo: this.adminForm.value.mobileNo,
+  //         role: this.adminForm.value.role,
+  //         address: this.adminForm.value.address,
+  //         dob: this.adminForm.value.dob,
 
-          firstLogin: true,
-        };
+  //         firstLogin: true,
+  //       };
 
-        this.adminService.createAdmin(admin).subscribe({
-          next: () => {
-            alert('Admin Registered Successfully');
+  //       this.adminService.createAdmin(admin).subscribe({
+  //         next: () => {
+  //           alert('Admin Registered Successfully');
 
-            this.adminForm.reset();
+  //           this.adminForm.reset();
 
-            this.generatePassword();
-          },
-          error: (err) => console.error(err),
-        });
-      },
-      error: (err) => console.error(err),
-    });
+  //           this.generatePassword();
+  //         },
+  //         error: (err) => console.error(err),
+  //       });
+  //     },
+  //     error: (err) => console.error(err),
+  //   });
   }
 }

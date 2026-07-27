@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
+  computed,
   effect,
   inject,
   OnInit,
@@ -54,7 +55,7 @@ private destroy$ = new Subject<void>();
   upservice = inject(UpcService);
   route = inject(Router);
   comservice = inject(CompletedService);
-  adminService = inject(AdminService);
+
 
   team1!: Team;
   team2!: Team;
@@ -76,11 +77,11 @@ private destroy$ = new Subject<void>();
 
   trackflag = true;
   trackflag1 = true;
-  intervalId:any
+  
 
   constructor() {
     effect(() => {
-      this.service.ball(); // optional trigger
+      // optional trigger
       const live = this.service.live();
       if (!live) return;
 
@@ -93,14 +94,32 @@ private destroy$ = new Subject<void>();
     });
   }
 
+  currentBatting = computed(() => {
+  const live = this.service.live();
+  if (!live) return null;
+
+  return live.teams.find(
+    t => t.teamId === this.service.currentBattingTeam()
+  ) ?? null;
+});
+
+currentBowling = computed(() => {
+  const live = this.service.live();
+  if (!live) return null;
+
+  return live.teams.find(
+    t => t.teamId === this.service.currentBowlingTeam()
+  ) ?? null;
+});
  ngOnInit(): void {
   // Poll Live Match every second
  timer(0, 1000)
   .pipe(
     switchMap(() =>
       forkJoin({
-        live: this.service.GetLiveMatches().pipe(
-          catchError(() => of([]))
+       live: this.service.GetLiveMatch().pipe(
+  catchError(() => of(null))
+
         ),
         upcoming: this.upservice.getMatch().pipe(
           catchError(() => of([]))
@@ -116,23 +135,33 @@ private destroy$ = new Subject<void>();
 
     // ---------------- LIVE ----------------
 
-    if (live.length) {
+    if (live) {
+console.log("Live API Response", live);
+console.log("Team1", live.teams[0]);
+console.log("Team2", live.teams[1]);
+this.live = {
+  ...live,
+  teams: live.teams
+};
+  this.team1 = live.teams[0];
 
-      this.live = live[0];
-      this.team1 = this.live.teams[0];
-      this.team2 = this.live.teams[1];
+  this.team2 = live.teams[1];
 
-      this.service.live.set(this.live);
-      this.requiredRun();
+  this.service.loadMatchIntoService(live);
 
-    } else {
+  this.requiredRun();
 
-      this.live = null as any;
-      this.team1 = null as any;
-      this.team2 = null as any;
+} else {
 
-      this.service.live.set(null);
-    }
+  this.live = null as any;
+
+  this.team1 = null as any;
+
+  this.team2 = null as any;
+
+  this.service.live.set(null);
+
+}
 
     // ---------------- UPCOMING ----------------
 
@@ -170,31 +199,54 @@ this.teams = uniqueTeams;
 
   });
 }
-  requiredRun() {
-    const live = this.service.live();
-    if (!live) return;
+matchWon = computed(() => {
 
-    if (this.service.innings() !== 2) {
-      this.target = 0;
-      this.requiredRuns = 0;
-      this.remainingBalls = 0;
-      return;
-    }
+  const live = this.service.live();
 
-    this.target = (this.service.completedBattingTeam?.scores ?? 0) + 1;
+  if (!live) return false;
 
-    const battingIndex = this.service.currentBattingTeam();
-    const battingTeam = live.teams[battingIndex];
+  return live.status === "Completed";
 
-    this.requiredRuns = this.target - battingTeam.scores;
+});
+requiredRun() {
 
-    const overs = battingTeam.overs ?? 0;
-    const fullOvers = Math.floor(overs);
-    const ballsPart = Math.round((overs % 1) * 10);
-    const ballsBowled = fullOvers * 6 + ballsPart;
+  const live = this.service.live();
 
-    this.remainingBalls = this.totalBalls - ballsBowled;
+  if (!live) return;
+
+  if (this.service.innings() !== 2) {
+    this.target = 0;
+    this.requiredRuns = 0;
+    this.remainingBalls = 0;
+    return;
   }
+
+  const battingTeam = live.teams.find(
+  t => t.teamId === this.service.currentBattingTeam()
+);
+
+const bowlingTeam = live.teams.find(
+  t => t.teamId === this.service.currentBowlingTeam()
+);
+  if (!bowlingTeam || !battingTeam) {
+    this.target = 0;
+    this.requiredRuns = 0;
+    return;
+  }
+
+  this.target = (bowlingTeam.runs ?? 0) + 1;
+
+this.requiredRuns = Math.max(
+  0,
+  this.target - (battingTeam.runs ?? 0)
+);
+
+  const overs = battingTeam.overs ?? 0;
+  const fullOvers = Math.floor(overs);
+  const ballsPart = Math.round((overs % 1) * 10);
+
+  this.remainingBalls = 120 - (fullOvers * 6 + ballsPart);
+}
 
   matchFilter(teamId: number) {
     this.selectedTeamId = teamId;
@@ -235,7 +287,11 @@ this.teams = uniqueTeams;
 
   movetoupcommingpage() {
     this.trackflag1 = false;
-    this.route.navigateByUrl(`/live/match/${this.upcommingdata.id}`);
+
+  console.log('Navigating...', this.trackflag1);
+    this.route.navigateByUrl(
+    `/live/match/${this.upcommingdata.matchNo}`
+);
   }
 
   completedpage(matchNo: number): void {

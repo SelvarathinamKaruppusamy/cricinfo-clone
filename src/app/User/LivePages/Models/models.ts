@@ -29,38 +29,52 @@ export interface LiveModel {
   nonStrikerPlayerId: number;
 
   currentBowlerPlayerId: number;
-
+firstInningsBalls: string[];
+secondInningsBalls: string[];
   teams: Team[];
 }
 export interface Team {
   teamId: number;
   fullName: string;
   shortName: string;
-  scores: number;
+
+  scores: string;      // ✅ change to string
+  runs: number;         // ✅ add this
+
   wickets: number;
   extras: number;
   overs: number;
+  balls: number;
+
   winCount: number;
   lossCount: number;
   totalMatch: number;
+
   logo: string;
-  matchStatus: boolean[];
+  matchStatus: string;
   players: Player[];
 }
 export interface Player {
   id: number;
+  playerId: number;
+  teamId: number;
+  matchNo: number;
+
   name: string;
   role: string;
+
   runs: number;
   balls: number;
   fours: number;
   sixes: number;
   strikeRate: number;
+
   status: string;
+
+  overs: number;
+  wickets: number;
   maidens: number;
   runsConceded: number;
-  wickets: number;
-  overs: number;
   economy: number;
 }
 export interface IplNews {

@@ -7,13 +7,13 @@ import { LiveModel, Player, Team } from '../Models/models';
   providedIn: 'root',
 })
 export class LiveService {
+  MatchNo=signal(0)
   private readonly apiUrl = 'https://localhost:7144/api/live';
-  GetLiveMatch(matchNo: number): Observable<LiveModel> {
+GetLiveMatch(): Observable<LiveModel> {
   return this.http.get<LiveModel>(
-    `${this.apiUrl}/${matchNo}`
+    `${this.apiUrl}`
   );
 }
-
 UpdateToss(matchNo: number, body: any): Observable<any> {
   return this.http.put(
     `${this.apiUrl}/match/${matchNo}`,
@@ -21,10 +21,13 @@ UpdateToss(matchNo: number, body: any): Observable<any> {
   );
 }
 
-StartMatch(matchNo: number): Observable<any> {
+StartMatch(matchNo: number) {
   return this.http.post(
     `${this.apiUrl}/start-match/${matchNo}`,
-    {}
+    {},
+    {
+      responseType: 'text'
+    }
   );
 }
 
@@ -48,28 +51,43 @@ UpdatePlayerOfMatch(matchNo: number, body: any): Observable<any> {
     body
   );
 }
+StartSecondInnings(matchNo: number) {
 
+  return this.http.post(
+    `${this.apiUrl}/start-second-innings/${matchNo}`,
+    {}
+  );
+
+}
+CompleteMatch(body: any) {
+  return this.http.put(
+    `${this.apiUrl}/complete-match`,
+    body
+  );
+}
   http = inject(HttpClient);
   live = signal<LiveModel | null>(null);
   innings = signal<1 | 2>(1);
   currentBattingTeam = signal(0);
   currentBowlingTeam = signal(1);
   currentBowlerIndex = signal(0);
- 
+ isSaving = false;
   tosswin = signal(0);
   tossloss = computed(() => (this.tosswin() === 0 ? 1 : 0));
   players1 = signal<Player[]>([]);
   bowlers1 = signal<Player[]>([]);
   strikerIndex = signal(0);
   nonStrikerIndex = signal(1);
-  
+  firstInningsBalls = signal<string[]>([]);
+secondInningsBalls = signal<string[]>([]);
+
+ball = computed(() =>
+  this.innings() === 1
+    ? this.firstInningsBalls()
+    : this.secondInningsBalls()
+);
 
   currentOverBalls = signal<string[]>([]);
-  
-
-  // ball = computed(() =>
-  //   this.innings() === 1 ? this.firstInningsBalls() : this.secondInningsBalls(),
-  // );
   
   ballColors: Record<string, string> = {
     '0': 'bg-slate-700 border-slate-400 text-white',
@@ -84,53 +102,113 @@ UpdatePlayerOfMatch(matchNo: number, body: any): Observable<any> {
   };
  
   // LOAD MATCH
-  loadMatchIntoService(match: LiveModel) {
-    const cloned = structuredClone(match);
-    this.live.set(cloned);
-    this.resetRuntimeState();
+loadMatchIntoService(match: LiveModel) {
+
+  const previousMatchNo = this.live()?.matchNo;
+
+  // New match loaded
+  if (previousMatchNo && previousMatchNo !== match.matchNo) {
+
+    this.firstInningsBalls.set([]);
+    this.secondInningsBalls.set([]);
+    this.currentOverBalls.set([]);
+
   }
-  // RESET / RESTORE RUNTIME STATE FROM DB
- resetRuntimeState() {
 
-    const live = this.live();
+  const cloned = structuredClone(match);
 
-    if (!live) return;
-
-    this.innings.set(live.currentInnings);
-
-    this.currentBattingTeam.set(live.currentBattingTeamIndex);
-
-    this.currentBowlingTeam.set(live.currentBowlingTeamIndex);
-
-    this.initCurrentInningsPlayers();
-
-}
-  // TOSS SETUP
+  this.live.set(cloned);
   
-  // INIT CURRENT INNINGS PLAYERS
- initCurrentInningsPlayers() {
+
+  this.firstInningsBalls.set(cloned.firstInningsBalls ?? []);
+  this.secondInningsBalls.set(cloned.secondInningsBalls ?? []);
+console.log("players1:", this.players1());
+console.log("bowlers1:", this.bowlers1());
+console.log("striker:", this.striker);
+console.log("currentBowler:", this.currentBowler);
+  this.resetRuntimeState();
+}
+  // RESET / RESTORE RUNTIME STATE FROM DB
+resetRuntimeState() {
 
   const live = this.live();
 
   if (!live) return;
 
-  const battingTeam = live.teams[this.currentBattingTeam()];
-  const bowlingTeam = live.teams[this.currentBowlingTeam()];
+  const previousInnings = this.innings();
+
+this.innings.set(live.currentInnings ?? 1);
+
+if (previousInnings !== live.currentInnings) {
+
+  this.currentOverBalls.set([]);
+
+  if (live.currentInnings === 2) {
+    this.secondInningsBalls.set([]);
+  }
+
+}
+  if (
+    live.currentBattingTeamIndex == null ||
+    live.currentBowlingTeamIndex == null
+  ) {
+    return;
+  }
+
+  this.currentBattingTeam.set(live.currentBattingTeamIndex);
+
+  this.currentBowlingTeam.set(live.currentBowlingTeamIndex);
+
+  this.initCurrentInningsPlayers();
+}
+  // TOSS SETUP
+  
+  // INIT CURRENT INNINGS PLAYERS
+initCurrentInningsPlayers() {
+  const live = this.live();
+  if (!live) return;
+
+  const battingIndex = this.currentBattingTeam();
+  const bowlingIndex = this.currentBowlingTeam();
+  
+  
+  // Match not started yet
+ if (battingIndex == null || bowlingIndex == null) {
+
+    this.players1.set([]);
+    this.bowlers1.set([]);
+
+    return;
+}
+
+  const battingTeam = live.teams.find(
+  t => t.teamId === this.currentBattingTeam()
+);
+
+const bowlingTeam = live.teams.find(
+  t => t.teamId === this.currentBowlingTeam()
+);
+
+if (!battingTeam || !bowlingTeam) {
+  return;
+}
+
+  
 
   const battingPlayers = structuredClone(battingTeam.players);
 
   this.players1.set(battingPlayers);
+  
 
-  const strikerIndex =
-    battingPlayers.findIndex(
-      p => p.id === live.strikerPlayerId
-    );
+  const strikerIndex = battingPlayers.findIndex(
+    p => p.playerId === live.strikerPlayerId
+  );
 
-  const nonStrikerIndex =
-    battingPlayers.findIndex(
-      p => p.id === live.nonStrikerPlayerId
-    );
+  const nonStrikerIndex = battingPlayers.findIndex(
+    p => p.playerId === live.nonStrikerPlayerId
+  );
 
+  
   this.strikerIndex.set(
     strikerIndex === -1 ? 0 : strikerIndex
   );
@@ -139,22 +217,23 @@ UpdatePlayerOfMatch(matchNo: number, body: any): Observable<any> {
     nonStrikerIndex === -1 ? 1 : nonStrikerIndex
   );
 
-  const bowlers = structuredClone(bowlingTeam.players)
-    .filter(p =>
+  const bowlers = structuredClone(bowlingTeam.players).filter(
+    p =>
       p.role === 'Bowler' ||
       p.role === 'All-Rounder'
-    );
+  );
 
   this.bowlers1.set(bowlers);
 
-  const bowlerIndex =
-    bowlers.findIndex(
-      p => p.id === live.currentBowlerPlayerId
-    );
+ const bowlerIndex =
+  bowlers.findIndex(
+    p => p.playerId === live.currentBowlerPlayerId
+  );
 
   this.currentBowlerIndex.set(
     bowlerIndex === -1 ? 0 : bowlerIndex
   );
+
 }
   // GETTERS
   get striker(): Player | undefined {
@@ -169,47 +248,82 @@ UpdatePlayerOfMatch(matchNo: number, body: any): Observable<any> {
 
   
   // BALL PROCESSOR
-  processBall(ball: string) {
+processBall(ball: string): Observable<void> {
 
-  const live = this.live();
+  return new Observable<void>(observer => {
 
-  if (!live) return;
+    const live = this.live();
 
-  const body = {
+    if (!live) {
+      observer.complete();
+      return;
+    }
 
-    matchNo: live.matchNo,
+    const body = {
+      matchNo: live.matchNo,
+      ballResult: ball
+    };
 
-    ballResult: ball
+    this.ProcessBall(body).subscribe({
 
-  };
+      next: () => {
 
-  this.ProcessBall(body).subscribe({
+        // Store innings balls
+        if (this.innings() === 1) {
 
-    next: () => {
+          this.firstInningsBalls.update(current => [...current, ball]);
 
-      this.GetLiveMatch(live.matchNo).subscribe({
+        } else {
 
-        next: (updatedMatch) => {
-
-          this.loadMatchIntoService(updatedMatch);
-
-        },
-
-        error: (err) => {
-
-          console.error('Failed to reload match', err);
+          this.secondInningsBalls.update(current => [...current, ball]);
 
         }
 
-      });
+        // Store current over balls
+        this.currentOverBalls.update(current => {
 
-    },
+          const updated = [...current, ball];
 
-    error: (err) => {
+          const legalBalls = updated.filter(
+            b => b !== 'WD' && b !== 'NB'
+          ).length;
 
-      console.error('Process ball failed', err);
+          if (legalBalls === 6) {
+            return [];
+          }
 
-    }
+          return updated;
+
+        });
+
+
+
+        this.GetLiveMatch().subscribe({
+
+          next: updatedMatch => {
+
+            this.loadMatchIntoService(updatedMatch);
+
+            observer.next();
+            observer.complete();
+
+          },
+
+          error: err => {
+            console.error(err);
+            observer.error(err);
+          }
+
+        });
+
+      },
+
+      error: err => {
+        console.error(err);
+        observer.error(err);
+      }
+
+    });
 
   });
 
@@ -436,6 +550,8 @@ UpdatePlayerOfMatch(matchNo: number, body: any): Observable<any> {
   
 changeBowler(bowlerPlayerId: number) {
 
+ 
+
   const live = this.live();
 
   if (!live) return;
@@ -445,27 +561,34 @@ changeBowler(bowlerPlayerId: number) {
     bowlerPlayerId: bowlerPlayerId
   };
 
+
   this.ChangeBowler(body).subscribe({
 
-    next: () => {
+    next: res => {
+      
 
-      this.GetLiveMatch(live.matchNo).subscribe({
-
-        next: (updatedMatch) => {
-
-          this.loadMatchIntoService(updatedMatch);
-
-        },
-
-        error: (err) => console.error(err)
-
+      this.GetLiveMatch().subscribe({
+        next: match => this.loadMatchIntoService(match)
       });
 
     },
 
-    error: (err) => console.error(err)
+    error: err => {
+      console.log("PUT ERROR");
+      console.log(err);
+      console.log(err.error);
+    }
 
   });
+
+}
+canCompleteMatch(): boolean {
+
+  const live = this.live();
+
+  if (!live) return false;
+
+  return live.status === 'Completed';
 
 }
 }

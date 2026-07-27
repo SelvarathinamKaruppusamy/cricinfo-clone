@@ -35,6 +35,7 @@ toastType: 'success' | 'error' = 'success';
 toastMessage = '';
 
 private toastTimer: any;
+selectedUpcomingMatch!: LiveModel;
 
    private dialog = inject(MatDialog);
   openConfirmDialog(data: ConfirmDialogData, action: () => void) {
@@ -54,21 +55,7 @@ private toastTimer: any;
 ngOnInit(): void {
 
  // Temporary while only one live match exists
-this.service.GetLiveMatch(26).subscribe({
-
-  next: (match) => {
-
-    this.loadLiveMatch(match);
-
-  },
-
-  error: (err: any) => {
-
-    console.error(err);
-
-  }
-
-});
+this.openPromoteDialog();
 
 }
 loadLiveMatch(match: LiveModel) {
@@ -97,6 +84,9 @@ openPromoteDialog() {
       }
 
       const nextMatch = matches[0];
+      console.log(matches)
+
+this.selectedUpcomingMatch = nextMatch;
 
       const dialogRef = this.dialog.open(
         PromoteMatchDialogComponent,
@@ -124,20 +114,43 @@ openPromoteDialog() {
 }
 promoteMatch() {
 
-  this.adminService.promoteUpcomingToLive();
+  this.adminService
+      .PromoteUpcomingMatch(this.selectedUpcomingMatch.matchNo)
+      .subscribe({
 
-  setTimeout(() => {
+        next: () => {
 
-    this.service.GetLiveMatch(26).subscribe({
-     next: (match) => {
+          this.showToast(
+            "Match Promoted Successfully",
+            "success"
+          );
 
-  this.loadLiveMatch(match);
+          this.service.GetLiveMatch(
+            
+          ).subscribe({
 
-}
+            next: match => {
 
-    });
+              this.loadLiveMatch(match);
 
-  },300);
+            }
+
+          });
+
+        },
+
+        error: err => {
+
+          console.error(err);
+
+          this.showToast(
+            "Promotion Failed",
+            "error"
+          );
+
+        }
+
+      });
 
 }
   get tossSummary(): string {
@@ -170,7 +183,7 @@ promoteMatch() {
 
 }
 
-  saveToss() {
+ saveToss() {
 
   this.openConfirmDialog(
     {
@@ -201,32 +214,55 @@ promoteMatch() {
 
         next: () => {
 
-          this.service.GetLiveMatch(
-            this.live.matchNo
-          ).subscribe({
+          // CALL START MATCH API
+          this.service.StartMatch(this.live!.matchNo).subscribe({
 
-            next: (updatedMatch) => {
+            next: () => {
 
-              this.loadLiveMatch(updatedMatch);
+              // Reload latest match
+              this.service.GetLiveMatch(
+                
+              ).subscribe({
 
-              this.showToast(
-                'Toss Saved Successfully',
-                'success'
-              );
+                next: (updatedMatch) => {
 
-              setTimeout(() => {
+                  this.service.isSaving = true;
 
-                this.router.navigate([
-                  '/navbarAdmin/adminLive/liveupdate'
-                ]);
+                  this.loadLiveMatch(updatedMatch);
 
-              }, 1500);
+                  this.showToast(
+                    'Toss Saved & Match Started',
+                    'success'
+                  );
+
+                  setTimeout(() => {
+
+                    this.router.navigate([
+                      '/navbarAdmin/adminLive/liveupdate'
+                    ]);
+
+                  }, 1500);
+
+                },
+
+                error: (err: any) => {
+
+                  console.error(err);
+
+                }
+
+              });
 
             },
 
             error: (err: any) => {
 
               console.error(err);
+
+              this.showToast(
+                'Match start failed',
+                'error'
+              );
 
             }
 
@@ -236,6 +272,7 @@ promoteMatch() {
 
         error: (err: any) => {
 
+          console.error(JSON.stringify(err.error));
           console.error(err);
 
           this.showToast(

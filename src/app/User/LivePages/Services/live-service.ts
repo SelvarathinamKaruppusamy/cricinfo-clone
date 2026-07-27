@@ -30,6 +30,7 @@ export class LiveService {
   secondInningsBalls = signal<string[]>([]);
   isSaving = false;
   currentOverBalls = signal<string[]>([]);
+  currentinningswickets = 0;
 
   ball = computed(() =>
     this.innings() === 1 ? this.firstInningsBalls() : this.secondInningsBalls(),
@@ -589,6 +590,7 @@ export class LiveService {
       if (legalCount === this.legalBalls()) break;
     }
     this.currentOverBalls.set(rebuiltCurrentOver);
+
     // 8) SYNC TO LIVE + SAVE
     this.syncCurrentPlayersToLive();
     this.saveLiveToDb();

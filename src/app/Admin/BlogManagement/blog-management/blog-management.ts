@@ -30,7 +30,7 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
   filteredBlogs: Blog[] = [];
 
   showDeletePopup = false;
-  selectedBlogId = '';
+  selectedBlogId = 0;
   selectedBlogTitle = '';
 
   toastVisible = false;
@@ -101,7 +101,7 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.blogService.getBlogs().subscribe({
       next: (blogs) => {
-        this.blogs = [...blogs].reverse();
+        this.blogs = [...blogs].sort((a, b) => b.matchId - a.matchId);
         this.filteredBlogs = [...this.blogs];
         this.loading = false;
         this.cdr.detectChanges();
@@ -125,21 +125,22 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
     this.router.navigate(['/navbarAdmin/blogs/edit', matchId]);
   }
 
-  deleteBlog(id: string): void {
-    console.log('Delete called with ID:', id);
+deleteBlog(matchId: number): void {
+  console.log('Delete called with MatchId:', matchId);
 
-    const blog = this.blogs.find((b) => b.id === id);
-    if (!blog) {
-      console.error('Blog not found with ID:', id);
-      this.showToast('Blog not found. Please try again.', 'error');
-      return;
-    }
+  const blog = this.blogs.find((b) => b.matchId === matchId);
 
-    this.selectedBlogId = id;
-    this.selectedBlogTitle = blog.title;
-    this.showDeletePopup = true;
-    this.cdr.detectChanges();
+  if (!blog) {
+    console.error('Blog not found with MatchId:', matchId);
+    this.showToast('Blog not found. Please try again.', 'error');
+    return;
   }
+
+  this.selectedBlogId = matchId;
+  this.selectedBlogTitle = blog.title;
+  this.showDeletePopup = true;
+  this.cdr.detectChanges();
+}
 
   confirmDelete(): void {
     this.showDeletePopup = false;
@@ -148,13 +149,13 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
     const blogTitle = this.selectedBlogTitle;
     const blogId = this.selectedBlogId;
 
-    this.selectedBlogId = '';
+    this.selectedBlogId = 0;
     this.selectedBlogTitle = '';
 
     this.blogService.deleteBlog(blogId).subscribe({
       next: () => {
-        this.blogs = this.blogs.filter((blog) => blog.id !== blogId);
-        this.filteredBlogs = this.filteredBlogs.filter((blog) => blog.id !== blogId);
+        this.blogs = this.blogs.filter((blog) => blog.matchId !== blogId);
+        this.filteredBlogs = this.filteredBlogs.filter((blog) => blog.matchId !== blogId);
 
         this.showToast(`"${blogTitle}" deleted successfully.`, 'success');
         this.cdr.detectChanges();
@@ -169,7 +170,7 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
 
   cancelDelete(): void {
     this.showDeletePopup = false;
-    this.selectedBlogId = '';
+    this.selectedBlogId = 0;
     this.selectedBlogTitle = '';
     this.cdr.detectChanges();
   }
@@ -197,7 +198,7 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
-  trackByBlogId(index: number, blog: Blog): string {
+  trackByBlogId(index: number, blog: Blog): number {
     return blog.id;
   }
 }

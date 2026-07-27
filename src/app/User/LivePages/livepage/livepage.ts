@@ -19,6 +19,8 @@ import { Statistics } from '../statistics/statistics';
 import { LiveService } from '../Services/live-service';
 import { Player } from '../Models/models';
 
+import { ScoreEventAnimation } from '../score-event-animation/score-event-animation';
+
 @Component({
   selector: 'app-livepage',
   standalone: true,
@@ -30,6 +32,7 @@ import { Player } from '../Models/models';
     CommonModule,
     Commentary,
     Statistics,
+    ScoreEventAnimation
   ],
   templateUrl: './livepage.html',
   styleUrl: './livepage.css',
@@ -40,6 +43,8 @@ export class Livepage implements OnInit, OnDestroy {
 
   pollSub?: Subscription;
 
+  private previousDeliveryKey = '';
+private previousInnings = 1;
   live = computed(() => this.service.live());
 
   currentbatters = computed<Player[]>(() =>

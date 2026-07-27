@@ -1,6 +1,6 @@
 <div class="blog-management-container">
   <div class="header">
-    <h2>Blog Management</h2>
+     <h1 class="page-title">Blog Management</h1>
 
     <div class="header-actions">
       <div class="search-box">
@@ -21,9 +21,12 @@
     </div>
   </div>
 
-  <div *ngIf="loading">
-    <p>Loading blogs...</p>
+<div *ngIf="loading" class="loading-wrapper">
+  <div class="loading-content">
+    <div class="loader"></div>
+    <span class="loading-text">Just a moment, loading blogs...</span>
   </div>
+</div>
 
   <table class="blog-table" *ngIf="!loading">
     <thead>
@@ -54,7 +57,7 @@
         <td>
           <button class="edit-btn" (click)="editBlog(blog.matchId)">Edit</button>
 
-          <button class="delete-btn" (click)="deleteBlog(blog.id)">Delete</button>
+          <button class="delete-btn" (click)="deleteBlog(blog.matchId)">Delete</button>
         </td>
       </tr>
     </tbody>

@@ -38,10 +38,30 @@
             </h3>
 
             @if ((match.teams[0].scores ?? 0) > 0 || (match.teams[0].overs ?? 0) > 0) {
+            <div class="relative inline-block">
+
               <p class="text-lg sm:text-xl md:text-2xl font-bold">
-                <span class="text-green-400">{{ match.teams[0].scores }}</span> /
-                <span class="text-red-400">{{ match.teams[0].wickets }}</span>
+
+                <span class="text-green-400">
+                  {{ match.teams[0].scores }}
+                </span>
+
+                /
+
+                <span class="text-red-400">
+                  {{ match.teams[0].wickets }}
+                </span>
+
               </p>
+
+              @if(service.currentBattingTeam()===0){
+
+              <app-score-event-animation [teamIndex]="0">
+              </app-score-event-animation>
+
+              }
+
+            </div>
 
               <p class="text-slate-300 text-sm">
                 ({{ match.teams[0].overs }} Overs)
@@ -111,16 +131,36 @@
             </h3>
 
             @if ((match.teams[1].scores ?? 0) > 0 || (match.teams[1].overs ?? 0) > 0) {
+
+            <div class="relative inline-block">
+
               <p class="text-lg sm:text-xl md:text-2xl font-bold">
-                <span class="text-green-400">{{ match.teams[1].scores }}</span> /
-                <span class="text-red-400">{{ match.teams[1].wickets }}</span>
+                <span class="text-green-400">
+                  {{ match.teams[1].scores }}
+                </span>
+                /
+                <span class="text-red-400">
+                  {{ match.teams[1].wickets }}
+                </span>
               </p>
 
-              <p class="text-slate-300 text-sm">
-                ({{ match.teams[1].overs }} Overs)
-              </p>
+              @if (service.currentBattingTeam() === 1) {
+              <app-score-event-animation [teamIndex]="1">
+              </app-score-event-animation>
+              }
+
+            </div>
+
+            <p class="text-slate-300 text-sm">
+              ({{ match.teams[1].overs }} Overs)
+            </p>
+
             } @else {
-              <p class="text-sm font-bold text-green-400">Yet to bat</p>
+
+            <p class="text-sm font-bold text-green-400">
+              Yet to bat
+            </p>
+
             }
           </div>
 
@@ -136,33 +176,44 @@
         <!-- Current Batters -->
         <div class="text-lg text-white py-4 space-y-2">
           @if (currentBatter1()) {
-            <p>
-              {{ currentBatter1()?.name }}
-              @if (striker()?.id === currentBatter1()?.id) {
-                <span class="text-red-400">*</span>
-              }
-              <span class="p-1">:</span>
-              <span>
-                {{ currentBatter1()?.runs }} ({{ currentBatter1()?.balls }})
-              </span>
-            </p>
+
+          <p>
+            {{ currentBatter1()?.name }}
+
+            @if (striker()?.id === currentBatter1()?.id) {
+            <span class="text-red-400">*</span>
+            }
+
+            <span class="p-1">:</span>
+
+            <span>
+              {{ currentBatter1()?.runs }}
+              ({{ currentBatter1()?.balls }})
+            </span>
+
+          </p>
+
           } @else {
-            <p class="text-slate-300">Batter 1 not available</p>
+
+          <p class="text-slate-300">
+            Batter 1 not available
+          </p>
+
           }
 
           @if (currentBatter2()) {
-            <p>
-              {{ currentBatter2()?.name }}
-              @if (striker()?.id === currentBatter2()?.id) {
-                <span class="text-red-400">*</span>
-              }
-              <span class="p-1">:</span>
-              <span>
-                {{ currentBatter2()?.runs }} ({{ currentBatter2()?.balls }})
-              </span>
-            </p>
+          <p>
+            {{ currentBatter2()?.name }}
+            @if (striker()?.id === currentBatter2()?.id) {
+            <span class="text-red-400">*</span>
+            }
+            <span class="p-1">:</span>
+            <span>
+              {{ currentBatter2()?.runs }} ({{ currentBatter2()?.balls }})
+            </span>
+          </p>
           } @else {
-            <p class="text-slate-300">Batter 2 not available</p>
+          <p class="text-slate-300">Batter 2 not available</p>
           }
         </div>
 

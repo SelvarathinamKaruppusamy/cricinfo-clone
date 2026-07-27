@@ -106,7 +106,7 @@ export class CompletedDetails implements OnInit {
 
   openBlogDetails(): void {
     if (!this.relatedBlog) return;
-    this.router.navigate(['/blog-detail', this.relatedBlog.id]);
+    this.router.navigate(['/blog-detail', this.relatedBlog.matchNo]);
   }
 
   changeTab(tab: 'summary' | 'scorecard' | 'blog'): void {

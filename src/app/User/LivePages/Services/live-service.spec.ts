@@ -53,23 +53,40 @@ describe('LiveService', () => {
     it('should return 0 for wicket', () => {
       expect(service.calculateScore('W')).toBe(0);
     });
+    it('should return 2 for double', () => {
+      expect(service.calculateScore('2')).toBe(2);
+    });
+
+    it('should return 3 for triple', () => {
+      expect(service.calculateScore('3')).toBe(3);
+    });
   });
 
-  describe('addBall', () => {
+  describe('addBallToArray', () => {
+    beforeEach(() => {
+      service.live.set({
+        id: 1,
+        firstInningsBalls: [],
+        secondInningsBalls: [],
+      } as any);
+    });
+
     it('should add ball to first innings', () => {
       service.innings.set(1);
 
-      service.addBall('4');
+      service.addBallToArray('4');
 
       expect(service.firstInningsBalls()).toEqual(['4']);
+      expect(service.live()?.firstInningsBalls).toEqual(['4']);
     });
 
     it('should add ball to second innings', () => {
       service.innings.set(2);
 
-      service.addBall('6');
+      service.addBallToArray('6');
 
       expect(service.secondInningsBalls()).toEqual(['6']);
+      expect(service.live()?.secondInningsBalls).toEqual(['6']);
     });
   });
 
@@ -106,5 +123,30 @@ describe('LiveService', () => {
     expect(req.request.method).toBe('PUT');
 
     req.flush(mockResponse);
+  });
+  it('should delete match', () => {
+    service.DeleteMatch(1).subscribe();
+
+    const req = httpMock.expectOne('http://localhost:3000/matches/1');
+
+    expect(req.request.method).toBe('DELETE');
+
+    req.flush(null);
+  });
+  it('should add match', () => {
+    const match = {
+      id: 1,
+      status: 'LIVE',
+    } as any;
+
+    service.AddMatch(match).subscribe((data) => {
+      expect(data).toEqual(match);
+    });
+
+    const req = httpMock.expectOne('http://localhost:3000/matches');
+
+    expect(req.request.method).toBe('POST');
+
+    req.flush(match);
   });
 });

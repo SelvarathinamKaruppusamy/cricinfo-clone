@@ -129,11 +129,9 @@ export class AddBlog implements OnDestroy {
                 next: () => {
                   this.isSaving = false;
 
-                  // Store toast message in localStorage before navigation
                   localStorage.setItem('toastMessage', `"${blog.title}" published successfully!`);
                   localStorage.setItem('toastType', 'success');
 
-                  // Navigate to blogs page
                   this.router.navigate(['/navbarAdmin/blogs']);
                 },
                 error: (err) => {

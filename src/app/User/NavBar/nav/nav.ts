@@ -1,12 +1,11 @@
-import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon'
 import { NavService } from './nav-service';
 import { MatCardModule } from '@angular/material/card';
-import { MatDivider } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
@@ -17,12 +16,12 @@ import { MatChipsModule } from '@angular/material/chips';
     MatIconModule,
     MatToolbarModule,
     MatCardModule,
-    MatDivider,
+    // MatDivider,
     MatChipsModule,
     MatMenuModule,
     MatButtonModule,
-    RouterLinkActive,
-    RouterLink,
+    // RouterLinkActive,
+    // RouterLink,
     MatIconModule,
   ],
   templateUrl: './nav.html',

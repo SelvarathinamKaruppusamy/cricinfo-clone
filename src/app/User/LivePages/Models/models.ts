@@ -1,62 +1,80 @@
 export interface LiveModel {
-  id: string | number;
+
   matchNo: number;
+
   venue: string;
+
   city: string;
+
   date: string;
 
   tossWinner: string | null;
+
   tossDecision: 'Bat' | 'Bowl' | null;
 
   result: string | null;
+
   playerOfTheMatch: string | null;
+
   status: string;
 
+  currentInnings: 1 | 2;
+
+  currentBattingTeamIndex: number;
+
+  currentBowlingTeamIndex: number;
+
+  strikerPlayerId: number;
+
+  nonStrikerPlayerId: number;
+
+  currentBowlerPlayerId: number;
+firstInningsBalls: string[];
+secondInningsBalls: string[];
   teams: Team[];
-
-  innings?: 1 | 2;
-  currentBattingTeamIndex?: number | null;
-  currentBowlingTeamIndex?: number | null;
-  strikerPlayerId?: number | null;
-  nonStrikerPlayerId?: number | null;
-  currentBowlerPlayerId?: number | null;
-
-  firstInningsCompletedBattingTeam?: Team | null;
-  firstInningsCompletedBowlingTeam?: Team | null;
-  firstInningsCompletedBatters?: Player[];
-  firstInningsCompletedBowlers?: Player[];
-  firstInningsBalls?: string[];
-secondInningsBalls?: string[];
 }
 export interface Team {
   teamId: number;
   fullName: string;
   shortName: string;
-  scores: number;
+
+  scores: string;      // ✅ change to string
+  runs: number;         // ✅ add this
+
   wickets: number;
   extras: number;
   overs: number;
+  balls: number;
+
   winCount: number;
   lossCount: number;
   totalMatch: number;
+
   logo: string;
-  matchStatus: boolean[];
+  matchStatus: string;
   players: Player[];
 }
 export interface Player {
   id: number;
+  playerId: number;
+  teamId: number;
+  matchNo: number;
+
   name: string;
   role: string;
+
   runs: number;
   balls: number;
   fours: number;
   sixes: number;
   strikeRate: number;
+
   status: string;
+
+  overs: number;
+  wickets: number;
   maidens: number;
   runsConceded: number;
-  wickets: number;
-  overs: number;
   economy: number;
 }
 export interface IplNews {

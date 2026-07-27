@@ -35,7 +35,7 @@
           <td>
             @if (team.form && team.form.length > 0) {
               <div class="form-container">
-                @for (result of team.form.slice(-5); track $index) {
+                @for (result of team.form.slice(-6); track $index) {
                   <span class="form-circle" [class.win]="result" [class.loss]="!result">
                     {{ result ? 'W' : 'L' }}
                   </span>

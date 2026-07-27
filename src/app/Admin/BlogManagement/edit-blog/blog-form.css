@@ -1,38 +1,25 @@
 .blog-form-container {
   max-width: 1000px;
-  margin: 24px auto;
-  margin-top: 99px;
-  margin-bottom: 30px;
+  width: calc(100% - 32px);
+  margin: 100px auto 30px;
   padding: 24px;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
 .blog-form-container h2 {
   margin-bottom: 24px;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   color: #0a4f75;
 }
 
-.preview-image {
-  display: block;
-
-  width: 220px;
-  max-width: 100%;
-
-  height: 150px;
-
-  border-radius: 12px;
-
-  object-fit: cover;
-
-  margin: 12px 0;
-
-  border: 1px solid #e5e7eb;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+.blog-form-container h3 {
+  margin: 8px 0;
+  font-size: 18px;
+  color: #333;
 }
 
 form {
@@ -48,7 +35,7 @@ form {
 
 .form-group label {
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #444;
 }
@@ -61,8 +48,9 @@ form {
   border-radius: 10px;
   outline: none;
   font-size: 15px;
-  transition: all 0.2s ease;
   background: #fff;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -73,61 +61,12 @@ form {
 
 .form-group textarea {
   resize: vertical;
-  min-height: 120px;
-  line-height: 1.5;
+  min-height: 140px;
+  line-height: 1.6;
 }
 
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.checkbox input {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-.checkbox span {
-  font-weight: 500;
-  color: #444;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.save-btn,
-.cancel-btn {
-  border: none;
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.save-btn {
-  background: #0a4f75;
-  color: white;
-}
-
-.save-btn:hover {
-  background: #083d5c;
-}
-
-.cancel-btn {
-  background: #e9ecef;
-  color: #333;
-}
-
-.cancel-btn:hover {
-  background: #d9dde1;
+textarea[formControlName='content'] {
+  min-height: 350px;
 }
 
 input[readonly] {
@@ -135,10 +74,125 @@ input[readonly] {
   cursor: not-allowed;
 }
 
+.preview-image {
+  display: block;
+  width: 260px;
+  max-width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+input[type='file'] {
+  padding: 10px;
+  border: 1px dashed #bbb;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fafafa;
+}
+
+small {
+  margin-top: -8px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.save-btn,
+.cancel-btn {
+  border: none;
+  padding: 12px 26px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.save-btn {
+  background: #0a4f75;
+  color: #fff;
+}
+
+.save-btn:hover {
+  background: #083d5c;
+}
+
+.cancel-btn {
+  background: #ececec;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #d8d8d8;
+}
+
+/* ---------------- Tablet ---------------- */
+
+@media (max-width: 992px) {
+  .blog-form-container {
+    width: calc(100% - 24px);
+    margin-top: 90px;
+    padding: 20px;
+  }
+
+  .blog-form-container h2 {
+    font-size: 26px;
+  }
+
+  .preview-image {
+    width: 220px;
+    height: 150px;
+  }
+}
+
+/* ---------------- Mobile ---------------- */
+
 @media (max-width: 768px) {
   .blog-form-container {
-    margin: 12px;
+    width: calc(100% - 20px);
+    margin-top: 80px;
     padding: 16px;
+    border-radius: 12px;
+  }
+
+  .blog-form-container h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .blog-form-container h3 {
+    font-size: 17px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px;
+    padding: 11px 12px;
+  }
+
+  .preview-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  textarea[formControlName='content'] {
+    min-height: 250px;
   }
 
   .actions {
@@ -148,9 +202,33 @@ input[readonly] {
   .save-btn,
   .cancel-btn {
     width: 100%;
+    padding: 13px;
   }
 }
 
-textarea[formControlName='content'] {
-  min-height: 350px;
+/* ---------------- Small Mobile ---------------- */
+
+@media (max-width: 480px) {
+  .blog-form-container {
+    width: calc(100% - 16px);
+    padding: 14px;
+    margin-top: 72px;
+  }
+
+  .blog-form-container h2 {
+    font-size: 22px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 13px;
+  }
+
+  textarea[formControlName='content'] {
+    min-height: 220px;
+  }
 }

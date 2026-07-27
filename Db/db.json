@@ -5,8 +5,8 @@
       "venue": "Chepauk Stadium",
       "city": "Chennai",
       "date": "2026-06-02",
-      "tossWinner": null,
-      "tossDecision": null,
+      "tossWinner": "RCB",
+      "tossDecision": "Bat",
       "result": null,
       "playerOfTheMatch": null,
       "status": "LIVE",
@@ -40,7 +40,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "Not Out",
               "overs": 0,
               "wickets": 0
             },
@@ -53,7 +53,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "Not Out",
               "overs": 0,
               "wickets": 0
             },
@@ -66,7 +66,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "",
               "overs": 0,
               "wickets": 0
             },
@@ -79,7 +79,7 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "status": "Yet To Play",
+              "status": "",
               "overs": 0,
               "wickets": 0
             },
@@ -92,12 +92,12 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
-              "status": "Yet To Play"
+              "economy": 0,
+              "status": ""
             },
             {
               "id": 106,
@@ -108,12 +108,12 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
-              "status": "Yet To Play"
+              "economy": 0,
+              "status": ""
             },
             {
               "id": 107,
@@ -124,12 +124,12 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
-              "status": "Yet To Play"
+              "economy": 0,
+              "status": ""
             },
             {
               "id": 108,
@@ -140,12 +140,12 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
-              "status": "Yet To Play"
+              "economy": 0,
+              "status": ""
             },
             {
               "id": 109,
@@ -156,12 +156,12 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
-              "status": "Yet To Play"
+              "economy": 0,
+              "status": ""
             },
             {
               "id": 110,
@@ -172,12 +172,12 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
-              "status": "Yet To Play"
+              "economy": 0,
+              "status": ""
             },
             {
               "id": 111,
@@ -188,12 +188,12 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
-              "status": "Yet To Play"
+              "economy": 0,
+              "status": ""
             }
           ]
         },
@@ -278,11 +278,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -294,11 +294,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -310,11 +310,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -326,11 +326,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -342,11 +342,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -358,11 +358,11 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             },
             {
@@ -374,17 +374,29 @@
               "fours": 0,
               "sixes": 0,
               "strikeRate": 0,
-              "maidens": null,
-              "runsConceded": null,
+              "maidens": 0,
+              "runsConceded": 0,
               "wickets": 0,
               "overs": 0,
-              "economy": null,
+              "economy": 0,
               "status": "Yet To Play"
             }
           ]
         }
       ],
-      "id": "-9pPnt0J80c"
+      "id": "-9pPnt0J80c",
+      "innings": 1,
+      "currentBattingTeamIndex": 1,
+      "currentBowlingTeamIndex": 0,
+      "strikerPlayerId": 1,
+      "nonStrikerPlayerId": 2,
+      "currentBowlerPlayerId": 105,
+      "firstInningsCompletedBattingTeam": null,
+      "firstInningsCompletedBowlingTeam": null,
+      "firstInningsCompletedBatters": [],
+      "firstInningsCompletedBowlers": [],
+      "firstInningsBalls": [],
+      "secondInningsBalls": []
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

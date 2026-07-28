@@ -8,34 +8,68 @@ import { LiveMatchCard } from './live-match-card';
 import { LiveService } from '../Services/live-service';
 import { UpcService } from '../../UpCommingPage/up-comp/upc-service';
 import { CompletedService } from '../../Completed/Services/completed-service';
-
+import { AdminService } from '../../../Admin/LiveAdmin/admin-service';
 describe('LiveMatchCard', () => {
   let component: LiveMatchCard;
   let fixture: ComponentFixture<LiveMatchCard>;
-
+  const mockAdminService = {};
   const mockRouter = {
     navigate: vi.fn(),
     navigateByUrl: vi.fn(),
   };
+  const liveSignal = signal({
+    id: 1,
+    innings: 1,
+    teams: [
+      {
+        shortName: 'RCB',
+        scores: 100,
+        overs: 10,
+        players: [],
+      },
+      {
+        shortName: 'CSK',
+        scores: 0,
+        overs: 0,
+        players: [],
+      },
+    ],
+  } as any);
 
-  const mockLiveService: any = {
+  const mockLiveService = {
     ball: signal([]),
+
     innings: signal(1),
-    tossloss: vi.fn(() => 1),
+
     currentBattingTeam: signal(0),
+
     completedBattingTeam: {
       scores: 180,
     },
-    live: {
-      teams: [
-        { scores: 100, overs: 10 },
-        { scores: 0, overs: 0 },
-      ],
-    },
+
+    live: liveSignal,
+
+    loadMatchIntoService: vi.fn(),
+
     GetLiveMatches: vi.fn().mockReturnValue(
       of([
         {
-          teams: [{ shortName: 'RCB' }, { shortName: 'CSK' }],
+          id: 1,
+          innings: 1,
+          teams: [
+            {
+              shortName: 'RCB',
+              scores: 100,
+              overs: 10,
+              players: [],
+            },
+            {
+              shortName: 'CSK',
+              scores: 0,
+              overs: 0,
+              players: [],
+            },
+          ],
         },
       ]),
     ),
@@ -46,7 +80,14 @@ describe('LiveMatchCard', () => {
       of([
         {
           id: 1,
-          teams: [{}, {}],
+          teams: [
+            {
+              players: [],
+            },
+            {
+              players: [],
+            },
+          ],
         },
       ]),
     ),
@@ -58,8 +99,16 @@ describe('LiveMatchCard', () => {
         {
           matchNo: 1,
           teams: [
-            { teamId: 1, shortName: 'RCB' },
-            { teamId: 2, shortName: 'CSK' },
+            {
+              teamId: 1,
+              shortName: 'RCB',
+              players: [],
+            },
+            {
+              teamId: 2,
+              shortName: 'CSK',
+              players: [],
+            },
           ],
         },
       ]),
@@ -74,6 +123,7 @@ describe('LiveMatchCard', () => {
         { provide: LiveService, useValue: mockLiveService },
         { provide: UpcService, useValue: mockUpcService },
         { provide: CompletedService, useValue: mockCompletedService },
+        { provide: AdminService, useValue: mockAdminService },
       ],
     }).compileComponents();
 
@@ -82,6 +132,7 @@ describe('LiveMatchCard', () => {
   });
 
   afterEach(() => {
+    component.ngOnDestroy();
     vi.clearAllMocks();
   });
 
@@ -146,15 +197,49 @@ describe('LiveMatchCard', () => {
   it('should calculate required runs', () => {
     mockLiveService.innings.set(2);
 
-    component.live = {
+    liveSignal.set({
+      id: 1,
+      innings: 2,
       teams: [
-        { scores: 100, overs: 10 },
-        { scores: 0, overs: 0 },
+        {
+          shortName: 'RCB',
+          scores: 100,
+          overs: 10,
+          players: [],
+        },
+        {
+          shortName: 'CSK',
+          scores: 0,
+          overs: 0,
+          players: [],
+        },
       ],
-    } as any;
+    } as any);
 
     component.requiredRun();
 
     expect(component.target).toBe(181);
+    expect(component.requiredRuns).toBe(81);
+    expect(component.remainingBalls).toBe(60);
+  });
+  it('should navigate to upcoming page', () => {
+    component.upcommingdata = {
+      id: 5,
+    } as any;
+
+    component.movetoupcommingpage();
+
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/live/match/5');
+  });
+  it('should navigate to schedule page', () => {
+    const event = {
+      stopPropagation: vi.fn(),
+    } as any;
+
+    component.schedulepage(event, 2);
+
+    expect(event.stopPropagation).toHaveBeenCalled();
+
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/live/schedule', 2]);
   });
 });

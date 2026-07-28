@@ -161,8 +161,8 @@ export class Animation {
         animation = '/animations/noball.json';
         break;
       case '1':
-      case '2':
-      case '3':
+        case '2':
+          case '3':
         animation = '/animations/Runn.json';
         break;
       default:
@@ -174,16 +174,20 @@ export class Animation {
     this.animationPath.set(animation);
     this.visible.set(true);
 
-    setTimeout(() => {
-      this.visible.set(false);
+  setTimeout(() => {
 
-      if (!this.winnerVisible()) {
+    this.visible.set(false);
+
+    if (!this.winnerVisible()) {
         this.defaultAnimation.set(true);
-      }
+    }
 
-      setTimeout(() => {
+    setTimeout(() => {
         this.playNext();
-      }, 300);
-    }, 3000);
+    },300);
+
+},3000);
+
   }
+
 }

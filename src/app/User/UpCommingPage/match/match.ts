@@ -26,7 +26,7 @@ import { Team } from './match.models/match.models-module';
     MatChipsModule,
     MatExpansionModule,
     MatButtonModule,
-    RouterOutlet
+    // RouterOutlet
   ],
   templateUrl: './match.html',
   styleUrl: './match.css',

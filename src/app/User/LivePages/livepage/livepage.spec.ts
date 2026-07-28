@@ -1,85 +1,72 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
+import { ChangeDetectorRef, signal } from '@angular/core';
 import { of } from 'rxjs';
 import { vi } from 'vitest';
 
 import { Livepage } from './livepage';
 import { LiveService } from '../Services/live-service';
+import { Animation } from '../Services/animation';
 
 describe('Livepage', () => {
   let component: Livepage;
   let fixture: ComponentFixture<Livepage>;
 
-  const mockLiveService: any = {
-    ball: signal([]),
+  const liveSignal = signal({
+    tossWinner: 'RCB',
+    tossDecision: 'Bat',
 
-    tosswin: signal(0),
+    teams: [
+      {
+        teamId: 1,
+        shortName: 'RCB',
+        runs: 120,
+        wickets: 2,
+        overs: 10.3,
+      },
+      {
+        teamId: 2,
+        shortName: 'CSK',
+        runs: 180,
+        wickets: 8,
+        overs: 20,
+      },
+    ],
+  } as any);
 
-    tossloss: vi.fn(() => 1),
+  const mockLiveService = {
+    live: liveSignal,
 
-    currentBattingTeam: signal(0),
+    players1: signal([
+      { id: 1, name: 'Virat', status: 'Batting' },
+      { id: 2, name: 'Faf', status: 'Batting' },
+      { id: 3, name: 'Maxwell', status: 'Out' },
+    ]),
 
-    currentBowlingTeam: signal(1),
+    ball: signal(['1', '4', 'WD', '6']),
 
-    currentBowlerIndex: signal(0),
+    innings: signal(1),
 
-    players1: signal([]),
+    currentBattingTeam: signal(1),
 
-    bowlers1: signal([]),
+    currentBowlingTeam: signal(2),
 
-    completedBattingTeam: {
-      scores: 180,
-    },
+    striker: { id: 1, name: 'Virat' },
 
-    live: null,
+    nonStriker: { id: 2, name: 'Faf' },
 
-    GetLiveMatches: vi.fn(),
+    currentBowler: { id: 10, name: 'Jadeja' },
 
-    addBall: vi.fn(),
+    GetLiveMatch: vi.fn(() => of(liveSignal())),
 
-    startSecondInnings: vi.fn(),
+    loadMatchIntoService: vi.fn(),
+  };
+
+  const mockAnimation = {
+    show: vi.fn(),
+    showWinner: vi.fn(),
   };
 
   beforeEach(async () => {
-    mockLiveService.GetLiveMatches.mockReturnValue(
-      of([
-        {
-          teams: [
-            {
-              shortName: 'RCB',
-              scores: 0,
-              wickets: 0,
-              overs: 0,
-              extras: 0,
-              players: [
-                {
-                  id: 1,
-                  name: 'Virat',
-                  role: 'Batter',
-                  status: '',
-                },
-                {
-                  id: 2,
-                  name: 'Faf',
-                  role: 'Batter',
-                  status: '',
-                },
-              ],
-            },
-            {
-              shortName: 'CSK',
-              players: [
-                {
-                  id: 10,
-                  role: 'Bowler',
-                },
-              ],
-            },
-          ],
-        },
-      ]),
-    );
-
     await TestBed.configureTestingModule({
       imports: [Livepage],
       providers: [
@@ -87,11 +74,30 @@ describe('Livepage', () => {
           provide: LiveService,
           useValue: mockLiveService,
         },
+        {
+          provide: Animation,
+          useValue: mockAnimation,
+        },
+        {
+          provide: ChangeDetectorRef,
+          useValue: {
+            detectChanges: vi.fn(),
+          },
+        },
       ],
-    }).compileComponents();
+    })
+      .overrideComponent(Livepage, {
+        set: {
+          template: '<div>Livepage</div>',
+          styles: [''],
+        },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(Livepage);
     component = fixture.componentInstance;
+
+    fixture.detectChanges();
   });
 
   afterEach(() => {
@@ -102,74 +108,100 @@ describe('Livepage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should calculate player runs', () => {
-    expect(component.playerruns('1')).toBe(1);
-    expect(component.playerruns('4')).toBe(4);
-    expect(component.playerruns('6')).toBe(6);
-    expect(component.playerruns('0')).toBe(0);
+  it('should return current batters', () => {
+    expect(component.currentbatters().length).toBe(2);
   });
 
-  it('should add ball', () => {
-    component.addball('4');
+  it('should return striker', () => {
+    expect(component.striker()?.name).toBe('Virat');
+  });
 
-    expect(mockLiveService.addBall).toHaveBeenCalledWith('4');
+  it('should return non striker', () => {
+    expect(component.nonStriker()?.name).toBe('Faf');
+  });
+
+  it('should return current bowler', () => {
+    expect(component.currentBowler()?.name).toBe('Jadeja');
+  });
+
+  it('should return toss winner', () => {
+    expect(component.toss()).toBe('RCB');
+  });
+
+  it('should return toss decision', () => {
+    expect(component.tossDecision()).toBe('Bat');
+  });
+
+  it('should return current batting team', () => {
+    expect(component.currentBatting()?.shortName).toBe('RCB');
+  });
+
+  it('should return current bowling team', () => {
+    expect(component.currentBowling()?.shortName).toBe('CSK');
+  });
+
+  it('should calculate target in first innings', () => {
+    expect(component.target()).toBe(0);
+  });
+
+  it('should calculate target in second innings', () => {
+    mockLiveService.innings.set(2);
+
+    expect(component.target()).toBe(181);
   });
 
   it('should calculate required runs', () => {
-    mockLiveService.innings = signal(2);
+    mockLiveService.innings.set(2);
 
-    component.live = {
-      teams: [
-        {
-          scores: 100,
-          overs: 10,
-        },
-        {
-          scores: 0,
-          overs: 0,
-        },
-      ],
-    } as any;
-    mockLiveService.live = {
-      teams: [
-        {
-          scores: 100,
-          overs: 10,
-        },
-        {
-          scores: 0,
-          overs: 0,
-        },
-      ],
-    };
-
-    component.requiredRun();
-
-    expect(component.target).toBe(181);
+    expect(component.requiredRuns()).toBe(61);
   });
 
-  it('should redirect to second innings', () => {
-    component.startSecondInnings();
+  it('should calculate remaining balls', () => {
+    mockLiveService.innings.set(2);
 
-    expect(mockLiveService.startSecondInnings).toHaveBeenCalled();
+    expect(component.remainingBalls()).toBe(57);
   });
 
-  it('should handle wicket with no next player', () => {
-    component.striker = {
-      status: 'Not Out',
-    } as any;
+  it('should detect match not won', () => {
+    mockLiveService.innings.set(2);
 
-    component.live = {
-      teams: [
-        {
-          wickets: 0,
-          players: [],
-        },
-      ],
-    } as any;
+    expect(component.matchWon()).toBe(false);
+  });
 
-    const result = component.handleWicket();
+  it('should return current over balls', () => {
+    expect(component.currentBowlerBalls()).toEqual([
+      '1',
+      '4',
+      'WD',
+      '6',
+    ]);
+  });
 
-    expect(result).toBeNull();
+  it('should start live polling', () => {
+    component.startLivePolling();
+
+    expect(mockLiveService.GetLiveMatch).toHaveBeenCalled();
+  });
+
+  it('should load match into service', () => {
+    component.startLivePolling();
+
+    expect(mockLiveService.loadMatchIntoService).toHaveBeenCalled();
+  });
+
+  it('should unsubscribe on destroy', () => {
+    component.startLivePolling();
+
+    const spy = vi.spyOn(component.pollSub!, 'unsubscribe');
+
+    component.ngOnDestroy();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should trigger animation for latest ball', () => {
+    component.startLivePolling();
+
+    expect(mockAnimation.show).toHaveBeenCalled();
   });
 });

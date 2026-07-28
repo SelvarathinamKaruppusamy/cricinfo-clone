@@ -1,0 +1,73 @@
+.dialog-container {
+  min-width: 320px;
+  padding: 20px;
+  background: #cbd5e1;
+  border-radius: 14px;
+  color: white;
+}
+
+.dialog-title {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.current-ball {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.current-ball-value {
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  border: 1px solid #94a3b8;
+  color: #374151;
+  transition: 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.save-btn {
+  background: #4ade80;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.save-btn:hover {
+  background: #22c55e;
+}
+
+@media (max-width: 600px) {
+  .dialog-container {
+    min-width: auto;
+    width: 100%;
+    padding: 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

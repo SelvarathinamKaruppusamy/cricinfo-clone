@@ -6,6 +6,9 @@ import { Match } from '../../Models/match-module';
 import { CompletedService } from '../../Services/completed-service';
 import { Schedule } from '../../../schedule/schedule';
  
+import { timer, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-completed-list',
   standalone: true,
@@ -27,26 +30,17 @@ export class CompletedList implements OnInit {
   selectedTeam: any = null;
   bowlingTeam: any = null;
  
-  ngOnInit(): void {
-    const matchNo = Number(this.route.snapshot.paramMap.get('matchNo'));
- 
-    this.service.getCompletedMatches().subscribe({
-      next: (data) => {
-        this.matches = [...data].reverse();
-
-        const selectedMatch = this.matches.find((match) => Number(match.matchNo) === matchNo);
-
-        if (selectedMatch) {
-          this.selectMatch(selectedMatch);
-        }
- 
-        this.cd.detectChanges();
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
-  }
+ ngOnInit(): void {
+  this.service.getCompletedMatches().subscribe({
+    next: (data) => {
+      this.matches = [...data].reverse();
+      this.cd.detectChanges();
+    },
+    error: (err) => {
+      console.error(err);
+    },
+  });
+}
  
   selectMatch(selectedMatch: Match): void {
     this.match = selectedMatch;

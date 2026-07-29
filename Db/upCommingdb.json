@@ -23,13 +23,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -197,13 +191,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -389,13 +377,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,
@@ -568,13 +550,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -749,13 +725,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -918,13 +888,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -1117,13 +1081,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -1295,13 +1253,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,
@@ -1488,13 +1440,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -1662,13 +1608,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -1859,13 +1799,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -2037,13 +1971,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,
@@ -2234,13 +2162,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -2412,13 +2334,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,
@@ -2609,13 +2525,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -2787,13 +2697,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -2975,13 +2879,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -3144,13 +3042,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -3336,13 +3228,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -3510,13 +3396,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -3693,13 +3573,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -3862,13 +3736,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -4059,13 +3927,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "kkr.png",
-          "matchStatus": [
-            true,
-            false,
-            true,
-            false,
-            true
-          ],
+          "matchStatus": [true, false, true, false, true],
           "players": [
             {
               "id": 1001,
@@ -4237,13 +4099,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -4425,13 +4281,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -4594,13 +4444,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -4791,13 +4635,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -4965,13 +4803,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "gt.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            true,
-            true
-          ],
+          "matchStatus": [false, true, false, true, true],
           "players": [
             {
               "id": 701,
@@ -5148,13 +4980,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "pbks.png",
-          "matchStatus": [
-            true,
-            false,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, false, false, true, false],
           "players": [
             {
               "id": 601,
@@ -5322,13 +5148,7 @@
           "lossCount": 4,
           "totalMatch": 5,
           "logo": "rr.png",
-          "matchStatus": [
-            false,
-            true,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, false, false, false],
           "players": [
             {
               "id": 401,
@@ -5509,13 +5329,7 @@
           "lossCount": 0,
           "totalMatch": 5,
           "logo": "csk.png",
-          "matchStatus": [
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
+          "matchStatus": [true, true, true, true, true],
           "players": [
             {
               "id": 101,
@@ -5687,13 +5501,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -5879,13 +5687,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,
@@ -6062,13 +5864,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "mi.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 501,
@@ -6254,13 +6050,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "rcb.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            false,
-            true
-          ],
+          "matchStatus": [true, true, false, false, true],
           "players": [
             {
               "id": 1,
@@ -6433,13 +6223,7 @@
           "lossCount": 5,
           "totalMatch": 5,
           "logo": "srh.png",
-          "matchStatus": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
+          "matchStatus": [false, false, false, false, false],
           "players": [
             {
               "id": 301,
@@ -6630,13 +6414,7 @@
           "lossCount": 3,
           "totalMatch": 5,
           "logo": "dc.png",
-          "matchStatus": [
-            false,
-            true,
-            true,
-            false,
-            false
-          ],
+          "matchStatus": [false, true, true, false, false],
           "players": [
             {
               "id": 901,
@@ -6808,13 +6586,7 @@
           "lossCount": 2,
           "totalMatch": 5,
           "logo": "lsg.png",
-          "matchStatus": [
-            true,
-            true,
-            false,
-            true,
-            false
-          ],
+          "matchStatus": [true, true, false, true, false],
           "players": [
             {
               "id": 801,

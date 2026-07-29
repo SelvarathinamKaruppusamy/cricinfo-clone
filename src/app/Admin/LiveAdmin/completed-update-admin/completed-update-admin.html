@@ -41,7 +41,7 @@
 
         <div class="text-right">
           <p class="text-sm font-bold text-[#16a34a]">
-            {{ match.teams[0].scores }}/{{ match.teams[0].wickets }}
+            {{ match.teams[0].runs }}/{{ match.teams[0].wickets }}
           </p>
 
           <p class="text-xs text-[#9ca3af]">
@@ -71,7 +71,7 @@
 
         <div class="text-right">
           <p class="text-sm font-bold text-[#16a34a]">
-            {{ match.teams[1].scores }}/{{ match.teams[1].wickets }}
+            {{ match.teams[1].runs }}/{{ match.teams[1].wickets }}
           </p>
 
           <p class="text-xs text-[#9ca3af]">
@@ -206,7 +206,7 @@
 
         <button mat-stroked-button
           class="w-full sm:w-auto !text-xs !h-9 !border-[#16a34a] !text-[#16a34a] hover:!bg-[#f0fdf4]"
-          (click)="completeMatch()" [disabled]="!liveService.canCompleteMatch()">
+          (click)="completeMatch()">
 
           Complete Match
 

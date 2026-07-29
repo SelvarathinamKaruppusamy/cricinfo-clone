@@ -27,7 +27,7 @@
   </h1>
 } @else {
   <h1 class="text-2xl font-bold text-yellow-400">
-    {{ service.live()?.teams?.[service.currentBattingTeam()]?.shortName }} Won
+    {{ currentBatting()?.shortName }} Won
   </h1>
 }
         </div>

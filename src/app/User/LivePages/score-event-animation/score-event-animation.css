@@ -1,0 +1,455 @@
+.score-animation-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  /* palette lifted from the ball-by-ball dots + score colours */
+  --c-one: #2563eb; /* single/blue dot */
+  --c-two: #14b8a6; /* teal dot */
+  --c-three: #8b5cf6; /* violet dot */
+  --c-four: #7c3aed; /* purple boundary */
+  --c-six: #f59e0b; /* gold */
+  --c-six-2: #9333ea; /* purple-pink gradient partner */
+  --c-wicket: #e11d48; /* crimson */
+  --c-wide: #f97316; /* amber */
+  --c-noball: #eab308; /* yellow */
+}
+
+/* anchor near the score, not the page bottom.
+   Place this component's host inside the score block with
+   `position: relative;` on that parent — the badge will then
+   rise directly out of the total. */
+.score-event {
+  position: absolute;
+  right: 8px;
+  bottom: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #fff;
+  user-select: none;
+  animation-duration: 1.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.22,.61,.36,1);
+}
+
+.event-text {
+  position: relative;
+  z-index: 2;
+}
+
+.event-glow {
+  position: absolute;
+  inset: -14px;
+  border-radius: inherit;
+  filter: blur(10px);
+  z-index: 1;
+  opacity: .8;
+}
+
+/* ---------- RUN (1 / 2 / 3) — colour varies by shape, matches dots ---------- */
+.run {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  font-size: 16px;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.5) inset;
+}
+
+  .run.shape0 {
+    background: var(--c-one);
+  }
+
+    .run.shape0 .event-glow {
+      background: radial-gradient(circle, var(--c-one), transparent 70%);
+    }
+
+  .run.shape1 {
+    background: var(--c-two);
+  }
+
+    .run.shape1 .event-glow {
+      background: radial-gradient(circle, var(--c-two), transparent 70%);
+    }
+
+  .run.shape2,
+  .run.shape3,
+  .run.shape4 {
+    background: var(--c-three);
+  }
+
+    .run.shape2 .event-glow,
+    .run.shape3 .event-glow,
+    .run.shape4 .event-glow {
+      background: radial-gradient(circle, var(--c-three), transparent 70%);
+    }
+
+/* ---------- FOUR — diamond badge, crisp and compact ---------- */
+.four {
+  width: 46px;
+  height: 46px;
+  background: linear-gradient(145deg, #3b82f6, #1d4ed8);
+  border: 2px solid #ffe08a;
+  transform: rotate(45deg);
+  font-size: 15px;
+  letter-spacing: .5px;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.12) inset, 0 4px 14px rgba(29,78,216,.55);
+}
+
+  .four .event-text {
+    transform: rotate(-45deg); /* keep the "4" upright inside the tilted diamond */
+  }
+
+  .four .event-glow {
+    background: radial-gradient(circle, rgba(59,130,246,.55), transparent 70%);
+    inset: -10px;
+  }
+
+.four {
+  animation-name: hitFour, popIn;
+  animation-duration: 1.5s, .28s;
+}
+
+/* ---------- SIX — hexagon badge, gold-rimmed, the showpiece ---------- */
+.six {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(160deg, #a855f7, #7c3aed 55%, #f59e0b);
+  clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%);
+  border: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 10px rgba(245,158,11,.75)) drop-shadow(0 0 18px rgba(147,51,234,.55));
+}
+
+  .six::before {
+    /* thin gold rim, inset to trace the hexagon edge */
+    content: "";
+    position: absolute;
+    inset: 2px;
+    clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%);
+    background: linear-gradient(160deg, rgba(255,224,138,.9), rgba(255,224,138,0) 40%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .six .event-glow {
+    background: radial-gradient(circle, rgba(245,158,11,.5), transparent 70%);
+    inset: -12px;
+  }
+
+.six {
+  animation-name: hitSix, sixGlowPulse;
+  animation-duration: 1.6s, 1.6s;
+}
+
+.spark {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ffe08a;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  animation-name: sparkFly;
+  animation-duration: .9s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.s1 {
+  animation-delay: 0s;
+  transform: rotate(0deg);
+}
+
+.s2 {
+  animation-delay: .02s;
+  transform: rotate(60deg);
+}
+
+.s3 {
+  animation-delay: .04s;
+  transform: rotate(120deg);
+}
+
+.s4 {
+  animation-delay: .06s;
+  transform: rotate(180deg);
+}
+
+.s5 {
+  animation-delay: .08s;
+  transform: rotate(240deg);
+}
+
+.s6 {
+  animation-delay: .1s;
+  transform: rotate(300deg);
+}
+
+/* ---------- WICKET — crimson pulse + sonar rings ---------- */
+.wicket {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--c-wicket);
+  border: 3px solid #fff;
+  font-size: 18px;
+  box-shadow: 0 0 20px rgba(225,29,72,.9);
+}
+
+  .wicket .event-glow {
+    background: radial-gradient(circle, var(--c-wicket), transparent 70%);
+  }
+
+.wicket {
+  animation-name: hitWicket, sonarRing;
+  animation-duration: 1.6s, 1.6s;
+}
+
+/* ---------- WIDE / NO-BALL — amber pills, slide + fade ---------- */
+.wide, .noball {
+  min-width: 64px;
+  height: 34px;
+  padding-inline: 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: .5px;
+}
+
+.wide {
+  background: var(--c-wide);
+}
+
+.noball {
+  background: var(--c-noball);
+  color: #111827;
+}
+
+.wide .event-glow {
+  background: radial-gradient(circle, var(--c-wide), transparent 70%);
+}
+
+.noball .event-glow {
+  background: radial-gradient(circle, var(--c-noball), transparent 70%);
+}
+
+/* ---------- shape tilts (kept for run-type variety) ---------- */
+.shape3 {
+  transform: translateX(0) rotate(6deg);
+}
+
+.shape4 {
+  transform: translateX(0) rotate(-6deg);
+}
+
+/* ---------- path variants — arc away from the score number ---------- */
+.path1 {
+  animation-name: float1;
+}
+
+.path2 {
+  animation-name: float2;
+}
+
+.path3 {
+  animation-name: float3;
+}
+
+.path4 {
+  animation-name: float4;
+}
+
+/* ================= KEYFRAMES ================= */
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(.4);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hitFour {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translateY(10px) scale(.6);
+  }
+
+  15% {
+    opacity: 1;
+    transform: rotate(45deg) translateY(0) scale(1.1);
+  }
+
+  75% {
+    opacity: 1;
+    transform: rotate(45deg) translateY(-40px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translateY(-60px) scale(.85);
+  }
+}
+
+@keyframes hitSix {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(.4) rotate(-6deg);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.25) rotate(3deg);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(-52px) scale(1.05) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-78px) scale(.9);
+  }
+}
+
+@keyframes sixGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(245,158,11,.75)) drop-shadow(0 0 18px rgba(147,51,234,.55));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 18px rgba(245,158,11,1)) drop-shadow(0 0 28px rgba(147,51,234,.8));
+  }
+}
+
+@keyframes sparkFly {
+  0% {
+    opacity: 1;
+    transform: translate(-50%,-50%) rotate(var(--r,0deg)) translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%,-50%) rotate(var(--r,0deg)) translateY(-46px) scale(.3);
+  }
+}
+
+@keyframes hitWicket {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(.5);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.15);
+  }
+
+  30% {
+    transform: translateY(0) scale(1) translateX(-4px);
+  }
+
+  40% {
+    transform: translateY(0) scale(1) translateX(4px);
+  }
+
+  50% {
+    transform: translateY(0) scale(1) translateX(0);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-64px) scale(.85);
+  }
+}
+
+@keyframes sonarRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(225,29,72,.6);
+  }
+
+  70% {
+    box-shadow: 0 0 0 18px rgba(225,29,72,0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 18px rgba(225,29,72,0);
+  }
+}
+
+@keyframes float1 {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-34px,-74px) rotate(-10deg);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(34px,-74px) rotate(10deg);
+  }
+}
+
+@keyframes float3 {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(.6);
+  }
+
+  35% {
+    opacity: 1;
+    transform: translateY(-14px) scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-18px,-80px);
+  }
+}
+
+@keyframes float4 {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translate(10px,-20px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(42px,-88px) rotate(14deg);
+  }
+}

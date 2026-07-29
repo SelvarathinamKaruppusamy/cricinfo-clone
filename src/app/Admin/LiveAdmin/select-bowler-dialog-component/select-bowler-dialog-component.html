@@ -1,7 +1,7 @@
 <div class="grid gap-3">
   <mat-card
   *ngFor="let bowler of data.bowlers"
-  (click)="select(bowler.index)"
+  (click)="select(bowler.playerId)"
   class="cursor-pointer border border-slate-200 transition-all duration-200 hover:!bg-slate-200 hover:border-blue-500 hover:shadow-xl"
 >
     <mat-card-content class="flex items-center justify-between p-4">

@@ -25,7 +25,7 @@ export class BlogForm implements OnInit, OnDestroy {
   blogForm!: FormGroup;
   isEditMode = false;
   blogId = '';
-  actualId = '';
+  actualId = 0;
   previewUrl: string | null = null;
   selectedFile: File | null = null;
 
@@ -181,7 +181,11 @@ export class BlogForm implements OnInit, OnDestroy {
   }
 
   private updateBlog(imagePath: string, blogTitle: string): void {
+
+    
     const formValue = this.blogForm.value;
+
+   
 
     const blog: Blog = {
       id: this.actualId,
@@ -201,8 +205,13 @@ export class BlogForm implements OnInit, OnDestroy {
         .map((tag: string) => tag.trim())
         .filter(Boolean),
     };
+    //*//
+     console.log('actualId:', this.actualId);
+console.log('form matchId:', formValue.matchId);
+console.log('blog.matchId:', blog.matchId);
+console.log('Sending URL:', `https://localhost:7144/api/Blog/${blog.matchId}`);
 
-    this.blogService.updateBlog(this.actualId, blog).subscribe({
+    this.blogService.updateBlog(blog.matchId, blog).subscribe({
       next: () => {
         localStorage.setItem('toastMessage', `"${blogTitle || blog.title}" updated successfully!`);
         localStorage.setItem('toastType', 'success');

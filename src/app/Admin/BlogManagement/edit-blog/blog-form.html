@@ -4,10 +4,9 @@
   </h2>
 
   <form [formGroup]="blogForm">
-    <div class="form-group">
-      <label>Match Id</label>
-      <input type="number" formControlName="matchId" />
-    </div>
+<div class="form-group">
+  <label class="field-label">Match ID:  {{ blogForm.get('matchId')?.value }}</label>
+</div>
 
     <div class="form-group">
       <label>Title</label>

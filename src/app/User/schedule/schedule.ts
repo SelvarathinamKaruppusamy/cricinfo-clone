@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UpcService } from '../UpCommingPage/up-comp/upc-service';
 import { LiveService } from '../LivePages/Services/live-service';
 import { CompletedService } from '../Completed/Services/completed-service';
+import { LiveModel } from '../LivePages/Models/models';
 
 interface MatchCard {
   id: number;
@@ -39,35 +40,76 @@ export class Schedule implements OnInit {
   constructor(private service: ScheduleServise) {}
 
   ngOnInit() {
-    this.liveservice.GetLiveMatches().subscribe((data) => {
-      this.live = data.map(this.mapMatch);
+
+  // Live Match
+  this.liveservice.GetLiveMatch().subscribe({
+
+    next: (match: LiveModel) => {
+
+      this.live = [this.mapMatch(match)];
+
       setTimeout(() => {
-      this.scrollToSelectedMatch();
-    });
-       this.cd.detectChanges()
-    });
-    this.upservice.getMatch().subscribe((data) => {
+        this.scrollToSelectedMatch();
+      });
+
+      this.cd.detectChanges();
+
+    },
+
+    error: (err) => console.error(err)
+
+  });
+
+  // Upcoming Matches
+  this.upservice.getMatch().subscribe({
+
+    next: (data) => {
+
       this.upcoming = data.map(this.mapMatch);
+
       setTimeout(() => {
-      this.scrollToSelectedMatch();
-    });
-      this.cd.detectChanges()
-    });
-    this.completedservice.getCompletedMatches().subscribe((data) => {
+        this.scrollToSelectedMatch();
+      });
+
+      this.cd.detectChanges();
+
+    },
+
+    error: (err) => console.error(err)
+
+  });
+
+  // Completed Matches
+  this.completedservice.getCompletedMatches().subscribe({
+
+    next: (data) => {
+
       this.completed = data.map(this.mapMatch);
+
       setTimeout(() => {
+        this.scrollToSelectedMatch();
+      });
+
+      this.cd.detectChanges();
+
+    },
+
+    error: (err) => console.error(err)
+
+  });
+
+  // Route Parameter
+  this.route.params.subscribe(params => {
+
+    this.selectedMatchId = Number(params['id']);
+
+    setTimeout(() => {
       this.scrollToSelectedMatch();
     });
-      this.cd.detectChanges()
-    });
-    this.route.params.subscribe((res)=>{
-      this.selectedMatchId=Number(res['id']);
-      setTimeout(() => {
-      this.scrollToSelectedMatch();
-    });
-    })
-    this.cd.detectChanges()
-  }
+
+  });
+
+}
   mapMatch(match: any): MatchCard {
     return {
       id: match.id,

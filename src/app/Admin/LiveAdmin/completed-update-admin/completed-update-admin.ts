@@ -40,10 +40,6 @@ export class CompletedUpdateAdmin implements OnInit {
 
   resultText = '';
   playerOfMatch = '';
-
-   selectedTossWinner: 0 | 1 | null = null;
-  selectedCall: 'Head' | 'Tail' | null = null;
-  selectedDecision: 'Bat' | 'Bowl' | null = null;
   toastVisible = false;
 toastType: 'success' | 'error' = 'success';
 toastMessage = '';
@@ -85,15 +81,13 @@ private toastTimer: any;
 
   ngOnInit(): void {
     if (!this.liveService.live()) {
-      this.liveService.GetLiveMatches().subscribe({
-        next: (res) => {
-          if (res?.length) {
-            this.liveService.loadMatchIntoService(res[0]);
-          }
-          this.changedetection.detectChanges();
-        },
-        error: (err) => console.error(err),
-      });
+      this.liveService.GetLiveMatch().subscribe({
+  next: (match) => {
+    this.liveService.loadMatchIntoService(match);
+    this.changedetection.detectChanges();
+  },
+  error: (err: any) => console.error(err),
+});
     }
 
     this.loadUpcomingPreview();
@@ -110,66 +104,82 @@ private toastTimer: any;
   }
 
   autoGenerateResult() {
-    const live = this.live();
-    if (!live) return;
-    this.resultText = this.transitionService.generateResultFromScores(live);
-  }
 
-  completeMatch() {
-    this.openConfirmDialog(
-      {
-        title: 'Completed Status Update',
-        message:
-          'Do you want to change the current live match status as completed?',
-        confirmText: 'Complete',
-        cancelText: 'Cancel',
-        type: 'success',
-      },
-      () => {
-        if (!this.playerOfMatch.trim()) {
-          this.openConfirmDialog(
-            {
-              title: 'Select Player of the Match',
-              message:
-                'You have not selected the Player of the Match for the winning team!',
-              confirmText: 'OK',
-              cancelText: 'Cancel',
-              type: 'warn',
-            },
-            () => {}
+  const live = this.live();
+
+  if (!live) return;
+
+  this.resultText = live.result ?? '';
+
+}
+
+completeMatch() {
+console.log("completed")
+  this.openConfirmDialog(
+    {
+      title: 'Completed Status Update',
+      message: 'Complete this match?',
+      confirmText: 'Complete',
+      cancelText: 'Cancel',
+      type: 'success'
+    },
+    () => {
+
+      const live = this.live();
+
+      if (!live) return;
+
+      if (!this.playerOfMatch.trim()) {
+
+        this.showToast(
+          'Please select Player of the Match',
+          'error'
+        );
+
+        return;
+      }
+
+      this.liveService.CompleteMatch({
+
+        matchNo: live.matchNo,
+
+        playerOfTheMatch: this.playerOfMatch
+
+      }).subscribe({
+
+        next: () => {
+
+          this.showToast(
+            'Match Completed Successfully',
+            'success'
           );
-          return;
+
+          this.liveService.GetLiveMatch()
+            .subscribe(match => {
+
+              this.liveService.loadMatchIntoService(match);
+
+            });
+
+        },
+
+        error: err => {
+
+          console.error(err);
+
+          this.showToast(
+            'Unable to complete match',
+            'error'
+          );
+
         }
 
-        this.openConfirmDialog(
-          {
-            title: 'Confirm Match Completion',
-            message: `Result: ${this.resultText?.trim() || 'Auto-generated result'}
-            Player of the Match: ${this.playerOfMatch.trim()}`,
-            confirmText: 'Yes, Complete',
-            cancelText: 'No',
-            type: 'success',
-          },
-          () => {
-            this.transitionService.completeMatchAndPromoteUpcoming(
-              this.playerOfMatch.trim(),
-              this.resultText.trim()
-            );
+      });
 
-            this.showToast(
-  'Completed saved successfully. Redirecting to Live Update...',
-  'success'
-);
-            // reload upcoming after promotion
-            setTimeout(() => {
-              this.loadUpcomingPreview();
-            }, 300);
-            this.liveService.isSaving=false
-          }
-        );
-      }
-    );
-  }
+    }
+  );
+
+}
   showToast(message: string, type: 'success' | 'error') {
   this.toastMessage = message;
   this.toastType = type;

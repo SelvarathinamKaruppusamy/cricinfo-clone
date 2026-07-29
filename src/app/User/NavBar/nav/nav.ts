@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
 import { NavService } from './nav-service';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -35,13 +35,16 @@ export class Nav {
     { label: 'Completed', route: '/completed' },
     { label: 'Points Table', route: '/points-table' },
     { label: 'Blog', route: '/blog' },
+    { label: 'Quiz', route: '/quiz' }
   ];
   router = inject(Router);
   service = inject(NavService);
   cd = inject(ChangeDetectorRef);
   activateRoute = '';
-  getMethod(route: string) {
-    this.activateRoute = route;
-    this.router.navigateByUrl(route);
-  }
+ getMethod(route: string) {
+  console.log(route);
+
+  this.activateRoute = route;
+  this.router.navigateByUrl(route);
+}
 }

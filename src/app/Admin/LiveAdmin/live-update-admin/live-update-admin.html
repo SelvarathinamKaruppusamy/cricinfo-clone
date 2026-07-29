@@ -23,24 +23,24 @@
           <div class="bg-[#f9fafb] border border-[#e5e7eb] rounded-lg p-3">
             <p class="text-[#9ca3af] text-xs">Batting Team</p>
             <h3 class="text-lg font-bold mt-1 text-[#1a202c]">
-              {{ currentBattingTeam()?.shortName }}
+              {{ currentBatting()?.shortName }}
             </h3>
             <p class="mt-1 text-base">
-              <span class="text-[#16a34a] font-semibold">{{ currentBattingTeam()?.scores }}</span>
+              <span class="text-[#16a34a] font-semibold">{{ currentBatting()?.runs }}</span>
               <span class="text-[#6b7280]"> / </span>
               <span class="text-[#dc2626] font-semibold">{{
-                currentBattingTeam()?.wickets
+                currentBatting()?.wickets
                 }}</span>
-              <span class="text-[#9ca3af] text-xs"> ({{ currentBattingTeam()?.overs }} ov) </span>
+              <span class="text-[#9ca3af] text-xs"> ({{ currentBatting()?.overs }} ov) </span>
             </p>
-            <p class="text-xs text-[#9ca3af] mt-1">Extras: {{ currentBattingTeam()?.extras }}</p>
+            <p class="text-xs text-[#9ca3af] mt-1">Extras: {{ currentBatting()?.extras }}</p>
           </div>
 
           <!-- Bowling Team -->
           <div class="bg-[#f9fafb] border border-[#e5e7eb] rounded-lg p-3">
             <p class="text-[#9ca3af] text-xs">Bowling Team</p>
             <h3 class="text-lg font-bold mt-1 text-[#1a202c]">
-              {{ currentBowlingTeam()?.shortName }}
+              {{ currentBowling()?.shortName }}
             </h3>
             <p class="text-xs text-[#6b7280] mt-2">Innings: {{ service.innings() }}</p>
 
@@ -111,37 +111,37 @@
         <div class="flex flex-wrap gap-2">
           <button mat-raised-button
             class="!min-w-0 !w-10 !h-10 !rounded-full !p-0 !text-sm !font-bold !bg-[#eff6ff] !text-[#2563eb] !border !border-[#bfdbfe] !shadow-none hover:!bg-[#dbeafe]"
-            (click)="addBall('0')" [disabled]="matchFinished()">
+            (click)="addBall('0')" [disabled]="winnerText()!=''">
             0
           </button>
 
           <button mat-raised-button
             class="!min-w-0 !w-10 !h-10 !rounded-full !p-0 !text-sm !font-bold !bg-[#eff6ff] !text-[#2563eb] !border !border-[#bfdbfe] !shadow-none hover:!bg-[#dbeafe]"
-            (click)="addBall('1')" [disabled]="matchFinished()">
+            (click)="addBall('1')" [disabled]="winnerText()!=''">
             1
           </button>
 
           <button mat-raised-button
             class="!min-w-0 !w-10 !h-10 !rounded-full !p-0 !text-sm !font-bold !bg-[#eff6ff] !text-[#2563eb] !border !border-[#bfdbfe] !shadow-none hover:!bg-[#dbeafe]"
-            (click)="addBall('2')" [disabled]="matchFinished()">
+            (click)="addBall('2')" [disabled]="winnerText()!=''">
             2
           </button>
 
           <button mat-raised-button
             class="!min-w-0 !w-10 !h-10 !rounded-full !p-0 !text-sm !font-bold !bg-[#eff6ff] !text-[#2563eb] !border !border-[#bfdbfe] !shadow-none hover:!bg-[#dbeafe]"
-            (click)="addBall('3')" [disabled]="matchFinished()">
+            (click)="addBall('3')" [disabled]="winnerText()!=''">
             3
           </button>
 
           <button mat-raised-button
             class="!min-w-0 !w-10 !h-10 !rounded-full !p-0 !text-sm !font-bold !bg-[#fef9c3] !text-[#854d0e] !border !border-[#fde68a] !shadow-none hover:!bg-[#fef08a]"
-            (click)="addBall('4')" [disabled]="matchFinished()">
+            (click)="addBall('4')" [disabled]="winnerText()!=''">
             4
           </button>
 
           <button mat-raised-button
             class="!min-w-0 !w-10 !h-10 !rounded-full !p-0 !text-sm !font-bold !bg-[#fef9c3] !text-[#854d0e] !border !border-[#fde68a] !shadow-none hover:!bg-[#fef08a]"
-            (click)="addBall('6')" [disabled]="matchFinished()">
+            (click)="addBall('6')" [disabled]="winnerText()!=''">
             6
           </button>
 
@@ -153,29 +153,24 @@
         <div class="flex flex-wrap gap-2">
           <button mat-raised-button
             class="!min-w-0 !w-10 !h-10 !rounded-full !p-0 !text-sm !font-bold !bg-[#fef2f2] !text-[#dc2626] !border !border-[#fecaca] !shadow-none hover:!bg-[#fee2e2]"
-            (click)="addBall('W')" [disabled]="matchFinished()">
+            (click)="addBall('W')" [disabled]="winnerText()!=''">
             W
           </button>
 
           <button mat-raised-button
             class="!min-w-0 !px-4 !h-10 !rounded-full !text-sm !font-bold !bg-[#f9fafb] !text-[#374151] !border !border-slate-400 !shadow-none hover:!bg-[#f3f4f6]"
-            (click)="addBall('Wd')" [disabled]="matchFinished()">
+            (click)="addBall('WD')" [disabled]="winnerText()!=''">
             Wd
           </button>
 
           <button mat-raised-button
             class="!min-w-0 !px-4 !h-10 !rounded-full !text-sm !font-bold !bg-[#f9fafb] !text-[#374151] !border !border-slate-400 !shadow-none hover:!bg-[#f3f4f6]"
-            (click)="addBall('Nb')" [disabled]="matchFinished()">
+            (click)="addBall('NB')" [disabled]="winnerText()">
             Nb
           </button>
         </div>
       </div>
-      <div>
-        <button mat-raised-button color="accent" class="mt-3" (click)="openEditLastBallDialog()"
-          [disabled]="!currentBowlerBalls().length">
-          Edit Last Ball
-        </button>
-      </div>
+     
     </div>
   </mat-card>
 

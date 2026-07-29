@@ -15,7 +15,16 @@
       </div>
     </div>
 
-    <div class="blog-grid">
+    @if (loading) {
+      <div class="blog-loading-wrapper">
+        <div class="blog-loading-pill">
+          <div class="blog-loader"></div>
+          <span class="blog-loader-text"> Just a moment, loading blogs... </span>
+        </div>
+      </div>
+    }
+
+    <div class="blog-grid" [hidden]="loading">
       @for (blog of blogs$ | async; track blog.id) {
         <article class="blog-card">
           <div class="blog-image-wrapper">
@@ -53,7 +62,7 @@
                 {{ blog.readTime }}
               </span>
 
-              <button class="read-btn" [routerLink]="['/blog-detail', blog.id]">
+              <button class="read-btn" [routerLink]="['/blog-detail', blog.matchId]">
                 Read Full Report
               </button>
             </div>

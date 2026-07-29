@@ -11,11 +11,18 @@
   <div class="desktop-menu">
 
     @for (item of items; track item.route) {
-    <a mat-button class="nav-link" (click)="getMethod(item.route)" [class.active-link]="activateRoute === item.route">
+    @if (item.label === 'Quiz') {
+    <a mat-button class="nav-link quiz-link" [class.active-link]="activateRoute === item.route"
+      (click)="getMethod(item.route)">
 
+      <mat-icon class="quiz-icon">sports_esports</mat-icon>
       {{ item.label }}
-
     </a>
+    } @else {
+    <a mat-button class="nav-link" [class.active-link]="activateRoute === item.route" (click)="getMethod(item.route)">
+      {{ item.label }}
+    </a>
+    }
     }
 
     <button mat-button class="nav-link" [matMenuTriggerFor]="statsMenu">
@@ -27,7 +34,6 @@
 
   </div>
 
-  <!-- Mobile Menu -->
   <button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu">
 
     <mat-icon>menu</mat-icon>

@@ -1,0 +1,78 @@
+<div class="quiz-container">
+
+    @if(!started && !submitted){
+
+    <div class="card">
+
+        <h1>CricInfo Quiz</h1>
+
+        <input type="text" placeholder="Enter Your Name" [(ngModel)]="userName">
+
+        <button (click)="startQuiz()">
+            Start Quiz
+        </button>
+
+    </div>
+
+    }
+
+    @if(started && questions.length > 0){
+
+    <div class="card">
+
+        <h2>
+            Question {{currentQuestion + 1}} / {{questions.length}}
+        </h2>
+
+        <h3>
+            {{questions[currentQuestion]?.question}}
+        </h3>
+
+        <div class="options">
+
+            <button [class.selected]="isSelected(questions[currentQuestion].id, 1)"
+                (click)="selectOption(questions[currentQuestion].id,1)">
+                {{questions[currentQuestion]?.option1}}
+            </button>
+
+            <button [class.selected]="isSelected(questions[currentQuestion].id, 2)"
+                (click)="selectOption(questions[currentQuestion].id,2)">
+                {{questions[currentQuestion]?.option2}}
+            </button>
+
+            <button [class.selected]="isSelected(questions[currentQuestion].id, 3)"
+                (click)="selectOption(questions[currentQuestion].id,3)">
+                {{questions[currentQuestion]?.option3}}
+            </button>
+
+            <button [class.selected]="isSelected(questions[currentQuestion].id, 4)"
+                (click)="selectOption(questions[currentQuestion].id,4)">
+                {{questions[currentQuestion]?.option4}}
+            </button>
+
+        </div>
+
+        <div class="nav-buttons">
+
+            <button (click)="previousQuestion()" [disabled]="currentQuestion == 0">
+                Previous
+            </button>
+
+            @if(currentQuestion < questions.length-1){ <button (click)="nextQuestion()">
+                Next
+                </button>
+                }
+
+                @if(currentQuestion == questions.length-1){
+                <button (click)="submitQuiz()">
+                    Submit
+                </button>
+                }
+
+        </div>
+
+    </div>
+
+    }
+
+</div>

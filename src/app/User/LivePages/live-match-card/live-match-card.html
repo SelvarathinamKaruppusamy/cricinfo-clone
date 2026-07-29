@@ -121,9 +121,9 @@
           </span>
         </div>
 
-        @if (team1.scores > 0) {
+        @if (team1.runs !=0) {
         <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          {{ team1.overs }} (ovs) {{ team1.scores }}/{{ team1.wickets }}
+          {{ team1.overs }} (ovs) {{ team1.scores }}
         </div>
         } @else {
         <span class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
@@ -142,9 +142,9 @@
           </span>
         </div>
 
-        @if (team2.scores > 0) {
+        @if (team2.runs !=0) {
         <div class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
-          {{ team2.overs }} (ovs) {{ team2.scores }}/{{ team2.wickets }}
+          {{ team2.overs }} (ovs) {{ team2.scores }}
         </div>
         } @else {
         <span class="ml-5 text-xs sm:text-sm text-slate-800 whitespace-nowrap">
@@ -154,27 +154,45 @@
       </div>
 
       <!-- Match Status -->
-      <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
-        @if (service.innings() === 2) {
-        @if (requiredRuns > 0) {
-        <h1>
-          {{ service.live()?.teams?.[service.tossloss()]?.shortName }}
-          needs {{ requiredRuns }} runs in {{ remainingBalls }} balls
-        </h1>
-        } @else if (requiredRuns < 0) { <h1>
-          {{ service.live()?.teams?.[service.tossloss()]?.shortName }}
-          won by {{ remainingBalls }} balls
-          </h1>
-          }
-          } @else {
-          @if(service.live()?.tossWinner===null){
-          <h1>yet to start</h1>
-          }
-          @else {
-          <h1>{{ service.live()?.tossWinner }} chose to {{service.live()?.tossDecision}}</h1>
-          }
-          }
-      </div>
+     <div class="mt-2 text-[11px] sm:text-xs text-blue-500 min-h-[32px]">
+
+ @if (service.innings() === 2) {
+
+  @if (matchWon()) {
+
+    <h1>
+      {{ service.live()?.result }}
+    </h1>
+
+  } @else {
+
+    <h1>
+      
+      {{ currentBatting()?.shortName }}
+      needs {{ requiredRuns }} runs in {{ remainingBalls }} balls
+    </h1>
+
+  }
+
+} @else {
+
+    @if (service.live()?.tossWinner == null) {
+
+      <h1>Yet to start</h1>
+
+    } @else {
+
+      <h1>
+        {{ service.live()?.tossWinner }}
+        chose to
+        {{ service.live()?.tossDecision }}
+      </h1>
+
+    }
+
+  }
+
+</div>
 
       <!-- Footer -->
       <div class="flex mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-500">

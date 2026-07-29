@@ -9,25 +9,25 @@ import { Blog } from '../model/blog.model';
 export class BlogManagementService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:3001/blogs';
+  private apiUrl = 'https://localhost:7144/api/Blog/';
 
   getBlogs(): Observable<Blog[]> {
     return this.http.get<Blog[]>(this.apiUrl);
   }
 
-  getBlogById(id: number): Observable<Blog> {
-    return this.http.get<Blog>(`${this.apiUrl}/${id}`);
+  getBlogByMatchId(matchId: number) {
+    return this.http.get<Blog>(`${this.apiUrl}/${matchId}`);
   }
 
   addBlog(blog: Blog): Observable<Blog> {
     return this.http.post<Blog>(this.apiUrl, blog);
   }
 
-  updateBlog(id: string, blog: Blog): Observable<Blog> {
-    return this.http.put<Blog>(`${this.apiUrl}/${id}`, blog);
+  updateBlog(matchId: number, blog: Blog) {
+    return this.http.put<Blog>(`${this.apiUrl}${matchId}`, blog);
   }
 
-  deleteBlog(id: string) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteBlog(matchId: number) {
+    return this.http.delete(`${this.apiUrl}${matchId}`);
   }
 }

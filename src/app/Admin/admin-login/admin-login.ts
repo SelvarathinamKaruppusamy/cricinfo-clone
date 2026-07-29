@@ -26,27 +26,26 @@ export class AdminLogin {
     private router: Router,
   ) {}
 
- login() {
-  this.authService.getAdmins().subscribe((users) => {
+  login() {
+    this.authService
+      .login({
+        userName: this.username,
+        password: this.password,
+      })
+      .subscribe({
+        next: (res) => {
+          this.authService.setToken(res.token);
 
-    const user = users.find(
-      (x) =>
-        x.userName === this.username &&
-        x.passWord === this.password
-    );
+          this.authService.setCurrentUser(res);
 
-    if (!user) {
-      alert('Invalid Username or Password');
-      return;
-    }
+          this.router.navigate(['/navbarAdmin']);
+        },
 
-    this.authService.setAuthenticated(true);
-
-    this.authService.setCurrentUser(user);
-
-     this.router.navigate(['/navbarAdmin']);
-  });
-}
+        error: () => {
+          alert('Invalid Username or Password');
+        },
+      });
+  }
 
   openResetForm() {
     this.showResetForm = true;
@@ -61,34 +60,21 @@ export class AdminLogin {
   }
 
   updatePassword() {
-    this.authService.getAdmins().subscribe((users) => {
-      const user = users.find(
-        (x) =>
-          (x.userName === this.resetUsername || x.username === this.resetUsername) &&
-          (x.passWord === this.currentPassword || x.password === this.currentPassword),
-      );
+    this.authService
+      .resetPassword({
+        userName: this.resetUsername,
+        currentPassword: this.currentPassword,
+        newPassword: this.newPassword,
+      })
+      .subscribe({
+        next: (res: any) => {
+          alert(res.message);
 
-      if (!user) {
-        alert('Invalid Username or Current Password');
-        return;
-      }
-
-      if (!user.firstLogin) {
-        alert('Password change not allowed');
-        return;
-      }
-
-      const updatedUser = {
-        ...user,
-        passWord: this.newPassword,
-        password: this.newPassword,
-        firstLogin: false,
-      };
-
-      this.authService.updateAdmin(user.id, updatedUser).subscribe(() => {
-        alert('Password Updated Successfully');
-        this.cancelReset();
+          this.cancelReset();
+        },
+        error: (err) => {
+          alert(err.error.message);
+        },
       });
-    });
   }
 }

@@ -17,6 +17,7 @@ export class NavBar {
     { label: 'Live', routes: '/navbarAdmin/adminLive' },
     { label: 'UpComing', routes: '/navbarAdmin/upComeAdmin' },
     { label: 'Blog', routes: '/navbarAdmin/blogs' },
+    { label: 'Quiz', routes: '/navbarAdmin/admin-quiz' },
     { label: 'Profile', routes: '/navbarAdmin/profile' },
   ];
 

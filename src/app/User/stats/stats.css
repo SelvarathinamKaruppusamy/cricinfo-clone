@@ -541,3 +541,23 @@ mat-expansion-panel-header {
     font-size: 12px;
   }
 }
+
+.player-name-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.cap-badge-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.cap-badge-img:hover {
+  transform: scale(1.1);
+}

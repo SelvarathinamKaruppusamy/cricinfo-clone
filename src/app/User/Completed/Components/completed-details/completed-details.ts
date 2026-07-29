@@ -41,34 +41,29 @@ export class CompletedDetails implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      const matchNo = Number(params['matchNo']);
 
-  this.route.params.subscribe(params => {
+      console.log('MATCH CHANGED:', matchNo);
 
-  const matchNo = Number(params['matchNo']);
+      this.service.getMatch(matchNo).subscribe({
+        next: (data) => {
+          this.match = data;
 
-  console.log('MATCH CHANGED:', matchNo);
+          if (this.match?.teams && this.match.teams.length > 0) {
+            this.selectInnings(this.match.teams[0].teamId);
+          }
 
-  this.service.getMatch(matchNo).subscribe({
-    next: (data) => {
+          this.fetchRelatedBlog();
 
-      this.match = data;
-
-      if (this.match?.teams && this.match.teams.length > 0) {
-        this.selectInnings(this.match.teams[0].teamId);
-      }
-
-      this.fetchRelatedBlog();
-
-      this.cd.detectChanges();
-    },
-    error: (err) => {
-      console.error('Failed to load completed match:', err);
-    }
-  });
-
-});
-
-}
+          this.cd.detectChanges();
+        },
+        error: (err) => {
+          console.error('Failed to load completed match:', err);
+        },
+      });
+    });
+  }
 
   selectMatch(selectedMatch: Match): void {
     this.match = selectedMatch;
@@ -82,11 +77,11 @@ export class CompletedDetails implements OnInit {
   private fetchRelatedBlog(): void {
     if (!this.match) return;
 
-    this.http.get<any[]>('http://localhost:3001/blogs').subscribe({
+    this.http.get<any[]>('https://localhost:7144/api/Blog/').subscribe({
       next: (blogs) => {
         this.relatedBlog =
           blogs.find((blog) => Number(blog.matchId) === Number(this.match?.matchNo)) || null;
- 
+
         console.log('MATCH:', this.match?.matchNo);
         console.log('RELATED BLOG:', this.relatedBlog);
         console.log('IMAGE PATH:', this.relatedBlog?.image);
@@ -101,7 +96,7 @@ export class CompletedDetails implements OnInit {
 
   openBlogDetails(): void {
     if (!this.relatedBlog) return;
-    this.router.navigate(['/blog-detail', this.relatedBlog.matchNo]);
+    this.router.navigate(['/blog-detail/', this.relatedBlog.matchId]);
   }
 
   changeTab(tab: 'summary' | 'scorecard' | 'blog'): void {

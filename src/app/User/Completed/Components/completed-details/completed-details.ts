@@ -44,8 +44,6 @@ export class CompletedDetails implements OnInit {
     this.route.params.subscribe((params) => {
       const matchNo = Number(params['matchNo']);
 
-      console.log('MATCH CHANGED:', matchNo);
-
       this.service.getMatch(matchNo).subscribe({
         next: (data) => {
           this.match = data;
@@ -81,10 +79,6 @@ export class CompletedDetails implements OnInit {
       next: (blogs) => {
         this.relatedBlog =
           blogs.find((blog) => Number(blog.matchId) === Number(this.match?.matchNo)) || null;
-
-        console.log('MATCH:', this.match?.matchNo);
-        console.log('RELATED BLOG:', this.relatedBlog);
-        console.log('IMAGE PATH:', this.relatedBlog?.image);
 
         this.cd.detectChanges();
       },

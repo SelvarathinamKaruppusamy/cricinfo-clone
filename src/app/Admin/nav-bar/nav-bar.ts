@@ -29,6 +29,5 @@ export class NavBar {
     this.activateRoute = route;
     this.router.navigateByUrl(route);
     this.cd.detectChanges();
-    console.log('NavbarAdmin');
   }
 }

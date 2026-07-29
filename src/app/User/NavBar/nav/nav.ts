@@ -42,8 +42,6 @@ export class Nav {
   cd = inject(ChangeDetectorRef);
   activateRoute = '';
  getMethod(route: string) {
-  console.log(route);
-
   this.activateRoute = route;
   this.router.navigateByUrl(route);
 }

@@ -89,8 +89,6 @@ export class Upcome implements OnInit {
   loadMatches(): void {
   this.service.getMatch().subscribe({
     next: (data) => {
-      console.log(data);  
-
       this.matches = data;
       this.cd.detectChanges();
     },

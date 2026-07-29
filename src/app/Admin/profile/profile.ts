@@ -33,8 +33,6 @@ export class Profile implements OnInit {
   ngOnInit(): void {
     const currentUser = this.adminService.getCurrentUser();
 
-    console.log('Current User:', currentUser);
-
     if (!currentUser) {
       this.router.navigate(['/admin']);
       return;
@@ -42,7 +40,6 @@ export class Profile implements OnInit {
 
     this.adminService.getProfile(currentUser.userName).subscribe({
       next: (res: any) => {
-        console.log('PROFILE:', res);
 
         this.user = res;
 

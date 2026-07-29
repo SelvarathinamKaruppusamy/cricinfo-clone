@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Pointstable } from './pointstable';
+import { Pointstable } from './points-table-service';
 
 describe('Pointstable', () => {
   let service: Pointstable;

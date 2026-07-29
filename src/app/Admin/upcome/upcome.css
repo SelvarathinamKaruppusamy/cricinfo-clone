@@ -5,10 +5,13 @@
   margin-top: 30px;
   width: 100%;
   align-items: flex-start;
+ 
 }
 
 .left-panel {
   width: 30%;
+  
+  
 }
 
 .right-panel {
@@ -34,6 +37,7 @@
 
 .selected {
   background-color: #bbdefb;
+
 }
 
 .match-row {
@@ -41,6 +45,7 @@
   grid-template-columns: 1fr 80px 1fr;
   align-items: center;
   width: 100%;
+   cursor: pointer;
 }
 
 .team-right {
@@ -55,6 +60,7 @@
   align-items: center;
   gap: 10px;
   justify-content: flex-end;
+   cursor: pointer;
 }
 
 .match-item:hover .team img {

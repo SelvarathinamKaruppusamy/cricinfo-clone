@@ -44,8 +44,6 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
       this.toastTimeout = null;
     }
 
-    console.log('Showing toast:', message, type);
-
     this.toastMessage = message;
     this.toastType = type;
     this.toastVisible = true;
@@ -86,8 +84,6 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
     const toastMessage = localStorage.getItem('toastMessage');
     const toastType = localStorage.getItem('toastType') as 'success' | 'error';
 
-    console.log('Toast from localStorage:', toastMessage, toastType);
-
     if (toastMessage) {
       setTimeout(() => {
         this.showToast(toastMessage, toastType || 'success');
@@ -109,7 +105,6 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
         this.viewportScroller.scrollToPosition([0, 0]);
       },
       error: (err) => {
-        console.error('Error loading blogs:', err);
         this.loading = false;
         this.showToast('Failed to load blogs. Please try again.', 'error');
         this.cdr.detectChanges();
@@ -126,12 +121,10 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
   }
 
 deleteBlog(matchId: number): void {
-  console.log('Delete called with MatchId:', matchId);
 
   const blog = this.blogs.find((b) => b.matchId === matchId);
 
   if (!blog) {
-    console.error('Blog not found with MatchId:', matchId);
     this.showToast('Blog not found. Please try again.', 'error');
     return;
   }
@@ -161,7 +154,6 @@ deleteBlog(matchId: number): void {
         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Error deleting blog:', err);
         this.showToast('Failed to delete blog. Please try again.', 'error');
         this.cdr.detectChanges();
       },

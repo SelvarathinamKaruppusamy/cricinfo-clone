@@ -96,7 +96,6 @@ export class BlogForm implements OnInit, OnDestroy {
       const blog = blogs.find((b) => b.matchId === matchId);
 
       if (!blog) {
-        console.error('Blog not found');
         this.showToast('Blog not found. Please try again.', 'error');
         return;
       }
@@ -114,7 +113,6 @@ export class BlogForm implements OnInit, OnDestroy {
   }
 
   cancel(): void {
-    console.log('clicked');
     this.router.navigate(['/navbarAdmin/blogs']);
   }
 
@@ -170,7 +168,6 @@ export class BlogForm implements OnInit, OnDestroy {
           },
 
           error: (err) => {
-            console.error(err);
             this.showToast('Image upload failed. Please try again.', 'error');
           },
         });
@@ -181,11 +178,7 @@ export class BlogForm implements OnInit, OnDestroy {
   }
 
   private updateBlog(imagePath: string, blogTitle: string): void {
-
-    
     const formValue = this.blogForm.value;
-
-   
 
     const blog: Blog = {
       id: this.actualId,
@@ -205,11 +198,6 @@ export class BlogForm implements OnInit, OnDestroy {
         .map((tag: string) => tag.trim())
         .filter(Boolean),
     };
-    //*//
-     console.log('actualId:', this.actualId);
-console.log('form matchId:', formValue.matchId);
-console.log('blog.matchId:', blog.matchId);
-console.log('Sending URL:', `https://localhost:7144/api/Blog/${blog.matchId}`);
 
     this.blogService.updateBlog(blog.matchId, blog).subscribe({
       next: () => {
@@ -220,7 +208,6 @@ console.log('Sending URL:', `https://localhost:7144/api/Blog/${blog.matchId}`);
       },
 
       error: (err) => {
-        console.error(err);
         this.showToast('Failed to update blog. Please try again.', 'error');
       },
     });

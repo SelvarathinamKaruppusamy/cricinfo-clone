@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { CompletedService } from '../Completed/Services/completed-service';
-import { Pointstable } from './pointstable';
+import { Pointstable } from './points-table-service';
 @Component({
   selector: 'app-points-table',
   standalone: true,

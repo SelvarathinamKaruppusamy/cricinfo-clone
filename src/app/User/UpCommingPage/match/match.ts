@@ -41,13 +41,27 @@ export class Match implements OnInit {
   cd = inject(ChangeDetectorRef);
   route = inject(Router);
 
-  ngOnInit() {
-    const id = this.rout.snapshot.paramMap.get('id')!;
-    this.service.getMatchById(id).subscribe((res) => {
+ ngOnInit() {
+  const matchNo = this.rout.snapshot.paramMap.get('matchNo')!;
+ this.service.getMatchById(matchNo).subscribe({
+    next: (res) => {
+
+      // Convert "true,false,true" into [true, false, true]
+      res.teams.forEach(team => {
+        (team as any).matchStatus = (team.matchStatus as unknown as string)
+          .split(',')
+          .map(value => value.trim() === 'true');
+      });
+
       this.match = res;
       this.cd.detectChanges();
-    });
-  }
+    },
+
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
   redirectfun() {
     this.route.navigate(['/upcoming']);
   }

@@ -1,7 +1,7 @@
 export interface Player {
-  id: number;
   name: string;
   role: string;
+  playerId:number
 }
 
 export interface Team {
@@ -13,18 +13,16 @@ export interface Team {
   lossCount: number;
   totalMatch: number;
   players: Player[];
-  matchStatus: boolean[];
+  matchStatus: string;
 }
 
 export interface MatchData {
-  id: number;
-  matchNo: number;
+  matchNo: string;
   status: string;
   venue: string;
   city: string;
   date: string;
   teams: Team[];
-  matchStatus: boolean[];
 }
 
 export interface Teams {
@@ -33,8 +31,7 @@ export interface Teams {
   logo?: string;
 }
 export interface updateMatch {
-  id: string;
-  matchNo: number;
+  matchNo: string;
   venue: string;
   city: string;
   date: string;

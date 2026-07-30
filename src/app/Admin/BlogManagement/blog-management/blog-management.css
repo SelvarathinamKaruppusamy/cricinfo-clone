@@ -1,3 +1,13 @@
+.page-title {
+  font-size: 2rem;
+  color: #0f172a;
+  font-weight: 800;
+  border-left: 5px solid #0376da;
+  padding-left: 14px;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
 .blog-management-container {
   padding: 20px;
   margin-top: 50px;
@@ -483,5 +493,53 @@
     padding: 5px 8px;
     font-size: 11px;
     margin-right: 4px;
+  }
+}
+
+/* 
+loading css */
+
+/* Center within page content, not the entire viewport */
+.loading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  width: 100%;
+}
+
+/* Keep ring and text together */
+.loading-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Modern loading ring */
+.loader {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #dbeafe;
+  border-top: 3px solid #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Loading text */
+.loading-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  letter-spacing: 0.3px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

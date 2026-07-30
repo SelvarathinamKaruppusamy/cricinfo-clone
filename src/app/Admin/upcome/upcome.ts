@@ -55,7 +55,7 @@ export class Upcome implements OnInit {
   matches: updateMatch[] = [];
 
   selectedMatch: updateMatch | null = null;
-  selectedMatchNo: number | null = null;
+  selectedMatchNo: string | null = null;
 
   toastVisible = false;
   toastMessage = '';
@@ -87,14 +87,14 @@ export class Upcome implements OnInit {
   }
 
   loadMatches(): void {
-    this.service.getMatch().subscribe({
-      next: (data: updateMatch[]) => {
-        this.matches = data;
-        this.cd.detectChanges();
-      },
-      error: (error) => console.error(error),
-    });
-  }
+  this.service.getMatch().subscribe({
+    next: (data) => {
+      this.matches = data;
+      this.cd.detectChanges();
+    },
+    error: (err) => console.error(err),
+  });
+}
 
   selectMatch(match: updateMatch): void {
     this.selectedMatch = { ...match };
@@ -157,7 +157,7 @@ export class Upcome implements OnInit {
   confirmUpdate(): void {
     if (!this.selectedMatch) return;
 
-    this.service.updateMatch(this.selectedMatch.id, this.selectedMatch).subscribe({
+    this.service.updateMatch(this.selectedMatch.matchNo.toString(), this.selectedMatch).subscribe({
       next: () => {
         this.dialog.closeAll();
 

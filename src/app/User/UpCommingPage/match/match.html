@@ -145,7 +145,7 @@
                   </mat-expansion-panel-header>
 
                   <mat-list>
-                    @for (player of match.teams[0].players; track player.id) {
+                    @for (player of match.teams[0].players; track player.playerId) {
                       <div class="player">
                         <mat-list-item>
                           <span matListItemTitle>
@@ -179,7 +179,7 @@
                   </mat-expansion-panel-header>
 
                   <mat-list>
-                    @for (player of match.teams[1].players; track player.id) {
+                    @for (player of match.teams[1].players; track player.playerId) {
                       <div class="player">
                         <mat-list-item>
                           <span matListItemTitle>

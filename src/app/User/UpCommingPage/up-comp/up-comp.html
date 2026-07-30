@@ -1,7 +1,7 @@
 <div class="card mt-17">
-   @for (card of cards; track card.id) 
+   @for (card of cards; track card.matchNo) 
    { 
-    <div class="match-card" (click)="open(card.id)">
+    <div class="match-card" (click)="open(card.matchNo)">
        <div class="header"> <span class="header-font">
         {{ card.status|uppercase }}</span> 
         <div class="right-info"> 

@@ -5,6 +5,7 @@ import { vi } from 'vitest';
 
 import { Livepage } from './livepage';
 import { LiveService } from '../Services/live-service';
+import { Animation } from '../Services/animation';
 
 describe('Livepage', () => {
   let component: Livepage;
@@ -13,23 +14,21 @@ describe('Livepage', () => {
   const liveSignal = signal({
     tossWinner: 'RCB',
     tossDecision: 'Bat',
+
     teams: [
       {
+        teamId: 1,
         shortName: 'RCB',
-        scores: 120,
+        runs: 120,
         wickets: 2,
         overs: 10.3,
-        players: [
-          { id: 1, name: 'Virat', status: 'Not Out' },
-          { id: 2, name: 'Faf', status: 'Not Out' },
-        ],
       },
       {
+        teamId: 2,
         shortName: 'CSK',
-        scores: 0,
-        wickets: 0,
-        overs: 0,
-        players: [{ id: 10, name: 'Jadeja', role: 'Bowler' }],
+        runs: 180,
+        wickets: 8,
+        overs: 20,
       },
     ],
   } as any);
@@ -38,37 +37,33 @@ describe('Livepage', () => {
     live: liveSignal,
 
     players1: signal([
-      { id: 1, name: 'Virat', status: 'Not Out' },
-      { id: 2, name: 'Faf', status: 'Not Out' },
+      { id: 1, name: 'Virat', status: 'Batting' },
+      { id: 2, name: 'Faf', status: 'Batting' },
+      { id: 3, name: 'Maxwell', status: 'Out' },
     ]),
 
-    ball: signal(['1', '4', 'Wd', '6']),
+    ball: signal(['1', '4', 'WD', '6']),
 
     innings: signal(1),
 
-    tosswin: signal(0),
-    tossloss: signal(1),
+    currentBattingTeam: signal(1),
 
-    currentBattingTeam: signal(0),
-    currentBowlingTeam: signal(1),
+    currentBowlingTeam: signal(2),
 
     striker: { id: 1, name: 'Virat' },
+
     nonStriker: { id: 2, name: 'Faf' },
+
     currentBowler: { id: 10, name: 'Jadeja' },
 
-    tossDecision: signal('Bat'),
-
-    completedBattingTeam: {
-      scores: 180,
-    },
-
-    GetLiveMatches: vi.fn(() => of([liveSignal()])),
+    GetLiveMatch: vi.fn(() => of(liveSignal())),
 
     loadMatchIntoService: vi.fn(),
+  };
 
-    startSecondInnings: vi.fn(),
-
-    processBall: vi.fn(),
+  const mockAnimation = {
+    show: vi.fn(),
+    showWinner: vi.fn(),
   };
 
   beforeEach(async () => {
@@ -78,6 +73,16 @@ describe('Livepage', () => {
         {
           provide: LiveService,
           useValue: mockLiveService,
+        },
+        {
+          provide: Animation,
+          useValue: mockAnimation,
+        },
+        {
+          provide: ChangeDetectorRef,
+          useValue: {
+            detectChanges: vi.fn(),
+          },
         },
       ],
     })
@@ -127,32 +132,27 @@ describe('Livepage', () => {
     expect(component.tossDecision()).toBe('Bat');
   });
 
-  it('should call processBall()', () => {
-    component.addball('4');
-
-    expect(mockLiveService.processBall).toHaveBeenCalledWith('4');
+  it('should return current batting team', () => {
+    expect(component.currentBatting()?.shortName).toBe('RCB');
   });
 
-  it('should ignore empty ball', () => {
-    component.addball('');
-
-    expect(mockLiveService.processBall).not.toHaveBeenCalled();
+  it('should return current bowling team', () => {
+    expect(component.currentBowling()?.shortName).toBe('CSK');
   });
 
-  it('should start second innings', () => {
-    component.startSecondInnings();
-
-    expect(mockLiveService.startSecondInnings).toHaveBeenCalled();
-  });
-
-  it('should calculate target as 0 in first innings', () => {
+  it('should calculate target in first innings', () => {
     expect(component.target()).toBe(0);
   });
 
-  it('should calculate required runs in second innings', () => {
+  it('should calculate target in second innings', () => {
     mockLiveService.innings.set(2);
 
     expect(component.target()).toBe(181);
+  });
+
+  it('should calculate required runs', () => {
+    mockLiveService.innings.set(2);
+
     expect(component.requiredRuns()).toBe(61);
   });
 
@@ -168,10 +168,25 @@ describe('Livepage', () => {
     expect(component.matchWon()).toBe(false);
   });
 
-  it('should call loadMatchIntoService while polling', () => {
+  it('should return current over balls', () => {
+    expect(component.currentBowlerBalls()).toEqual([
+      '1',
+      '4',
+      'WD',
+      '6',
+    ]);
+  });
+
+  it('should start live polling', () => {
     component.startLivePolling();
 
-    expect(mockLiveService.GetLiveMatches).toHaveBeenCalled();
+    expect(mockLiveService.GetLiveMatch).toHaveBeenCalled();
+  });
+
+  it('should load match into service', () => {
+    component.startLivePolling();
+
+    expect(mockLiveService.loadMatchIntoService).toHaveBeenCalled();
   });
 
   it('should unsubscribe on destroy', () => {
@@ -182,5 +197,11 @@ describe('Livepage', () => {
     component.ngOnDestroy();
 
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should trigger animation for latest ball', () => {
+    component.startLivePolling();
+
+    expect(mockAnimation.show).toHaveBeenCalled();
   });
 });

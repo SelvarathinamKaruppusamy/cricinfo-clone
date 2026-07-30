@@ -1,7 +1,23 @@
 import { Injectable, signal } from '@angular/core';
 
+export interface ScoreEvent {
+  id: number;
+
+  value: string;
+
+  text: string;
+
+  team: number;
+
+  type: 'run' | 'boundary' | 'six' | 'wicket' | 'wide' | 'noball';
+
+  shape: number;
+
+  path: number;
+}
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Animation {
   visible = signal(false);
@@ -10,39 +26,116 @@ export class Animation {
   private queue: string[] = [];
   private playing = false;
   winnerVisible = signal(false);
- show(ball: string) {
 
-  // Don't play ball animations after match is over
-  if (this.winnerVisible()) {
-    return;
+  //for score-animation
+  events = signal<ScoreEvent[]>([]);
+  private scoreId = 0;
+
+  showScoreEvent(ball: string, team: number) {
+    const event: ScoreEvent = {
+      id: ++this.scoreId,
+
+      value: ball,
+
+      text: this.getText(ball),
+
+      team,
+
+      type: this.getType(ball),
+
+      shape: Math.floor(Math.random() * 5),
+
+      path: Math.floor(Math.random() * 5),
+    };
+
+    this.events.update((v) => [...v, event]);
+
+    setTimeout(() => {
+      this.events.update((list) => list.filter((x) => x.id !== event.id));
+    }, 1800);
   }
 
-  this.queue.push(ball);
+  private getText(ball: string) {
+    switch (ball) {
+      case '1':
+        return '+1';
 
-  if (!this.playing) {
-    this.playNext();
+      case '2':
+        return '+2';
+
+      case '3':
+        return '+3';
+
+      case '4':
+        return 'FOUR';
+
+      case '6':
+        return 'SIX';
+
+      case 'W':
+        return 'W';
+
+      case 'Wd':
+        return 'WD';
+
+      case 'Nb':
+        return 'NB';
+
+      default:
+        return ball;
+    }
   }
-}
- showWinner() {
 
-  this.queue = [];
+  private getType(ball: string) {
+    switch (ball) {
+      case '4':
+        return 'boundary';
 
-  this.playing = false;
+      case '6':
+        return 'six';
 
-  this.visible.set(false);
+      case 'W':
+        return 'wicket';
 
-  this.defaultAnimation.set(false);
+      case 'Wd':
+        return 'wide';
 
-  this.animationPath.set('/animations/winner.json');
+      case 'Nb':
+        return 'noball';
 
-  this.winnerVisible.set(true);
+      default:
+        return 'run';
+    }
+  }
 
-}
-hideWinner() {
+  show(ball: string) {
+    // Don't play ball animations after match is over
+    if (this.winnerVisible()) {
+      return;
+    }
 
-  this.winnerVisible.set(false);
+    this.queue.push(ball);
 
-}
+    if (!this.playing) {
+      this.playNext();
+    }
+  }
+  showWinner() {
+    this.queue = [];
+
+    this.playing = false;
+
+    this.visible.set(false);
+
+    this.defaultAnimation.set(false);
+
+    this.animationPath.set('/animations/winner.json');
+
+    this.winnerVisible.set(true);
+  }
+  hideWinner() {
+    this.winnerVisible.set(false);
+  }
   private playNext() {
     if (this.queue.length === 0) {
       this.playing = false;

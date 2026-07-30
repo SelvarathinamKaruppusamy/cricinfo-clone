@@ -25,7 +25,7 @@ export class BlogForm implements OnInit, OnDestroy {
   blogForm!: FormGroup;
   isEditMode = false;
   blogId = '';
-  actualId = '';
+  actualId = 0;
   previewUrl: string | null = null;
   selectedFile: File | null = null;
 
@@ -96,7 +96,6 @@ export class BlogForm implements OnInit, OnDestroy {
       const blog = blogs.find((b) => b.matchId === matchId);
 
       if (!blog) {
-        console.error('Blog not found');
         this.showToast('Blog not found. Please try again.', 'error');
         return;
       }
@@ -114,7 +113,6 @@ export class BlogForm implements OnInit, OnDestroy {
   }
 
   cancel(): void {
-    console.log('clicked');
     this.router.navigate(['/navbarAdmin/blogs']);
   }
 
@@ -170,7 +168,6 @@ export class BlogForm implements OnInit, OnDestroy {
           },
 
           error: (err) => {
-            console.error(err);
             this.showToast('Image upload failed. Please try again.', 'error');
           },
         });
@@ -202,7 +199,7 @@ export class BlogForm implements OnInit, OnDestroy {
         .filter(Boolean),
     };
 
-    this.blogService.updateBlog(this.actualId, blog).subscribe({
+    this.blogService.updateBlog(blog.matchId, blog).subscribe({
       next: () => {
         localStorage.setItem('toastMessage', `"${blogTitle || blog.title}" updated successfully!`);
         localStorage.setItem('toastType', 'success');
@@ -211,7 +208,6 @@ export class BlogForm implements OnInit, OnDestroy {
       },
 
       error: (err) => {
-        console.error(err);
         this.showToast('Failed to update blog. Please try again.', 'error');
       },
     });

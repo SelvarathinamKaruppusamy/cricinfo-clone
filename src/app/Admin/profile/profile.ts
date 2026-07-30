@@ -30,11 +30,32 @@ export class Profile implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
   ) {}
-
   ngOnInit(): void {
-    this.user = this.adminService.getCurrentUser();
-    this.editUser = { ...this.user };
-    this.isSuperAdmin = this.user?.role === 'Super Admin';
+    const currentUser = this.adminService.getCurrentUser();
+
+    if (!currentUser) {
+      this.router.navigate(['/admin']);
+      return;
+    }
+
+    this.adminService.getProfile(currentUser.userName).subscribe({
+      next: (res: any) => {
+
+        this.user = res;
+
+        this.editUser = {
+          ...res,
+        };
+
+        this.isSuperAdmin = res.role === 'Super Admin';
+
+        this.cdr.detectChanges();
+      },
+
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   logout(): void {
@@ -63,25 +84,26 @@ export class Profile implements OnInit {
   confirmSave(): void {
     this.showConfirmDialog = false;
 
-    const updatedUser = { ...this.editUser };
+    this.adminService.updateProfile(this.user.id, this.editUser).subscribe({
+      next: (res: any) => {
+        this.user = {
+          ...this.editUser,
+        };
 
-    this.adminService.updateAdmin(this.user.id, updatedUser).subscribe({
-      next: (response: any) => {
-        this.user = { ...updatedUser };
-        this.editUser = { ...updatedUser };
-        this.adminService.setCurrentUser(updatedUser);
         this.editMode = false;
-        this.cdr.markForCheck();
 
         this.showToast('Profile Updated Successfully', 'success');
+
+        console.log(res);
       },
+
       error: (err) => {
-        console.error(err);
-        this.showToast('Update failed. Please try again.', 'error');
+        console.log(err);
+
+        this.showToast('Profile Update Failed', 'error');
       },
     });
   }
-
   cancelSave(): void {
     this.showConfirmDialog = false;
   }

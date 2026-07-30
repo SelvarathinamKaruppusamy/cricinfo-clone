@@ -1,0 +1,38 @@
+<div class="score-animation-container">
+
+  @for (event of events(); track event.id) {
+
+  <div class="score-event"
+       [class.run]="event.type === 'run'"
+       [class.four]="event.type === 'boundary'"
+       [class.six]="event.type === 'six'"
+       [class.wicket]="event.type === 'wicket'"
+       [class.wide]="event.type === 'wide'"
+       [class.noball]="event.type === 'noball'"
+       [class.shape0]="event.shape === 0"
+       [class.shape1]="event.shape === 1"
+       [class.shape2]="event.shape === 2"
+       [class.shape3]="event.shape === 3"
+       [class.shape4]="event.shape === 4"
+       [class.path1]="event.path === 1"
+       [class.path2]="event.path === 2"
+       [class.path3]="event.path === 3"
+       [class.path4]="event.path === 4">
+
+    <span class="event-glow"></span>
+    <span class="event-text">{{ event.text }}</span>
+
+    @if (event.type === 'six') {
+    <span class="spark s1"></span>
+    <span class="spark s2"></span>
+    <span class="spark s3"></span>
+    <span class="spark s4"></span>
+    <span class="spark s5"></span>
+    <span class="spark s6"></span>
+    }
+
+  </div>
+
+  }
+
+</div>

@@ -121,7 +121,7 @@ currentBowling = computed(() => {
   catchError(() => of(null))
 
         ),
-        upcoming: this.upservice.getMatch().pipe(
+        upcoming: this.upservice.getUpcomingMatches().pipe(
           catchError(() => of([]))
         ),
         completed: this.comservice.getCompletedMatches().pipe(

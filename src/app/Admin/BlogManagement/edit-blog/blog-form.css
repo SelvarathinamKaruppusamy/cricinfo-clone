@@ -16,6 +16,25 @@
   color: #0a4f75;
 }
 
+.preview-image {
+  display: block;
+
+  width: 220px;
+  max-width: 100%;
+
+  height: 150px;
+
+  border-radius: 12px;
+
+  object-fit: cover;
+
+  margin: 12px 0;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 .blog-form-container h3 {
   margin: 8px 0;
   font-size: 18px;

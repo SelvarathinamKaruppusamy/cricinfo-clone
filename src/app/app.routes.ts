@@ -21,6 +21,9 @@ import { authGuardAdminGuard } from './Admin/admin-login/auth-guard-admin-guard'
 import { AdminLogin } from './Admin/admin-login/admin-login';
 import { Profile } from './Admin/profile/profile';
 import { Signup } from './Admin/sign-up-page/sign-up-page';
+import { Quiz } from './User/Quiz/quiz/quiz';
+import { LeaderBoard } from './User/Quiz/leaderboard/leaderboard';
+import { AdminQuizComponent } from './Admin/Quiz/admin-quiz-component/admin-quiz-component';
 export const routes: Routes = [
   {
     path: '',
@@ -36,7 +39,7 @@ export const routes: Routes = [
         component: Livepage,
       },
       {
-        path: 'match/:id',
+        path: 'match/:matchNo',
         component: Match,
       },
       {
@@ -61,7 +64,7 @@ export const routes: Routes = [
     component: Stats,
   },
   {
-    path: 'match/:id',
+    path: 'match/:matchNo',
     component: Match,
   },
   {
@@ -77,7 +80,9 @@ export const routes: Routes = [
   {
     path: 'completed',
     loadComponent: () =>
-      import('./User/Completed/Components/completed-list/completed-list').then((c) => c.CompletedList),
+      import('./User/Completed/Components/completed-list/completed-list').then(
+        (c) => c.CompletedList,
+      ),
   },
   {
     path: 'completed/:matchNo',
@@ -107,6 +112,14 @@ export const routes: Routes = [
     component: Schedule,
   },
   {
+    path: 'quiz',
+    component: Quiz,
+  },
+  {
+    path: 'leaderboard',
+    component: LeaderBoard,
+  },
+  {
     path: 'admin',
     component: AdminLogin,
   },
@@ -132,6 +145,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         component: Profile,
+      },
+      {
+        path: 'admin-quiz',
+        component: AdminQuizComponent,
       },
       {
         path: 'adminLive',

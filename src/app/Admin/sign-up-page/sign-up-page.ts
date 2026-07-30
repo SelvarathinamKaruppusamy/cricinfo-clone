@@ -69,47 +69,45 @@ export class Signup {
       password,
     });
   }
-
   register(): void {
     if (this.adminForm.invalid) {
       this.adminForm.markAllAsTouched();
       return;
     }
 
-    this.adminService.getAdmins().subscribe({
-      next: (admins: any[]) => {
-        const nextId =
-          admins.length === 0 ? 1 : Math.max(...admins.map((admin) => Number(admin.id) || 0)) + 1;
+    const admin = {
+      userName: this.adminForm.value.username,
+      password: this.adminForm.value.password,
 
-        const admin = {
-          id: String(nextId),
-          userName: this.adminForm.value.username,
-          passWord: this.adminForm.value.password,
+      firstName: this.adminForm.value.fname,
+      lastName: this.adminForm.value.lname,
 
-          fname: this.adminForm.value.fname,
-          lname: this.adminForm.value.lname,
-          email: this.adminForm.value.email,
-          gender: this.adminForm.value.gender,
-          mobileNo: this.adminForm.value.mobileNo,
-          role: this.adminForm.value.role,
-          address: this.adminForm.value.address,
-          dob: this.adminForm.value.dob,
+      email: this.adminForm.value.email,
+      gender: this.adminForm.value.gender,
+      mobileNo: this.adminForm.value.mobileNo,
+      role: this.adminForm.value.role,
+      address: this.adminForm.value.address,
+      dob: this.adminForm.value.dob,
+    };
 
-          firstLogin: true,
-        };
+    console.log('REQUEST:', admin);
 
-        this.adminService.createAdmin(admin).subscribe({
-          next: () => {
-            alert('Admin Registered Successfully');
+    this.adminService.createAdmin(admin).subscribe({
+      next: (response) => {
+        console.log('SUCCESS RESPONSE:', response);
 
-            this.adminForm.reset();
+        alert('Admin Registered Successfully');
 
-            this.generatePassword();
-          },
-          error: (err) => console.error(err),
-        });
+        this.adminForm.reset();
+
+        this.generatePassword();
       },
-      error: (err) => console.error(err),
+
+      error: (err) => {
+        console.log('ERROR RESPONSE:', err);
+
+        alert(err.error ?? 'Failed to Register Admin');
+      },
     });
   }
 }

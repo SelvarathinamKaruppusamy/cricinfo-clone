@@ -2,23 +2,30 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatchData, updateMatch } from '../match/match.models/match.models-module';
 import { matchCard } from './up-comp';
+import { LiveModel } from '../../LivePages/Models/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UpcService {
   http = inject(HttpClient);
-  upcommingdata!: matchCard;
-  upCommingdata!: matchCard;
+
+  private apiUrl = 'https://localhost:7144/api/Upcoming';
 
   getMatch() {
-    return this.http.get<any[]>('http://localhost:5000/matches');
+    return this.http.get<updateMatch[]>(this.apiUrl);
   }
-  getMatchById(id: string) {
-    return this.http.get<MatchData>(`http://localhost:5000/matches/${id}`);
-  }
+  getUpcomingMatches() {
+  return this.http.get<LiveModel[]>(
+    'https://localhost:7144/api/Upcoming'
+  );
+}
 
-  updateMatch(id: string, match: updateMatch) {
-    return this.http.put<updateMatch>(`http://localhost:5000/matches/${id}`, match);
-  }
+  getMatchById(matchNo: string) {
+  return this.http.get<MatchData>(`${this.apiUrl}/${matchNo}`);
+}
+
+updateMatch(matchNo: string, match: updateMatch) {
+  return this.http.put(`${this.apiUrl}/${matchNo}`, match);
+}
 }

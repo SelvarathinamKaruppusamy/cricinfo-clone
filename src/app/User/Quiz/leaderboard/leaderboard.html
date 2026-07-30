@@ -1,0 +1,201 @@
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>CricInfo Leader Board</h1>
+        <p class="subtitle">Top performers of the quiz</p>
+    </div>
+
+    <!-- Main Content - Flex Layout -->
+    <div class="main-content">
+        <!-- Left Side - Top 5 Leaderboard -->
+        <div class="left-section">
+            <div class="card leaderboard-card">
+                <div class="card-header">
+                    <h2>🏆 Top 5 Players</h2>
+                    <span class="badge">Top Performers</span>
+                </div>
+
+                <div class="table-wrapper" *ngIf="topFiveUsers.length > 0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of topFiveUsers; let i = index"
+                                [class.current-user]="user.userName?.trim()?.toLowerCase() === currentUserName?.trim()?.toLowerCase()">
+                                <td>
+                                    <div class="rank-container">
+                                        <span class="rank-badge">
+                                            <span class="rank-number">{{i + 1}}</span>
+                                        </span>
+                                        <span class="medal-icon" *ngIf="i === 0">🥇</span>
+                                        <span class="medal-icon" *ngIf="i === 1">🥈</span>
+                                        <span class="medal-icon" *ngIf="i === 2">🥉</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">{{user.userName}}</span>
+                                        <span
+                                            *ngIf="user.userName?.trim()?.toLowerCase() === currentUserName?.trim()?.toLowerCase()"
+                                            class="you-badge">
+                                            You
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="score">{{user.score}} / 10</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state" *ngIf="topFiveUsers.length === 0">
+                    <p>No records found. Be the first to play!</p>
+                </div>
+            </div>
+
+            <!-- All Players -->
+            <div class="card all-players-card" *ngIf="allUsers.length > 5">
+                <details>
+                    <summary class="summary-header">
+                        <h3> All Players ({{allUsers.length}})</h3>
+                        <span class="toggle-icon">▶</span>
+                    </summary>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of allUsers; let i = index"
+                                    [class.current-user]="user.userName?.trim()?.toLowerCase() === currentUserName?.trim()?.toLowerCase()">
+                                    <td>{{i + 1}}</td>
+                                    <td>
+                                        <div class="player-info">
+                                            <span class="player-name">{{user.userName}}</span>
+                                            <span
+                                                *ngIf="user.userName?.trim()?.toLowerCase() === currentUserName?.trim()?.toLowerCase()"
+                                                class="you-badge">
+                                                You
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>{{user.score}} / 10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Right Side - Current User Score Card -->
+        <div class="right-section">
+            <div class="card user-score-card" *ngIf="currentUserScore">
+                <div class="card-header-simple">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            {{currentUserScore.userName?.charAt(0)?.toUpperCase() || 'U'}}
+                        </div>
+                        <div class="user-info">
+                            <h3 class="user-name">{{currentUserScore.userName}}</h3>
+                            <span class="user-rank">Rank #{{getCurrentUserRank()}}</span>
+                        </div>
+                    </div>
+                    <div class="score-display">
+                        <span class="score-number">{{currentUserScore.score}}</span>
+                        <span class="score-total">/ 10</span>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" [style.width.%]="(currentUserScore.score / 10) * 100"></div>
+                    </div>
+                    <span class="progress-label">{{(currentUserScore.score / 10) * 100}}%</span>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-info">
+                            <span class="stat-value">{{currentUserScore.score}}</span>
+                            <span class="stat-label">Correct</span>
+                        </div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-info">
+                            <span class="stat-value">10</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🏅</span>
+                        <div class="stat-info">
+                            <span class="stat-value">{{getCurrentUserRank()}}</span>
+                            <span class="stat-label">Rank</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-box" [class.excellent]="currentUserScore.score >= 8"
+                    [class.good]="currentUserScore.score >= 6 && currentUserScore.score < 8"
+                    [class.average]="currentUserScore.score >= 4 && currentUserScore.score < 6"
+                    [class.low]="currentUserScore.score < 4">
+                    <span class="message-icon">
+                        <span *ngIf="currentUserScore.score >= 8"></span>
+                        <span *ngIf="currentUserScore.score >= 6 && currentUserScore.score < 8"></span>
+                        <span *ngIf="currentUserScore.score >= 4 && currentUserScore.score < 6"></span>
+                        <span *ngIf="currentUserScore.score < 4"></span>
+                    </span>
+                    <span class="message-text">
+                        <span *ngIf="currentUserScore.score >= 8">Excellent Performance!</span>
+                        <span *ngIf="currentUserScore.score >= 6 && currentUserScore.score < 8">Good Job!</span>
+                        <span *ngIf="currentUserScore.score >= 4 && currentUserScore.score < 6">Keep Practicing!</span>
+                        <span *ngIf="currentUserScore.score < 4">Better Luck Next Time!</span>
+                    </span>
+                </div>
+
+                <div class="action-buttons">
+                    <button (click)="goToQuiz()" class="btn-primary">
+                        <span></span> Take Quiz
+                    </button>
+                    <button (click)="goBack()" class="btn-secondary">
+                        <span>←</span> Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- No Score State -->
+            <div class="card user-score-card" *ngIf="!currentUserScore && currentUserName">
+                <div class="empty-state-card">
+                    <div class="empty-icon"></div>
+                    <h3>No Quiz Taken</h3>
+                    <p>Take the quiz to see your score here</p>
+                    <button (click)="goToQuiz()" class="btn-primary">
+                        <span></span> Take Quiz Now
+                    </button>
+                </div>
+                <div class="action-buttons">
+                    <button (click)="goBack()" class="btn-secondary">
+                        <span>←</span> Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

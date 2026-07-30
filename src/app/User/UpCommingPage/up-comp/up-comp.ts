@@ -12,9 +12,8 @@ interface Team {
 }
 
 interface Match {
-  id: number;
   status: string;
-  matchNo: number;
+  matchNo: string;
   city: string;
   venue: string;
   date: string;
@@ -22,9 +21,8 @@ interface Match {
 }
 
 export interface matchCard {
-  id: number;
+  matchNo: string;
   status: string;
-  matchNo: number;
   city: string;
   stadium: string;
   team1: Team;
@@ -52,16 +50,6 @@ export class UpComp {
   router = inject(Router);
 
   ngOnInit() {
-    // .subscribe(()=>{
-    //      this.service.getMatch().subscribe({
-    //     next: (data: matchCard[]) => {
-    //       this.cards= data;
-    //       this.cd.detectChanges();
-    //     },
-    //     error: (error) => console.error(error),
-    //   });
-
-    //   })
 
     interval(500)
       .pipe(
@@ -69,30 +57,29 @@ export class UpComp {
         switchMap(() => this.service.getMatch()),
       )
       .subscribe((matches) => {
-        this.cards = matches.map((match: Match) => ({
-          id: match.id,
-          status: match.status,
-          matchNo: match.matchNo,
-          city: match.city,
-          stadium: match.venue,
-          team1: match.teams[0],
-          team2: match.teams[1],
-          time: '7:30 PM ',
-          date: match.date,
-        }));
-        this.service.upCommingdata = this.cards[0];
+     this.cards = matches.map(match => ({
+  matchNo: match.matchNo,
+  status: match.status,
+  city: match.city,
+  stadium: match.venue,
+  team1: match.teams[0],
+  team2: match.teams[1],
+  time: '7:30 PM',
+  date: match.date,
+}));
+        // this.service.updateMatch = this.cards[0];
         this.cd.detectChanges();
       });
   }
-  open(id: number) {
-    this.router.navigate(['/match', id]);
+  open(matchNo:string) {
+    this.router.navigate(['/match', matchNo]);
   }
   formatDate(date: string): Date {
     const [year, month, day] = date.split('-').map(Number);
     return new Date(year, month - 1, day);
   }
-  schedulepage(event: Event, id: number) {
+  schedulepage(event: Event, matchNo:string) {
     event.stopPropagation();
-    this.router.navigate(['/schedule', id]);
+    this.router.navigate(['/schedule', matchNo]);
   }
 }

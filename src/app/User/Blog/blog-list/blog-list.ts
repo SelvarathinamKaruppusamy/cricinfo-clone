@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, combineLatest, map, BehaviorSubject, timer, switchMap } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { tap } from 'rxjs';
 
 import { HighlightPipe } from './highlight.pipe';
 
@@ -17,7 +18,7 @@ import { HighlightPipe } from './highlight.pipe';
 export class BlogList implements OnInit {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:3001/blogs';
+  private apiUrl = 'https://localhost:7144/api/Blog/';
 
   searchTerm = '';
 
@@ -25,10 +26,16 @@ export class BlogList implements OnInit {
 
   blogs$!: Observable<any[]>;
 
+  loading = true;
+
   ngOnInit(): void {
+
     const blogsData$ = timer(0, 1000).pipe(
       switchMap(() => this.http.get<any[]>(this.apiUrl)),
-      map((blogs) => [...blogs].reverse()),
+      tap(() => {
+         this.loading = false;
+      }),
+      map((blogs) => [...blogs].sort((a, b) => b.matchId - a.matchId)),
     );
 
     this.blogs$ = combineLatest([blogsData$, this.searchSubject]).pipe(

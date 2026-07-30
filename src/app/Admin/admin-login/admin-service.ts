@@ -5,41 +5,55 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AdminService {
+  private apiUrl = 'https://localhost:7144/api/auth';
 
   constructor(private http: HttpClient) {}
 
-  getAdmins() {
-    return this.http.get<any[]>('http://localhost:9999/admin');
+  login(data: any) {
+    return this.http.post<any>(`${this.apiUrl}/login`, data);
+  }
+
+  resetPassword(data: any) {
+    return this.http.post(`${this.apiUrl}/reset-password`, data);
   }
 
   createAdmin(admin: any) {
-    return this.http.post('http://localhost:9999/admin', admin);
+    return this.http.post(`${this.apiUrl}/register`, admin);
   }
 
-  updateAdmin(id: string, data: any) {
-    return this.http.put(`http://localhost:9999/admin/${id}`, data);
+  getProfile(userName: string) {
+    return this.http.get<any>(`${this.apiUrl}/profile/${userName}`);
   }
 
-  setAuthenticated(value: boolean) {
-    sessionStorage.setItem('isLoggedIn', value.toString());
+  updateProfile(id: number, data: any) {
+    return this.http.put(`${this.apiUrl}/profile/${id}`, data);
   }
 
-  isAuthenticated(): boolean {
-    return sessionStorage.getItem('isLoggedIn') === 'true';
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   setCurrentUser(user: any) {
-    sessionStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
   getCurrentUser() {
-    const user = sessionStorage.getItem('currentUser');
+    const user = localStorage.getItem('currentUser');
 
     return user ? JSON.parse(user) : null;
   }
 
+  isAuthenticated() {
+    return !!this.getToken();
+  }
+
   logout() {
-    sessionStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+
+    localStorage.removeItem('currentUser');
   }
 }

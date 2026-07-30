@@ -1,5 +1,5 @@
 export interface Blog {
-  id: string;
+  id: number;
   matchId: number;
   title: string;
   slug: string;

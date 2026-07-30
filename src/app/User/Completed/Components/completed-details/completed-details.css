@@ -493,6 +493,22 @@
     box-shadow var(--transition-speed);
 }
 
+.related-blog-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+}
+
+.chip-left,
+.chip-right {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 .related-blog-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
@@ -500,8 +516,9 @@
 
 .blog-top-image {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #fff;
 }
 
 .related-blog-content {

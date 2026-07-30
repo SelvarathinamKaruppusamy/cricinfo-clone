@@ -16,18 +16,19 @@ import { Blog } from '../../Completed/Models/match-module';
 export class BlogDetails implements OnInit {
   private http = inject(HttpClient);
   private route = inject(ActivatedRoute);
-  private apiUrl = 'http://localhost:3001/blogs';
+  private apiUrl = 'https://localhost:7144/api/Blog/';
 
   blog$!: Observable<Blog>;
 
-  ngOnInit(): void {
-    this.blog$ = this.route.paramMap.pipe(
-      switchMap((params) => {
-        const id = params.get('id');
-        return this.http.get<Blog>(`${this.apiUrl}/${id}`);
-      }),
-    );
-  }
+ngOnInit(): void {
+  this.blog$ = this.route.paramMap.pipe(
+    switchMap((params) => {
+      const matchId = params.get('id');
+
+      return this.http.get<Blog>(`${this.apiUrl}${matchId}`);
+    }),
+  );
+}
   
 
 }

@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { ScheduleServise } from './schedule-servise';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { UpcService } from '../UpCommingPage/up-comp/upc-service';
@@ -37,7 +36,6 @@ export class Schedule implements OnInit {
   upservice=inject(UpcService)
   liveservice=inject(LiveService)
   completedservice=inject(CompletedService)
-  constructor(private service: ScheduleServise) {}
 
   ngOnInit() {
 

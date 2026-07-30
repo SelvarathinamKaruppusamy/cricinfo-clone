@@ -30,31 +30,6 @@ toastType: 'success' | 'error' = 'success';
 toastMessage = '';
 
 private toastTimer: any;
-
-//   openEditLastBallDialog() {
-//   const balls = this.service.currentOverBalls();
-//   if (!balls.length) {
-//     return;
-//   }
-
-//   const currentBall = balls[balls.length - 1];
-
-//   const dialogRef = this.dialog.open(EditLastBallDialogComponent, {
-//     width: '380px',
-//     disableClose: true,
-//     data: {
-//       currentBall,
-//     } as EditLastBallDialogData,
-//     panelClass: 'custom-dialog-container',
-//   });
-
-//   dialogRef.afterClosed().subscribe((newBall: string | undefined) => {
-//     if (!newBall || newBall === currentBall) return;
-
-//     // this.service.editLastBall(newBall);
-//   });
-// }
-
   private dialog = inject(MatDialog);
   openConfirmDialog(data: ConfirmDialogData, action: () => void) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

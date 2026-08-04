@@ -58,10 +58,34 @@ export class Profile implements OnInit {
     });
   }
 
-  logout(): void {
-    this.adminService.logout();
-    this.router.navigate(['/admin']);
-  }
+ logout(): void {
+
+  console.log("Logout clicked");
+
+  this.adminService.logout().subscribe({
+
+    next: (res) => {
+
+      console.log("Logout Success", res);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+
+      this.router.navigate(['/admin']);
+    },
+
+    error: (err) => {
+
+      console.log("Logout Error", err);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+
+      this.router.navigate(['/admin']);
+    }
+
+  });
+ }
 
   addadmin(): void {
     this.router.navigate(['/navbarAdmin/signup']);

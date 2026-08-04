@@ -12,6 +12,9 @@ export class AdminService {
   login(data: any) {
     return this.http.post<any>(`${this.apiUrl}/login`, data);
   }
+  logout() {
+    return this.http.post(`${this.apiUrl}/logout`, {});
+  }
 
   resetPassword(data: any) {
     return this.http.post(`${this.apiUrl}/reset-password`, data);
@@ -49,11 +52,5 @@ export class AdminService {
 
   isAuthenticated() {
     return !!this.getToken();
-  }
-
-  logout() {
-    localStorage.removeItem('token');
-
-    localStorage.removeItem('currentUser');
   }
 }

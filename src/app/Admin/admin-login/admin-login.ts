@@ -26,27 +26,30 @@ export class AdminLogin {
     private router: Router,
   ) {}
 
-  login() {
-    this.authService
-      .login({
-        userName: this.username,
-        password: this.password,
-      })
-      .subscribe({
-        next: (res) => {
-          this.authService.setToken(res.token);
+ login() {
+  this.authService.login({
+    userName: this.username,
+    password: this.password
+  }).subscribe({
 
-          this.authService.setCurrentUser(res);
+    next: (res) => {
 
-          this.router.navigate(['/navbarAdmin']);
-        },
+      if (!res.success) {
+        alert(res.message);
+        return;
+      }
 
-        error: () => {
-          alert('Invalid Username or Password');
-        },
-      });
-  }
+      this.authService.setToken(res.token);
+      this.authService.setCurrentUser(res);
 
+      this.router.navigate(['/navbarAdmin']);
+    },
+
+    error: (err) => {
+      alert(err.error.message);
+    }
+  });
+}
   openResetForm() {
     this.showResetForm = true;
   }

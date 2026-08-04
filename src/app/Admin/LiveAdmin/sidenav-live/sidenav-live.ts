@@ -35,7 +35,32 @@ export class SidenavLive implements OnInit {
   }
 
   logout(): void {
-    this.adminservice.logout();
-    this.router.navigate(['/admin']);
+
+  console.log("Logout clicked");
+
+  this.adminservice.logout().subscribe({
+
+    next: (res) => {
+
+      console.log("Logout Success", res);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+
+      this.router.navigate(['/admin']);
+    },
+
+    error: (err) => {
+
+      console.log("Logout Error", err);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+
+      this.router.navigate(['/admin']);
+    }
+
+  });
+
   }
 }

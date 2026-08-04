@@ -17,13 +17,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import {
-  ConfirmDialogComponent,
-  ConfirmDialogData,
-} from '../LiveAdmin/confirm-dialog-component/confirm-dialog-component';
+import {ConfirmDialogComponent, ConfirmDialogData} from '../LiveAdmin/confirm-dialog-component/confirm-dialog-component';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-
+import { interval,Subscription } from 'rxjs';
 @Component({
   selector: 'app-upcome',
   standalone: true,
@@ -61,6 +58,7 @@ export class Upcome implements OnInit {
   toastMessage = '';
   toastType: 'success' | 'error' = 'success';
   private toastTimeout: any;
+   pollingSubscription?: Subscription;
 
   matchForm = new FormGroup({
     venue: new FormControl('', Validators.required),
@@ -82,9 +80,13 @@ export class Upcome implements OnInit {
     { venue: 'Arun Jaitley Stadium', city: 'Jaipur' },
   ];
 
-  ngOnInit(): void {
+ ngOnInit(): void {
+  this.loadMatches();
+
+  this.pollingSubscription = interval(1000).subscribe(() => {
     this.loadMatches();
-  }
+  });
+}
 
   loadMatches(): void {
   this.service.getMatch().subscribe({

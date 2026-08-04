@@ -51,7 +51,7 @@ export class UpComp {
 
   ngOnInit() {
 
-    interval(500)
+    interval(1000)
       .pipe(
         startWith(0),
         switchMap(() => this.service.getMatch()),

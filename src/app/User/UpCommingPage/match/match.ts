@@ -12,7 +12,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatchData } from './match.models/match.models-module';
-import { Team } from './match.models/match.models-module';
+import { interval,Subscription } from 'rxjs';
 @Component({
   selector: 'app-match',
   imports: [
@@ -40,13 +40,15 @@ export class Match implements OnInit {
   service = inject(UpcService);
   cd = inject(ChangeDetectorRef);
   route = inject(Router);
+  pollingSubscription?: Subscription;
+ 
 
- ngOnInit() {
+ loadMatch(): void {
   const matchNo = this.rout.snapshot.paramMap.get('matchNo')!;
- this.service.getMatchById(matchNo).subscribe({
+
+  this.service.getMatchById(matchNo).subscribe({
     next: (res) => {
 
-      // Convert "true,false,true" into [true, false, true]
       res.teams.forEach(team => {
         (team as any).matchStatus = (team.matchStatus as unknown as string)
           .split(',')
@@ -61,6 +63,16 @@ export class Match implements OnInit {
       console.error(err);
     }
   });
+}
+
+ ngOnInit(): void {
+
+  this.loadMatch();
+
+  this.pollingSubscription = interval(1000).subscribe(() => {
+    this.loadMatch();
+  });
+
 }
   redirectfun() {
     this.route.navigate(['/upcoming']);

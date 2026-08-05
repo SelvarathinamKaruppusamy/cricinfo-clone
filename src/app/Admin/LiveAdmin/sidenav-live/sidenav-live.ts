@@ -6,7 +6,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LiveService } from '../../../User/LivePages/Services/live-service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider'; // Add this import
-import { AdminService } from '../../admin-login/admin-service';
+import { AdminLoginService } from '../../admin-login/admin-service';
 
 @Component({
   selector: 'app-sidenav-live',
@@ -24,7 +24,7 @@ import { AdminService } from '../../admin-login/admin-service';
 })
 export class SidenavLive implements OnInit {
   service = inject(LiveService);
-  adminservice = inject(AdminService);
+  adminservice = inject(AdminLoginService);
   router = inject(Router);
   
   innings = computed(() => this.service.innings());

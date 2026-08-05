@@ -1,35 +1,33 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
+import { AdminLoginService } from '../admin-login/admin-service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-
-  const token = localStorage.getItem('token');
+  const adminService = inject(AdminLoginService);
+  const token = adminService.getToken();
 
   // APIs that don't need token
   const publicApis = [
     '/api/auth/login',
     '/api/auth/register',
-    '/api/auth/reset-password'
+    '/api/auth/reset-password',
+    '/api/auth/logout',
   ];
 
-  const isPublic = publicApis.some(url =>
-    req.url.includes(url)
-  );
+  const isPublic = publicApis.some((url) => req.url.includes(url));
 
-  if (isPublic) {
-    return next(req);
-  }
+  const authReq =
+    !isPublic && token
+      ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
+      : req;
 
-  // Add token
-  if (token) {
-
-    const authReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
+  return next(authReq).pipe(
+    catchError((err) => {
+      if (err.status === 401 && !isPublic) {
+        adminService.clearLocalSession();
       }
-    });
-
-    return next(authReq);
-  }
-
-  return next(req);
+      return throwError(() => err);
+    })
+  );
 };

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from '../admin-login/admin-service';
+import { AdminLoginService } from '../admin-login/admin-service';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +26,7 @@ export class Profile implements OnInit {
   private toastTimeout: any;
 
   constructor(
-    private adminService: AdminService,
+    private adminService: AdminLoginService,
     private router: Router,
     private cdr: ChangeDetectorRef,
   ) {}

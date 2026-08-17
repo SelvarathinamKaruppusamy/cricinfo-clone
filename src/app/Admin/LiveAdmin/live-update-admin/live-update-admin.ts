@@ -1,10 +1,14 @@
 import { ChangeDetectorRef, Component, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LiveService } from '../../../LivePages/Services/live-service';
+import { LiveService } from '../../../User/LivePages/Services/live-service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Player, Team } from '../../../LivePages/Models/models';
+import { Player, Team } from '../../../User/LivePages/Models/models';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-component/confirm-dialog-component';
+import { SelectBowlerDialogComponent } from '../select-bowler-dialog-component/select-bowler-dialog-component';
 
 @Component({
   selector: 'app-live-update-admin',
@@ -16,8 +20,73 @@ import { Player, Team } from '../../../LivePages/Models/models';
 export class LiveUpdateAdmin implements OnInit {
   service = inject(LiveService);
   cd = inject(ChangeDetectorRef);
-
+  router=inject(Router)
   live = computed(() => this.service.live());
+  selectedTossWinner: 0 | 1 | null = null;
+  selectedCall: 'Head' | 'Tail' | null = null;
+  selectedDecision: 'Bat' | 'Bowl' | null = null;
+  toastVisible = false;
+toastType: 'success' | 'error' = 'success';
+toastMessage = '';
+
+private toastTimer: any;
+  private dialog = inject(MatDialog);
+  openConfirmDialog(data: ConfirmDialogData, action: () => void) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '420px',
+      disableClose: true,
+      data,
+      panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        action();
+      }
+    });
+  }
+
+  openBowlerDialog() {
+
+  const dialogRef=this.dialog.open(
+    SelectBowlerDialogComponent,
+    {
+      width:'400px',
+      disableClose:true,
+      data:{
+        bowlers:this.availableBowlers()
+      }
+    }
+  );
+
+  dialogRef.afterClosed().subscribe(playerId => {
+
+
+
+  if (playerId == null) return;
+
+  this.service.changeBowler(playerId);
+
+});
+
+}
+  currentBatting = computed(() => {
+  const live = this.service.live();
+  if (!live) return null;
+
+  return live.teams.find(
+    t => t.teamId === this.service.currentBattingTeam()
+  ) ?? null;
+});
+
+currentBowling = computed(() => {
+  const live = this.service.live();
+  if (!live) return null;
+
+  return live.teams.find(
+    t => t.teamId === this.service.currentBowlingTeam()
+  ) ?? null;
+});
 
   currentBattingTeam = computed<Team | undefined>(() => {
     const live = this.service.live();
@@ -34,7 +103,7 @@ export class LiveUpdateAdmin implements OnInit {
   currentBowler = computed<Player | undefined>(() => this.service.currentBowler);
 
   currentBatters = computed<Player[]>(() =>
-    this.service.players1().filter((p) => p.status === 'Not Out'),
+    this.service.players1().filter((p) => p.status === 'Batting'),
   );
 
   batter1 = computed<Player | undefined>(() => this.currentBatters()[0]);
@@ -42,42 +111,35 @@ export class LiveUpdateAdmin implements OnInit {
 
   striker = computed<Player | undefined>(() => this.service.striker);
 
-  currentBowlerBalls = computed(() => {
-    const balls = this.service.ball();
-    const result: string[] = [];
-    let legalCount = 0;
+ currentBowlerBalls = computed(() => {
 
-    for (let i = balls.length - 1; i >= 0; i--) {
-      result.unshift(balls[i]);
+    return this.service.currentOverBalls();
 
-      if (balls[i] !== 'Wd' && balls[i] !== 'Nb') {
-        legalCount++;
-      }
+});
+ target = computed(() => {
+  const bowling = this.currentBowling();
 
-      if (legalCount === 6) break;
-    }
+  if (!bowling) return 0;
 
-    return result;
-  });
+  return this.service.innings() === 2
+    ? (bowling.runs ?? 0) + 1
+    : 0;
+});
 
-  target = computed(() => {
-    if (this.service.innings() !== 2) return 0;
-    if (!this.service.completedBattingTeam) return 0;
-    return this.service.completedBattingTeam.scores + 1;
-  });
+ requiredRuns = computed(() => {
+  const batting = this.currentBatting();
 
-  requiredRuns = computed(() => {
-    if (this.service.innings() !== 2) return 0;
-    const batting = this.currentBattingTeam();
-    if (!batting) return 0;
-    if (!this.service.completedBattingTeam) return 0;
+  if (!batting) return 0;
 
-    return Math.max(0, this.target() - batting.scores);
-  });
+  return Math.max(
+    0,
+    this.target() - (batting.runs ?? 0)
+  );
+});
 
   remainingBalls = computed(() => {
     if (this.service.innings() !== 2) return 0;
-    const batting = this.currentBattingTeam();
+    const batting = this.currentBatting();
     if (!batting) return 0;
 
     const overs = batting.overs ?? 0;
@@ -88,124 +150,156 @@ export class LiveUpdateAdmin implements OnInit {
     return Math.max(0, 120 - ballsBowled);
   });
 
-  showStartSecondInnings = computed(() => {
-    if (this.service.innings() !== 1) return false;
-    const batting = this.currentBattingTeam();
-    if (!batting) return false;
-
-    return batting.overs >= 20 || batting.wickets >= 10;
-  });
+ showStartSecondInnings = computed(() => false);
 
   // Match can be manually completed from admin
   showCompleteMatch = computed(() => {
-    if (this.service.innings() !== 2) return false;
-    if (!this.service.completedBattingTeam) return false;
 
-    const secondBatting = this.currentBattingTeam();
-    if (!secondBatting) return false;
+    return false;
 
-    const target = this.service.completedBattingTeam.scores + 1;
-
-    return (
-      secondBatting.scores >= target || secondBatting.overs >= 20 || secondBatting.wickets >= 10
-    );
-  });
+});
 
   // True when match is finished / winner decided / DB status completed
-  matchFinished = computed(() => {
-    const live = this.service.live();
-    if (!live) return false;
+ matchFinished = computed(() => {
 
-    if (live.status === 'COMPLETED') return true;
+  const live = this.service.live();
 
-    if (this.service.innings() !== 2) return false;
-    if (!this.service.completedBattingTeam) return false;
+  return live?.status =="COMPLETED";
 
-    const secondBatting = this.currentBattingTeam();
-    if (!secondBatting) return false;
+});
 
-    const target = this.service.completedBattingTeam.scores + 1;
+winnerText = computed(() => {
 
-    return (
-      secondBatting.scores >= target || secondBatting.overs >= 20 || secondBatting.wickets >= 10
-    );
+  return this.service.live()?.result ?? '';
+
+});
+
+ ngOnInit(): void {
+
+  this.service.GetLiveMatch().subscribe({
+
+    next: (match) => {
+
+      this.service.loadMatchIntoService(match);
+      this.cd.detectChanges();
+
+    },
+
+    error: (err: any) => console.error(err)
+
   });
 
-  // Winner / result text for admin UI
-  winnerText = computed(() => {
-    const live = this.service.live();
-    if (!live) return '';
+}
 
-    // if already completed and result stored in DB
-    if (live.status === 'COMPLETED' && live.result) {
-      return live.result;
-    }
+addBall(ball: string) {
 
-    if (this.service.innings() !== 2) return '';
-    if (!this.service.completedBattingTeam) return '';
+  if (this.matchFinished()) return;
 
-    const firstBatting = this.service.completedBattingTeam;
-    const secondBatting = this.currentBattingTeam();
+  this.service.processBall(ball).subscribe({
 
-    if (!secondBatting) return '';
+    next: () => {
+  this.reloadMatch()
+      if (this.service.currentOverBalls().length === 0) {
 
-    const target = firstBatting.scores + 1;
+        
 
-    // chasing team wins
-    if (secondBatting.scores >= target) {
-      const wicketsLeft = 10 - secondBatting.wickets;
-      return `${secondBatting.shortName} won by ${wicketsLeft} wickets`;
-    }
+        this.openBowlerDialog();
 
-    // innings ended and chasing team failed
-    const inningsFinished = secondBatting.overs >= 20 || secondBatting.wickets >= 10;
-
-    if (inningsFinished) {
-      if (secondBatting.scores === firstBatting.scores) {
-        return 'Match Tied';
       }
 
-      if (secondBatting.scores < firstBatting.scores) {
-        const margin = firstBatting.scores - secondBatting.scores;
-        return `${firstBatting.shortName} won by ${margin} runs`;
-      }
-    }
+      this.cd.detectChanges();
 
-    return '';
+    },
+
+    error: err => console.error(err)
+
   });
 
-  ngOnInit(): void {
-    this.service.GetLiveMatches().subscribe({
-      next: (res) => {
-        if (res?.length) {
-          this.service.loadMatchIntoService(res[0]);
-        }
-        this.cd.detectChanges();
-      },
-      error: (err) => console.error(err),
-    });
+}
+reloadMatch() {
+
+  this.service.GetLiveMatch().subscribe({
+
+    next: (match) => {
+console.log("Status:", match.status);
+
+      this.service.loadMatchIntoService(match);
+
+      this.cd.detectChanges();
+
+    },
+
+    error: (err: any) => console.error(err)
+
+  });
+
+}
+   showToast(message: string, type: 'success' | 'error') {
+  this.toastMessage = message;
+  this.toastType = type;
+  this.toastVisible = true;
+
+  this.cd.detectChanges();
+
+  clearTimeout(this.toastTimer);
+
+  this.toastTimer = setTimeout(() => {
+    this.toastVisible = false;
     this.cd.detectChanges();
-  }
+  }, 1200);
+}
 
-  addBall(ball: string) {
-    // stop admin from adding balls after match finished
-    if (this.matchFinished()) return;
+closeToast() {
+  this.toastVisible = false;
+  clearTimeout(this.toastTimer);
+}
+availableBowlers = computed(() =>
+  this.service
+    .bowlers1()
+    .map((b, index) => ({ ...b, index }))
+    .filter(
+      b =>
+        b.index !== this.service.currentBowlerIndex() &&
+        (b.overs ?? 0) < 4
+    )
+);
+completeMatch() {
 
-    if (!ball?.trim()) return;
-    this.service.processBall(ball.trim());
-  }
+  this.router.navigate([
+    '/navbarAdmin/adminLive/completed'
+  ]);
 
-  startSecondInnings() {
-    if (this.matchFinished()) return;
-    this.service.startSecondInnings();
-  }
+}
+saveLiveToDb() {
 
-  saveLiveToDb() {
-    this.service.saveLiveToDb();
-  }
+  this.showToast(
+    'All changes are already saved.',
+    'success'
+  );
 
-  completeMatch() {
-    if (!this.showCompleteMatch()) return;
-    this.service.completeMatch();
-  }
+}
+startSecondInnings() {
+
+  const matchNo = this.live()?.matchNo;
+
+  if (!matchNo) return;
+
+  this.service.StartSecondInnings(matchNo).subscribe({
+
+    next: () => {
+
+      this.reloadMatch();
+
+      this.showToast(
+        'Second Innings Started',
+        'success'
+      );
+
+    },
+
+    error: err => console.error(err)
+
+  });
+
+}
 }

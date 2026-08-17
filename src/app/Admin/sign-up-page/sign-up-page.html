@@ -1,0 +1,163 @@
+<div class="container">
+  <mat-card class="register-card">
+    <div class="header">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <h1>Create Admin</h1>
+      <p>Create and manage administrator accounts</p>
+    </div>
+
+    <form [formGroup]="adminForm">
+
+      <!-- Username -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Enter Username" />
+        <mat-icon matSuffix>person</mat-icon>
+
+        @if(adminForm.get('username')?.hasError('required') &&
+        adminForm.get('username')?.touched){
+        <mat-error>Username is required</mat-error>
+        }
+
+        @if(adminForm.get('username')?.hasError('minlength')){
+        <mat-error>Minimum 4 characters required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- First Name -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="fname" />
+
+        @if(adminForm.get('fname')?.invalid &&
+        adminForm.get('fname')?.touched){
+        <mat-error>First name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Last Name -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lname" />
+
+        @if(adminForm.get('lname')?.invalid &&
+        adminForm.get('lname')?.touched){
+        <mat-error>Last name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+
+        @if(adminForm.get('email')?.hasError('required') &&
+        adminForm.get('email')?.touched){
+        <mat-error>Email is required</mat-error>
+        }
+
+        @if(adminForm.get('email')?.hasError('email')){
+        <mat-error>Enter a valid email</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Gender -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Gender</mat-label>
+
+        <mat-select formControlName="gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+
+        @if(adminForm.get('gender')?.invalid &&
+        adminForm.get('gender')?.touched){
+        <mat-error>Gender is required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Mobile -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mobile Number</mat-label>
+
+        <input matInput maxlength="10" formControlName="mobileNo" />
+
+        @if(adminForm.get('mobileNo')?.hasError('required') &&
+        adminForm.get('mobileNo')?.touched){
+        <mat-error>Mobile number is required</mat-error>
+        }
+
+        @if(adminForm.get('mobileNo')?.hasError('pattern')){
+        <mat-error>Enter valid 10 digit mobile number</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Role -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Role</mat-label>
+
+        <mat-select formControlName="role">
+          <mat-option value="Super Admin">Super Admin</mat-option>
+          <mat-option value="Admin">Admin</mat-option>
+        </mat-select>
+
+        @if(adminForm.get('role')?.invalid &&
+        adminForm.get('role')?.touched){
+        <mat-error>Role is required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Address -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Address</mat-label>
+
+        <textarea matInput rows="3" formControlName="address"></textarea>
+
+        @if(adminForm.get('address')?.hasError('required') &&
+        adminForm.get('address')?.touched){
+        <mat-error>Address is required</mat-error>
+        }
+
+        @if(adminForm.get('address')?.hasError('minlength')){
+        <mat-error>Minimum 10 characters required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- DOB -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Date of Birth</mat-label>
+
+        <input matInput type="date" formControlName="dob" />
+
+        @if(adminForm.get('dob')?.invalid &&
+        adminForm.get('dob')?.touched){
+        <mat-error>Date of birth is required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Generated Password</mat-label>
+
+        <input matInput readonly formControlName="password" />
+
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <!-- Buttons -->
+      <div class="button-container">
+        <button mat-stroked-button color="primary" type="button" (click)="generatePassword()">
+          <mat-icon>refresh</mat-icon>
+          Generate Again
+        </button>
+
+        <button mat-raised-button color="primary" type="button" (click)="register()" [disabled]="adminForm.invalid">
+          <mat-icon>person_add</mat-icon>
+          Register
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

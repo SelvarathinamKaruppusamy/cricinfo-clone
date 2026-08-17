@@ -20,13 +20,19 @@ export class AddBlog implements OnDestroy {
 
   blogForm = this.fb.group({
     title: ['', Validators.required],
-    slug: [''],
+    slug: [{ value: '', disabled: true }, Validators.required],
     shortDescription: ['', Validators.required],
     content: ['', Validators.required],
     image: [''],
     readTime: ['4 min read', Validators.required],
-    publishedDate: [new Date().toISOString().split('T')[0], Validators.required],
-    tags: [''],
+    publishedDate: [
+      {
+        value: new Date().toISOString().split('T')[0],
+        disabled: true,
+      },
+      Validators.required,
+    ],
+    tags: ['', Validators.required],
     featured: [false],
   });
 
@@ -37,6 +43,7 @@ export class AddBlog implements OnDestroy {
   toastVisible = false;
   toastMessage = '';
   toastType: 'success' | 'error' = 'success';
+
   private toastTimeout: any;
 
   cancel(): void {
@@ -64,6 +71,7 @@ export class AddBlog implements OnDestroy {
       clearTimeout(this.toastTimeout);
       this.toastTimeout = null;
     }
+
     this.toastVisible = false;
   }
 
@@ -72,24 +80,40 @@ export class AddBlog implements OnDestroy {
       clearTimeout(this.toastTimeout);
       this.toastTimeout = null;
     }
+
+    if (this.previewUrl) {
+      URL.revokeObjectURL(this.previewUrl);
+    }
   }
 
   saveBlog(): void {
-    if (this.isSaving) return;
-
-    if (this.blogForm.invalid) {
-      this.showToast('Please fill all required fields.', 'error');
+    if (this.isSaving) {
       return;
     }
 
+    this.blogForm.markAllAsTouched();
+
+    /* Image Validation in Separate     */
     if (!this.selectedFile) {
-      this.showToast('Please select an image.', 'error');
+      this.scrollToElement('imageField');
+
+      this.showToast('Please select a featured image.', 'error');
+
+      return;
+    }
+
+    if (this.blogForm.invalid) {
+      this.scrollToFirstInvalidField();
+
+      this.showToast('Please fill all required fields.', 'error');
+
       return;
     }
 
     this.isSaving = true;
 
     const formData = new FormData();
+
     formData.append('file', this.selectedFile);
     formData.append('upload_preset', 'cricinfo_blog_upload');
 
@@ -97,8 +121,11 @@ export class AddBlog implements OnDestroy {
       .post<any>('https://api.cloudinary.com/v1_1/dde7fld9d/image/upload', formData)
       .subscribe({
         next: (cloudinaryResponse) => {
-          const imagePath = `f_auto/v${cloudinaryResponse.version}/${cloudinaryResponse.public_id}.jpg`;
-          const formValue = this.blogForm.value;
+          const imagePath =
+            `f_auto/v${cloudinaryResponse.version}/` + `${cloudinaryResponse.public_id}.jpg`;
+
+
+          const formValue = this.blogForm.getRawValue();
 
           this.blogService.getBlogs().subscribe({
             next: (blogs: any[]) => {
@@ -107,16 +134,26 @@ export class AddBlog implements OnDestroy {
               const blog = {
                 id: nextId.toString(),
                 matchId: nextId,
+
                 title: formValue.title,
                 slug: formValue.slug,
+
                 image: imagePath,
+
                 shortDescription: formValue.shortDescription,
+
                 category: 'Match Report',
+
                 author: 'CrickInfo Team',
+
                 content: formValue.content!.split('\n').filter((p) => p.trim()),
+
                 publishedDate: formValue.publishedDate,
+
                 readTime: formValue.readTime,
+
                 featured: false,
+
                 tags: formValue.tags
                   ? formValue.tags
                       .split(',')
@@ -130,45 +167,105 @@ export class AddBlog implements OnDestroy {
                   this.isSaving = false;
 
                   localStorage.setItem('toastMessage', `"${blog.title}" published successfully!`);
+
                   localStorage.setItem('toastType', 'success');
 
                   this.router.navigate(['/navbarAdmin/blogs']);
                 },
+
                 error: (err) => {
                   console.error('Blog Save Error', err);
+
                   this.isSaving = false;
+
                   this.showToast('Failed to publish blog. Please try again.', 'error');
                 },
               });
             },
+
             error: (err) => {
               console.error('Error fetching blogs', err);
+
               this.isSaving = false;
+
               this.showToast('Failed to save blog. Please try again.', 'error');
             },
           });
         },
+
         error: (err) => {
           console.error('Cloudinary Upload Error', err);
+
           this.isSaving = false;
+
           this.showToast('Image upload failed. Please try again.', 'error');
         },
       });
   }
 
+  /*   Scroll to the first invalid Angular form control.   */
+  private scrollToFirstInvalidField(): void {
+    const invalidControl = Object.keys(this.blogForm.controls).find(
+      (controlName) => this.blogForm.get(controlName)?.invalid,
+    );
+
+    if (!invalidControl) {
+      return;
+    }
+
+    this.scrollToElement(invalidControl);
+  }
+
+  /*
+   * To Scroll to the specific form field.
+   */
+  private scrollToElement(elementId: string): void {
+    setTimeout(() => {
+      const element = document.getElementById(elementId);
+
+      if (!element) {
+        return;
+      }
+
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+
+      const input = element.querySelector('input, textarea') as HTMLElement | null;
+
+      input?.focus();
+    });
+  }
+
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
+
     if (!input.files?.length) {
+      this.selectedFile = null;
+      this.previewUrl = null;
       return;
     }
 
     this.selectedFile = input.files[0];
+
+    if (this.previewUrl) {
+      URL.revokeObjectURL(this.previewUrl);
+    }
+
     this.previewUrl = URL.createObjectURL(this.selectedFile);
   }
 
   generateSlug(): void {
     const title = this.blogForm.get('title')?.value;
-    if (!title) return;
+
+    if (!title) {
+      this.blogForm.patchValue({
+        slug: '',
+      });
+
+      return;
+    }
 
     const slug = title
       .toLowerCase()

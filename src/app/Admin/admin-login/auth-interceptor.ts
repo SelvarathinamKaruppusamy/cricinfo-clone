@@ -17,8 +17,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const isPublic = publicApis.some((url) => req.url.includes(url));
 
+    // Cloudinary not need Header -Authorization (Bearer Token)
+  const isCloudinary = req.url.includes('api.cloudinary.com');
+
   const authReq =
-    !isPublic && token
+    !isPublic && !isCloudinary && token   //blocked for cloudinary... 
       ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
       : req;
 

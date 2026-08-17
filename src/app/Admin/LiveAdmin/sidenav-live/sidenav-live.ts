@@ -6,7 +6,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LiveService } from '../../../User/LivePages/Services/live-service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider'; // Add this import
-import { AdminService } from '../../admin-login/admin-service';
+import { AdminLoginService } from '../../admin-login/admin-service';
 
 @Component({
   selector: 'app-sidenav-live',
@@ -24,7 +24,7 @@ import { AdminService } from '../../admin-login/admin-service';
 })
 export class SidenavLive implements OnInit {
   service = inject(LiveService);
-  adminservice = inject(AdminService);
+  adminservice = inject(AdminLoginService);
   router = inject(Router);
   
   innings = computed(() => this.service.innings());
@@ -35,7 +35,32 @@ export class SidenavLive implements OnInit {
   }
 
   logout(): void {
-    this.adminservice.logout();
-    this.router.navigate(['/admin']);
+
+  console.log("Logout clicked");
+
+  this.adminservice.logout().subscribe({
+
+    next: (res) => {
+
+      console.log("Logout Success", res);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+
+      this.router.navigate(['/admin']);
+    },
+
+    error: (err) => {
+
+      console.log("Logout Error", err);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+
+      this.router.navigate(['/admin']);
+    }
+
+  });
+
   }
 }

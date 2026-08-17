@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { AdminService } from '../admin-login/admin-service';
+import { AdminLoginService } from '../admin-login/admin-service';
 import { RouterLink } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
@@ -28,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './sign-up-page.css',
 })
 export class Signup {
-  private adminService = inject(AdminService);
+  private adminService = inject(AdminLoginService);
 
   adminForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(4)]),

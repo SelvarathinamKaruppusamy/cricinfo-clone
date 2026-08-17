@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from './admin-service';
+import { AdminLoginService } from './admin-service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,29 +22,34 @@ export class AdminLogin {
   showResetForm = false;
 
   constructor(
-    private authService: AdminService,
+    private authService: AdminLoginService,
     private router: Router,
   ) {}
 
   login() {
-    this.authService
-      .login({
-        userName: this.username,
-        password: this.password,
-      })
-      .subscribe({
-        next: (res) => {
-          this.authService.setToken(res.token);
+    this.authService.login({
+      userName: this.username,
+      password: this.password
+    }).subscribe({
 
-          this.authService.setCurrentUser(res);
+      next: (res) => {
 
-          this.router.navigate(['/navbarAdmin']);
-        },
+        if (!res.success) {
+          alert(res.message);
+          return;
+        }
 
-        error: () => {
-          alert('Invalid Username or Password');
-        },
-      });
+        this.authService.setToken(res.token);
+        this.authService.setCurrentUser(res);
+        this.authService.scheduleAutoLogout();
+
+        this.router.navigate(['/navbarAdmin']);
+      },
+
+      error: (err) => {
+        alert(err.error.message);
+      }
+    });
   }
 
   openResetForm() {

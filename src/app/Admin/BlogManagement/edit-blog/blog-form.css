@@ -35,6 +35,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.publishedDate-readTime{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
 .blog-form-container h3 {
   margin: 8px 0;
   font-size: 18px;

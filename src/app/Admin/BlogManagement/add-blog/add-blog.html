@@ -4,73 +4,158 @@
     <p>Create and publish a new article</p>
   </div>
 
-  <form [formGroup]="blogForm">
-    <div class="form-group">
-      <label>Title</label>
+  <form [formGroup]="blogForm" (ngSubmit)="saveBlog()">
+    <!-- TITLE -->
+    <div
+      class="form-group"
+      [class.invalid-field]="blogForm.get('title')?.invalid && blogForm.get('title')?.touched"
+    >
+      <label>Title *</label>
+
       <input
+        id="title"
         type="text"
         placeholder="Enter blog title"
         formControlName="title"
         (input)="generateSlug()"
       />
+
+      @if (blogForm.get('title')?.invalid && blogForm.get('title')?.touched) {
+        <span class="validation-error"> Title is required. </span>
+      }
     </div>
 
+    <!-- SLUG -->
     <div class="form-group">
       <label>Slug</label>
-      <input type="text" formControlName="slug" readonly />
+
+      <input id="slug" type="text" formControlName="slug" readonly />
+
+      <small class="field-info"> Automatically generated from the title. </small>
+
+      @if (blogForm.get('slug')?.invalid && blogForm.get('slug')?.touched) {
+        <span class="validation-error"> Slug is required. </span>
+      }
     </div>
 
-    <div class="form-group">
+    <!-- IMAGE -->
+    <div id="imageField" class="form-group" [class.invalid-field]="!selectedFile">
       <label>Featured Image *</label>
 
       <input type="file" accept="image/*" (change)="onImageSelected($event)" />
 
-      <div class="preview" *ngIf="previewUrl">
-        <img [src]="previewUrl" alt="Preview" />
-      </div>
+      @if (previewUrl) {
+        <div class="preview">
+          <img [src]="previewUrl" alt="Preview" />
+        </div>
+      }
+
+      @if (!selectedFile) {
+        <span class="validation-error"> Featured image is required. </span>
+      }
     </div>
 
-    <div class="form-group">
-      <label>Short Description</label>
+    <!-- SHORT DESCRIPTION -->
+    <div
+      class="form-group"
+      [class.invalid-field]="
+        blogForm.get('shortDescription')?.invalid && blogForm.get('shortDescription')?.touched
+      "
+    >
+      <label>Short Description *</label>
 
       <textarea
+        id="shortDescription"
         rows="4"
         placeholder="Short summary shown on blog cards"
         formControlName="shortDescription"
-      >
-      </textarea>
+      ></textarea>
+
+      @if (blogForm.get('shortDescription')?.invalid && blogForm.get('shortDescription')?.touched) {
+        <span class="validation-error"> Short description is required. </span>
+      }
     </div>
 
-    <div class="form-group">
-      <label>Content</label>
+    <!-- CONTENT -->
+    <div
+      class="form-group"
+      [class.invalid-field]="blogForm.get('content')?.invalid && blogForm.get('content')?.touched"
+    >
+      <label>Content *</label>
 
-      <textarea rows="18" placeholder="Write blog content here..." formControlName="content">
-      </textarea>
+      <textarea
+        id="content"
+        rows="18"
+        placeholder="Write blog content here..."
+        formControlName="content"
+      ></textarea>
+
+      @if (blogForm.get('content')?.invalid && blogForm.get('content')?.touched) {
+        <span class="validation-error"> Content is required. </span>
+      }
     </div>
 
+    <!-- READ TIME + PUBLISHED DATE -->
     <div class="row">
-      <div class="form-group">
-        <label>Read Time</label>
+      <!-- READ TIME -->
+      <div
+        class="form-group"
+        [class.invalid-field]="
+          blogForm.get('readTime')?.invalid && blogForm.get('readTime')?.touched
+        "
+      >
+        <label>Read Time *</label>
 
-        <input type="text" placeholder="4 min read" formControlName="readTime" />
+        <input id="readTime" type="text" placeholder="4 min read" formControlName="readTime" />
+
+        @if (blogForm.get('readTime')?.invalid && blogForm.get('readTime')?.touched) {
+          <span class="validation-error"> Read time is required. </span>
+        }
       </div>
 
-      <div class="form-group">
+      <!-- PUBLISHED DATE -->
+      <div class="form-group readonly-field">
         <label>Published Date</label>
 
-        <input type="date" formControlName="publishedDate" />
+        <input id="publishedDate" type="date" formControlName="publishedDate" readonly />
+
+        <small class="field-info"> Automatically set to today's date. </small>
       </div>
     </div>
 
-    <div class="form-group">
-      <label>Tags</label>
+    <div
+      class="form-group"
+      [class.invalid-field]="blogForm.get('tags')?.invalid && blogForm.get('tags')?.touched"
+    >
+      <label>Tags *</label>
 
-      <input type="text" placeholder="Virat Kohli, RCB, IPL 2026" formControlName="tags" />
+      <input
+        id="tags"
+        type="text"
+        placeholder="Virat Kohli, RCB, IPL 2026"
+        formControlName="tags"
+      />
+
+      @if (blogForm.get('tags')?.invalid && blogForm.get('tags')?.touched) {
+        <span class="validation-error"> Tags are required. </span>
+      }
+
+      <small class="field-info"> Separate multiple tags using commas. </small>
     </div>
 
+    <!-- ACTIONS -->
     <div class="actions">
-      <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
-      <button type="button" class="save-btn" (click)="saveBlog()">Publish Blog</button>
+      <button type="button" class="cancel-btn" (click)="cancel()" [disabled]="isSaving">
+        Cancel
+      </button>
+
+      <button type="submit" class="save-btn" [disabled]="isSaving">
+        @if (isSaving) {
+          Publishing...
+        } @else {
+          Publish Blog
+        }
+      </button>
     </div>
   </form>
 </div>

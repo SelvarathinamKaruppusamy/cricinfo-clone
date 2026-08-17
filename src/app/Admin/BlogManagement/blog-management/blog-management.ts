@@ -1,18 +1,19 @@
 import { Component, OnInit, inject, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { CommonModule, NgOptimizedImage, ViewportScroller } from '@angular/common';
+
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { BlogManagementService } from '../services/blog-management';
 import { Blog } from '../model/blog.model';
 import { FormsModule } from '@angular/forms';
 
 import { HighlightPipe } from './highlight.pipe';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-blog-management',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, FormsModule, HighlightPipe, MatSnackBarModule],
+  imports: [CommonModule, NgOptimizedImage, FormsModule, HighlightPipe],
   templateUrl: './blog-management.html',
   styleUrl: './blog-management.css',
 })
@@ -20,7 +21,6 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
   private blogService = inject(BlogManagementService);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
-  private snackBar = inject(MatSnackBar);
   private viewportScroller = inject(ViewportScroller);
 
   blogs: Blog[] = [];
@@ -104,9 +104,11 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
 
         this.viewportScroller.scrollToPosition([0, 0]);
       },
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         this.loading = false;
-        this.showToast('Failed to load blogs. Please try again.', 'error');
+
+        this.handleHttpError(err, 'Failed to load blogs. Please try again.');
+
         this.cdr.detectChanges();
       },
     });
@@ -120,20 +122,19 @@ export class BlogManagementComponent implements OnInit, OnDestroy {
     this.router.navigate(['/navbarAdmin/blogs/edit', matchId]);
   }
 
-deleteBlog(matchId: number): void {
+  deleteBlog(matchId: number): void {
+    const blog = this.blogs.find((b) => b.matchId === matchId);
 
-  const blog = this.blogs.find((b) => b.matchId === matchId);
+    if (!blog) {
+      this.showToast('Blog not found. Please try again.', 'error');
+      return;
+    }
 
-  if (!blog) {
-    this.showToast('Blog not found. Please try again.', 'error');
-    return;
+    this.selectedBlogId = matchId;
+    this.selectedBlogTitle = blog.title;
+    this.showDeletePopup = true;
+    this.cdr.detectChanges();
   }
-
-  this.selectedBlogId = matchId;
-  this.selectedBlogTitle = blog.title;
-  this.showDeletePopup = true;
-  this.cdr.detectChanges();
-}
 
   confirmDelete(): void {
     this.showDeletePopup = false;
@@ -153,8 +154,9 @@ deleteBlog(matchId: number): void {
         this.showToast(`"${blogTitle}" deleted successfully.`, 'success');
         this.cdr.detectChanges();
       },
-      error: (err) => {
-        this.showToast('Failed to delete blog. Please try again.', 'error');
+      error: (err: HttpErrorResponse) => {
+        this.handleHttpError(err, 'Failed to delete blog. Please try again.');
+
         this.cdr.detectChanges();
       },
     });
@@ -192,5 +194,58 @@ deleteBlog(matchId: number): void {
 
   trackByBlogId(index: number, blog: Blog): number {
     return blog.id;
+  }
+
+  private handleHttpError(error: HttpErrorResponse, defaultMessage: string): void {
+    console.error('Blog Management API Error:', error);
+
+    switch (error.status) {
+      case 0:
+        this.showToast(
+          'Unable to connect to the server. Please check your internet connection.',
+          'error',
+        );
+        break;
+
+      case 400:
+        this.showToast(
+          error.error?.message || 'Invalid request. Please check the information and try again.',
+          'error',
+        );
+        break;
+
+      case 401:
+        this.showToast('Your session has expired. Please login again.', 'error');
+        break;
+
+      case 403:
+        this.showToast('You do not have permission to perform this action.', 'error');
+        break;
+
+      case 404:
+        this.showToast(error.error?.message || 'The requested blog could not be found.', 'error');
+        break;
+
+      case 409:
+        this.showToast(
+          error.error?.message || 'The requested operation conflicts with existing data.',
+          'error',
+        );
+        break;
+
+      case 500:
+        this.showToast('Something went wrong on the server. Please try again later.', 'error');
+        break;
+
+      case 502:
+      case 503:
+      case 504:
+        this.showToast('The server is temporarily unavailable. Please try again later.', 'error');
+        break;
+
+      default:
+        this.showToast(defaultMessage, 'error');
+        break;
+    }
   }
 }

@@ -1,0 +1,70 @@
+:host {
+  display: block;
+}
+
+.animation-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
+ng-lottie {
+  width: 150px;
+  height: 150px;
+}
+
+/* SIX IMAGE */
+
+.six-image {
+  position: absolute;
+  width: 30px;
+  z-index: 10;
+
+  animation: sixJump 2s ease-out;
+
+  filter:
+    drop-shadow(0 0 10px gold)
+    drop-shadow(0 0 25px orange)
+    drop-shadow(0 0 40px red);
+}
+
+/* JUMP ANIMATION */
+
+@keyframes sixJump {
+
+  0% {
+    transform: translateY(120px) scale(0) rotate(-20deg);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translateY(-40px) scale(1.3) rotate(10deg);
+    opacity: 1;
+  }
+
+  40% {
+    transform: translateY(0) scale(1);
+  }
+
+  60% {
+    transform: translateY(-18px) scale(1.1);
+  }
+
+  80% {
+    transform: translateY(0) scale(1);
+  }
+
+  90% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

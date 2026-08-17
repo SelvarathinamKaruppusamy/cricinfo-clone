@@ -1,0 +1,76 @@
+<div class="mt-15">
+  <div class="blog-list-container">
+    <div class="page-header">
+      <h1 class="page-title">Latest Match Reports</h1>
+
+      <div class="search-box">
+        <span class="material-symbols-outlined"> search </span>
+
+        <input
+          type="text"
+          placeholder="Search Blogs"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch($event)"
+        />
+      </div>
+    </div>
+
+    @if (loading) {
+      <div class="blog-loading-wrapper">
+        <div class="blog-loading-pill">
+          <div class="blog-loader"></div>
+          <span class="blog-loader-text"> Just a moment, loading blogs... </span>
+        </div>
+      </div>
+    }
+
+    <div class="blog-grid" [hidden]="loading">
+      @for (blog of blogs$ | async; track blog.id) {
+        <article class="blog-card">
+          <div class="blog-image-wrapper">
+            @if (blog.image) {
+              <img
+                [ngSrc]="blog.image"
+                width="400"
+                height="250"
+                [alt]="blog.title"
+                class="blog-img"
+              />
+            } @else {
+              <div class="placeholder-img">No Image Available</div>
+            }
+          </div>
+
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span>By {{ blog.author }}</span>
+              •
+              <span>
+                {{ blog.publishedDate | date: 'mediumDate' }}
+              </span>
+            </div>
+
+            <h2 class="blog-heading" [innerHTML]="blog.title | highlight: searchTerm"></h2>
+
+            <p
+              class="blog-description"
+              [innerHTML]="blog.shortDescription | highlight: searchTerm"
+            ></p>
+
+            <div class="blog-footer">
+              <span class="read-time">
+                {{ blog.readTime }}
+              </span>
+
+              <button class="read-btn" [routerLink]="['/blog-detail', blog.matchId]">
+                Read Full Report
+              </button>
+            </div>
+          </div>
+        </article>
+      } @empty {
+        <p class="loading-text">No matching reports found.</p>
+      }
+    </div>
+  </div>
+</div>

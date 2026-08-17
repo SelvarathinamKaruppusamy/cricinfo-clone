@@ -1,0 +1,85 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AdminLoginService } from './admin-service';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-admin-login',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
+  templateUrl: './admin-login.html',
+  styleUrl: './admin-login.css',
+})
+export class AdminLogin {
+  username = '';
+  password = '';
+
+  resetUsername = '';
+  currentPassword = '';
+  newPassword = '';
+
+  showResetForm = false;
+
+  constructor(
+    private authService: AdminLoginService,
+    private router: Router,
+  ) {}
+
+  login() {
+    this.authService.login({
+      userName: this.username,
+      password: this.password
+    }).subscribe({
+
+      next: (res) => {
+
+        if (!res.success) {
+          alert(res.message);
+          return;
+        }
+
+        this.authService.setToken(res.token);
+        this.authService.setCurrentUser(res);
+        this.authService.scheduleAutoLogout();
+
+        this.router.navigate(['/navbarAdmin']);
+      },
+
+      error: (err) => {
+        alert(err.error.message);
+      }
+    });
+  }
+
+  openResetForm() {
+    this.showResetForm = true;
+  }
+
+  cancelReset() {
+    this.showResetForm = false;
+
+    this.resetUsername = '';
+    this.currentPassword = '';
+    this.newPassword = '';
+  }
+
+  updatePassword() {
+    this.authService
+      .resetPassword({
+        userName: this.resetUsername,
+        currentPassword: this.currentPassword,
+        newPassword: this.newPassword,
+      })
+      .subscribe({
+        next: (res: any) => {
+          alert(res.message);
+
+          this.cancelReset();
+        },
+        error: (err) => {
+          alert(err.error.message);
+        },
+      });
+  }
+}

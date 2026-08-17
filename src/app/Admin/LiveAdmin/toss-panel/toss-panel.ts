@@ -3,52 +3,156 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
-import { LiveService } from '../../../LivePages/Services/live-service';
-import { LiveModel, Team } from '../../../LivePages/Models/models';
+import { LiveService } from '../../../User/LivePages/Services/live-service';
+import { LiveModel, Team } from '../../../User/LivePages/Models/models';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog-component/confirm-dialog-component';
+import { AdminService } from '../admin-service';
+import { PromoteMatchDialogComponent } from '../promote-match-dialog-component/promote-match-dialog-component';
 
 @Component({
   selector: 'app-toss-panel',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatSnackBarModule],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule],
   templateUrl: './toss-panel.html',
   styleUrl: './toss-panel.css',
 })
 export class TossPanel implements OnInit {
   service = inject(LiveService);
   changedetector = inject(ChangeDetectorRef);
-  snackBar = inject(MatSnackBar);
   router = inject(Router);
-
+  adminService=inject(AdminService)
   live!: LiveModel;
   teams: Team[] = [];
 
   selectedTossWinner: 0 | 1 | null = null;
   selectedCall: 'Head' | 'Tail' | null = null;
   selectedDecision: 'Bat' | 'Bowl' | null = null;
+  toastVisible = false;
+toastType: 'success' | 'error' = 'success';
+toastMessage = '';
 
-  isSaving = false;
+private toastTimer: any;
+selectedUpcomingMatch!: LiveModel;
 
-  ngOnInit(): void {
-    this.service.GetLiveMatches().subscribe({
-      next: (res) => {
-        if (!res?.length) return;
+   private dialog = inject(MatDialog);
+  openConfirmDialog(data: ConfirmDialogData, action: () => void) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '420px',
+      disableClose: true,
+      data,
+      panelClass: 'custom-dialog-container'
+    });
 
-        this.live = structuredClone(res[0]);
-        this.teams = this.live?.teams ?? [];
-
-        // load into service
-        this.service.loadMatchIntoService(this.live);
-
-        this.changedetector.detectChanges();
-        console.log('Toss panel loaded live match:', this.service.live());
-      },
-      error: (err) => console.error(err),
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        action();
+      }
     });
   }
+ngOnInit(): void {
 
+ // Temporary while only one live match exists
+this.openPromoteDialog();
+
+}
+loadLiveMatch(match: LiveModel) {
+
+  this.live = structuredClone(match);
+
+  this.teams = this.live.teams;
+
+  this.service.loadMatchIntoService(this.live);
+
+  this.changedetector.detectChanges();
+
+}
+openPromoteDialog() {
+
+  this.adminService.GetUpcomingMatches().subscribe({
+
+    next: (matches) => {
+
+      if (!matches.length) {
+
+        alert("No Upcoming Matches");
+
+        return;
+
+      }
+
+      const nextMatch = matches[0];
+      console.log(matches)
+
+this.selectedUpcomingMatch = nextMatch;
+
+      const dialogRef = this.dialog.open(
+        PromoteMatchDialogComponent,
+        {
+          width: '500px',
+          disableClose: true,
+          data: nextMatch
+        }
+      );
+
+      dialogRef.afterClosed().subscribe(result => {
+
+        if (result) {
+
+          this.promoteMatch();
+
+        }
+
+      });
+
+    }
+
+  });
+
+}
+promoteMatch() {
+
+  this.adminService
+      .PromoteUpcomingMatch(this.selectedUpcomingMatch.matchNo)
+      .subscribe({
+
+        next: () => {
+
+          this.showToast(
+            "Match Promoted Successfully",
+            "success"
+          );
+
+          this.service.GetLiveMatch(
+            
+          ).subscribe({
+
+            next: match => {
+
+              this.loadLiveMatch(match);
+
+            }
+
+          });
+
+        },
+
+        error: err => {
+
+          console.error(err);
+
+          this.showToast(
+            "Promotion Failed",
+            "error"
+          );
+
+        }
+
+      });
+
+}
   get tossSummary(): string {
     if (this.selectedTossWinner === null || !this.selectedCall || !this.selectedDecision) {
       return '';
@@ -73,88 +177,134 @@ export class TossPanel implements OnInit {
   }
 
   canSaveToss(): boolean {
-    return (
-      this.selectedTossWinner !== null &&
-      !!this.selectedCall &&
-      !!this.selectedDecision &&
-      !this.isSaving
-    );
-  }
 
-  saveToss() {
-    if (!this.canSaveToss() || !this.live) return;
+  return this.selectedTossWinner !== null &&
+         this.selectedDecision !== null;
 
-    this.isSaving = true;
+}
 
-    const tossWinnerIndex = this.selectedTossWinner!;
-    const tossLoserIndex = tossWinnerIndex === 0 ? 1 : 0;
+ saveToss() {
 
-    // set service toss + batting/bowling state
-    this.service.tossWinner.set(tossWinnerIndex);
-    this.service.tossCall.set(this.selectedCall!);
-    this.service.tossDecision.set(this.selectedDecision!);
-    this.service.tosswin.set(tossWinnerIndex);
+  this.openConfirmDialog(
+    {
+      title: 'Save Toss',
+      message: 'Do you want to save the toss?',
+      confirmText: 'Save',
+      cancelText: 'Cancel',
+      type: 'success'
+    },
+    () => {
 
-    if (this.selectedDecision === 'Bat') {
-      this.service.currentBattingTeam.set(tossWinnerIndex);
-      this.service.currentBowlingTeam.set(tossLoserIndex);
-    } else {
-      this.service.currentBattingTeam.set(tossLoserIndex);
-      this.service.currentBowlingTeam.set(tossWinnerIndex);
-    }
+      if (!this.live) return;
 
-    // update service.live with toss + innings runtime info
-    this.service.live.update((live) => {
-      if (!live) return live;
+      const body = {
 
-      return {
-        ...live,
-        tossWinner: live.teams[tossWinnerIndex]?.shortName ?? null,
-        tossDecision: this.selectedDecision!,
-        innings: 1,
-        currentBattingTeamIndex: this.service.currentBattingTeam(),
-        currentBowlingTeamIndex: this.service.currentBowlingTeam(),
+        tossWinner:
+          this.live.teams[this.selectedTossWinner!].shortName,
+
+        tossDecision:
+          this.selectedDecision
+
       };
-    });
 
-    // initialize players/bowlers for innings 1 before saving
-    this.service.initCurrentInningsPlayers();
-    this.service.syncCurrentPlayersToLive();
+      this.service.UpdateToss(
+        this.live.matchNo,
+        body
+      ).subscribe({
 
-    const updatedLive = this.service.live();
-    if (!updatedLive) {
-      this.isSaving = false;
-      return;
+        next: () => {
+
+          // CALL START MATCH API
+          this.service.StartMatch(this.live!.matchNo).subscribe({
+
+            next: () => {
+
+              // Reload latest match
+              this.service.GetLiveMatch(
+                
+              ).subscribe({
+
+                next: (updatedMatch) => {
+
+                  this.service.isSaving = true;
+
+                  this.loadLiveMatch(updatedMatch);
+
+                  this.showToast(
+                    'Toss Saved & Match Started',
+                    'success'
+                  );
+
+                  setTimeout(() => {
+
+                    this.router.navigate([
+                      '/navbarAdmin/adminLive/liveupdate'
+                    ]);
+
+                  }, 1500);
+
+                },
+
+                error: (err: any) => {
+
+                  console.error(err);
+
+                }
+
+              });
+
+            },
+
+            error: (err: any) => {
+
+              console.error(err);
+
+              this.showToast(
+                'Match start failed',
+                'error'
+              );
+
+            }
+
+          });
+
+        },
+
+        error: (err: any) => {
+
+          console.error(JSON.stringify(err.error));
+          console.error(err);
+
+          this.showToast(
+            'Failed to save toss',
+            'error'
+          );
+
+        }
+
+      });
+
     }
+  );
 
-    this.service.UpdateMatch(updatedLive.id, updatedLive).subscribe({
-      next: (updated) => {
-        this.service.loadMatchIntoService(updated);
+}
+  showToast(message: string, type: 'success' | 'error') {
+  this.toastMessage = message;
+  this.toastType = type;
+  this.toastVisible = true;
 
-        // confirmation message
-        this.snackBar.open('Toss saved successfully. Redirecting to Live Update...', 'OK', {
-          duration: 2000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
+  this.changedetector.detectChanges();
 
-        // auto redirect after short delay
-        setTimeout(() => {
-          this.router.navigate(['/admin/liveupdate']);
-        }, 1200);
+  clearTimeout(this.toastTimer);
 
-        this.isSaving = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.isSaving = false;
+  this.toastTimer = setTimeout(() => {
+    this.toastVisible = false;
+    this.changedetector.detectChanges();
+  }, 1200);
+}
 
-        this.snackBar.open('Failed to save toss', 'Close', {
-          duration: 2500,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
-      },
-    });
-  }
+closeToast() {
+  this.toastVisible = false;
+  clearTimeout(this.toastTimer);
+}
 }

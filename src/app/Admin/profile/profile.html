@@ -1,0 +1,229 @@
+<div class="profile-container" *ngIf="user">
+
+  <!-- HEADER -->
+  <div class="profile-header">
+
+    <div class="profile-avatar">
+      {{ user?.firstName?.charAt(0) }}
+      {{ user?.lastName?.charAt(0) }}
+    </div>
+
+    <div class="profile-info">
+      <h1>
+        {{ user?.firstName }}
+        {{ user?.lastName }}
+      </h1>
+
+      <p>{{ user?.role }}</p>
+
+      <span>{{ user?.email }}</span>
+    </div>
+
+    <div class="action-buttons">
+
+      <button class="edit-btn" *ngIf="!editMode" (click)="enableEdit()">
+        Edit
+      </button>
+
+      <button class="logout-btnn" *ngIf="isSuperAdmin" (click)="addadmin()">
+        Add Admin
+      </button>
+
+      <button class="logout-btn" (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- PROFILE CARD -->
+  <div class="profile-card">
+
+    <div class="section-title">
+      Personal Information
+    </div>
+
+    <form #profileForm="ngForm">
+
+      <div class="info-grid">
+
+        <!-- First Name -->
+        <div class="info-item">
+          <label>First Name</label>
+
+          <span *ngIf="!editMode">
+            {{ user?.firstName }}
+          </span>
+
+          <input *ngIf="editMode" type="text" name="firstName" required minlength="3" [(ngModel)]="editUser.firstName">
+        </div>
+
+        <!-- Last Name -->
+        <div class="info-item">
+          <label>Last Name</label>
+
+          <span *ngIf="!editMode">
+            {{ user?.lastName }}
+          </span>
+
+          <input *ngIf="editMode" type="text" name="lastName" required [(ngModel)]="editUser.lastName">
+        </div>
+
+        <!-- Email -->
+        <div class="info-item">
+          <label>Email</label>
+
+          <span *ngIf="!editMode">
+            {{ user?.email }}
+          </span>
+
+          <input *ngIf="editMode" type="email" name="email" required [(ngModel)]="editUser.email">
+        </div>
+
+        <!-- Mobile -->
+        <div class="info-item">
+          <label>Mobile Number</label>
+
+          <span *ngIf="!editMode">
+            {{ user?.mobileNo }}
+          </span>
+
+          <input *ngIf="editMode" type="text" name="mobileNo" maxlength="10" [(ngModel)]="editUser.mobileNo">
+        </div>
+
+        <!-- Gender -->
+        <div class="info-item">
+          <label>Gender</label>
+
+          <span *ngIf="!editMode">
+            {{ user?.gender }}
+          </span>
+
+          <select *ngIf="editMode" name="gender" [(ngModel)]="editUser.gender">
+
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+
+          </select>
+        </div>
+
+        <!-- DOB -->
+        <div class="info-item">
+          <label>Date of Birth</label>
+
+          <span *ngIf="!editMode">
+            {{ user?.dob | date:'yyyy-MM-dd' }}
+          </span>
+
+          <input *ngIf="editMode" type="date" name="dob" [(ngModel)]="editUser.dob">
+        </div>
+
+        <!-- Address -->
+        <div class="info-item full-width">
+
+          <label>Address</label>
+
+          <span *ngIf="!editMode">
+            {{ user?.address }}
+          </span>
+
+          <textarea *ngIf="editMode" rows="4" name="address" [(ngModel)]="editUser.address">
+          </textarea>
+
+        </div>
+
+      </div>
+
+      <div class="form-buttons" *ngIf="editMode">
+
+        <button type="button" class="save-btn" (click)="saveProfile()">
+          Save Changes
+        </button>
+
+        <button type="button" class="cancel-btn" (click)="cancelEdit()">
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- CONFIRM DIALOG -->
+
+<div class="confirm-overlay" *ngIf="showConfirmDialog">
+
+  <div class="confirm-dialog">
+
+    <div class="confirm-header">
+
+      <span class="confirm-title">
+        Confirm Save
+      </span>
+
+      <button class="confirm-close" (click)="cancelSave()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="confirm-body">
+      <p>
+        Are you sure you want to save these changes?
+      </p>
+    </div>
+
+    <div class="confirm-footer">
+
+      <button class="confirm-btn confirm-yes" (click)="confirmSave()">
+        Yes
+      </button>
+
+      <button class="confirm-btn confirm-no" (click)="cancelSave()">
+        No
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" *ngIf="toastVisible" [ngClass]="toastType">
+
+  <div class="toast-icon">
+    <span *ngIf="toastType === 'success'">✓</span>
+    <span *ngIf="toastType === 'error'">✕</span>
+  </div>
+
+  <div class="toast-content">
+
+    <div class="toast-title">
+      {{
+      toastType === 'success'
+      ? 'Success'
+      : 'Error'
+      }}
+    </div>
+
+    <div class="toast-message">
+      {{ toastMessage }}
+    </div>
+
+  </div>
+
+  <button class="toast-close" (click)="closeToast()">
+    ×
+  </button>
+
+  <div class="toast-progress"></div>
+
+</div>

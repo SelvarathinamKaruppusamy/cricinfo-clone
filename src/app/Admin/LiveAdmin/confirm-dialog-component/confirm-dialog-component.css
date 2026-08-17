@@ -1,0 +1,145 @@
+/* ==========================
+   Overlay
+========================== */
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+/* ==========================
+   Dialog Box
+========================== */
+
+.dialog-box {
+  width: 100%;
+  max-width: 420px;
+  min-width: 320px;
+  background: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: dialogFade 0.25s ease;
+}
+
+/* ==========================
+   Header
+========================== */
+
+.dialog-header {
+  padding: 18px 20px 12px;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ==========================
+   Content
+========================== */
+
+.dialog-content {
+  padding: 0 20px 18px;
+}
+
+.dialog-content p {
+  margin: 0;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ==========================
+   Footer
+========================== */
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 20px 20px;
+}
+
+.cancel-btn,
+.confirm-btn {
+  min-width: 90px;
+  min-height: 40px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Cancel */
+
+.cancel-btn {
+  background: transparent;
+  border: 1px solid #94a3b8;
+  color: #374151;
+}
+
+.cancel-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Confirm */
+
+.confirm-btn {
+  border: none;
+  background: #16a34a;
+  color: white;
+  box-shadow: 0 3px 8px rgba(22, 163, 74, 0.3);
+}
+
+.confirm-btn:hover {
+  background: #15803d;
+  box-shadow: 0 5px 12px rgba(22, 163, 74, 0.4);
+}
+
+/* ==========================
+   Animation
+========================== */
+
+@keyframes dialogFade {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 600px) {
+  .dialog-box {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .dialog-actions {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .confirm-btn {
+    width: 100%;
+  }
+}

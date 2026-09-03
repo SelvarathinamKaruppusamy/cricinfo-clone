@@ -10,7 +10,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   // APIs that don't need token
   const publicApis = [
     '/api/auth/login',
-    '/api/auth/register',
     '/api/auth/reset-password',
     '/api/auth/logout',
   ];
